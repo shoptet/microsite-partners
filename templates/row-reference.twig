@@ -1,0 +1,31 @@
+{% if options.themeReferenceShowHomepage %}
+  <div class="row-reference">
+    <div class="container">
+
+      <blockquote class="row-reference-blockquote">
+
+        {{ options.themeReferenceText }}
+
+        <footer>
+          {{ options.themeReferenceName }}{% if options.themeReferencePosition or options.themeReferenceUrl %},{% endif %}
+
+          {% if options.themeReferencePosition %}
+            {{ options.themeReferencePosition }}{% if options.themeReferenceUrl %},{% endif %}
+          {% endif %}
+
+          {% if options.themeReferenceUrl %}
+            <a href="{{ options.themeReferenceUrl }}" target="_blank">{{ options.themeReferenceUrl|display_url }}</a>
+          {% endif %}
+        </footer>
+
+        <img
+          class="row-reference-blockquote-image"
+          src="{{ options.themeReferenceImage.sizes.thumbnail }}"
+          alt="{{ options.themeReferenceName }}"
+        >
+
+      </blockquote>
+
+    </div>
+  </div>
+{% endif %}

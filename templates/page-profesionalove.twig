@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block breadcrumb %}
+	<div class="row-breadcrumb row-breadcrumb-bg">
+		<div class="container">
+			{% include 'breadcrumb.twig' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row-category-header row-category-header-breadcrumb">
+  <div class="container">
+    <div class="row-category-header-wrapper">
+
+      <div class="row-category-header-body">
+        <h1 class="row-category-header-title">Profesionálové</h1>
+        {% if options.perexProfessional %}
+          <div class="row-profile-type-perex">
+            {{ options.perexProfessional }}
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+	{% if show_category_professionals %}
+		<div class="row-profile-type">
+			<div class="container">
+				{% include 'category/list.twig' with {'terms': category_professionals} %}
+
+			</div>
+		</div>
+	{% endif %}
+
+
+{% endblock %}

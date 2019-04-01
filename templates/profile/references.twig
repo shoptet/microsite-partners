@@ -1,0 +1,26 @@
+{% if post.get_field('references') is not empty %}
+  <div class="list-group-profile-item">
+    <h2 class="h4 mb-4">Reference</h2>
+
+    <div class="reference-list">
+      <div class="row">
+        {% for reference in post.get_field('references') %}
+          <div class="col-6 col-sm-4">
+            {% spaceless %}
+              <a
+                class="reference-list-item"
+                href="{{ reference.url }}"
+                target="_blank"
+              >
+                <img
+                  src="{{ reference.logo.sizes.medium }}"
+                  alt="{{ reference.title }}"
+                >
+              </a>
+            {% endspaceless %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}

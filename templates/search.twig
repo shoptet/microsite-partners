@@ -1,0 +1,75 @@
+{% extends "base.twig" %}
+
+{% block head %}
+
+	<meta property="og:url" content="{{ term.link }}">
+	<meta property="og:type" content="website">
+
+{% endblock %}
+
+{% block breadcrumb %}
+	<div class="row-breadcrumb row-breadcrumb-bg">
+		<div class="container">
+			{% include 'breadcrumb.twig' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+
+	<div class="row-category-header row-category-header-breadcrumb">
+		<div class="container">
+			<div class="row-category-header-wrapper">
+
+				<div class="row-category-header-body">
+
+					<h1 class="row-category-header-title">Výsledky vyhledávání pro: <strong>{{ query }}</strong></h1>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	{% if has_results %}
+		<div class="row-profile-list">
+			<div class="container">
+
+				{% if pagination.current == 1 %}
+
+					{% if terms_professionals is not empty %}
+						<h2 class="h5 mb-3">Kategorie profesionálů ({{ terms_professionals|length }})</h2>
+						{% include 'category/list.twig' with {'terms': terms_professionals} %}
+					{% endif %}
+
+					{% if terms_plugins is not empty %}
+						<h2 class="h5 mb-3">Kategorie napojení ({{ terms_plugins|length }})</h2>
+						{% include 'category/list.twig' with {'terms': terms_plugins} %}
+					{% endif %}
+
+					{% if terms_tools is not empty %}
+						<h2 class="h5 mb-3">Kategorie nástrojů ({{ terms_tools|length }})</h2>
+						{% include 'category/list.twig' with {'terms': terms_tools} %}
+					{% endif %}
+
+				{% endif %}
+
+				{% if posts is not empty %}
+					<h2 class="h5 mb-3">Profily ({{ posts_count }})</h2>
+					{% include 'profile/list.twig' with {'hide_cta': true} %}
+
+					{% include 'pagination.twig' %}
+				{% endif %}
+
+			</div>
+		</div>
+	{% else %}
+		<div class="row-not-found">
+			<div class="container">
+				<p class="h2 font-italic">Nebylo nic nalezeno</p>
+				<p class="lead mb-0">Zkuste prosím vyhledat jinou frázi.</p>
+			</div>
+		</div>
+	{% endif %}
+
+{% endblock %}

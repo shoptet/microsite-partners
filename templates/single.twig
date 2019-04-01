@@ -1,0 +1,81 @@
+{% extends "base.twig" %}
+
+{% block head %}
+	<link rel="canonical" href="{{ post.link }}">
+
+	<meta property="og:url" content="{{ post.link }}">
+	<meta property="og:type" content="profile">
+
+{% endblock %}
+
+{% block breadcrumb %}
+	<div class="row-breadcrumb row-breadcrumb-bg">
+		<div class="container">
+			{% include 'breadcrumb.twig' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+
+	<div
+		class="row-profile row-profile-breadcrumb"
+		itemscope
+		itemtype="http://schema.org/{% if post.post_type == 'profesionalove' %}Person{% else %}Product{% endif %}"
+	>
+		<div class="container">
+
+			<div class="d-lg-none">
+				{% include 'profile/verified.twig' %}
+			</div>
+
+			<div class="row">
+			  <div class="col-lg-8">
+
+					<div class="list-group-profile mb-4 mb-sm-0">
+
+						{% include 'profile/main.twig' %}
+
+						{% include 'profile/price.twig' %}
+
+						{% include 'profile/about.twig' %}
+
+						{% include 'profile/references.twig' %}
+
+					</div>
+
+				</div>
+				<div class="col-lg-4">
+    				{% if post.get_field('isVerified') is not empty %}
+    					<div class="d-none d-lg-block">
+    						{% include 'profile/verified.twig' %}
+    					</div>
+    				{% endif %}
+
+                    {% include 'profile/contact.twig' %}
+
+                    {% if post.get_field('recommendations') is not empty %}
+					    {% include 'profile/recommendation.twig' %}
+    				{% endif %}
+				</div>
+
+				<hr>
+			</div>
+
+		</div>
+	</div>
+
+	{% if similar_posts|length > 0 %}
+		<div class="row-profile-list row-bottom-divider">
+			<div class="container">
+					<h2 class="row-profile-list-title">Nevybrali jste? Co zkusit jiné?</h2>
+					{% include 'profile/list.twig' with {'posts': similar_posts, 'hide_cta': true} %}
+			</div>
+		</div>
+	{% endif %}
+
+    {% include 'row-become-partner.twig' %}
+
+    {% include 'row-complaint.twig' %}
+
+{% endblock %}

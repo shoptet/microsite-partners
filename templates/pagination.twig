@@ -1,0 +1,43 @@
+{% if pagination.total > 1 %}
+  <nav aria-label="Stránkování výpisu profilů">
+    <ul class="pagination justify-content-center mt-3 mb-0">
+
+      {% if pagination.prev %}
+        <li class="page-item ">
+          {% if not pagination.prev %}
+            <span class="page-link">Předchozí</span>
+          {% else %}
+            <a class="page-link" href="{{pagination.prev.link}}">Předchozí</a>
+          {% endif %}
+        </li>
+      {% endif %}
+
+      {% for page in pagination.pages %}
+        {% if page.link %}
+          <li class="page-item">
+            <a class="page-link" href="{{page.link}}">
+              {{page.title}}
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item {% if page.current %}active{% endif %}">
+            <span class="page-link">
+              {{page.title}} <span class="sr-only">(nyní)</span>
+            </span>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if pagination.next %}
+        <li class="page-item">
+          {% if not pagination.next %}
+            <span class="page-link">Další</span>
+          {% else %}
+            <a class="page-link" href="{{pagination.next.link}}">Další</a>
+          {% endif %}
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endif %}

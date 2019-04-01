@@ -1,0 +1,31 @@
+{% if post.get_field('recommendations') is not empty %}
+  <div class="list-group-profile">
+
+    <div class="list-group-profile-item list-group-profile-item-title">
+      <h2 class="h4 mb-0">Doporučení</h2>
+    </div>
+
+  {% for recommendation in post.get_field('recommendations') %}
+    <div class="list-group-profile-item">
+      <blockquote class="blockquote mb-0">
+        {{ recommendation.text }}
+
+        <footer class="blockquote-footer">
+
+          <span class="font-weight-bold">{{ recommendation.name }}{% if recommendation.position or recommendation.url %}</span>,{% endif %}
+
+          {% if recommendation.position %}
+            {{ recommendation.position }}{% if recommendation.url %},{% endif %}
+          {% endif %}
+
+          {% if recommendation.url %}
+            <a href="{{ recommendation.url }}" target="_blank">{{ recommendation.url|display_url }}</a>
+          {% endif %}
+
+        </footer>
+      </blockquote>
+    </div>
+  {% endfor %}
+
+  </div>
+{% endif %}

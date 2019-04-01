@@ -1,0 +1,44 @@
+<div class="list-group-profile-item">
+
+  {% if post.get_field('description') %}
+
+    {% if description_title %}
+      <h2 class="h4">{{ description_title }}</h2>
+    {% endif %}
+
+      {{ post.get_field('description') }}
+
+      <meta itemprop="description" content="{{ post.get_field('description')|striptags }}">
+
+  {% endif %}
+
+
+  {% if post.get_field('benefit') %}
+
+    {% if benefit_title %}
+      <h2 class="h4">{{ benefit_title }}</h2>
+    {% endif %}
+
+    {{ post.get_field('benefit') }}
+
+  {% endif %}
+
+  <div
+    class="
+      text-center
+      {% if post.get_field('description') or post.get_field('benefit') %}
+        mt-4
+      {% endif %}
+    "
+  >
+    <a
+      class="btn btn-primary"
+      data-facebook-share
+      href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}"
+      target="_blank"
+    >
+      Doporučit na Facebooku
+    </a>
+  </div>
+
+</div>

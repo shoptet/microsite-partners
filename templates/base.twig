@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="no-js" {{ site.language_attributes }}>
+	<head>
+
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-P8ZPQCR');</script>
+		<!-- End Google Tag Manager -->
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-7713724-32"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-7713724-32');
+		</script>
+
+	  <meta charset="{{ site.charset }}">
+	  <title>
+	    {% if wp_title %}
+	      {{ wp_title }} – {{ site.name }}
+	    {% else %}
+	      {{ site.name }} – {{ site.description }}
+	    {% endif %}
+	  </title>
+	  <meta name="description" content="{{ meta_description|striptags }}">
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	  {% include "favicon.twig" %}
+
+		{% block head %}
+			<link rel="canonical" href="{{ site.url }}">
+
+			<meta property="og:url" content="{{ site.url }}">
+			<meta property="og:type" content="website">
+		{% endblock %}
+
+
+
+{% if post.thumbnail.src is not empty %}
+			<meta property="og:image" content="{{ post.thumbnail.src }}">
+{% else %}
+	 {% if options.themeOpenGraphImage %}
+			<meta property="og:image" content="{{ options.themeOpenGraphImage.url }}">
+	 {% endif %}
+{% endif %}
+
+
+
+		<meta property="og:title" content="{% if wp_title %}{{ wp_title }} – {{ site.name }}{% else %}{{ site.name }} – {{ site.description }}{% endif %}">
+		<meta property="og:description" content="{{ meta_description|striptags }}">
+		<meta property="og:locale" content="cs_CZ">
+
+	  {{ function('wp_head') }}
+
+	  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	  <!--[if lt IE 9]>
+	    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	  <![endif]-->
+
+	</head>
+
+	<body class="{{ body_class }}">
+
+		{# Web Google Tag Manager (noscript) #}
+		{% if options.themeGtmId %}
+			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ options.themeGTMId }}"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		{% endif %}
+
+		{# Web Font Loader #}
+		{#
+	  <script type="text/javascript">
+	  	WebFontConfig = {
+	      google: { families: ['Source+Sans+Pro:300,400,600&amp;subset=latin-ext'] },
+	  	};
+	  	(function() {
+	  		var wf = document.createElement('script');
+	  		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	  		wf.type = 'text/javascript';
+	  		wf.async = 'true';
+	  		var s = document.getElementsByTagName('script')[0];
+	  		s.parentNode.insertBefore(wf, s);
+	  	})();
+	  </script>
+		#}
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&amp;subset=latin-ext" rel="stylesheet">
+
+		{# Load Facebook SDK for JavaScript #}
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = 'https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v2.10';
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		{% include 'header.twig' %}
+
+		{% block breadcrumb %}
+		{% endblock %}
+
+		<main role="main">
+			{% block content %}
+				Žádný obsah
+			{% endblock %}
+		</main>
+
+		{% include 'footer.twig' %}
+
+		{{ function('wp_footer') }}
+		{{ function('get_shoptet_footer') }}
+
+	</body>
+</html>

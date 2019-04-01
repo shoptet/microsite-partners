@@ -1,0 +1,9 @@
+<div class="row">
+  {% for term in terms %}
+    {% if term.posts(-1)|length > 0 %}
+      <div class="col-12 col-sm-6 col-lg-4">
+        {% include 'category/thumbnail.twig' %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

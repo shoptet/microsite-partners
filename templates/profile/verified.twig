@@ -1,0 +1,12 @@
+<span class="badge-hoder">
+    {% if post.verifiedLevel == 'zlatý' %}
+        <img src="{{ "medal-shoptetrix-gold.png"|static_assets }}" alt="Zlatý partner" title="Zlatý partner" data-toggle="tooltip" height="74px" width="350px" itemprop="image" class="badge-verif mx-auto mx-lg-0 mb-4">
+        <span class="badge-text badge-text-gold"><span>Zlatý Shoptet <br>partner</span></span>
+    {% elseif post.verifiedLevel == 'stříbrný' %}
+        <img src="{{ "medal-shoptetrix-silver.png"|static_assets }}" alt="Stříbrný partner" title="Stříbrný partner" data-toggle="tooltip" height="74px" width="350px" itemprop="image" class="badge-verif mx-auto mx-lg-0 mb-4">
+        <span class="badge-text badge-text-silver"><span>Stříbrný Shoptet <br>partner</span></span>
+    {% else %}
+        <img src="{{ "medal-shoptetrix-bronze.png"|static_assets }}" alt="Bronzový partner" title="Bronzový partner" data-toggle="tooltip" height="74px" width="350px" itemprop="image" class="badge-verif mx-auto mx-lg-0 mb-4">
+        <span class="badge-text badge-text-bronze"><span>Bronzový Shoptet <br>partner</span></span>
+    {% endif %}
+</span>

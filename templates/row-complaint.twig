@@ -1,0 +1,35 @@
+
+<div class="row-cta">
+    <div class="container">
+        <p class="h2">
+            {{ options.themeComplaintTitle }}
+        </p>
+
+        <p class="pt-2 pb-2">
+            {{ options.themeComplaintContent }}
+        </p>
+
+        <!--<a
+            class="btn btn-primary ws-normal"
+            href="mailto:{{ options.themeComplaintMailAddress }}?subject={{ options.themeComplaintMailSubject }}&body={{ options.themeComplaintMailBody|replace({'<br />':'%0D%0A'}) }}"
+        >
+            {{ options.themeComplaintButtonText }}
+        </a>-->
+
+
+    </div>
+</div>
+
+<div class="row-badges row-breadcrumb-bg pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h2>Kontakt</h2>
+                {{ options.themeComplaintContactText }}
+            </div>
+            <div class="col-sm-12 col-md-6">
+                {{ options.themeComplaintContact }}
+            </div>
+        </div>
+    </div>
+</div>

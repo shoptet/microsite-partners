@@ -1,0 +1,13 @@
+<div class="row">
+  {% for post in posts %}
+    <div class="col-12 col-md-6 col-xl-4">
+      {% include 'profile/thumbnail.twig' %}
+    </div>
+  {% endfor %}
+
+  {% if not hide_cta and options.themeCtaShowList %}
+    <div class="col-12 col-md-6 col-xl-4">
+      {% include 'profile/cta.twig' %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,27 @@
+<a
+  class="
+    category-thumbnail
+
+    {% if term.get_field('image') %}
+      category-thumbnail-has-icon
+    {% endif %}
+  "
+  href="{{ term.link }}"
+  title="Zobrazit profily v této kategorii"
+>
+  {% if term.get_field('image') %}
+    <div class="category-thumbnail-icon">
+      <svg data-src="{{ term.get_field('image').sizes.medium }}"></svg>
+    </div>
+  {% endif %}
+
+  {{ term.name }}
+
+  {# Number of items in the term #}
+  <span
+    class="category-thumbnail-count"
+    title="Počet profilů v této kategorii"
+  >
+    ({{ term.posts(-1)|length }})
+  </span>
+</a>

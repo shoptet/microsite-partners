@@ -1,0 +1,107 @@
+<div class="list-group-profile-item">
+  <div class="row">
+    {% if post.thumbnail %}
+      <div class="col-sm-4 text-center">
+    		<img
+          class="img-fluid rounded mb-3 mb-sm-0"
+          src="{{ post.thumbnail.src|resize(500, 500) }}"
+          alt="{{ post.title }}"
+          itemprop="image"
+        >
+    	</div>
+    {% endif %}
+  	<div class="col-sm-8">
+
+  		<div class="mb-3">
+
+  			<h1 class="h2 mb-0" itemprop="name">{{ post.title }}</h1>
+
+  			{% include 'profile/categories.twig' %}
+
+  		</div>
+
+  		<ul class="profile-contact-list">
+
+  			{% if post.get_field('url') %}
+    			<li>
+            <svg class="profile-contact-list-icon" data-src="{{ "external-link.svg"|static_assets }}" width="17" height="17" role="img" aria-label="Web"></svg>
+            <a href="{{ post.get_field('url') }}" target="_blank" itemprop="url">
+              {{ post.get_field('url')|display_url }}
+            </a>
+          </li>
+  			{% endif %}
+
+  			{% if post.get_field('emailAddress') %}
+    			<li>
+            <svg class="profile-contact-list-icon" data-src="{{ "envelope-o.svg"|static_assets }}" width="17" height="17" role="img" aria-label="E-mail"></svg>
+            <a href="mailto:{{ post.get_field('emailAddress') }}" itemprop="email">
+              {{ post.get_field('emailAddress') }}
+            </a>
+          </li>
+  			{% endif %}
+
+  			{% if post.get_field('phoneNumber') %}
+    			<li>
+            <svg class="profile-contact-list-icon" data-src="{{ "phone.svg"|static_assets }}" width="17" height="17" role="img" aria-label="Telefon"></svg>
+            <span itemprop="telephone">{{ post.get_field('phoneNumber') }}</span>
+          </li>
+  			{% endif %}
+
+  			{% if post.get_field('cin') %}
+    			<li>
+            <svg class="profile-contact-list-icon" data-src="{{ "icon-ic.svg"|static_assets }}" width="17" height="15" role="img" aria-label="Identifikační číslo"></svg>
+            <span itemprop="identifier">{{ post.get_field('cin') }}</span>
+          </li>
+  			{% endif %}
+
+        {% if post.get_field('tin') %}
+    			<li>
+            <svg class="profile-contact-list-icon" data-src="{{ "icon-dic.svg"|static_assets }}" width="28" height="15" role="img" aria-label="Daňové identifikační číslo"></svg>
+            <span itemprop="taxID">{{ post.get_field('tin') }}</span>
+          </li>
+  			{% endif %}
+  		</ul>
+
+      {% if post.get_field('facebook') or post.get_field('twitter') or post.get_field('linkedin') %}
+        {% spaceless %}
+          <ul class="profile-socials">
+
+        		{% if post.get_field('facebook') %}
+              <li class="profile-socials-facebook">
+          		  <a href="{{ post.get_field('facebook') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Facebooku">
+                  <svg data-src="{{ "facebook-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Facebook"></svg>
+                </a>
+              </li>
+        		{% endif %}
+
+        		{% if post.get_field('twitter') %}
+              <li class="profile-socials-twitter">
+          		  <a href="{{ post.get_field('twitter') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Twitteru">
+                  <svg data-src="{{ "twitter-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Twitter"></svg>
+                </a>
+              </li>
+        		{% endif %}
+
+        		{% if post.get_field('linkedin') %}
+              <li class="profile-socials-linkedin">
+          		  <a href="{{ post.get_field('linkedin') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na LinkedIn">
+                  <svg data-src="{{ "linkedin-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="LinkedIn"></svg>
+                </a>
+              </li>
+        		{% endif %}
+
+                {% if post.get_field('instagram') %}
+              <li class="profile-socials-instagram">
+          		  <a href="{{ post.get_field('instagram') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Instagramu">
+                  <img src="{{ "instagram-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Instagram" class="unset-align"/>
+                </a>
+              </li>
+        		{% endif %}
+
+          </ul>
+        {% endspaceless %}
+      {% endif %}
+
+  	</div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+{% if terms|length > 0 %}
+  <p class="profile-categories mb-0">
+    {% for term in terms %}
+      <a href="{{ term.link }}" title="Zobrazit kategorii">{{ term.name }}</a>{{ not loop.last ? ',' }}
+    {% endfor %}
+  </p>
+{% endif %}

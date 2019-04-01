@@ -1,0 +1,58 @@
+<a
+  href="{{ post.link }}"
+  class="profile-thumbnail mb-4"
+  title="Zobrazit profil"
+  itemscope
+  itemtype="http://schema.org/{% if post.post_type == 'profesionalove' %}Person{% else %}Product{% endif %}"
+>
+
+  <div class="profile-thumbnail-badge">
+    <img
+        {% if post.verifiedLevel == 'zlatý' %}
+            src="{{ "medal-gold.png"|static_assets }}" alt="Zlatý partner" title="Zlatý partner"
+        {% elseif post.verifiedLevel == 'stříbrný' %}
+            src="{{ "medal-silver.png"|static_assets }}" alt="Stříbrný partner" title="Stříbrný partner"
+        {% else %}
+            src="{{ "medal-bronze.png"|static_assets }}" alt="Bronzový partner" title="Bronzový partner"
+        {% endif %}
+    data-toggle="tooltip" height="30px" width="30px" itemprop="image">
+  </div>
+
+
+  <div class="profile-thumbnail-wrapper">
+
+    {% if post.thumbnail %}
+      <img class="profile-thumbnail-image" src="{{ post.thumbnail.src|resize(150, 150) }}" alt="{{ post.title }}" width="75px" height="75px">
+    {% endif %}
+
+    <div class="profile-thumbnail-body text-truncate">
+
+      <div class="profile-thumbnail-title text-truncate" itemprop="name">
+        {{ post.title }}
+      </div>
+
+      {% if post.get_field('price') %}
+        <div class="text-muted text-truncate">
+          {{ post.get_field('price') }}
+        </div>
+      {% endif %}
+
+      {% if post.post_type == 'profesionalove' and post.get_field('url') %}
+        <div class="text-muted text-truncate" itemprop="url">
+          {{ post.get_field('url')|display_url }}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  {% if type != 'small' %}
+    {% if post.get_field('description') %}
+      <p class="profile-thumbnail-description mb-0" itemprop="description">
+        {{ post.get_field('description')|striptags|truncate(200, '') }}
+      </p>
+    {% endif %}
+  {% endif %}
+
+</a>

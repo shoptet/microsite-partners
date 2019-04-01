@@ -1,0 +1,20 @@
+<div class="d-flex h-100">
+    <div class="profile-thumbnail profile-thumbnail-cta w-100 align-self-stretch mb-4">
+
+      <div class="d-flex justify-content-center h-100">
+        <div class="align-self-center">
+          <p class="profile-thumbnail-cta-title h4">
+            {{ options.themeListCtaTitle }}
+          </p>
+
+          <a
+            class="btn btn-lg btn-primary ws-normal"
+            href="mailto:{{ options.themeCtaMailAddress }}?subject={{ options.themeCtaMailSubject }}&body={{ options.themeCtaMailBody|replace({'<br />':'%0D%0A'}) }}"
+          >
+            {{ options.themeListCtaButtonText }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+</div>

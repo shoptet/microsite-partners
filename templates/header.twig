@@ -1,0 +1,72 @@
+<header class="header" role="banner">
+	<div class="container" itemscope itemtype="https://schema.org/WebSite">
+
+		<meta itemprop="headline" content="
+			{% if wp_title %}
+	      {{ wp_title }}, {{ site.name }}
+	    {% else %}
+	      {{ site.name }}, {{ site.description }}
+	    {% endif %}
+		">
+
+		<meta itemprop="url" content="{{ site.url }}">
+		<meta itemprop="text" content="{{ meta_description|striptags }}">
+
+		<a
+			class="header-logo"
+			href="{{ site.url }}"
+			title="Zpět na domovskou stránku"
+		>
+			<img
+				src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
+				alt="Shoptet Partneři"
+			>
+		</a>
+
+		<form
+			class="header-search"
+			action="{{ site.url }}"
+			role="search"
+			itemprop="potentialAction"
+			itemtype="https://schema.org/SearchAction"
+		>
+			<meta itemprop="target" content="?s={s}">
+			<div class="input-group">
+	      <input
+					type="search"
+					class="form-control"
+					name="s"
+					value="{{ query }}"
+					placeholder="Zadejte hledaný výraz..."
+					autocomplete="off"
+					required
+				>
+	      <span class="input-group-btn">
+	        <button class="btn btn-primary" type="submit">Hledat</button>
+	      </span>
+	    </div>
+    </form>
+
+	</div>
+</header>
+
+<div id="navigation">
+    <div class="container">
+        <div id="shp_navigation_wrapper" class="responsive-nav">
+           <ul id="shp_navigation" class="visible-links">
+               <li class="has-dropdown shp_menu-item"><a href="./profesionalove/" class="shp_menu-item-link">Profesionálové</a><span class="caret dropdown-toggle" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                    <ul class="shp_navigation-submenu dropdown-menu dropdown-menu-right" aria-labelledby="categoriesDropdown">
+                      {% for term in all_categories %}
+                        <li class="shp_menu-item"><a href="{{ term.link }}" class="shp_menu-item-link">
+                          {{ term.name }}
+                        </a></li>
+                      {% endfor %}
+                    </ul>
+                </li>
+                {% for item in header_menu.items %}
+                  <li class="active shp_menu-item"><a href="{{ item.link }}" class="shp_menu-item-link">{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

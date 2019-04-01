@@ -1,0 +1,9 @@
+{% if post.get_field('price') %}
+  <div class="list-group-profile-item">
+    <h2 class="h4">Ceny</h2>
+
+    <p class="mb-0">
+      {{ post.get_field('price') }}
+    </p>
+  </div>
+{% endif %}

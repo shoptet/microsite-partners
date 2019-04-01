@@ -1,0 +1,96 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<div class="hero">
+		<div class="container">
+			<div class="hero-bg-img">
+				<p class="hero-lead h2 mb-0">
+					{{ hero_text }}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	{% if show_category_professionals %}
+		<div class="row-profile-type row-profile-type-professionals">
+			<div class="container">
+
+				<div class="row-profile-type-header">
+					<h2 class="row-profile-type-title"><a href="profesionalove/">Profesionálové</a></h2>
+
+					{% if options.perexProfessional %}
+						<div class="row-profile-type-perex">
+							{{ options.perexProfessional }}
+						</div>
+					{% endif %}
+				</div>
+
+				{% include 'category/list.twig' with {'terms': category_professionals} %}
+
+			</div>
+		</div>
+	{% endif %}
+
+	{% if show_category_plugins %}
+		<div class="row-profile-type row-profile-type-plugins">
+			<div class="container">
+
+				<div class="row-profile-type-header">
+					<h2 class="row-profile-type-title"><a href="napojeni/">Napojení</a></h2>
+
+					{% if options.perexPlugin %}
+						<div class="row-profile-type-perex">
+							{{ options.perexPlugin }}
+						</div>
+					{% endif %}
+				</div>
+
+				{% include 'category/list.twig' with {'terms': category_plugins} %}
+
+			</div>
+		</div>
+	{% endif %}
+
+	{% if show_category_tools %}
+		<div class="row-profile-type row-profile-type-tools">
+			<div class="container">
+
+				<div class="row-profile-type-header">
+					<h2 class="row-profile-type-title"><a href="nastroje/">Nástroje</a></h2>
+
+					{% if options.perexTool %}
+						<div class="row-profile-type-perex">
+							{{ options.perexTool }}
+						</div>
+					{% endif %}
+				</div>
+
+				{% include 'category/list.twig' with {'terms': category_tools} %}
+
+			</div>
+		</div>
+	{% endif %}
+
+    <div class="row-breadcrumb-bg pt-5 pb-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2>Nejnovější Shoptet Partneři</h2>
+                </div>
+            </div>
+
+	        {% include 'profile/list.twig' with {'posts': newest_posts, 'hide_cta': true} %}
+
+        </div>
+    </div>
+
+    {% include 'row-reference.twig' %}
+
+    {% include 'row-badges.twig' %}
+
+    {% include 'row-become-partner.twig' %}
+
+    {% include 'row-complaint.twig' %} 
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.twig" %}
+
+{% block head %}
+
+
+	{% if posts.pagination.total > 1 %}
+
+		{% if posts.pagination.prev %}
+			<link rel="prev" href="{{posts.pagination.prev.link}}">
+		{% endif %}
+
+		{% if posts.pagination.next %}
+			<link rel="next" href="{{posts.pagination.next.link}}">
+		{% endif %}
+
+        <link rel="canonical" href="{{ canonical.link }}">
+
+	{% else %}
+        <link rel="canonical" href="{{ term.link }}">
+	{% endif %}
+
+	<meta property="og:url" content="{{ term.link }}">
+	<meta property="og:type" content="website">
+
+{% endblock %}
+
+{% block breadcrumb %}
+	<div class="row-breadcrumb row-breadcrumb-bg">
+		<div class="container">
+			{% include 'breadcrumb.twig' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+
+	<div class="row-category-header row-category-header-breadcrumb">
+		<div class="container">
+			<div class="row-category-header-wrapper">
+
+
+
+				<div class="row-category-header-body">
+					{% if term.get_field('image') %}
+				    <div class="row-category-header-icon">
+				      <svg data-src="{{ term.get_field('image').sizes.medium }}"></svg>
+				    </div>
+				  {% endif %}
+					<h1 class="row-category-header-title">{{ term_title}}</h1>
+
+					{% if term.description %}
+						<p class="row-category-header-perex lead mb-0">
+							{{ term.description }}
+						</p>
+					{% endif %}
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row-profile-list">
+		<div class="container">
+
+			{% include 'profile/list.twig' %}
+
+			{% include 'pagination.twig' %}
+
+		</div>
+	</div>
+
+    {% include 'row-become-partner.twig' %}
+
+    {% include 'row-complaint.twig' %}
+
+{% endblock %}
