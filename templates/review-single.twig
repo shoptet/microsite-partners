@@ -1,0 +1,38 @@
+<div class="review" id="comment-{{comment.ID}}">
+
+	<div class="review-container">
+
+    <div class="d-flex align-items-end justify-content-between">
+      <ul class="d-inline-block list-inline list-inline-comma">
+        <li class="list-inline-item">
+          <strong>
+            {{ comment.author.name }}
+            {% if post.get_field('emailAddress') == comment.author.user_email %}
+              ({{ __('Shoptet partner', 'wavee-theme') }})
+            {% endif %}
+          </strong>
+        </li>
+        {% if comment.comment_author_url %}
+          <li class="list-inline-item">
+            <a href="{{ comment.comment_author_url }}" target="_blank" rel="nofollow">{{ comment.comment_author_url|display_url }}</a>
+          </li>
+        {% endif %}
+        <li class="list-inline-item">
+          <a class="text-dark" href="#comment-{{comment.ID}}"><time datetime="{{ comment.time|date('c') }}">{{ comment.date }}, {{ comment.time }}</time></a>	
+        </li>
+      </ul>
+      {% if is_root_review %}
+        <div>
+          <a class="btn btn-primary" href="#commentForm{{ comment.ID }}" data-toggle="collapse" aria-expanded="false" aria-controls="commentForm{{ comment.ID }}">
+            {{ __('Reagovat', 'wavee-theme') }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+		<div class="comment-body">
+			{{ comment.comment_content|wpautop }}
+		</div>
+	</div>
+
+</div>
