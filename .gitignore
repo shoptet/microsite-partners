@@ -1,0 +1,12 @@
+.DS_Store
+.env
+composer.phar
+deployment_dev.ini
+deployment.ini
+deployment.phar
+deployment_dev.log
+deployment.log
+webpack-bundle.json
+/vendor/
+/node_modules/
+.htdeployment

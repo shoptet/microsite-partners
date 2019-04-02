@@ -1,8 +1,6 @@
 
 <form class="review-form" method="post" action="{{ site.site_url~'/wp-comments-post.php' }}">
 
-  <h2>{{ __('Přidat recenzi', 'shp-partneri') }}</h2>
-
   <input type="hidden" name="comment_post_ID" value="{{ post.id }}">
   <input name="comment_parent" id="comment_parent" value="{{ comment.ID|default('0') }}" type="hidden">
 
@@ -11,56 +9,82 @@
     <div class="form-row">
 
       <div class="form-group col-md-4 required">
-        <label class="sr-only" for="commentAuthor">{{ __('Jméno', 'shp-partneri') }}</label>
-        <input class="form-control" id="commentAuthor" type="text" name="author" placeholder="{{ __('Jméno', 'shp-partneri') }}" required>
+        <label class="sr-only" for="commentAuthor{{ comment.ID }}">{{ __('Jméno', 'shp-partneri') }}</label>
+        <input class="form-control" id="commentAuthor{{ comment.ID }}" type="text" name="author" placeholder="{{ __('Jméno', 'shp-partneri') }}" required>
       </div>
 
       <div class="form-group col-md-4 required">
-        <label class="sr-only" for="commentEmail">{{ __('E-mail', 'shp-partneri') }}</label>
-        <input class="form-control" id="commentEmail" type="email" name="email" placeholder="{{ __('E-mail', 'shp-partneri') }}" aria-describedby="emailHelp" required>
-        <small id="emailHelp" class="text-muted">
+        <label class="sr-only" for="commentEmail{{ comment.ID }}">{{ __('E-mail', 'shp-partneri') }}</label>
+        <input class="form-control" id="commentEmail{{ comment.ID }}" type="email" name="email" placeholder="{{ __('E-mail', 'shp-partneri') }}" aria-describedby="emailHelp" required>
+        <p id="emailHelp" class="fs-70 text-muted mt-1 mb-0 lh-125">
           {{ __('Váš e-mail nebude zobrazen. Slouží pro zaslání odkazu pro potvrzení příspěvku.', 'shp-partneri') }}
-        </small>
+        </p>
       </div>
 
       <div class="form-group col-md-4 required">
-        <label class="sr-only" for="commentUrl">{{ __('URL vašeho e-shopu', 'shp-partneri') }}</label>
-        <input class="form-control" id="commentUrl" type="url" name="url" placeholder="{{ __('URL vašeho e-shopu', 'shp-partneri') }}" required>
+        <label class="sr-only" for="commentUrl{{ comment.ID }}">{% if not comment %}{{ __('URL vašeho e-shopu', 'shp-partneri') }}{% else %}{{ __('URL vašeho webu', 'shp-partneri') }}{% endif %}</label>
+        <input
+          class="form-control"
+          id="commentUrl{{ comment.ID }}"
+          type="url"
+          name="url"
+          placeholder="{% if not comment %}{{ __('URL vašeho e-shopu', 'shp-partneri') }}{% else %}{{ __('URL vašeho webu', 'shp-partneri') }}{% endif %}"
+          required
+        >
       </div>
 
     </div>
   </div>
 
   <div class="form-group required">
-    <label class="sr-only" for="commentMessage">{{ __('Hodnocení', 'shp-partneri') }}</label>
-    <textarea class="form-control" id="commentMessage" name="comment" rows="3" placeholder="{{ __('Jak jste byli se Shoptet partnerem spokojeni?', 'shp-partneri') }}" required></textarea>
+    <label class="sr-only" for="commentMessage{{ comment.ID }}">{{ __('Zpráva', 'shp-partneri') }}</label>
+    <textarea
+      class="form-control"
+      id="commentMessage{{ comment.ID }}"
+      name="comment"
+      rows="5"
+      placeholder="{% if not comment %}{{ __('Jak jste byli se Shoptet partnerem spokojeni?', 'shp-partneri') }}{% else %}{{ __('Napište vaši reakci na hodnocení', 'shp-partneri') }}{% endif %}"
+      required
+    ></textarea>
   </div>
 
   {% if not comment %}
-    <div class="rating-stars">
-      <label>
-        <input type="radio" name="rating" value="1" required>
-        1 hvězdička
-      </label>
-      <label>
-        <input type="radio" name="rating" value="2">
-        2 hvězdičky
-      </label>
-      <label>
-        <input type="radio" name="rating" value="3">
-        3 hvězdičky
-      </label>
-      <label>
-        <input type="radio" name="rating" value="4">
-        4 hvězdiček
-      </label>
-      <label>
-        <input type="radio" name="rating" value="5">
-        5 hvězdiček
-      </label>
+    <div class="mb-3">
+      <div class="review-rating-stars-form review-rating-stars-large">
+        <label>
+          <input type="radio" name="rating" value="1" required>
+           <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+        </label>
+        <label>
+          <input type="radio" name="rating" value="2">
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+        </label>
+        <label>
+          <input type="radio" name="rating" value="3">
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+        </label>
+        <label>
+          <input type="radio" name="rating" value="4">
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+        </label>
+        <label>
+          <input type="radio" name="rating" value="5">
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+          <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+        </label>
+      </div>
     </div>
   {% endif %}
 
-  <button class="btn btn-primary" type="submit">{{ __('Odeslat recenzi', 'shp-partneri') }}</button>
+  <button class="btn btn-green" type="submit">{{ __('Odeslat recenzi', 'shp-partneri') }}</button>
 
 </form>

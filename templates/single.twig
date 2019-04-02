@@ -66,7 +66,7 @@
 	</div>
 
 	{% if similar_posts|length > 0 %}
-		<div class="row-profile-list row-bottom-divider">
+		<div class="row-profile-list">
 			<div class="container">
 					<h2 class="row-profile-list-title">Nevybrali jste? Co zkusit jiné?</h2>
 					{% include 'profile/list.twig' with {'posts': similar_posts, 'hide_cta': true} %}
@@ -74,10 +74,16 @@
 		</div>
 	{% endif %}
 
-		{% include 'reviews.twig' %}
+	<div class="container {{ similar_posts|length == 0 ? 'pt-5' }}">
+		<div class="row">
+			<div class="col-xl-9">
+				{% include 'reviews.twig' %}
+			</div>
+		</div>
+	</div>
 
-    {% include 'row-become-partner.twig' %}
+	{% include 'row-become-partner.twig' %}
 
-    {% include 'row-complaint.twig' %}
+	{% include 'row-complaint.twig' %}
 
 {% endblock %}

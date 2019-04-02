@@ -1,38 +1,83 @@
-<div class="container">
-  {% if post.comment_status == 'closed' %}
-    <p>{{ __('Hodnocení jsou uzavřena', 'shp-partneri') }}</p>
-  {% else %}
-    {% include 'review-form.twig' %}
-  {% endif %}
-</div>
+<div class="pb-5">
 
-{% if post.comments %}
-  <ol class="list-unstyled mb-0">
-    {% for comment in post.comments %}
-      <li>
-        {% include 'review-single.twig' with {is_root_review: true} %}
+  <div class="pb-5">
+    <h2 class="h3 mb-4">{{ __('Hodnocení', 'shp-partneri') }}</h2>
 
-        <div class="ml-4">
+    <div class="d-flex mb-4">
+      <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}</div>
+      <div class="fs-130 lh-1">
+        {# TODO: Better translation #}
+        {% if post.comments|length == 0 %}
+          {{ __('Zatím žádné hodnocení', 'shp-partneri') }}
+        {% elseif post.comments|length <= 4 %}
+          {{ __('%s recenze', 'shp-partneri')|format(post.comments|length) }}
+        {% else %}
+          {{ __('%s recenzí', 'shp-partneri')|format(post.comments|length) }}
+        {% endif %}
+      </div>
+    </div>
 
-          <div class="collapses" id="commentForm{{ comment.ID }}">
-            <div class="comment-container">
-              {% include 'review-form.twig' %}
+    <div class="d-sm-flex justify-content-between">
+      <div class="mb-4 mb-sm-0">
+        <ol class="list-unstyled mb-0">
+          {% for i in 5..1 %}
+            <li class="d-flex align-items-center mb-1">
+              <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: i} %}</div>
+              <div class="mr-3">{% include 'review-rating-bar.twig' with {count: rating_stars[i], total: post.comments|length} %}</div>
+              <div class="mr-3">({{ rating_stars[i] }})</div>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+      <div class="align-self-end">
+        <a class="btn btn-green" href="#commentForm" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="commentForm">
+          {{ __('Napište recenzi', 'wavee-theme') }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapse" id="commentForm">
+    <div class="py-5 border-top ">
+      {% if post.comment_status == 'closed' %}
+        <p class="mb-0">{{ __('Hodnocení jsou uzavřena', 'shp-partneri') }}</p>
+      {% else %}
+        <h2 class="h3 mb-4">{{ __('Přidat recenzi', 'shp-partneri') }}</h2>
+        {% include 'review-form.twig' %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if post.comments|length > 0 %}
+    <ol class="list-unstyled mb-0">
+      {% for comment in post.comments %}
+        <li>
+          {% include 'review-single.twig' with {is_root_review: true} %}
+
+          <div class="ml-3 ml-md-4">
+
+            <div class="collapse" id="commentForm{{ comment.ID }}">
+              <div class="border-radius bg-gray p-4 mb-4">
+                <h2 class="h3 mb-4">{{ __('Reagovat', 'shp-partneri') }}</h2>
+                {% include 'review-form.twig' %}
+              </div>
             </div>
+
+            {% if comment.children %}
+              <ol class="list-unstyled mb-0">
+                {% for comment in comment.children %}
+                  <li>
+                    {% include 'review-single.twig' %}
+                  </li>
+                {% endfor %}
+              </ol>
+            {% endif %}
+
           </div>
 
-          {% if comment.children %}
-            <ol class="list-unstyled mb-0">
-              {% for comment in comment.children %}
-                <li>
-                  {% include 'review-single.twig' %}
-                </li>
-              {% endfor %}
-            </ol>
-          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
 
-        </div>
-
-      </li>
-    {% endfor %}
-  </ol>
-{% endif %}
+</div>

@@ -27,4 +27,32 @@ $context['breadcrumbs'] = array(
 
 $context['meta_description'] = $post->description;
 
+$rating_stars = [];
+for ( $i = 1; $i <= 5; $i++ ) {
+	$rating_stars[$i] = 0;
+}
+
+// Count comments by rating
+foreach ( $post->comments as $comment ) {
+	if ( $rating = get_comment_meta( $comment->comment_ID, 'rating', true ) ) {
+		$rating = intval( $rating );
+		$rating_stars[ $rating ]++;
+	}
+}
+
+$context['rating_stars'] =  $rating_stars;
+
+$rating_sum = 0;
+for ( $i = 1; $i <= 5; $i++ ) {
+	$rating_sum += ( $i * $rating_stars[$i] );
+}
+
+if ( $comment_count = count( $post->comments ) ) {
+	$average_rating = round( $rating_sum / $comment_count );
+} else {
+	$average_rating = 0;
+}
+
+$context['average_rating'] = $average_rating;
+
 Timber::render( 'single.twig', $context );

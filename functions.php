@@ -40,12 +40,15 @@ Disallow: *?s=*
 
 // Make the review rating required.
 // TODO: fix
-// add_filter( 'preprocess_comment', function ( $commentdata ) {
-// 	if ( ! is_admin() && ( ! isset( $_POST['rating'] ) || 0 === intval( $_POST['rating'] ) ) ) {
-// 		wp_die( __( 'Chyba: Nepřidali jste hodnocení. Běžte prosím zpět a přidejte hodnocení.', 'shp-partneri' ) );
-// 	}
-// 	return $commentdata;
-// } );
+add_filter( 'preprocess_comment', function ( $commentdata ) {
+	if ( is_admin() ||  ( isset( $_POST['comment_parent'] ) && 0 !== intval( $_POST['comment_parent'] ) ) ) {
+		return $commentdata;
+	}
+	if ( ! isset( $_POST['rating'] ) || 0 === intval( $_POST['rating'] ) ) {
+		wp_die( __( 'Chyba: Nepřidali jste hodnocení. Běžte prosím zpět a přidejte hodnocení.', 'shp-partneri' ) );
+	}
+	return $commentdata;
+} );
 
 // Store the review rating submitted by the user
 add_action( 'comment_post', function ( $comment_id ) {
@@ -61,8 +64,16 @@ add_action( 'comment_post', function ( $comment_id ) {
 	add_comment_meta( $comment_id, 'auth_token_hash', $auth_token_hash );
 	add_comment_meta( $comment_id, 'authenticated', 0 );
 	$auth_url = get_site_url( null, '?auth_token=' . $auth_token );
-	wp_die( $auth_url ); // TODO: send e-mail
-	wp_die( __( '<strong>Hodnocení odesláno!</strong> Zkontrolujte prosím vaší e-mailovou schránku a ověřte odeslání vašeho hodnocení kliknutím na odkaz ve zprávě.', 'shp-partneri' ), __( 'Hodnocení odesláno', 'shp-partneri' ) );
+	wp_die(
+		'Pro ověření klikněte na odkaz: <a href="' . $auth_url . '">' . $auth_url . '</a>',
+		__( 'Hodnocení odesláno', 'shp-partneri' ),
+		[ 'response' => 200 ]
+	); // TODO: send e-mail
+	wp_die(
+		__( '<strong>Hodnocení odesláno!</strong> Zkontrolujte prosím vaší e-mailovou schránku a ověřte odeslání vašeho hodnocení kliknutím na odkaz ve zprávě.', 'shp-partneri' ),
+		__( 'Hodnocení odesláno', 'shp-partneri' ),
+		[ 'response' => 200 ]
+	);
 } );
 
 // Check for auth tokean and authenticate
@@ -78,15 +89,27 @@ add_action( 'init' , function () {
 	foreach ( $comments as $comment ) {
 		$authenticated = get_comment_meta( $comment->comment_ID, 'authenticated', true );
 		if ( $authenticated ) {
-			wp_die( __( '<strong>Toto hodnocení bylo již ověřeno.</strong> Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ), __( 'Hodnocení bylo již ověřeno', 'shp-partneri' ) );
+			wp_die(
+				__( '<strong>Toto hodnocení bylo již ověřeno.</strong> Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ),
+				__( 'Hodnocení bylo již ověřeno', 'shp-partneri' ),
+				[ 'response' => 200 ]
+			);
 		}
 		$auth_token_hash = get_comment_meta( $comment->comment_ID, 'auth_token_hash', true );
 		if ( password_verify( $auth_token , $auth_token_hash ) ) {
 			update_comment_meta( $comment->comment_ID, 'authenticated', time() );
-			wp_die( __( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ), __( 'Hodnocení ověřeno', 'shp-partneri' ) );
+			wp_die(
+				__( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ),
+				__( 'Hodnocení ověřeno', 'shp-partneri' ),
+				[ 'response' => 200 ]
+			);
 			// TODO: send e-mail
 		}
-		wp_die( __( 'Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to prosím znovu.', 'shp-partneri' ), __( 'Neplatný odkaz', 'shp-partneri' ) );
+		wp_die(
+			__( 'Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to prosím znovu.', 'shp-partneri' ),
+			__( 'Neplatný odkaz', 'shp-partneri' ),
+			[ 'response' => 200 ]
+		);
 	}
 } );
 
@@ -184,6 +207,16 @@ class StarterSite extends TimberSite {
 		$fileUrl = get_template_directory_uri() . $fileName;
 		$filePath = get_template_directory() . $fileName;
 		wp_enqueue_style( 'main', $fileUrl, array(), filemtime($filePath), 'all' );
+
+		$fileName = '/assets/reviews.css';
+		$fileUrl = get_template_directory_uri() . $fileName;
+		$filePath = get_template_directory() . $fileName;
+		wp_enqueue_style( 'reviews', $fileUrl, array(), filemtime($filePath), 'all' );
+
+		$fileName = '/assets/utilities.css';
+		$fileUrl = get_template_directory_uri() . $fileName;
+		$filePath = get_template_directory() . $fileName;
+		wp_enqueue_style( 'utilities', $fileUrl, array(), filemtime($filePath), 'all' );
 
 		$fileName = '/assets/shoptet.css';
 		$fileUrl = get_template_directory_uri() . $fileName;

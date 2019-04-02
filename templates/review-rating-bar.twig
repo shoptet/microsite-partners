@@ -1,0 +1,15 @@
+{% if total > 0 %}
+  {% set value = ((count/total)*100)|round %}
+{% else %}
+  {% set value = 0 %}
+{% endif %}
+<div class="review-rating-bar">
+  <div
+    role="progressbar"
+    style="width: {{ value }}%"
+    aria-valuenow="{{ value }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+  </div>
+</div>

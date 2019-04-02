@@ -1,0 +1,9 @@
+{% spaceless %}
+  <ol class="review-rating-stars {{ size ? 'review-rating-stars-'~size }}">
+    {% for i in 1..5 %}
+      <li class="{{ i <= rating ? 'active' }}">
+        <svg data-src="{{ "star-solid.svg"|static_assets }}" role="img" aria-label="{{ __('Hvězdička', 'shp-partneri') }}"></svg>
+      </li>
+    {% endfor %}
+  </ol>
+{% endspaceless %}
