@@ -94,11 +94,9 @@ add_action( 'init' , function () {
 add_filter( 'manage_edit-comments_columns', function ( $columns ) {
 	return
 		array_slice( $columns, 0, 3, true ) +
-		[
-			'rating_column' => __( 'Hodnocení', 'shp-partneri' ),
-			'authenticated_column' => __( 'E-mailové ověření', 'shp-partneri' ),
-		] +
-		array_slice( $columns, 3, null, true );
+		[ 'rating_column' => __( 'Hodnocení', 'shp-partneri' ) ] +
+		array_slice( $columns, 3, 6, true ) + 
+		[ 'authenticated_column' => __( 'E-mailové ověření', 'shp-partneri' ) ];
 } );
 
 // Add content to comments custom column
@@ -106,7 +104,11 @@ add_filter( 'manage_comments_custom_column', function ( $column, $comment_id ) {
 	switch ( $column ) {
 		case 'rating_column':
 		if ( $rating = get_comment_meta( $comment_id, 'rating', true ) ) {
-			echo '<span style="color:#ffa500">★</span> <strong>' . $rating . '</strong>/5';
+			for ($i = 1; $i <= 5; $i++) {
+				echo '<span style="color:' . ( $i <= $rating ? '#ffa500' : '#ddd' ) . '">★</span>';
+			}
+		} else {
+			echo '—';
 		}
 		break;
 		case 'authenticated_column':
