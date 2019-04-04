@@ -1,0 +1,20 @@
+{% extends "templates/mailing/base.twig" %}
+
+{% block content %}
+
+  <table border="0" cellspacing="0" cellpadding="0" style="font-size:17px">
+    <tr>
+      <td style="padding-bottom:16px;">Děkujeme za vložený příspěvek</td>
+    </tr>
+    <tr>
+      <td style="padding-bottom:16px;">Pro jeho odeslání ke schválení prosím klikněte na tlačítko pod<br>přehledem vašeho příspěvku</td>
+    </tr>
+  </table>
+
+	{% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}  
+
+	{% include 'templates/mailing/review.twig' with {content:comment.comment_content|nl2br} %}    
+
+	{% include 'templates/mailing/cta.twig' with {url:auth_url,text:'Odeslat'} %}  
+
+{% endblock %}

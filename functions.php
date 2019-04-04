@@ -39,7 +39,6 @@ Disallow: *?s=*
 }
 
 // Make the review rating required.
-// TODO: fix
 add_filter( 'preprocess_comment', function ( $commentdata ) {
 	if ( is_admin() ||  ( isset( $_POST['comment_parent'] ) && 0 !== intval( $_POST['comment_parent'] ) ) ) {
 		return $commentdata;
@@ -59,16 +58,32 @@ add_action( 'comment_post', function ( $comment_id ) {
 
 // Send auth e-mail
 add_action( 'comment_post', function ( $comment_id ) {
+	$context = Timber::get_context();
+	$comment = new Timber\Comment($comment_id);
+	$post = new Timber\Post( $comment->comment_post_ID );
+	$options = get_fields('options');
+
 	$auth_token = bin2hex( openssl_random_pseudo_bytes(32) );
 	$auth_token_hash = password_hash( $auth_token, PASSWORD_BCRYPT );
 	add_comment_meta( $comment_id, 'auth_token_hash', $auth_token_hash );
 	add_comment_meta( $comment_id, 'authenticated', 0 );
 	$auth_url = get_site_url( null, '?auth_token=' . $auth_token );
-	wp_die(
-		'Pro ověření klikněte na odkaz: <a href="' . $auth_url . '">' . $auth_url . '</a>',
-		__( 'Hodnocení odesláno', 'shp-partneri' ),
-		[ 'response' => 200 ]
-	); // TODO: send e-mail
+
+	$context['comment'] = $comment;
+	$context['post'] = $post;
+	$context['auth_url'] = $auth_url;
+	$email_html_body = Timber::compile( 'templates/mailing/review-authorization.twig', $context );
+
+	$email_subject = sprintf ( __( 'Schválení vaší recenze na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
+	wp_mail(
+		$comment->comment_author_email,
+		$email_subject,
+		$email_html_body,
+		[
+			'From: ' . $options['email_from'],
+			'Content-Type: text/html; charset=UTF-8',
+		]
+	);
 	wp_die(
 		__( '<strong>Hodnocení odesláno!</strong> Zkontrolujte prosím vaší e-mailovou schránku a ověřte odeslání vašeho hodnocení kliknutím na odkaz ve zprávě.', 'shp-partneri' ),
 		__( 'Hodnocení odesláno', 'shp-partneri' ),
@@ -98,12 +113,26 @@ add_action( 'init' , function () {
 		$auth_token_hash = get_comment_meta( $comment->comment_ID, 'auth_token_hash', true );
 		if ( password_verify( $auth_token , $auth_token_hash ) ) {
 			update_comment_meta( $comment->comment_ID, 'authenticated', time() );
+			$options = get_fields('options');
+			$context = Timber::get_context();
+			$post = new Timber\Post( $comment->comment_post_ID );
+			$context['post'] = $post;
+			$email_html_body = Timber::compile( 'templates/mailing/review-authorized.twig', $context );
+			$email_subject = __( 'Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení', 'shp-partneri' );
+			wp_mail(
+				$options['authorized_review_email_recipient'],
+				$email_subject,
+				$email_html_body,
+				[
+					'From: ' . $options['email_from'],
+					'Content-Type: text/html; charset=UTF-8',
+				]
+			);
 			wp_die(
 				__( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ),
 				__( 'Hodnocení ověřeno', 'shp-partneri' ),
 				[ 'response' => 200 ]
 			);
-			// TODO: send e-mail
 		}
 		wp_die(
 			__( 'Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to prosím znovu.', 'shp-partneri' ),
@@ -112,6 +141,36 @@ add_action( 'init' , function () {
 		);
 	}
 } );
+
+
+// Send e-mail to partner when new review approved
+add_action( 'transition_comment_status',  function( $new_status, $old_status, $comment) {
+	if ( $new_status !== 'approved' || 0 !== intval( $comment->comment_parent ) ) return;
+	
+	$context = Timber::get_context();
+	$post = new Timber\Post( $comment->comment_post_ID );
+	$comment = new Timber\Comment( $comment );
+
+	$options = get_fields('options');
+
+	$context['comment'] = $comment;
+	$context['post'] = $post;
+	$email_html_body = Timber::compile( 'templates/mailing/review-approved.twig', $context );
+	
+	$email_subject = sprintf ( __( 'Uživatel %s přidal na partneri.shoptet.cz recenzi k Partnerovi %s', 'shp-partneri' ), $comment->comment_author, $post->post_title );
+
+	if ( $email = $post->get_field('emailAddress') ) {
+		wp_mail(
+			$email,
+			$email_subject,
+			$email_html_body,
+			[
+				'From: ' . $options['email_from'],
+				'Content-Type: text/html; charset=UTF-8',
+			]
+		);
+	}
+}, 10, 3 );
 
 // Add headers to comments custom column
 add_filter( 'manage_edit-comments_columns', function ( $columns ) {

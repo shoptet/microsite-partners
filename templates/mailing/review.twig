@@ -1,0 +1,46 @@
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <img
+        src="
+          {% if post.get_field('emailAddress') == comment.comment_author_email %}
+            {{ post.thumbnail.src|resize(150, 150) }}
+          {% else %}
+            {{ comment.avatar(150, "placeholder.jpg"|static_assets) }}
+          {% endif %}
+        "
+        width="75"
+        height="75"
+        style="border-radius:5px"
+        alt="{{ comment.comment_author }}"
+      >
+    </td>
+    <td style="padding-left:15px;font-size:14px;">
+
+      <table border="0" cellspacing="0" cellpadding="0" style="padding-bottom:10px;">
+        <tr>
+          <td>
+            {{ content }}
+          </td>
+        </tr>
+      </table>
+
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <strong>{{ comment.comment_author }}{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong>,&nbsp;
+          </td>
+          {% if comment.comment_author_url %}
+            <td>
+              <a style="color:#10aae7;text-decoration:none;" href="{{ comment.comment_author_url }}" target="_blank">{{ comment.comment_author_url|display_url }}</a>,&nbsp;
+            </td>
+          {% endif %}
+          <td>
+            {{ comment.date }}, {{ comment.time }}
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>

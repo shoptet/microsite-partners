@@ -1,0 +1,20 @@
+{% extends "templates/mailing/base.twig" %}
+
+{% block content %}
+
+  <table border="0" cellspacing="0" cellpadding="0" style="font-size:17px">
+    <tr>
+      <td style="padding-bottom:16px;">Gratulujeme!</td>
+    </tr>
+    <tr>
+      <td style="padding-bottom:16px;">Váš klient si udělal čas a dostali jste od něj nové hodnocení.<br>Přečíst a reagovat na něj můžete přímo v detailu <a href="{{ post.link~'#comment-'~comment.ID }}" target="_blank" style="color:#10aae7;text-decoration:none;">svého medailonku</a>.</td>
+    </tr>
+  </table>
+
+	{% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}  
+
+	{% include 'templates/mailing/review.twig' with {content:'Kdo recenzi přidal:'} %}    
+
+	{% include 'templates/mailing/cta.twig' with {url:post.link~'#comment-'~comment.ID,text:'Přečíst recenzi'} %}  
+
+{% endblock %}
