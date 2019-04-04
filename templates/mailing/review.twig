@@ -2,13 +2,11 @@
   <tr>
     <td valign="top">
       <img
-        src="
-          {% if post.get_field('emailAddress') == comment.comment_author_email %}
-            {{ post.thumbnail.src|resize(150, 150) }}
-          {% else %}
-            {{ comment.avatar(150, "placeholder.jpg"|static_assets) }}
-          {% endif %}
-        "
+        {% if post.get_field('emailAddress') == comment.comment_author_email and post.thumbnail %}
+          src="{{ post.thumbnail.src|resize(150, 150) }}"
+        {% else %}
+          src="{{ comment.avatar(150, "placeholder.jpg"|static_assets) }}"
+        {% endif %}
         width="75"
         height="75"
         style="border-radius:5px"

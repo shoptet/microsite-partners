@@ -87,7 +87,11 @@ add_action( 'comment_post', function ( $comment_id ) {
 	wp_die(
 		__( '<strong>Hodnocení odesláno!</strong> Zkontrolujte prosím vaší e-mailovou schránku a ověřte odeslání vašeho hodnocení kliknutím na odkaz ve zprávě.', 'shp-partneri' ),
 		__( 'Hodnocení odesláno', 'shp-partneri' ),
-		[ 'response' => 200 ]
+		[
+			'response' => 200,
+			'link_text' => __( 'Zpět na profil partnera', 'shp-partneri' ),
+			'link_url' => $post->link,
+		]
 	);
 } );
 
@@ -107,7 +111,11 @@ add_action( 'init' , function () {
 			wp_die(
 				__( '<strong>Toto hodnocení bylo již ověřeno.</strong> Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ),
 				__( 'Hodnocení bylo již ověřeno', 'shp-partneri' ),
-				[ 'response' => 200 ]
+				[
+					'response' => 200,
+					'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+					'link_url' => get_site_url(),
+				]
 			);
 		}
 		$auth_token_hash = get_comment_meta( $comment->comment_ID, 'auth_token_hash', true );
@@ -131,13 +139,21 @@ add_action( 'init' , function () {
 			wp_die(
 				__( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ),
 				__( 'Hodnocení ověřeno', 'shp-partneri' ),
-				[ 'response' => 200 ]
+				[
+					'response' => 200,
+					'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+					'link_url' => get_site_url(),
+				]
 			);
 		}
 		wp_die(
 			__( 'Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to prosím znovu.', 'shp-partneri' ),
 			__( 'Neplatný odkaz', 'shp-partneri' ),
-			[ 'response' => 200 ]
+			[
+				'response' => 200,
+				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+				'link_url' => get_site_url(),
+			]
 		);
 	}
 } );
