@@ -1,10 +1,12 @@
 .DS_Store
 .env
 composer.phar
-deployment_dev.ini
+deployment-dev.ini
+deployment-dev.log
 deployment.ini
+deployment.log
 deployment.phar
-deployment_dev.log
+deployment-dev.log
 deployment.log
 webpack-bundle.json
 /vendor/

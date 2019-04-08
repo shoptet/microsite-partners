@@ -32,6 +32,43 @@ for ( $i = 1; $i <= 5; $i++ ) {
 	$rating_stars[$i] = 0;
 }
 
+$comments_count = count($post->comments);
+$comments_per_page = intval(get_option('comments_per_page'));
+$comments_total_pages = ceil( $comments_count / $comments_per_page );
+$query_cpage = intval(get_query_var('cpage'));
+$comments_current_page = ( $query_cpage ? $query_cpage : 1 );
+$comments_offset = ( $comments_per_page * ( $comments_current_page - 1 ) );
+
+$pagination = [
+	'total' => $comments_total_pages,
+	'pages' => [],
+	'prev' => null,
+	'next' => null,
+];
+
+for ( $i = 1; $i <= $comments_total_pages; $i++ ) {
+	$pagination['pages'][] = [
+		'link' => ( $i > 1 ? $post->link . 'comment-page-' . $i . '#comments' : $post->link ),
+		'title' => $i,
+		'current' => ( $i === $comments_current_page ),
+	];
+}
+
+// Set previous comment page link
+if ( $comments_current_page > 1 ) {
+	$prev_page_number = ( $comments_current_page - 1 );
+	$pagination['prev'] = [ 'link' => ( $prev_page_number > 1 ? $post->link . 'comment-page-' . $prev_page_number . '#comments' : $post->link ) ];
+}
+
+// Set next comment page link
+if ( $comments_current_page < $comments_total_pages ) {
+	$pagination['next'] = [ 'link' => $post->link . 'comment-page-' . ( $comments_current_page + 1  ) . '#comments' ];
+}
+
+$context['comments_offset'] = $comments_offset;
+$context['comments_length'] = $comments_per_page;
+$context['pagination'] = $pagination;
+
 // Count comments by rating
 foreach ( $post->comments as $comment ) {
 	if ( $rating = get_comment_meta( $comment->comment_ID, 'rating', true ) ) {

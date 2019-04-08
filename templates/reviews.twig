@@ -1,4 +1,4 @@
-<div class="pb-5">
+<div class="pb-5" id="comments">
 
   <div class="pb-5">
     <h2 class="h3 mb-4">{{ __('Hodnocení', 'shp-partneri') }}</h2>
@@ -50,7 +50,7 @@
 
   {% if post.comments|length > 0 %}
     <ol class="list-unstyled mb-0">
-      {% for comment in post.comments %}
+      {% for comment in post.comments.order('wp')|slice(comments_offset, comments_length) %}
         <li>
           {% include 'review-single.twig' with {is_root_review: true} %}
 
@@ -79,5 +79,7 @@
       {% endfor %}
     </ol>
   {% endif %}
+
+  {% include 'review-pagination.twig' %}
 
 </div>

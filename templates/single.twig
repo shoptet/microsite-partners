@@ -65,6 +65,16 @@
 		</div>
 	</div>
 
+	<div class="{{ similar_posts|length > 0 ? 'border-bottom' }}">
+		<div class="container pt-5">
+			<div class="row">
+				<div class="col-xl-9">
+					{% include 'reviews.twig' %}
+				</div>
+			</div>
+		</div>
+	</div>
+
 	{% if similar_posts|length > 0 %}
 		<div class="row-profile-list">
 			<div class="container">
@@ -73,14 +83,6 @@
 			</div>
 		</div>
 	{% endif %}
-
-	<div class="container {{ similar_posts|length == 0 ? 'pt-5' }}">
-		<div class="row">
-			<div class="col-xl-9">
-				{% include 'reviews.twig' %}
-			</div>
-		</div>
-	</div>
 
 	{% include 'row-become-partner.twig' %}
 
