@@ -1,4 +1,4 @@
-Started at [2019/04/08 10:22]
+Started at [2019/04/08 10:29]
 Config file is /Users/jakub/Local Sites/partneri/app/public/wp-content/themes/shoptet/deployment-dev.ini
 
 Deploying partneri-shoptet
@@ -15,13 +15,15 @@ Ignoring ./deployment.phar
 Creating remote file .htdeployment.running
 
 Uploading:
-(1 of 2) /single.php
-(2 of 2) /.htdeployment
+(1 of 3) /templates/review-rating-stars.twig
+(2 of 3) /templates/profile/main.twig
+(3 of 3) /.htdeployment
 
 Renaming:
-(1 of 2) Renaming /single.php
-(2 of 2) Renaming /.htdeployment
+(1 of 3) Renaming /templates/review-rating-stars.twig
+(2 of 3) Renaming /templates/profile/main.twig
+(3 of 3) Renaming /.htdeployment
 
 Deleting remote file .htdeployment.running
 
-Finished at [2019/04/08 10:22] (in 1 seconds)
+Finished at [2019/04/08 10:29] (in 0 seconds)
