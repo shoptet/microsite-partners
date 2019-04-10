@@ -19,7 +19,9 @@
   			{% include 'profile/categories.twig' %}
 
         <div class="mt-2">
-          {% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}
+          <a href="#comments">
+            {% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}
+          </a>
         </div>
 
   		</div>

@@ -2,7 +2,6 @@
 .env
 composer.phar
 deployment-dev.ini
-deployment-dev.log
 deployment.ini
 deployment.log
 deployment.phar
