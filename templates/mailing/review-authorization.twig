@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <table border="0" cellspacing="0" cellpadding="0" style="font-size:17px">
+  <table border="0" cellspacing="0" cellpadding="0" style="font-size:17px;padding-bottom:10px;">
     <tr>
       <td style="padding-bottom:16px;">Děkujeme za vložený příspěvek.</td>
     </tr>
@@ -11,7 +11,9 @@
     </tr>
   </table>
 
-	{% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}  
+	{% if comment.rating %}
+	  {% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}
+  {% endif %}
 
 	{% include 'templates/mailing/review.twig' with {content:comment.comment_content|nl2br} %}    
 
