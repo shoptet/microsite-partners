@@ -15,8 +15,8 @@
 	  {% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}
   {% endif %}
 
-	{% include 'templates/mailing/review.twig' with {content:'Kdo recenzi přidal:'} %}    
+	{% include 'templates/mailing/review.twig' with {content:'Kdo hodnocení přidal:'} %}    
 
-	{% include 'templates/mailing/cta.twig' with {url:post.link~'#comment-'~comment.ID,text:'Přečíst recenzi'} %}  
+	{% include 'templates/mailing/cta.twig' with {url:post.link~'#comment-'~comment.ID,text:'Přečíst hodnocení'} %}  
 
 {% endblock %}

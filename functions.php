@@ -74,7 +74,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 	$context['auth_url'] = $auth_url;
 	$email_html_body = Timber::compile( 'templates/mailing/review-authorization.twig', $context );
 
-	$email_subject = sprintf ( __( 'Schválení vaší recenze na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
+	$email_subject = sprintf ( __( 'Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
 	wp_mail(
 		$comment->comment_author_email,
 		$email_subject,
@@ -173,7 +173,7 @@ add_action( 'transition_comment_status',  function( $new_status, $old_status, $c
 	$context['post'] = $post;
 	$email_html_body = Timber::compile( 'templates/mailing/review-approved.twig', $context );
 	
-	$email_subject = sprintf ( __( 'Uživatel %s přidal na partneri.shoptet.cz recenzi k Partnerovi %s', 'shp-partneri' ), $comment->comment_author, $post->post_title );
+	$email_subject = sprintf ( __( 'Uživatel %s přidal na partneri.shoptet.cz hodnocení k Partnerovi %s', 'shp-partneri' ), $comment->comment_author, $post->post_title );
 
 	if ( $email = $post->get_field('emailAddress') ) {
 		wp_mail(

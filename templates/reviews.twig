@@ -6,19 +6,16 @@
     <div class="d-flex mb-4">
       <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}</div>
       <div class="fs-130 lh-1">
-        {# TODO: Better translation #}
-        {% if post.comments|length == 0 %}
-          {{ __('Zatím žádné hodnocení', 'shp-partneri') }}
-        {% elseif post.comments|length <= 4 %}
-          {{ __('%s recenze', 'shp-partneri')|format(post.comments|length) }}
+        {% if post.comments|length > 0 %}
+          {{ __('%s hodnocení', 'shp-partneri')|format(post.comments|length) }}
         {% else %}
-          {{ __('%s recenzí', 'shp-partneri')|format(post.comments|length) }}
+          {{ __('Tento partner zatím nemá žádné hodnocení', 'shp-partneri') }}
         {% endif %}
       </div>
     </div>
 
-    <div class="d-sm-flex justify-content-between">
-      <div class="mb-4 mb-sm-0">
+    <div class="d-md-flex justify-content-between">
+      <div class="mb-4 mb-md-0">
         <ol class="list-unstyled mb-0">
           {% for i in 5..1 %}
             <li class="d-flex align-items-center mb-1">
@@ -31,7 +28,7 @@
       </div>
       <div class="align-self-end">
         <a class="btn btn-green" href="#commentForm" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="commentForm">
-          {{ __('Napište recenzi', 'wavee-theme') }}
+          {{ __('Ohodnoťte svou zkušenost<br>s tímto partnerem', 'wavee-theme') }}
         </a>
       </div>
     </div>
@@ -42,7 +39,7 @@
       {% if post.comment_status == 'closed' %}
         <p class="mb-0">{{ __('Hodnocení jsou uzavřena', 'shp-partneri') }}</p>
       {% else %}
-        <h2 class="h3 mb-4">{{ __('Přidat recenzi', 'shp-partneri') }}</h2>
+        <h2 class="h3 mb-4">{{ __('Přidat hodnocení', 'shp-partneri') }}</h2>
         {% include 'review-form.twig' %}
       {% endif %}
     </div>
