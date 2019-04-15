@@ -220,6 +220,26 @@ add_filter( 'manage_comments_custom_column', function ( $column, $comment_id ) {
 	}	
 }, 10, 2 );
 
+add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
+	if ( $contact_form->id !== intval( get_field('contact_form_id', 'option') ) ) return;
+	$submission = WPCF7_Submission::get_instance() ;
+	if ( ! $submission  || ! $submission->get_posted_data()['your-email'] ) return;
+
+	$email = $submission->get_posted_data()['your-email'];
+	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
+	$email_html_body = Timber::compile( 'templates/mailing/review-survey.twig' );
+
+	wp_mail(
+		$email,
+		$email_subject,
+		$email_html_body,
+		[
+			'From: ' . get_field('email_from', 'option'),
+			'Content-Type: text/html; charset=UTF-8',
+		]
+	);
+} ); 
+
 Timber::$dirname = array('templates', 'views');
 
 class StarterSite extends TimberSite {

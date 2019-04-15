@@ -1,0 +1,25 @@
+{% extends "templates/mailing/base.twig" %}
+
+{% block content %}
+
+  <table border="0" cellspacing="0" cellpadding="0" style="font-size:17px;">
+    <tr>
+      <td style="padding-bottom:16px;">Dobrý den,</td>
+    </tr>
+    <tr>
+      <td>děkujeme za váš zájem stát se našimi partnery a zařadit se tak do katalogu specialistů,<br>těší nás to. Teď už zbývá jen poslední krok:</td>
+    </tr>
+  </table>
+
+	{% include 'templates/mailing/cta.twig' with {url:'https://forms.gle/6KPcX4pD6hH6kD287',text:'Vyplnit dotazník'} %}
+
+  <table border="0" cellspacing="0" cellpadding="0" style="font-size:17px;padding-top:50px;">
+    <tr>
+      <td style="padding-bottom:16px;">To proto, abychom od vás měli dostatek informací o vás a vaší práci a mohli tak partnerství posoudit. Na konkrétní <a href="https://partneri.shoptet.cz/certifikaty/#podminky" target="_blank" style="color:#10aae7;text-decoration:none;">podmínky partnerství</a> se můžete mrknout na našem webu.</td>
+    </tr>
+    <tr>
+      <td>Až nám ho odešlete, spojíme se s vámi a společně probereme vše potřebné.</td>
+    </tr>
+  </table>
+
+{% endblock %}
