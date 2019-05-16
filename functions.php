@@ -238,7 +238,62 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 			'Content-Type: text/html; charset=UTF-8',
 		]
 	);
-} ); 
+} );
+
+/**
+ * Add select controls filtering by date to admin
+ */
+add_action( 'restrict_manage_comments', function () {
+	global $wpdb, $wp_locale;
+
+	$months = $wpdb->get_results( "
+		SELECT DISTINCT YEAR( comment_date ) AS year, MONTH( comment_date ) AS month
+		FROM $wpdb->comments
+		ORDER BY comment_date DESC
+	" );
+
+	$month_count = count( $months );
+
+	if ( ! $month_count || ( 1 == $month_count && 0 == $months[0]->month ) ) {
+		return;
+	}
+
+	$m = isset( $_GET['m'] ) ? (int) $_GET['m'] : 0;
+	?>
+	<label for="filter-by-date" class="screen-reader-text"><?php _e( 'Filter by date' ); ?></label>
+	<select name="m" id="filter-by-date">
+		<option<?php selected( $m, 0 ); ?> value="0"><?php _e( 'All dates' ); ?></option>
+	<?php
+	foreach ( $months as $arc_row ) {
+		if ( 0 == $arc_row->year ) {
+			continue;
+		}
+		$month = zeroise( $arc_row->month, 2 );
+		$year  = $arc_row->year;
+		printf(
+			"<option %s value='%s'>%s</option>\n",
+			selected( $m, $year . $month, false ),
+			esc_attr( $arc_row->year . $month ),
+			/* translators: 1: month name, 2: 4-digit year */
+			sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
+		);
+	}
+	?>
+	</select>
+	<?php
+} );
+
+/**
+ * Filter comments in admin by month
+ */
+add_action( 'pre_get_comments', function( $wp_query ) {
+	if( ! is_admin() ) return;
+	if ( ! isset($_REQUEST['m']) || empty($_REQUEST['m']) || strlen($_REQUEST['m']) !== 6 ) return;
+	$m = $_REQUEST['m'];
+	$year = substr( $m, 0, 4 );
+	$month = substr( $m, 4, 2 );
+	$wp_query->query_vars['date_query'] = [ 'year' => $year, 'month' => $month ];
+} );
 
 Timber::$dirname = array('templates', 'views');
 
