@@ -1,5 +1,7 @@
 <?php
 
+include_once 'helpers.php';
+
 ini_set('display_errors', 1);
 
 if ( ! class_exists( 'Timber' ) ) {
@@ -58,22 +60,35 @@ add_action( 'comment_post', function ( $comment_id ) {
 
 // Send auth e-mail
 add_action( 'comment_post', function ( $comment_id ) {
-	$context = Timber::get_context();
 	$comment = new Timber\Comment($comment_id);
 	$post = new Timber\Post( $comment->comment_post_ID );
 	$options = get_fields('options');
 
+	// Generate auth url
 	$auth_token = bin2hex( openssl_random_pseudo_bytes(32) );
-	$auth_token_hash = password_hash( $auth_token, PASSWORD_BCRYPT );
-	add_comment_meta( $comment_id, 'auth_token_hash', $auth_token_hash );
+	// Legacy
+	// $auth_token_hash = password_hash( $auth_token, PASSWORD_BCRYPT );
+	// add_comment_meta( $comment_id, 'auth_token_hash', $auth_token_hash );
+	add_comment_meta( $comment_id, 'auth_token', $auth_token );
 	add_comment_meta( $comment_id, 'authenticated', 0 );
 	$auth_url = get_site_url( null, '?auth_token=' . $auth_token );
 
-	$context['comment'] = $comment;
-	$context['post'] = $post;
-	$context['auth_url'] = $auth_url;
-	$email_html_body = Timber::compile( 'templates/mailing/review-authorization.twig', $context );
-
+	// Compile and send e-mail
+	$context = Timber::get_context();
+	$context['title'] = __( 'Děkujeme', 'shp-partneri' );
+	$context['subtitle'] = __( 'Za vaše hodnocení', 'shp-partneri' );
+	$context['text'] = sprintf( __( '
+		Teď už jen klikněte <strong><a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">ZDE</a></strong> pro potvrzení
+		a&nbsp;zveřejnění vašeho hodnocení.<br><br>
+		  Přejeme krásný den, <br>
+		tým Shoptet 
+	', 'shp-partneri' ), $auth_url );
+	$context['image'] = [
+		'main' => 'shoptetrix-action-1.png',
+		'complementary' => 'shoptetrix-action-2.png',
+		'width' => 250,
+	];
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = sprintf ( __( 'Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
 	wp_mail(
 		$comment->comment_author_email,
@@ -84,15 +99,25 @@ add_action( 'comment_post', function ( $comment_id ) {
 			'Content-Type: text/html; charset=UTF-8',
 		]
 	);
-	wp_die(
-		__( '<strong>Hodnocení odesláno!</strong> Zkontrolujte prosím vaší e-mailovou schránku a ověřte odeslání vašeho hodnocení kliknutím na odkaz ve zprávě.', 'shp-partneri' ),
-		__( 'Hodnocení odesláno', 'shp-partneri' ),
-		[
-			'response' => 200,
-			'link_text' => __( 'Zpět na profil partnera', 'shp-partneri' ),
-			'link_url' => $post->link,
-		]
-	);
+
+	// Render message
+	$context = Timber::get_context();
+	$context['wp_title'] = __( 'Hodnocení odesláno', 'shp-partneri' );
+	$context['message_type'] = 'success';
+	$context['title'] = __( 'Super!', 'shp-partneri' );
+	$context['subtitle'] = __( 'Hodnocení odesláno', 'shp-partneri' );
+	$context['text'] = __( '
+		<p>
+			A teď už zbývá jen kliknout na potvrzující odkaz v 
+			<strong>e-mailu, který jsme vám právě poslali</strong>.
+			Je to jen pro ověření, že opravdu existujete :-)
+		</p>
+	', 'shp-partneri' );
+	Timber::render( 'templates/message/message.twig', $context );
+
+	// TODO: remove on production
+	remind_authentication();
+	die();
 } );
 
 // Check for auth tokean and authenticate
@@ -100,52 +125,9 @@ add_action( 'init' , function () {
 	if ( ! isset( $_GET['auth_token'] ) || '' === $_GET['auth_token'] ) return;
 	$auth_token = $_GET['auth_token'];
 
-	// Get all comments
-	$args = [];
-	$comments_query = new WP_Comment_Query;
-	$comments = $comments_query->query( $args );
+	$comment = get_comment_by_auth_token( $auth_token );
 
-	foreach ( $comments as $comment ) {
-		$authenticated = get_comment_meta( $comment->comment_ID, 'authenticated', true );
-		if ( $authenticated ) {
-			wp_die(
-				__( '<strong>Toto hodnocení bylo již ověřeno.</strong> Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ),
-				__( 'Hodnocení bylo již ověřeno', 'shp-partneri' ),
-				[
-					'response' => 200,
-					'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
-					'link_url' => get_site_url(),
-				]
-			);
-		}
-		$auth_token_hash = get_comment_meta( $comment->comment_ID, 'auth_token_hash', true );
-		if ( password_verify( $auth_token , $auth_token_hash ) ) {
-			update_comment_meta( $comment->comment_ID, 'authenticated', time() );
-			$options = get_fields('options');
-			$context = Timber::get_context();
-			$post = new Timber\Post( $comment->comment_post_ID );
-			$context['post'] = $post;
-			$email_html_body = Timber::compile( 'templates/mailing/review-authorized.twig', $context );
-			$email_subject = __( 'Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení', 'shp-partneri' );
-			wp_mail(
-				$options['authorized_review_email_recipient'],
-				$email_subject,
-				$email_html_body,
-				[
-					'From: ' . $options['email_from'],
-					'Content-Type: text/html; charset=UTF-8',
-				]
-			);
-			wp_die(
-				__( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ),
-				__( 'Hodnocení ověřeno', 'shp-partneri' ),
-				[
-					'response' => 200,
-					'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
-					'link_url' => get_site_url(),
-				]
-			);
-		}
+	if ( ! $comment ) {
 		wp_die(
 			__( 'Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to prosím znovu.', 'shp-partneri' ),
 			__( 'Neplatný odkaz', 'shp-partneri' ),
@@ -155,7 +137,50 @@ add_action( 'init' , function () {
 				'link_url' => get_site_url(),
 			]
 		);
+		return;
 	}
+
+	$authenticated = get_comment_meta( $comment->comment_ID, 'authenticated', true );
+
+	if ( $authenticated ) {
+		wp_die(
+			__( '<strong>Toto hodnocení bylo již ověřeno.</strong> Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ),
+			__( 'Hodnocení bylo již ověřeno', 'shp-partneri' ),
+			[
+				'response' => 200,
+				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+				'link_url' => get_site_url(),
+			]
+		);
+		return;
+	}
+
+	update_comment_meta( $comment->comment_ID, 'authenticated', time() );
+	$options = get_fields('options');
+	$context = Timber::get_context();
+	$post = new Timber\Post( $comment->comment_post_ID );
+	$context['post'] = $post;
+	$email_html_body = Timber::compile( 'templates/mailing/review-authorized.twig', $context );
+	$email_subject = __( 'Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení', 'shp-partneri' );
+	wp_mail(
+		$options['authorized_review_email_recipient'],
+		$email_subject,
+		$email_html_body,
+		[
+			'From: ' . $options['email_from'],
+			'Content-Type: text/html; charset=UTF-8',
+		]
+	);
+	wp_die(
+		__( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ),
+		__( 'Hodnocení ověřeno', 'shp-partneri' ),
+		[
+			'response' => 200,
+			'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+			'link_url' => get_site_url(),
+		]
+	);
+
 } );
 
 
@@ -239,6 +264,17 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 		]
 	);
 } );
+
+/**
+ * Set cron for commnets authentication reminding
+ */
+if ( ! wp_next_scheduled( 'remind_authentication' ) ) {
+  wp_schedule_event( time(), 'twicedaily', 'remind_authentication' );
+}
+add_action( 'remind_authentication', function() {
+	remind_authentication();
+});
+//do_action( 'remind_authentication' );
 
 /**
  * Add select controls filtering by date to admin
@@ -362,6 +398,11 @@ class StarterSite extends TimberSite {
 		$fileUrl = get_template_directory_uri() . $fileName;
 		$filePath = get_template_directory() . $fileName;
 		wp_enqueue_style( 'reviews', $fileUrl, array(), filemtime($filePath), 'all' );
+
+		$fileName = '/assets/messages.css';
+		$fileUrl = get_template_directory_uri() . $fileName;
+		$filePath = get_template_directory() . $fileName;
+		wp_enqueue_style( 'messages', $fileUrl, array(), filemtime($filePath), 'all' );
 
 		$fileName = '/assets/utilities.css';
 		$fileUrl = get_template_directory_uri() . $fileName;

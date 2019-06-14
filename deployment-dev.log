@@ -1,5 +1,4 @@
-Creating temporary directory /var/folders/g2/x_d3kdg11cz505mwn3nkg9sc0000gn/T/deployment
-Started at [2019/04/10 10:38]
+Started at [2019/06/14 15:33]
 Config file is /Users/jakub/Local Sites/partneri/app/public/wp-content/themes/shoptet/deployment-dev.ini
 
 Deploying partneri-shoptet
@@ -7,6 +6,8 @@ Live mode
 Connecting to server
 Loaded remote .htdeployment file
 Scanning files in /Users/jakub/Local Sites/partneri/app/public/wp-content/themes/shoptet
+Ignoring ./deployment.ini               
+Ignoring ./.DS_Store                    
 Ignoring ./deployment.log               
 Ignoring ./deployment-dev.ini           
 Ignoring ./deployment-dev.log           
@@ -16,15 +17,15 @@ Ignoring ./deployment.phar
 Creating remote file .htdeployment.running
 
 Uploading:
-(1 of 3) /templates/profile/main.twig
-(2 of 3) /assets/reviews.css
+(1 of 3) /templates/mailing/shoptetrix-inline.twig
+(2 of 3) /templates/mailing/shoptetrix.twig
 (3 of 3) /.htdeployment
 
 Renaming:
-(1 of 3) Renaming /templates/profile/main.twig
-(2 of 3) Renaming /assets/reviews.css
+(1 of 3) Renaming /templates/mailing/shoptetrix-inline.twig
+(2 of 3) Renaming /templates/mailing/shoptetrix.twig
 (3 of 3) Renaming /.htdeployment
 
 Deleting remote file .htdeployment.running
 
-Finished at [2019/04/10 10:38] (in 1 seconds)
+Finished at [2019/06/14 15:33] (in 1 seconds)

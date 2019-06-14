@@ -1,6 +1,4 @@
 <?php
-namespace Helpers;
-
 
 function get_similiar_posts($post, $number = 3) {
   $similarPosts = array();
@@ -69,4 +67,88 @@ function get_post_benefit_title($post) {
   }
 
   return $title;
+}
+
+function remind_authentication () {
+  $options = get_fields('options');
+	$args = [
+    'meta_query' => [
+      [
+        'key' => 'authenticated',
+        'value' => 0,
+      ],
+      [
+        'key' => 'authentication_reminded',
+        'compare' => 'NOT EXISTS',
+      ],
+    ],
+    // TODO: uncomment on production
+    // 'date_query' => [
+    //   'before' => date( 'Y-m-d', strtotime('-7 days') ),
+    // ],
+  ];
+	$comments_query = new WP_Comment_Query;
+  $comments = $comments_query->query( $args );
+  
+  foreach ( $comments as $comment ) {
+    // Compile and send e-mail
+    $context = Timber::get_context();
+    $auth_token = get_comment_meta( $comment->comment_ID, 'auth_token', true );
+    if ( ! $auth_token ) {
+      $auth_token_hash = get_comment_meta( $comment->comment_ID, 'auth_token_hash', true );
+      $auth_token = only_alphanumeric( $auth_token_hash );
+    }
+    $auth_url = get_site_url( null, '?auth_token=' . $auth_token );
+    $context['title'] = __( 'Pozor', 'shp-partneri' );
+    $context['subtitle'] = __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
+    $context['text'] = __( '
+      Je to už týden, co jste napsal <strong>své hodnocení</strong>.
+      Asi se ztratil váš potvrzovací email.
+      Bez potvrzení to ale nepůjde.
+      Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.
+    ', 'shp-partneri' );
+    $context['image'] = [
+      'main' => 'shoptetrix-warning.png',
+      'width' => 250,
+    ];
+    $context['cta'] = [
+      'title' => 'Potvrdit hodnocení',
+      'link' => $auth_url,
+    ];
+    $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+    $email_subject = __( 'Připomenutí schválení vašeho hodnocení na partneri.shoptet.cz', 'shp-partneri' );
+    wp_mail(
+      $comment->comment_author_email,
+      $email_subject,
+      $email_html_body,
+      [
+        'From: ' . $options['email_from'],
+        'Content-Type: text/html; charset=UTF-8',
+      ]
+    );
+		update_comment_meta( $comment->comment_ID, 'authentication_reminded', time() );    
+  }
+}
+
+function only_alphanumeric( $text ) {
+  return preg_replace( "/[^a-zA-Z0-9]+/", "", $text );
+}
+
+function get_comment_by_auth_token( $auth_token ) {
+  // Get all comments
+	$args = [];
+	$comments_query = new WP_Comment_Query;
+  $comments = $comments_query->query( $args );
+  
+  foreach ( $comments as $comment ) {
+		$auth_token_hash = get_comment_meta( $comment->comment_ID, 'auth_token_hash', true );
+    $auth_token_comment = get_comment_meta( $comment->comment_ID, 'auth_token', true );
+    if (
+			$auth_token === $auth_token_comment ||
+			$auth_token === only_alphanumeric( $auth_token_hash ) ||
+			password_verify( $auth_token , $auth_token_hash )
+		) return $comment;
+  }
+
+  return null;
 }

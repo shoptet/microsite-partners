@@ -102,7 +102,9 @@
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-		{% include 'header.twig' %}
+		{% block header %}
+			{% include 'header.twig' %}
+		{% endblock %}
 
 		{% block breadcrumb %}
 		{% endblock %}
@@ -116,7 +118,10 @@
 		{% include 'footer.twig' %}
 
 		{{ function('wp_footer') }}
-		{{ function('get_shoptet_footer') }}
+		
+		{% block footer %}
+			{{ function('get_shoptet_footer') }}
+		{% endblock %}
 
 	</body>
 </html>

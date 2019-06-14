@@ -15,11 +15,11 @@ $context = Timber::get_context();
 $post = Timber::query_post();
 
 $context['post'] = $post;
-$context['terms'] = Helpers\get_post_terms($post);
-$context['similar_posts'] = Helpers\get_similiar_posts($post, 3);
+$context['terms'] = get_post_terms($post);
+$context['similar_posts'] = get_similiar_posts($post, 3);
 
-$context['description_title'] = Helpers\get_post_description_title($post);
-$context['benefit_title'] = Helpers\get_post_benefit_title($post);
+$context['description_title'] = get_post_description_title($post);
+$context['benefit_title'] = get_post_benefit_title($post);
 
 $context['breadcrumbs'] = array(
 	$post->title => $post->link,

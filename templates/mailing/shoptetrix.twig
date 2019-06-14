@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+
+      /*All the styling goes here*/
+
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; 
+      }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; 
+        color: #535353;
+      }
+
+      table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; 
+      }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; 
+      }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px;
+        width: 580px; 
+      }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px; 
+      }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        width: 100%; 
+      }
+
+      .row {
+        box-sizing: border-box;
+        padding: 0 30px 0 30px;
+      }
+
+      .bg-gray-light {
+        background-color: #F8F8F8;
+      }
+
+      .bg-gray {
+        background-color: #E2E2E2;
+      }
+
+      .pt {
+        padding-top: 30px;
+      }
+
+      .pb {
+        padding-bottom: 30px;
+      }
+
+      .pb0 {
+        padding-bottom: 0;
+      }
+
+      .pr {
+        padding-right: 30px;
+      }
+
+      .pl {
+        padding-left: 30px;
+      }
+
+      .pb10 {
+        padding-bottom: 10px;
+      }
+
+      .d-block {
+        display: block;
+      }
+
+      .fs-20 {
+        font-size: 20px;
+      }
+
+      .lead p {
+        font-size: 23px;
+      }
+
+      .content-block {
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #535353;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.2;
+        margin: 0;
+        margin-bottom: 30px; 
+      }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-transform: capitalize; 
+      }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        margin: 0;
+        margin-bottom: 15px;
+        color: #535353;
+      }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; 
+      }
+
+      a {
+        color: #21AFE5;
+        text-decoration: underline; 
+      }
+
+      .text-muted {
+        color: #716B69;
+        text-decoration: none;
+      }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; 
+      }
+        .btn table td {
+          background-color: #ffffff;
+          text-align: center; 
+      }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #21AFE5;
+          box-sizing: border-box;
+          color: #21AFE5;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: bold;
+          margin: 0;
+          padding: 10px 20px;
+          text-decoration: none;
+          text-transform: uppercase; 
+      }
+
+      .btn-primary table td {
+        background-color: #21AFE5; 
+      }
+
+      .btn-primary a {
+        background-color: #21AFE5;
+        border-color: #21AFE5;
+        color: #ffffff; 
+      }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .title {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .subtitle {
+        font-weight: 600; 
+        color: #A4CA17;
+      }
+
+      .last {
+        margin-bottom: 0; 
+      }
+
+      .first {
+        margin-top: 0; 
+      }
+
+      .align-center {
+        text-align: center; 
+      }
+
+      .align-right {
+        text-align: right; 
+      }
+
+      .align-left {
+        text-align: left; 
+      }
+
+      .clear {
+        clear: both; 
+      }
+
+      .mt0 {
+        margin-top: 0; 
+      }
+
+      .mb0 {
+        margin-bottom: 0; 
+      }
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; 
+        }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; 
+        }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; 
+        }
+        .btn-primary table td:hover {
+          background-color: #0e98cf !important; 
+        }
+        .btn-primary a:hover {
+          background-color: #0e98cf !important;
+          border-color: #0e98cf !important; 
+        } 
+      }
+    </style>
+  </head>
+  <body class="">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <table role="presentation" class="main">
+
+              <tr>
+                <td class="row pb10">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" >
+                    <tr>
+                      <td>
+                        <img
+                          class="d-block"
+                          src="{{ 'shoptet-partneri-logo.png'|static_assets }}"
+                          alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
+                          width="200"
+                        >
+                      </td>
+                      <td align="right" style="vertical-align:bottom;font-size:13px;">
+                        <strong><a href="https://partneri.shoptet.cz/" target="_blank">partneri.shoptet.cz</a></strong>
+                        <spna class="text-muted"> | </span>
+                        <a class="text-muted" href="mailto:partneri@shoptet.cz" target="_blank">partneri@shoptet.cz</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="row pt bg-gray-light">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" >
+                    <tr>
+                      <td>
+                        <h1 class="title">
+                          {{ title }}<br>
+                          <span class="subtitle">
+                            {{ subtitle }}
+                          </span>
+                        </h1>
+                      </td>
+                      <td width="{{ image.width }}" style="vertical-align:bottom;">
+                        <img
+                          class="d-block"
+                          src="{{ image.main|static_assets }}"
+                          alt="{{ __( 'Shoptetrix', 'shp-partneri' ) }}"
+                          width="{{ image.width }}"
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              {% if image.complementary %}
+                <tr>
+                  <td class="row bg-gray">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td></td>
+                        <td width="{{ image.width }}">
+                          <img
+                            class="d-block"
+                            align="top"
+                            src="{{ image.complementary|static_assets }}"
+                            alt="{{ __( 'Shoptetrix', 'shp-partneri' ) }}"
+                            width="{{ image.width }}"
+                          >
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td class="row bg-gray pb"></td>
+                </tr>
+              {% endif %}
+              <tr>
+                <td class="row bg-gray pb">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="pb">
+                    <tr>
+                      <td align="middle" class="lead">
+                        <p>
+                          {{ text }}
+                        </p>
+                      </td>
+                    </tr>
+                    {% if cta %}
+                      <tr>
+                        <td style="padding-top:15px">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                            <tbody>
+                              <tr>
+                                <td align="middle" class="pb0">
+                                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td> <a href="{{ cta.link }}" target="_blank">{{ cta.title }}</a> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    {% endif %}
+                  </table>
+                </td>
+              </tr>
+
+            </table>
+
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

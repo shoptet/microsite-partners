@@ -1,0 +1,55 @@
+{% extends "base.twig" %}
+
+{% block header %}{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+
+    <div class="message">
+
+      <div class="message-container">
+        <div class="row no-gutters">
+
+          <div class="col-md-5 message-body">
+
+            <h1 class="h2 mb-4 message-title">
+              {{ title }}<br>
+              <span class="message-subtitle">
+                {{ subtitle }}
+              </span>
+            </h1>
+
+            <div>
+              {{ text }}
+            </div>
+
+          </div>
+          <div class="col-md-7 align-self-end">
+
+            <div class="message-shoptetrix message-shoptetrix-{{ message_type }}">
+              <div class="message-shoptetrix-container">
+                <img
+                  src="{{ ("shoptetrix-" ~ message_type ~ ".png")|static_assets }}"
+                  alt="{{ __( 'Shoptetrix', 'shp-partneri' ) }}"
+                >
+              </div>
+            </div>
+
+          </div>            
+        </div>
+      </div>
+
+      <div class="message-footer py-4">
+        <img
+          src="{{ "envelope.png"|static_assets }}"
+          alt="{{ __( 'Obálka', 'shp-partneri' ) }}"
+          height="60px"
+        >
+      </div>
+
+    </div>
+
+  </div>
+{% endblock %}
