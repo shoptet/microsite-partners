@@ -102,7 +102,7 @@ function remind_authentication () {
     $context['title'] = __( 'Pozor', 'shp-partneri' );
     $context['subtitle'] = __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
     $context['text'] = __( '
-      Je to už týden, co jste napsal <strong>své hodnocení</strong>.
+      Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>.
       Asi se ztratil váš potvrzovací email.
       Bez potvrzení to ale nepůjde.
       Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.
