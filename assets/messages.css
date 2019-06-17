@@ -16,6 +16,7 @@
 
 .message-title {
   text-transform: uppercase;
+  font-size: 1.8rem;
 }
 
 .message-subtitle {
@@ -50,4 +51,12 @@
 
 .message-shoptetrix-error img {
   margin-bottom: -24%;
+}
+
+.message-shoptetrix-warning img {
+  margin-bottom: -16%;
+}
+
+.message-shoptetrix-thumb-up img {
+  margin-bottom: -15.3%;
 }

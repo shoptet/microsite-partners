@@ -113,6 +113,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 			Je to jen pro ověření, že opravdu existujete :-)
 		</p>
 	', 'shp-partneri' );
+	$context['footer_image'] = 'envelope.png';
 	Timber::render( 'templates/message/message.twig', $context );
 
 	// TODO: remove on production
@@ -143,15 +144,18 @@ add_action( 'init' , function () {
 	$authenticated = get_comment_meta( $comment->comment_ID, 'authenticated', true );
 
 	if ( $authenticated ) {
-		wp_die(
-			__( '<strong>Toto hodnocení bylo již ověřeno.</strong> Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ),
-			__( 'Hodnocení bylo již ověřeno', 'shp-partneri' ),
-			[
-				'response' => 200,
-				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
-				'link_url' => get_site_url(),
-			]
-		);
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Hodnocení bylo již ověřeno', 'shp-partneri' );
+		$context['message_type'] = 'warning';
+		$context['title'] = __( 'Ouha!', 'shp-partneri' );
+		$context['subtitle'] = __( 'Toto hodnocení bylo již ověřeno!', 'shp-partneri' );
+		$context['text'] = __( '
+			<p>
+				Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.
+			</p>
+		', 'shp-partneri' );
+		Timber::render( 'templates/message/message.twig', $context );
+		die();		 
 		return;
 	}
 
@@ -171,16 +175,18 @@ add_action( 'init' , function () {
 			'Content-Type: text/html; charset=UTF-8',
 		]
 	);
-	wp_die(
-		__( '<strong>Vaše hodnocení bylo ověřeno!</strong> Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ),
-		__( 'Hodnocení ověřeno', 'shp-partneri' ),
-		[
-			'response' => 200,
-			'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
-			'link_url' => get_site_url(),
-		]
-	);
-
+	$context = Timber::get_context();
+	$context['wp_title'] = __( 'Hodnocení ověřeno', 'shp-partneri' );
+	$context['message_type'] = 'thumb-up';
+	$context['title'] = __( 'Super!', 'shp-partneri' );
+	$context['subtitle'] = __( 'Vaše<br>hodnocení bylo ověřeno!', 'shp-partneri' );
+	$context['text'] = __( '
+		<p>
+			Nyní proběhne schvalování vašeho hodnocení.
+		</p>
+	', 'shp-partneri' );
+	Timber::render( 'templates/message/message.twig', $context );
+	die();
 } );
 
 

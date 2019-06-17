@@ -108,7 +108,7 @@ function remind_authentication () {
       Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.
     ', 'shp-partneri' );
     $context['image'] = [
-      'main' => 'shoptetrix-warning.png',
+      'main' => 'shoptetrix-warning-mail.png',
       'width' => 250,
     ];
     $context['cta'] = [
