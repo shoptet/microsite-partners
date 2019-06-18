@@ -80,8 +80,8 @@ add_action( 'comment_post', function ( $comment_id ) {
 	$context['text'] = sprintf( __( '
 		Teď už jen klikněte <strong><a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">ZDE</a></strong> pro potvrzení
 		a&nbsp;zveřejnění vašeho hodnocení.<br><br>
-		  Přejeme krásný den, <br>
-		tým Shoptet 
+		Přejeme krásný den,<br>
+		tým Shoptet
 	', 'shp-partneri' ), $auth_url );
 	$context['image'] = [
 		'main' => 'shoptetrix-action-1.png',
