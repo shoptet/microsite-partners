@@ -99,7 +99,7 @@ function remind_authentication () {
       $auth_token = only_alphanumeric( $auth_token_hash );
     }
     $auth_url = get_site_url( null, '?auth_token=' . $auth_token );
-    $context['title'] = __( 'Pozor', 'shp-partneri' );
+    $context['title'] = __( 'Pozor!', 'shp-partneri' );
     $context['subtitle'] = __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
     $context['text'] = __( '
       Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>.

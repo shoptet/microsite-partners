@@ -78,7 +78,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 	$context['title'] = __( 'Děkujeme', 'shp-partneri' );
 	$context['subtitle'] = __( 'Za vaše hodnocení', 'shp-partneri' );
 	$context['text'] = sprintf( __( '
-		Teď už jen klikněte <strong><a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">ZDE</a></strong> pro potvrzení
+		Teď už jen klikněte <strong style="font-weight: 600;"><a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">ZDE</a></strong> pro potvrzení
 		a&nbsp;zveřejnění vašeho hodnocení.<br><br>
 		Přejeme krásný den,<br>
 		tým Shoptet
