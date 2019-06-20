@@ -1,4 +1,4 @@
-Started at [2019/06/14 15:33]
+Started at [2019/06/20 22:50]
 Config file is /Users/jakub/Local Sites/partneri/app/public/wp-content/themes/shoptet/deployment-dev.ini
 
 Deploying partneri-shoptet
@@ -28,4 +28,4 @@ Renaming:
 
 Deleting remote file .htdeployment.running
 
-Finished at [2019/06/14 15:33] (in 1 seconds)
+Finished at [2019/06/20 22:50] (in 4 seconds)

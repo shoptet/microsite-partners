@@ -391,23 +391,33 @@
                       </td>
                     </tr>
                     {% if cta %}
+                      {# via https://buttons.cm/ #}
                       <tr>
-                        <td style="padding-top:15px">
-                          <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
-                            <tbody>
-                              <tr>
-                                <td align="middle" class="pb0">
-                                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                    <tbody>
-                                      <tr>
-                                        <td> <a href="{{ cta.link }}" target="_blank">{{ cta.title }}</a> </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                        <td align="center" style="padding-top:15px">
+                          <div><!--[if mso]>
+                            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ cta.link }}" style="height:45px;v-text-anchor:middle;width:250px;" stroke="f" fillcolor="#21AFE5">
+                              <w:anchorlock/>
+                              <center>
+                            <![endif]-->
+                                <a
+                                href="{{ cta.link }}"
+                                style="
+                                  background-color:#21AFE5;
+                                  color:#ffffff;
+                                  display:inline-block;
+                                  font-family:'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;
+                                  font-size:16px;
+                                  font-weight:normal;
+                                  line-height:45px;
+                                  text-align:center;
+                                  text-decoration:none;
+                                  width:250px;
+                                  -webkit-text-size-adjust:none;
+                                ">{{ cta.title }}</a>
+                            <!--[if mso]>
+                              </center>
+                            </v:rect>
+                          <![endif]--></div>
                         </td>
                       </tr>
                     {% endif %}
