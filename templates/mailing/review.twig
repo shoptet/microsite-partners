@@ -1,23 +1,23 @@
-<table border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0" style="width:auto;">
   <tr>
     <td valign="top">
       <img
         {% if post.get_field('emailAddress') == comment.comment_author_email and post.thumbnail %}
-          src="{{ post.thumbnail.src|resize(120, 120) }}"
+          src="{{ post.thumbnail.src|resize(140, 140) }}"
         {% else %}
-          src="{{ comment.avatar(120, "placeholder.jpg"|static_assets) }}"
+          src="{{ comment.avatar(140, "placeholder.jpg"|static_assets) }}"
         {% endif %}
-        width="60"
-        height="60"
-        style="border-radius:4px"
+        width="70"
+        height="70"
+        class="max-width:none;"
         alt="{{ comment.comment_author }}"
       >
     </td>
-    <td style="padding-left:10px;">
+    <td style="padding-left:10px;vertical-align:bottom;padding-bottom:5px;">
 
       <table border="0" cellspacing="0" cellpadding="0" style="padding-bottom:8px;">
         <tr>
-          <td>
+          <td style="padding-bottom:10px;">
             {{ content }}
           </td>
         </tr>
@@ -26,14 +26,10 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
-            <strong>{{ comment.comment_author }}{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong>,&nbsp;
-          </td>
-          {% if comment.comment_author_url %}
-            <td>
-              <a style="color:#f5756c;text-decoration:none;" href="{{ comment.comment_author_url }}" target="_blank">{{ comment.comment_author_url|display_url }}</a>,&nbsp;
-            </td>
-          {% endif %}
-          <td>
+            <strong>{{ comment.comment_author }}{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong>,
+            {% if comment.comment_author_url %}
+              <a style="color:#21AFE5;text-decoration:none;" href="{{ comment.comment_author_url }}" target="_blank">{{ comment.comment_author_url|display_url }}</a>,
+            {% endif %}
             {{ comment.date }}, {{ comment.time }}
           </td>
         </tr>

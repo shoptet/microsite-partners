@@ -83,7 +83,6 @@
 
       .row {
         box-sizing: border-box;
-        padding: 0 30px 0 30px;
       }
 
       .bg-gray-light {
@@ -147,7 +146,7 @@
         font-weight: 400;
         line-height: 1.2;
         margin: 0;
-        margin-bottom: 30px; 
+        margin-bottom: 15px; 
       }
 
       h1 {
@@ -228,7 +227,6 @@
       ------------------------------------- */
       .title {
         padding-top: 20px;
-        padding-bottom: 20px;
         text-transform: uppercase;
       }
 
@@ -267,6 +265,10 @@
 
       .mb0 {
         margin-bottom: 0; 
+      }
+
+      .mb {
+        margin-bottom: 30px; 
       }
 
       /* -------------------------------------
@@ -312,7 +314,7 @@
             <table role="presentation" class="main" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
 
               <tr>
-                <td class="row pb10" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;padding: 0 30px 0 30px;padding-bottom: 10px;">
+                <td class="row" style="padding: 0 30px 10px 30px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
                     <tr>
                       <td style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
@@ -328,16 +330,20 @@
                 </td>
               </tr>
               <tr>
-                <td class="row pt bg-gray-light" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;padding: 0 30px 0 30px;background-color: #F8F8F8;padding-top: 30px;">
+                <td class="row bg-gray-light" style="padding: 30px 30px 0 30px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;background-color: #F8F8F8;">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
                     <tr>
                       <td style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
-                        <h1 class="title" style="color: #535353;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-weight: 300;line-height: 1.2;margin: 0;margin-bottom: 30px;font-size: 35px;text-transform: uppercase;padding-top: 20px;padding-bottom: 20px;">
+                        <h1 class="title" style="color: #535353;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-weight: 300;line-height: 1.2;margin: 0;margin-bottom: 15px;font-size: 35px;text-transform: uppercase;padding-top: 20px;">
                           {{ title }}<br>
                           <span class="subtitle" style="font-weight: 600;color: #A4CA17;">
                             {{ subtitle }}
                           </span>
                         </h1>
+                        {% if lead %}
+                          <p style="font-size: 20px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-weight: 300;margin: 0;margin-bottom: 15px;color: #535353;">{{ lead }}</p>
+                        {% endif %}
+                        <div>&nbsp;</div>
                       </td>
                       <td width="{{ image.width }}" style="vertical-align: bottom;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;">
                         <img class="d-block" src="{{ image.main|static_assets }}" alt="{{ __( 'Shoptetrix', 'shp-partneri' ) }}" width="{{ image.width }}" style="border: none;-ms-interpolation-mode: bicubic;max-width: 100%;display: block;">
@@ -348,10 +354,16 @@
               </tr>
               {% if image.complementary %}
                 <tr>
-                  <td class="row bg-gray" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;padding: 0 30px 0 30px;background-color: #E2E2E2;">
+                  <td class="row bg-gray" style="padding: 0 30px 0 30px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;background-color: #E2E2E2;">
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
                       <tr>
-                        <td style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">&nbsp;</td>
+                        {% if comment.rating %}
+                          <td style="padding-bottom: 6px;vertical-align: bottom;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;">
+                            {% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}
+                          </td>
+                        {% else %}
+                          <td style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">&nbsp;</td>
+                        {% endif %}
                         <td width="{{ image.width }}" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
                           <img class="d-block" align="top" src="{{ image.complementary|static_assets }}" alt="{{ __( 'Shoptetrix', 'shp-partneri' ) }}" width="{{ image.width }}" style="border: none;-ms-interpolation-mode: bicubic;max-width: 100%;display: block;">
                         </td>
@@ -361,20 +373,30 @@
                 </tr>
               {% else %}
                 <tr>
-                  <td class="row bg-gray pb" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;padding: 0 30px 0 30px;background-color: #E2E2E2;padding-bottom: 30px;"></td>
+                  <td class="row bg-gray" style="padding: 0 30px 38px 30px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;background-color: #E2E2E2;"></td>
                 </tr>
               {% endif %}
               <tr>
-                <td class="row bg-gray pb" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;padding: 0 30px 0 30px;background-color: #E2E2E2;padding-bottom: 30px;">
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="pb" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;padding-bottom: 30px;">
-                    <tr>
-                      <td align="middle" class="lead" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
-                        <p style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 23px;font-weight: 300;margin: 0;margin-bottom: 15px;color: #535353;">
-                          {{ text }}
-                        </p>
-                      </td>
-                    </tr>
+                <td class="row bg-gray" style="padding: 0 30px 38px 30px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;box-sizing: border-box;background-color: #E2E2E2;">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
+                    {% if text %}
+                      <tr>
+                        <td align="middle" class="lead" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
+                          <p style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 23px;font-weight: 300;margin: 0;margin-bottom: 15px;color: #535353;">
+                            {{ text }}
+                          </p>
+                        </td>
+                      </tr>
+                    {% endif %}
+                    {% if comment %}
+                      <tr>
+                        <td style="padding-bottom: 20px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
+                          {% include 'templates/mailing/review.twig' with {content:'Kdo hodnocení přidal:'} %}    
+                        </td>
+                      </tr>
+                    {% endif %}
                     {% if cta %}
+                      {# via https://buttons.cm/ #}
                       <tr>
                         <td align="center" style="padding-top: 15px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
                           <div><!--[if mso]>
@@ -392,6 +414,7 @@
                                   line-height:45px;
                                   text-align:center;
                                   text-decoration:none;
+                                  text-transform:uppercase;
                                   width:250px;
                                   -webkit-text-size-adjust:none;
                                 ">{{ cta.title }}</a>

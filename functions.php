@@ -200,10 +200,23 @@ add_action( 'transition_comment_status',  function( $new_status, $old_status, $c
 
 	$options = get_fields('options');
 
+	// Compile and send e-mail
+	$context = Timber::get_context();
+	$context['title'] = __( 'Bingo!', 'shp-partneri' );
+	$context['subtitle'] = __( 'Máte nové hodnocení', 'shp-partneri' );
+	$context['lead'] = __( 'Přečíst a reagovat na něj můžete v detailu svého medailonku', 'shp-partneri' );
+	$context['image'] = [
+		'main' => 'shoptetrix-grimacing-1.png',
+		'complementary' => 'shoptetrix-grimacing-2.png',
+		'width' => 220,
+	];
 	$context['comment'] = $comment;
 	$context['post'] = $post;
-	$email_html_body = Timber::compile( 'templates/mailing/review-approved.twig', $context );
-	
+	$context['cta'] = [
+		'title' => 'Přečíst hodnocení',
+		'link' => $post->link . '#comment-' . $comment->ID,
+	];
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = sprintf ( __( 'Uživatel %s přidal na partneri.shoptet.cz hodnocení k Partnerovi %s', 'shp-partneri' ), $comment->comment_author, $post->post_title );
 
 	if ( $email = $post->get_field('emailAddress') ) {

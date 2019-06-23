@@ -83,7 +83,6 @@
 
       .row {
         box-sizing: border-box;
-        padding: 0 30px 0 30px;
       }
 
       .bg-gray-light {
@@ -147,7 +146,7 @@
         font-weight: 400;
         line-height: 1.2;
         margin: 0;
-        margin-bottom: 30px; 
+        margin-bottom: 15px; 
       }
 
       h1 {
@@ -228,7 +227,6 @@
       ------------------------------------- */
       .title {
         padding-top: 20px;
-        padding-bottom: 20px;
         text-transform: uppercase;
       }
 
@@ -267,6 +265,10 @@
 
       .mb0 {
         margin-bottom: 0; 
+      }
+
+      .mb {
+        margin-bottom: 30px; 
       }
 
       /* -------------------------------------
@@ -312,7 +314,7 @@
             <table role="presentation" class="main">
 
               <tr>
-                <td class="row pb10">
+                <td class="row" style="padding: 0 30px 10px 30px;">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" >
                     <tr>
                       <td>
@@ -333,7 +335,7 @@
                 </td>
               </tr>
               <tr>
-                <td class="row pt bg-gray-light">
+                <td class="row bg-gray-light" style="padding: 30px 30px 0 30px;">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" >
                     <tr>
                       <td>
@@ -343,6 +345,10 @@
                             {{ subtitle }}
                           </span>
                         </h1>
+                        {% if lead %}
+                          <p style="font-size:20px;">{{ lead }}</p>
+                        {% endif %}
+                        <div>&nbsp;</div>
                       </td>
                       <td width="{{ image.width }}" style="vertical-align:bottom;">
                         <img
@@ -358,10 +364,16 @@
               </tr>
               {% if image.complementary %}
                 <tr>
-                  <td class="row bg-gray">
+                  <td class="row bg-gray"  style="padding: 0 30px 0 30px;">
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td>&nbsp;</td>
+                        {% if comment.rating %}
+                          <td style="padding-bottom:6px;vertical-align:bottom;">
+                            {% include 'templates/mailing/rating-stars.twig' with {rating:comment.rating} %}
+                          </td>
+                        {% else %}
+                          <td>&nbsp;</td>
+                        {% endif %}
                         <td width="{{ image.width }}">
                           <img
                             class="d-block"
@@ -377,19 +389,28 @@
                 </tr>
               {% else %}
                 <tr>
-                  <td class="row bg-gray pb"></td>
+                  <td class="row bg-gray" style="padding: 0 30px 38px 30px;"></td>
                 </tr>
               {% endif %}
               <tr>
-                <td class="row bg-gray pb">
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="pb">
-                    <tr>
-                      <td align="middle" class="lead">
-                        <p>
-                          {{ text }}
-                        </p>
-                      </td>
-                    </tr>
+                <td class="row bg-gray" style="padding: 0 30px 38px 30px;">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                    {% if text %}
+                      <tr>
+                        <td align="middle" class="lead">
+                          <p>
+                            {{ text }}
+                          </p>
+                        </td>
+                      </tr>
+                    {% endif %}
+                    {% if comment %}
+                      <tr>
+                        <td style="padding-bottom:20px;">
+                          {% include 'templates/mailing/review.twig' with {content:'Kdo hodnocení přidal:'} %}    
+                        </td>
+                      </tr>
+                    {% endif %}
                     {% if cta %}
                       {# via https://buttons.cm/ #}
                       <tr>
@@ -411,6 +432,7 @@
                                   line-height:45px;
                                   text-align:center;
                                   text-decoration:none;
+                                  text-transform:uppercase;
                                   width:250px;
                                   -webkit-text-size-adjust:none;
                                 ">{{ cta.title }}</a>
