@@ -1,0 +1,68 @@
+{% extends "base.twig" %}
+
+{% block head %}
+  {{ parent() }}
+  {{ function('acf_form_head') }}
+{% endblock %}
+
+{% block header %}
+  <div class="container text-center py-4">
+    <img
+      class="img-fluid"
+      src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
+      alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
+      width="280"
+    >
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="bg-blue-light onboarding">
+    <div class="container py-5">
+
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+          <div class="list-group-profile">
+            <div class="list-group-profile-item">
+
+              <h1 class="h2 mb-4">
+                {{ __( 'Vyplňte svůj medailonek', 'shp-partneri' ) }}
+              </h1>
+
+              <div class="border-bottom pb-2">{{ options.onboarding_description }}</div>
+
+              <ul class="list-unstyled mt-4 mb-3">
+                <li class="mb-2">
+                  <strong>{{ __( 'Vaše jméno:', 'shp-partneri' ) }}</strong>
+                  {{ post.title }}
+                </li>
+                <li>
+                  <strong>{{ __( 'Váš e-mail:', 'shp-partneri' ) }}</strong>
+                  {{ post.get_field('emailAddress') }}
+                </li>
+              </ul>
+
+              {{ function('acf_form', acf_form_args) }}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  <div class="container text-center py-5">
+    <img
+      class="img-fluid"
+      src="{{ "shoptet-logo.svg"|static_assets }}"
+      alt="{{ __( 'Shoptet', 'shp-partneri' ) }}"
+      width="150"
+    >
+  </div>
+{% endblock %}

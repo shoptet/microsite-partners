@@ -43,6 +43,7 @@ Disallow: /wp-includes/
 Disallow: /wp-login.php
 Disallow: /wp-register.php
 Disallow: *?auth_token=*
+Disallow: *?onboarding_token=*
 Disallow: *?s=*
 ";
 }
@@ -275,6 +276,26 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 	if ( ! $submission  || ! $submission->get_posted_data()['your-email'] ) return;
 
 	$email = $submission->get_posted_data()['your-email'];
+	$name = $submission->get_posted_data()['your-name'];
+
+	$onboarding_token = bin2hex( openssl_random_pseudo_bytes(32) );
+	$onboarding_url = get_site_url( null, '?onboarding_token=' . $onboarding_token );
+
+  $postarr = [
+    'post_type' => 'profesionalove',
+    'post_title' => $name,
+    'post_status' => 'draft',
+    'meta_input' => [
+			'emailAddress' => $email,
+			'onboarding_token' => $onboarding_token,
+    ],
+  ];
+	wp_insert_post( $postarr );
+	
+	// TODO: remove
+	wp_redirect( $onboarding_url );
+	exit;
+
 	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
 	$email_html_body = Timber::compile( 'templates/mailing/review-survey.twig' );
 
@@ -287,6 +308,69 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 			'Content-Type: text/html; charset=UTF-8',
 		]
 	);
+} );
+
+// Check for onboarding tokean and authenticate
+add_action( 'init' , function () {
+	if ( ! isset( $_GET['onboarding_token'] ) || '' === $_GET['onboarding_token'] ) return;
+	$onboarding_token = $_GET['onboarding_token'];
+
+	$post = get_post_by_onboarding_token( $onboarding_token );
+
+	if ( ! $post ) {
+		wp_die(
+			__( 'Vypadá to, že jste zadali neplatný odkaz. Zkuste to prosím znovu.', 'shp-partneri' ),
+			__( 'Neplatný odkaz', 'shp-partneri' ),
+			[
+				'response' => 200,
+				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+				'link_url' => get_site_url(),
+			]
+		);
+		return;
+	}
+
+	$updated = ( isset( $_GET['updated'] ) && 'true' === $_GET['updated'] );
+
+	if ( $updated ) {
+		wp_update_post([
+			'ID' => $post->ID,
+			'post_status' => 'pending',
+		]);
+		wp_die(
+			__( 'Super! Váš formulář byl úspěšně odeslaný.', 'shp-partneri' ),
+			__( 'Úspěšně odesláno', 'shp-partneri' ),
+			[
+				'response' => 200,
+				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+				'link_url' => get_site_url(),
+			]
+		);
+		return;
+	}
+
+	if ( $post->post_status !== 'draft' ) {
+		wp_die(
+			__( 'Vstupní formulář byl již vyplněn.', 'shp-partneri' ),
+			__( 'Vstupní formulář byl již vyplněn', 'shp-partneri' )
+		);
+		return;
+	}
+
+	// Show onboarding form
+	$context = Timber::get_context();
+	$context['wp_title'] = __( 'Vstupní formulář', 'shp-partneri' );
+	$context['post'] = new Timber\Post( $post );
+	$acf_form_args = [
+		'id' => 'acf_onboarding_form',
+		'post_id' => $post->ID,
+		'field_groups' => [ 2866 ],
+		'uploader' => 'basic',
+		'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
+	];
+	$context['acf_form_args'] = $acf_form_args;
+	Timber::render( 'templates/onboarding.twig', $context );
+	die();
 } );
 
 /**
@@ -432,6 +516,11 @@ class StarterSite extends TimberSite {
 		$fileUrl = get_template_directory_uri() . $fileName;
 		$filePath = get_template_directory() . $fileName;
 		wp_enqueue_style( 'utilities', $fileUrl, array(), filemtime($filePath), 'all' );
+
+		$fileName = '/assets/onboarding.css';
+		$fileUrl = get_template_directory_uri() . $fileName;
+		$filePath = get_template_directory() . $fileName;
+		wp_enqueue_style( 'onboarding', $fileUrl, array(), filemtime($filePath), 'all' );
 
 		$fileName = '/assets/shoptet.css';
 		$fileUrl = get_template_directory_uri() . $fileName;

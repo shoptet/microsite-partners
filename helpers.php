@@ -153,3 +153,21 @@ function get_comment_by_auth_token( $auth_token ) {
 
   return null;
 }
+
+function get_post_by_onboarding_token( $onboarding_token ) {
+	$query = new WP_Query( [
+    'post_type' => 'profesionalove',
+    'posts_per_page' => 1,
+    'post_status' => 'any',
+    'meta_query' => [
+      [
+        'key' => 'onboarding_token',
+        'value' => $onboarding_token,
+      ],
+    ],
+  ] );
+
+  if ( empty( $query->posts ) ) return null;
+
+  return $query->posts[0];
+}
