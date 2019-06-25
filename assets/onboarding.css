@@ -12,6 +12,7 @@
   margin-right: 4px;
 }
 
-.onboarding-submit {
+.onboarding .acf-form-submit {
+  text-align: center;
   border-top: #EEEEF0 solid 1px;
 }

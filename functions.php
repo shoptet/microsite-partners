@@ -358,20 +358,39 @@ add_action( 'init' , function () {
 	}
 
 	// Show onboarding form
-	$context = Timber::get_context();
-	$context['wp_title'] = __( 'Vstupní formulář', 'shp-partneri' );
-	$context['post'] = new Timber\Post( $post );
-	$acf_form_args = [
-		'id' => 'acf_onboarding_form',
-		'post_id' => $post->ID,
-		'field_groups' => [ 2866 ],
-		'uploader' => 'basic',
-		'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
-	];
-	$context['acf_form_args'] = $acf_form_args;
-	Timber::render( 'templates/onboarding.twig', $context );
-	die();
+	if ( $onboarding_form_id = get_field('onboarding_form_id', 'option') ) {
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Vstupní formulář', 'shp-partneri' );
+		$context['post'] = new Timber\Post( $post );
+		$acf_form_args = [
+			'id' => 'acf_onboarding_form',
+			'post_id' => $post->ID,
+			'field_groups' => [ $onboarding_form_id ],
+			'uploader' => 'basic',
+			'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
+		];
+		$context['acf_form_args'] = $acf_form_args;
+		Timber::render( 'templates/onboarding.twig', $context );
+		die();
+	}
+	
 } );
+
+/**
+ * Set professional image as post featured image
+ */
+add_filter( 'acf/update_value/name=image', function( $value, $post_id ) {
+  // Not the correct post type, bail out
+  if ( 'profesionalove' !== get_post_type( $post_id ) ) {
+    return $value;
+  }
+  // Skip empty value
+  if ( $value != ''  ) {
+    // Add the value which is the image ID to the _thumbnail_id meta data for the current post
+    add_post_meta( $post_id, '_thumbnail_id', $value );
+  }
+  return $value;
+}, 10, 2 );
 
 /**
  * Set cron for commnets authentication reminding
