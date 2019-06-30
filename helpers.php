@@ -171,3 +171,126 @@ function get_post_by_onboarding_token( $onboarding_token ) {
 
   return $query->posts[0];
 }
+
+function get_post_by_email( $email ) {
+  $query = new WP_Query( [
+    'post_type' => 'profesionalove',
+    'posts_per_page' => 1,
+    'post_status' => 'any',
+    'meta_query' => [
+      [
+        'key' => 'emailAddress',
+        'value' => $email,
+      ],
+    ],
+  ] );
+
+  if ( empty( $query->posts ) ) return null;
+
+  return $query->posts[0];
+}
+
+function render_onboarding_form_error_message() {
+  $context = Timber::get_context();
+  $context['wp_title'] = __( 'Odeslání se nezdařilo', 'shp-partneri' );
+  $context['message_type'] = 'error';
+  $context['title'] = __( 'Ouha!', 'shp-partneri' );
+  $context['subtitle'] = __( 'Odeslání formuláře se&nbsp;nezdařilo :(', 'shp-partneri' );
+  $context['text'] = __( '
+    <p>
+      Možná už jste ho v minulosti odeslali, nebo je na vaši
+      e-mailovou adresu už jedna registrace na webu Partneři Shoptet hotová.
+    </p>
+    <p class="mb-0">
+      Ozvěte se nám na <a href="mail:partneri@shoptet.cz" target="_blank">partneri@shoptet.cz</a>,
+      koukneme na to.
+    </p>
+  ', 'shp-partneri' );
+  $context['footer_image'] = 'envelope-x';
+  Timber::render( 'templates/message/message.twig', $context );
+  die();
+}
+
+function expired_professionals_check () {
+
+  // Get all professionals to expire
+  $query = new WP_Query( [
+    'post_type' => 'profesionalove',
+    'posts_per_page' => -1,
+    'post_status' => 'onboarding',
+    'date_query' => [
+      // TODO: uncomment row bellow
+      //'before' => date( 'Y-m-d', strtotime('-30 days') ),
+      'before' => '5 minute ago',
+    ],
+  ] );
+
+  // Set status to expired
+  foreach ( $query->posts as $post ) {
+    wp_update_post([
+			'ID' => $post->ID,
+			'post_status' => 'expired',
+    ]);
+		update_post_meta( $post->ID, 'expired', time() );    
+  }
+}
+
+function remind_onboarding () {
+
+  // Get all professionals to remind
+  $query = new WP_Query( [
+    'post_type' => 'profesionalove',
+    'posts_per_page' => -1,
+    'post_status' => 'onboarding',
+    'date_query' => [
+      // TODO: uncomment row bellow
+      // 'before' => date( 'Y-m-d', strtotime('-7 days') ),
+    ],
+    'meta_query' => [
+      [
+        'key' => 'onboarding_reminded',
+        'compare' => 'NOT EXISTS',
+      ],
+    ],
+  ] );
+
+  // Set reminding e-mail
+  foreach ( $query->posts as $post ) {
+    
+    $context = Timber::get_context();
+    $options = get_fields('options');
+    $onboarding_token = get_post_meta( $post->ID, 'onboarding_token', true );
+    $email = get_post_meta( $post->ID, 'emailAddress', true );
+    
+    $onboarding_url = get_site_url( null, '?onboarding_token=' . $onboarding_token );
+    $context['title'] = __( 'Pozor!', 'shp-partneri' );
+    $context['subtitle'] = __( 'Ještě jste nevyplnili formulář<br>:-(', 'shp-partneri' );
+    $context['text'] = __( '
+      Je to už týden, co jsme vám poslali e-mail s&nbsp;formulářem.
+      Sloužil pro dokončení registrace mezi <strong>Shoptet Partnery</strong>.<br><br>
+      Bez něj to ale nepůjde.
+      Tak to pojďme zkusit znovu, ať můžeme registraci dokončit.
+    ', 'shp-partneri' );
+    $context['image'] = [
+      'main' => 'shoptetrix-warning-mail.png',
+      'width' => 250,
+    ];
+    $context['cta'] = [
+      'title' => 'Vyplnit formulář',
+      'link' => $onboarding_url,
+    ];
+    $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+    $email_subject = __( 'Připomenutí vyplnění formuláře na partneri.shoptet.cz', 'shp-partneri' );
+    wp_mail(
+      $email,
+      $email_subject,
+      $email_html_body,
+      [
+        'From: ' . $options['email_from'],
+        'Content-Type: text/html; charset=UTF-8',
+      ]
+    );
+
+    update_post_meta( $post->ID, 'onboarding_reminded', time() );    
+  }
+}

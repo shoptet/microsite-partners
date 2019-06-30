@@ -34,6 +34,23 @@ include_once 'remove_default_user_roles.php';
 
 include_once 'custom_search.php';
 
+// TODO: remove on production
+add_filter( 'wp_mail', function ( $args ) {
+	$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
+	return $args;
+} );
+
+/**
+ * Add cron schedule interval options
+ */
+add_filter( 'cron_schedules', function ( $schedules ) {
+	$schedules['one_minute'] = [
+		'interval' => 60,
+		'display' => __( 'Každou 1 minutu', 'shp-obchodiste' ),
+  ];
+	return $schedules;
+} );
+
 add_filter('robots_txt', 'add_to_robots_txt');
 function add_to_robots_txt($robot_text) {
 	// via https://moz.com/community/q/default-robots-txt-in-wordpress-should-i-change-it#reply_329849
@@ -47,6 +64,49 @@ Disallow: *?onboarding_token=*
 Disallow: *?s=*
 ";
 }
+
+/**
+ * Add new post status for professionals
+ */
+add_action( 'init', function() {
+  register_post_status( 'onboarding', [
+    'label' => __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' ),
+    'public' => true,
+		'show_in_admin_all_list' => true,
+		'show_in_admin_status_list' => true,
+		'post_type' => [ 'profesionalove' ],
+		'label_count' => _n_noop(
+			'Čeká na vyplnění formuláře <span class="count">(%s)</span>',
+			'Čeká na vyplnění formuláře <span class="count">(%s)</span>'
+		),
+	] );
+	register_post_status( 'expired', [
+    'label' => __( 'Expirováno', 'shp-obchodiste' ),
+    'public' => false,
+		'show_in_admin_all_list' => false,
+		'show_in_admin_status_list' => true,
+		'post_type' => [ 'profesionalove' ],
+		'label_count' => _n_noop(
+			'Expirováno <span class="count">(%s)</span>',
+			'Expirováno <span class="count">(%s)</span>'
+		),
+  ] );
+} );
+
+/**
+ * Add post states to admin list
+ */
+add_filter( 'display_post_states', function ( $states, $post ) {
+  switch ( $post->post_status ) {
+    case 'onboarding':
+    $states[] = __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' );
+		break;
+		case 'expired':
+    $states[] = __( 'Expirováno', 'shp-obchodiste' );
+    break;
+  }
+  return $states;
+}, 10, 2 );
 
 // Make the review rating required.
 add_filter( 'preprocess_comment', function ( $commentdata ) {
@@ -121,7 +181,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 			Je to jen pro ověření, že opravdu existujete :-)
 		</p>
 	', 'shp-partneri' );
-	$context['footer_image'] = 'envelope.png';
+	$context['footer_image'] = 'envelope';
 	Timber::render( 'templates/message/message.twig', $context );
 	
 	die();
@@ -278,36 +338,77 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 	$email = $submission->get_posted_data()['your-email'];
 	$name = $submission->get_posted_data()['your-name'];
 
+	// Check if a post with the e-mail already exists
+	if ( get_post_by_email( $email ) ) {
+		render_onboarding_form_error_message();
+		return;
+	}
+
 	$onboarding_token = bin2hex( openssl_random_pseudo_bytes(32) );
 	$onboarding_url = get_site_url( null, '?onboarding_token=' . $onboarding_token );
 
   $postarr = [
     'post_type' => 'profesionalove',
     'post_title' => $name,
-    'post_status' => 'draft',
+    'post_status' => 'onboarding',
     'meta_input' => [
 			'emailAddress' => $email,
+			'onboarded' => 0,
+			'expired' => 0,
 			'onboarding_token' => $onboarding_token,
     ],
   ];
 	wp_insert_post( $postarr );
-	
-	// TODO: remove
-	wp_redirect( $onboarding_url );
-	exit;
 
+	// Compile and send e-mail
+	$context = Timber::get_context();
+	$options = get_fields('options');
+	$context['title'] = __( 'Děkujeme', 'shp-partneri' );
+	$context['subtitle'] = __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
+	$context['text'] = __( 'Teď už zbývá jen poslední krok:', 'shp-partneri' );
+	$context['image'] = [
+		'main' => 'shoptetrix-thumb-up-1.png',
+		'complementary' => 'shoptetrix-thumb-up-2.png',
+		'width' => 250,
+	];
+	$context['cta'] = [
+		'title' => 'Vyplnit dotazník',
+		'link' => $onboarding_url,
+	];
+	$context['text_footer'] = sprintf( __( '
+		To proto, abychom od vás měli dostatek informací o vás a vaší práci
+		a&nbsp;mohli tak partnerství potvrdit.<br><br>
+		Na konkrétní <a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">podmínky partnerství</a>
+		se můžete mrknout na našem webu.
+	', 'shp-partneri' ), 'https://partneri.shoptet.cz/certifikaty/' );
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
-	$email_html_body = Timber::compile( 'templates/mailing/review-survey.twig' );
-
 	wp_mail(
 		$email,
 		$email_subject,
 		$email_html_body,
 		[
-			'From: ' . get_field('email_from', 'option'),
+			'From: ' . $options['email_from'],
 			'Content-Type: text/html; charset=UTF-8',
 		]
 	);
+
+	// Render message
+	$context = Timber::get_context();
+	$context['wp_title'] = __( 'Zpráva odeslána', 'shp-partneri' );
+	$context['message_type'] = 'success';
+	$context['title'] = __( 'Děkujeme!', 'shp-partneri' );
+	$context['subtitle'] = __( 'Vaše zpráva byla odeslána', 'shp-partneri' );
+	$context['text'] = __( '
+		<p>
+			My teď budeme netrpělivě čekat na vyplnění formuláře,
+			který jsme vám právě poslali e-mailem. Tak na něj prosím
+			nezapomeňte :)
+		</p>
+	', 'shp-partneri' );
+	$context['footer_image'] = 'envelope';
+	Timber::render( 'templates/message/message.twig', $context );
+	die();
 } );
 
 // Check for onboarding tokean and authenticate
@@ -330,30 +431,77 @@ add_action( 'init' , function () {
 		return;
 	}
 
+	if ( $post->post_status === 'expired' ) {
+		// Render expired message
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Odkaz už není platný', 'shp-partneri' );
+		$context['message_type'] = 'error';
+		$context['title'] = __( 'Ouha!', 'shp-partneri' );
+		$context['subtitle'] = __( 'Odkaz už<br>není platný :(', 'shp-partneri' );
+		$context['text'] = __( '
+			<p>
+				Je to už více jak měsíc, co jsme vám formulář poslali
+				a&nbsp;z&nbsp;bezpečnostních důvodů jeho platnost vypršela.
+			</p>
+			<p class="mb-0">
+				Ozvěte se nám na <a href="mail:partneri@shoptet.cz" target="_blank">partneri@shoptet.cz</a>,
+				koukneme na to.
+			</p>
+		', 'shp-partneri' );
+		$context['footer_image'] = 'envelope-x';
+		Timber::render( 'templates/message/message.twig', $context );
+		die();
+		return;
+	} else if ( $post->post_status !== 'onboarding' ) {
+		render_onboarding_form_error_message();
+		return;
+	}
+
 	$updated = ( isset( $_GET['updated'] ) && 'true' === $_GET['updated'] );
 
 	if ( $updated ) {
+		$options = get_fields('options');
 		wp_update_post([
 			'ID' => $post->ID,
 			'post_status' => 'pending',
 		]);
-		wp_die(
-			__( 'Super! Váš formulář byl úspěšně odeslaný.', 'shp-partneri' ),
-			__( 'Úspěšně odesláno', 'shp-partneri' ),
+		update_post_meta( $post->ID, 'onboarded', time() );
+
+		// Send e-mail notification to admin
+		$email_html_body = sprintf(
+			__( '
+				Hej hola!<br><br>
+				Nový Partner (%s) čeká na schválení.<br><br>
+				Mrkni na to :)
+			', 'shp-partneri' ),
+			$post->post_title
+		);
+		$email_subject = __( 'Nový Partner na Partneři.shoptet.cz čeká na schválení', 'shp-partneri' );
+		wp_mail(
+			$options['authorized_review_email_recipient'],
+			$email_subject,
+			$email_html_body,
 			[
-				'response' => 200,
-				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
-				'link_url' => get_site_url(),
+				'From: ' . $options['email_from'],
+				'Content-Type: text/html; charset=UTF-8',
 			]
 		);
-		return;
-	}
 
-	if ( $post->post_status !== 'draft' ) {
-		wp_die(
-			__( 'Vstupní formulář byl již vyplněn.', 'shp-partneri' ),
-			__( 'Vstupní formulář byl již vyplněn', 'shp-partneri' )
-		);
+		// Render success message
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Úspěšně odesláno', 'shp-partneri' );
+		$context['message_type'] = 'success';
+		$context['title'] = __( 'Super!', 'shp-partneri' );
+		$context['subtitle'] = __( 'Váš formulář byl úspěšně odeslaný.', 'shp-partneri' );
+		$context['text'] = __( '
+			<p>
+				Teď už jen <strong>vyčkejte</strong>. Co nevidět se vám ozve
+				náš Partner manažer a případnou spolupráci společně doladíte.
+			</p>
+		', 'shp-partneri' );
+		$context['footer_image'] = 'envelope';
+		Timber::render( 'templates/message/message.twig', $context );
+		die();
 		return;
 	}
 
@@ -396,12 +544,31 @@ add_filter( 'acf/update_value/name=image', function( $value, $post_id ) {
  * Set cron for commnets authentication reminding
  */
 if ( ! wp_next_scheduled( 'remind_authentication' ) ) {
-  wp_schedule_event( time(), 'twicedaily', 'remind_authentication' );
+  wp_schedule_event( time(), 'one_minute', 'remind_authentication' ); // TODO: change schedule to twicedaily
 }
 add_action( 'remind_authentication', function() {
 	remind_authentication();
 });
-//do_action( 'remind_authentication' );
+
+/**
+ * Set cron for expired professionals checking
+ */
+if ( ! wp_next_scheduled( 'expired_professionals_check' ) ) {
+  wp_schedule_event( time(), 'one_minute', 'expired_professionals_check' ); // TODO: change schedule to twicedaily
+}
+add_action( 'expired_professionals_check', function() {
+	expired_professionals_check();
+});
+
+/**
+ * Set cron for onboarding reminding
+ */
+if ( ! wp_next_scheduled( 'remind_onboarding' ) ) {
+  wp_schedule_event( time(), 'one_minute', 'remind_onboarding' ); // TODO: change schedule to twicedaily
+}
+add_action( 'remind_onboarding', function() {
+	remind_onboarding();
+});
 
 /**
  * Add select controls filtering by date to admin
