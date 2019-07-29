@@ -1,4 +1,14 @@
-{% if post.get_field('price') %}
+{% if post.get_field('price_per_hour') %}
+  <div class="list-group-profile-item">
+    <h2 class="h4">Ceny</h2>
+
+    <p class="mb-0">
+      {{ not post.get_field('price_is_final') ? 'od' }}
+      {{ post.get_field('price_per_hour') }}&nbsp;Kč
+      {{ post.get_field('price_text') }}
+    </p>
+  </div>
+{% elseif post.get_field('price') %}
   <div class="list-group-profile-item">
     <h2 class="h4">Ceny</h2>
 
