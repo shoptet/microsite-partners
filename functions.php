@@ -625,6 +625,19 @@ add_action( 'pre_get_comments', function( $wp_query ) {
 	$wp_query->query_vars['date_query'] = [ 'year' => $year, 'month' => $month ];
 } );
 
+/**
+ * ACF url validation
+ */
+add_filter( 'acf/validate_value/name=url', function( $valid, $value ) {
+	// bail early if value is already invalid
+  if( ! $valid ) return $valid;
+  if ( ! empty( $value ) && ! preg_match('/^(https?:\/\/)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}.*/', $value ) ) {
+    $valid = __( 'Zadejte prosím URL ve správném formátu', 'shp-obchodiste' );
+  }
+  
+  return $valid;
+}, 10, 2 );
+
 Timber::$dirname = array('templates', 'views');
 
 class StarterSite extends TimberSite {
