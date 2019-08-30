@@ -82,6 +82,21 @@
         $('.responsive-nav').shpResponsiveNavigation();
     });
 
-})(jQuery);
 
+    $(document).ready(function(){
+        if($('div.wpcf7-response-output').length > 0) {
+            if($('div.wpcf7-mail-sent-ok').closest('form').attr('id') == 'cf7-general-contact') {
+                dataLayer.push({'event': 'PartneriKontakt'});
+            }
+            if($('div.wpcf7-mail-sent-ok').closest('form').attr('id') == 'cf7-partner-contact') {
+                dataLayer.push({'event': 'kontaktovatPartnera'}); 
+            }
+        }
+
+        $('form.review-form').submit(function(){
+            dataLayer.push({'event': 'hodnoceniPartnera'});
+        });
+    });
+
+})(jQuery);
 

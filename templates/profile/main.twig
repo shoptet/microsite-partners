@@ -37,14 +37,14 @@
           </li>
   			{% endif %}
 
-  			{% if post.get_field('emailAddress') %}
+  			{# % if post.get_field('emailAddress') %}
     			<li>
             <svg class="profile-contact-list-icon" data-src="{{ "envelope-o.svg"|static_assets }}" width="17" height="17" role="img" aria-label="E-mail"></svg>
             <a href="mailto:{{ post.get_field('emailAddress') }}" itemprop="email">
               {{ post.get_field('emailAddress') }}
             </a>
           </li>
-  			{% endif %}
+  			{% endif % #}
 
   			{% if post.get_field('phoneNumber') %}
     			<li>

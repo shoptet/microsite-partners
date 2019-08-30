@@ -1,7 +1,17 @@
-<div class="review {{ is_root_review ? 'border-top py-4' : 'border-radius bg-gray p-4 mb-4' }}" id="comment-{{comment.ID}}">
+<div
+    class="review {{ is_root_review ? 'border-top py-4' : 'border-radius bg-gray p-4 mb-4' }}" id="comment-{{comment.ID}}"
+    itemprop="review" itemscope itemtype="http://schema.org/Review"
+>
 
   {% if is_root_review %}
-    <div class="mb-3">
+    <div class="mb-3"
+        itemprop="reviewRating"
+        itemscope
+        itemtype="http://schema.org/Rating"
+    >
+      <meta itemprop="bestRating" content="5">
+      <meta itemprop="worstRating" content="0">
+      <meta itemprop="ratingValue" content="{{ comment.rating }}">
       {% include 'review-rating-stars.twig' with {rating: comment.rating} %}
     </div>
   {% endif %}
@@ -23,20 +33,27 @@
     </div>
     
     <div class="flex-grow-1 ml-md-4">
-      <div class="comment-body">
+      <div class="comment-body" itemprop="reviewBody">
         {{ comment.comment_content|wpautop }}
       </div>
+      <span
+        itemprop="itemReviewed"
+        itemscope
+        itemtype="http://schema.org/Person"
+      >
+        <meta itemprop="name" content="{{ post.title }}">
+      </span>
       <div class="d-md-flex justify-content-between">
         {% spaceless %}
           <ul class="d-inline-block mb-md-0 list-inline list-inline-comma">
-            <li class="list-inline-item"><strong>{{ comment.comment_author }}{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong></li>
+            <li class="list-inline-item"><strong><span itemprop="author">{{ comment.comment_author }}</span>{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong></li>
             {% if comment.comment_author_url %}
               <li class="list-inline-item">
                 <a href="{{ comment.comment_author_url }}" target="_blank" rel="nofollow">{{ comment.comment_author_url|display_url }}</a>
               </li>
             {% endif %}
             <li class="list-inline-item">
-              <a class="text-dark" href="#comment-{{comment.ID}}"><time datetime="{{ comment.time|date('c') }}">{{ comment.date }}, {{ comment.time }}</time></a>	
+              <a class="text-dark" href="#comment-{{comment.ID}}"><time datetime="{{ comment.time|date('c') }}" itemprop="datePublished" content="{{ comment.time|date('Y-m-d') }}">{{ comment.date }}, {{ comment.time }}</time></a>
             </li>
           </ul>
         {% endspaceless %}
