@@ -2,6 +2,12 @@
 
 include_once 'helpers.php';
 
+// TODO: remove on production
+add_filter( 'wp_mail', function ( $args ) {
+	$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
+	return $args;
+} );
+
 ini_set('display_errors', 1);
 
 if ( ! class_exists( 'Timber' ) ) {

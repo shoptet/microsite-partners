@@ -72,7 +72,9 @@ function get_post_benefit_title($post) {
 function remind_authentication () {
   $options = get_fields('options');
 	$args = [
+    'status' => 'hold',
     'meta_query' => [
+      'relation' => 'AND',
       [
         'key' => 'authenticated',
         'value' => 0,
