@@ -4,7 +4,7 @@ include_once 'helpers.php';
 
 // TODO: remove on production
 add_filter( 'wp_mail', function ( $args ) {
-	$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
+	$args['to'] = 'jk.oolar@gmail.com';
 	return $args;
 } );
 

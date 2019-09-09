@@ -1,4 +1,4 @@
-Started at [2019/06/20 22:50]
+Started at [2019/09/09 15:30]
 Config file is /Users/jakub/Local Sites/partneri/app/public/wp-content/themes/shoptet/deployment-dev.ini
 
 Deploying partneri-shoptet
@@ -7,25 +7,71 @@ Connecting to server
 Loaded remote .htdeployment file
 Scanning files in /Users/jakub/Local Sites/partneri/app/public/wp-content/themes/shoptet
 Ignoring ./deployment.ini               
+Ignoring ./webpack-bundle.json          
 Ignoring ./.DS_Store                    
 Ignoring ./deployment.log               
 Ignoring ./deployment-dev.ini           
 Ignoring ./deployment-dev.log           
 Ignoring ./.gitignore                   
+Ignoring ./static                       
 Ignoring ./.git                         
 Ignoring ./deployment.phar              
 Creating remote file .htdeployment.running
 
 Uploading:
-(1 of 3) /templates/mailing/shoptetrix-inline.twig
-(2 of 3) /templates/mailing/shoptetrix.twig
-(3 of 3) /.htdeployment
+( 1 of 20) /functions.php
+( 2 of 20) /acf_settings.php
+( 3 of 20) /screenshot.png
+( 4 of 20) /templates/breadcrumb.twig
+( 5 of 20) /templates/header.twig
+( 6 of 20) /templates/reviews.twig
+( 7 of 20) /templates/message/message.twig
+( 8 of 20) /templates/base.twig
+( 9 of 20) /templates/profile/main.twig
+(10 of 20) /templates/profile/price.twig
+(11 of 20) /templates/review-single.twig
+(12 of 20) /templates/row-badges.twig
+(13 of 20) /templates/mailing/shoptetrix-inline.twig
+(14 of 20) /templates/mailing/shoptetrix.twig
+(15 of 20) /helpers.php
+(16 of 20) /assets/vendor.js
+(17 of 20) /assets/navigation.js
+(18 of 20) /assets/utilities.css
+(19 of 20) /tmp/shoptet-footer.html
+(20 of 20) /.htdeployment
 
 Renaming:
-(1 of 3) Renaming /templates/mailing/shoptetrix-inline.twig
-(2 of 3) Renaming /templates/mailing/shoptetrix.twig
-(3 of 3) Renaming /.htdeployment
+( 1 of 20) Renaming /functions.php
+( 2 of 20) Renaming /acf_settings.php
+( 3 of 20) Renaming /screenshot.png
+( 4 of 20) Renaming /templates/breadcrumb.twig
+( 5 of 20) Renaming /templates/header.twig
+( 6 of 20) Renaming /templates/reviews.twig
+( 7 of 20) Renaming /templates/message/message.twig
+( 8 of 20) Renaming /templates/base.twig
+( 9 of 20) Renaming /templates/profile/main.twig
+(10 of 20) Renaming /templates/profile/price.twig
+(11 of 20) Renaming /templates/review-single.twig
+(12 of 20) Renaming /templates/row-badges.twig
+(13 of 20) Renaming /templates/mailing/shoptetrix-inline.twig
+(14 of 20) Renaming /templates/mailing/shoptetrix.twig
+(15 of 20) Renaming /helpers.php
+(16 of 20) Renaming /assets/vendor.js
+(17 of 20) Renaming /assets/navigation.js
+(18 of 20) Renaming /assets/utilities.css
+(19 of 20) Renaming /tmp/shoptet-footer.html
+(20 of 20) Renaming /.htdeployment
+
+Deleting:
+(1 of 8) Deleting /templates/onboarding.twig
+(2 of 8) Deleting /assets/shoptetrix-thumb-up-2.png
+(3 of 8) Deleting /assets/shoptetrix-thumb-up-1.png
+(4 of 8) Deleting /assets/onboarding.css
+(5 of 8) Deleting /assets/mainX3.css
+(6 of 8) Deleting /assets/mainX2.css
+(7 of 8) Deleting /assets/mainX.css
+(8 of 8) Deleting /assets/envelope-x.png
 
 Deleting remote file .htdeployment.running
 
-Finished at [2019/06/20 22:50] (in 4 seconds)
+Finished at [2019/09/09 15:30] (in 6 seconds)
