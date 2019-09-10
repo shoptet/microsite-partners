@@ -84,10 +84,9 @@ function remind_authentication () {
         'compare' => 'NOT EXISTS',
       ],
     ],
-    // TODO: uncomment on production
-    // 'date_query' => [
-    //   'before' => date( 'Y-m-d', strtotime('-7 days') ),
-    // ],
+    'date_query' => [
+      'before' => date( 'Y-m-d', strtotime('-7 days') ),
+    ],
   ];
 	$comments_query = new WP_Comment_Query;
   $comments = $comments_query->query( $args );

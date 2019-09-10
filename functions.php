@@ -2,12 +2,12 @@
 
 include_once 'helpers.php';
 
-// TODO: remove on production
 add_filter( 'wp_mail', function ( $args ) {
-	$args['to'] = 'jk.oolar@gmail.com';
+	if ( WP_DEBUG ) {
+		$args['to'] = 'jk.oolar@gmail.com';
+	}
 	return $args;
 } );
-
 
 ini_set('display_errors', 1);
 
@@ -122,9 +122,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 	', 'shp-partneri' );
 	$context['footer_image'] = 'envelope.png';
 	Timber::render( 'templates/message/message.twig', $context );
-
-	// TODO: remove on production
-	remind_authentication();
+	
 	die();
 } );
 
