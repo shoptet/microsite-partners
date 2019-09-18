@@ -411,7 +411,7 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 	die();
 } );
 
-// Check for onboarding tokean and authenticate
+// Check for onboarding token and authenticate
 add_action( 'init' , function () {
 	if ( ! isset( $_GET['onboarding_token'] ) || '' === $_GET['onboarding_token'] ) return;
 	$onboarding_token = $_GET['onboarding_token'];
@@ -535,7 +535,7 @@ add_filter( 'acf/update_value/name=image', function( $value, $post_id ) {
   // Skip empty value
   if ( $value != ''  ) {
     // Add the value which is the image ID to the _thumbnail_id meta data for the current post
-    add_post_meta( $post_id, '_thumbnail_id', $value );
+    update_post_meta( $post_id, '_thumbnail_id', $value );
   }
   return $value;
 }, 10, 2 );
@@ -569,6 +569,95 @@ if ( ! wp_next_scheduled( 'remind_onboarding' ) ) {
 add_action( 'remind_onboarding', function() {
 	remind_onboarding();
 });
+
+function fetch_exchange_rates() {
+  // set API Endpoint and API key 
+  $endpoint = 'latest';
+  $base = 'EUR';
+  $symbols = 'CZK';
+  $access_key = FIXER_API_KEY;
+
+  // Initialize CURL
+  $ch = curl_init('http://data.fixer.io/api/'.$endpoint.'?base='.$base.'&symbols='.$symbols.'&access_key='.$access_key.'');
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+  // Store the data
+  $json = curl_exec($ch);
+  curl_close($ch);
+
+  // Decode JSON response
+  $response = json_decode($json, true);
+
+  if ( ! $response['success'] ) {
+    throw new Exception( 'Response was not successfull' );
+  }
+  
+  // Persist exchange rates
+  $exchange_rates = get_option('exchange_rates');
+  if ( ! is_array( $exchange_rates ) ) {
+    $exchange_rates = [];
+  }
+  $exchange_rates[$base] = $response['rates'];
+  update_option( 'exchange_rates', $exchange_rates );
+}
+
+/**
+ * Convert EUR to base currency (CZK)
+ */
+function convert_price_to_base_currency( $post_id ) {
+	$exchange_rates = get_option( 'exchange_rates' );
+	$price_per_hour_display = get_post_meta( $post_id, 'price_per_hour_display', true );
+	$price_currency = get_post_meta( $post_id, 'price_currency', true );
+
+	if (
+		! $price_per_hour_display ||
+		! $price_currency
+	) return false;
+	
+	if ( $price_currency == BASE_CURRENCY ) {
+		$conversion_result = $price_per_hour_display;
+	} elseif (
+		array_key_exists( $price_currency, $exchange_rates ) &&
+		array_key_exists( BASE_CURRENCY, $exchange_rates[$price_currency] )
+	) {
+		$rate = $exchange_rates[$price_currency][BASE_CURRENCY];
+		$conversion_result = ( $price_per_hour_display * $rate );
+	} else {
+		return false;
+	}
+		
+	return update_post_meta( $post_id, 'price_per_hour_base', $conversion_result );
+}
+
+function convert_all_to_base_currency() {
+	$query = new WP_Query( [
+    'post_type' => 'profesionalove',
+    'posts_per_page' => -1,
+		'post_status' => 'any',
+		'fields' => 'ids',
+  ] );
+
+	foreach( $query->posts as $post_id ) {
+		convert_price_to_base_currency( $post_id );
+	}
+
+}
+
+add_action( 'acf/save_post', function( $post_id ) {
+	if ( 'profesionalove' === get_post_type( $post_id ) ) {
+		convert_price_to_base_currency( $post_id );
+	}
+} );
+
+if ( ! wp_next_scheduled( 'fetch_exchange_rates_and_convert' ) ) {
+  wp_schedule_event( time(), 'daily', 'fetch_exchange_rates_and_convert' );
+}
+add_action( 'fetch_exchange_rates_and_convert', 'fetch_exchange_rates_and_convert' );
+
+function fetch_exchange_rates_and_convert() {
+	fetch_exchange_rates();
+	convert_all_to_base_currency();
+}
 
 /**
  * Add select controls filtering by date to admin
@@ -682,6 +771,7 @@ class StarterSite extends TimberSite {
 		$twig->addFilter('static_assets', new Twig_SimpleFilter('static_assets', array($this, 'static_assets')));
 		$twig->addFilter('truncate', new Twig_SimpleFilter('truncate', array($this, 'truncate')));
 		$twig->addFilter('display_url', new Twig_SimpleFilter('display_url', array($this, 'display_url')));
+		$twig->addFilter('currency_i18n', new Twig_SimpleFilter('currency_i18n', array($this, 'currency_i18n')));
 		return $twig;
 	}
 
@@ -784,6 +874,20 @@ class StarterSite extends TimberSite {
 		}
 
 	  return $url;
+	}
+
+	function currency_i18n( $currency ) {
+		switch ( $currency ) {
+			case 'CZK':
+			$currency_i18n = __( 'Kč', 'shp-partneri' );
+			break;
+			case 'EUR':
+			$currency_i18n = __( '&euro;', 'shp-partneri' );
+			break;
+			default:
+			$currency_i18n = $currency;
+		}
+	  return $currency_i18n;
 	}
 }
 
