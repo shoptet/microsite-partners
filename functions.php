@@ -325,7 +325,7 @@ add_filter( 'manage_comments_custom_column', function ( $column, $comment_id ) {
 }, 10, 2 );
 
 add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
-	if ( $contact_form->id !== intval( get_field('contact_form_id', 'option') ) ) return;
+	if ( $contact_form->id() !== intval( get_field('contact_form_id', 'option') ) ) return;
 	$submission = WPCF7_Submission::get_instance() ;
 	if ( ! $submission  || ! $submission->get_posted_data()['your-email'] ) return;
 
