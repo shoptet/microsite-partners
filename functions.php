@@ -4,7 +4,7 @@ include_once 'helpers.php';
 
 add_filter( 'wp_mail', function ( $args ) {
 	if ( WP_DEBUG ) {
-		$args['to'] = 'jk.oolar@gmail.com';
+		$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
 	}
 	return $args;
 } );
@@ -33,12 +33,6 @@ include_once 'taxonomy_slug_rewrite.php';
 include_once 'remove_default_user_roles.php';
 
 include_once 'custom_search.php';
-
-// TODO: remove on production
-add_filter( 'wp_mail', function ( $args ) {
-	$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
-	return $args;
-} );
 
 /**
  * Add cron schedule interval options
