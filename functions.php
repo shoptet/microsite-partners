@@ -538,7 +538,7 @@ add_filter( 'acf/update_value/name=image', function( $value, $post_id ) {
  * Set cron for commnets authentication reminding
  */
 if ( ! wp_next_scheduled( 'remind_authentication' ) ) {
-  wp_schedule_event( time(), 'one_minute', 'remind_authentication' ); // TODO: change schedule to twicedaily
+  wp_schedule_event( time(), 'twicedaily', 'remind_authentication' );
 }
 add_action( 'remind_authentication', function() {
 	remind_authentication();

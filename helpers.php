@@ -221,7 +221,7 @@ function expired_professionals_check () {
     'date_query' => [
       // TODO: uncomment row bellow
       //'before' => date( 'Y-m-d', strtotime('-30 days') ),
-      'before' => '5 minute ago',
+      'before' => '10 minute ago',
     ],
   ] );
 
