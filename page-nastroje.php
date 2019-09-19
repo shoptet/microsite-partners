@@ -25,9 +25,6 @@ $context['category_tools'] = Timber::get_terms('category_tools');
 $count_category_tools = wp_count_posts('nastroje')->publish;
 $context['show_category_tools'] = (bool) $count_category_tools;
 
-$context['hero_text'] = $hero_text;
-
-$context['meta_description'] = strip_tags($hero_text);
 $context['breadcrumbs'] = array(
   $context['wp_title'] => $context['wp_title'],
 );

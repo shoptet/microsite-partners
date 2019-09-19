@@ -25,9 +25,6 @@ $context['category_professionals'] = Timber::get_terms('category_professionals')
 $count_category_professionals = wp_count_posts('profesionalove')->publish;
 $context['show_category_professionals'] = (bool) $count_category_professionals;
 
-$context['hero_text'] = $hero_text;
-
-$context['meta_description'] = strip_tags($hero_text);
 $context['breadcrumbs'] = array(
   $context['wp_title'] => $context['wp_title'],
 );

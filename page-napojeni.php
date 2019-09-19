@@ -25,9 +25,6 @@ $context['category_plugins'] = Timber::get_terms('category_plugins');
 $count_category_plugins = wp_count_posts('napojeni')->publish;
 $context['show_category_plugins'] = (bool) $count_category_plugins;
 
-$context['hero_text'] = $hero_text;
-
-$context['meta_description'] = strip_tags($hero_text);
 $context['breadcrumbs'] = array(
   $context['wp_title'] => $context['wp_title'],
 );
