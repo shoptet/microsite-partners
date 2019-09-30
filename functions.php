@@ -331,6 +331,7 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 
 	$email = $submission->get_posted_data()['your-email'];
 	$name = $submission->get_posted_data()['your-name'];
+	$message = $submission->get_posted_data()['your-message'];
 
 	// Check if a post with the e-mail already exists
 	if ( get_post_by_email( $email ) ) {
@@ -350,6 +351,7 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 			'onboarded' => 0,
 			'expired' => 0,
 			'onboarding_token' => $onboarding_token,
+			'message' => $message,
     ],
   ];
 	wp_insert_post( $postarr );

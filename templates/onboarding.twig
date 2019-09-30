@@ -66,3 +66,73 @@
     >
   </div>
 {% endblock %}
+
+{% block footer_script %}
+  <script>
+    (function(d) {
+      var imageInput = d.getElementById('acf-field_5d10c3f29b87b');
+      var imageFileTypes = [ 'image/jpeg', 'image/png', 'image/gif' ];
+      var maxFileSize = 5; // MB
+      var minWidth = 400;
+      var minHeight = 400;
+
+      var handleError = function( error ) {
+        imageInput.value = '';
+        alert( error );
+      };
+
+      var validateFileSize = function( error, file ) {
+        if ( error ) return error;
+        var maxFileSizeBytes = maxFileSize * 1024 * 1024;
+        if( file.size > maxFileSizeBytes ) {
+          error = 'Nahrajte prosím soubor menší než ' + maxFileSize + ' MB.';
+        }
+        return error;
+      };
+
+      var validateFileType = function( error, file ) {
+        if ( error ) return error;
+        if( ! imageFileTypes.includes( file.type )  ) {
+          error = 'Nahrajte prosím obrázek ve formátu jpg, png nebo gif.';
+        }
+        return error;
+      };
+
+      var handleImageDimensionsValidation = function() {
+        if ( this.width < minWidth || this.height < minHeight ) {
+          handleError( 'Nahrajte prosím obrázek s minimálními rozměry ' + minWidth + ' x ' + minHeight + ' px.' );
+        }
+        imageInput.disabled = false;
+      };
+
+      var validateImageDimensions = function( imageFile ) {
+        var fr = new FileReader;
+        fr.onload = function() {
+          var img = new Image;
+          img.onload = handleImageDimensionsValidation;
+          img.src = fr.result;
+        };
+        imageInput.disabled = true;
+        fr.readAsDataURL( imageFile );
+      };
+
+      imageInput.onchange = function() {
+        if( ! imageInput.files.length > 0 ) return;
+
+        var file = imageInput.files[0];
+        var error = false;
+
+        error = validateFileType( error, file );
+        error = validateFileSize( error, file );
+
+        if( error ) {
+          handleError( error );
+          return;
+        }
+        
+        validateImageDimensions( file );
+      };
+
+    }(document));
+  </script>
+{% endblock %}
