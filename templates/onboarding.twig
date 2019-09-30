@@ -70,18 +70,26 @@
 {% block footer_script %}
   <script>
     (function(d) {
-      var imageInput = d.getElementById('acf-field_5d10c3f29b87b');
       var imageFileTypes = [ 'image/jpeg', 'image/png', 'image/gif' ];
-      var maxFileSize = 5; // MB
-      var minWidth = 400;
-      var minHeight = 400;
+      var inputsToValidate = [
+        {
+          selector: '#acf-field_5d10c3f29b87b',
+          minDimensions: [ 400, 400 ],
+          maxFileSize: 5,
+        },
+        {
+          selector: '[id$=field_59ca4ef1995cf]',
+          minDimensions: [ 200, 200 ],
+          maxFileSize: 3,
+        },
+      ];
 
-      var handleError = function( error ) {
-        imageInput.value = '';
+      var handleError = function( error, input ) {
+        input.value = '';
         alert( error );
       };
 
-      var validateFileSize = function( error, file ) {
+      var validateFileSize = function( error, file, maxFileSize ) {
         if ( error ) return error;
         var maxFileSizeBytes = maxFileSize * 1024 * 1024;
         if( file.size > maxFileSizeBytes ) {
@@ -98,40 +106,62 @@
         return error;
       };
 
-      var handleImageDimensionsValidation = function() {
-        if ( this.width < minWidth || this.height < minHeight ) {
-          handleError( 'Nahrajte prosím obrázek s minimálními rozměry ' + minWidth + ' x ' + minHeight + ' px.' );
+      var handleImageDimensionsValidation = function( img, input, minDimensions ) {
+        var minWidth = minDimensions[0];
+        var minHeight = minDimensions[1];
+        if ( img.width < minWidth || img.height < minHeight ) {
+          handleError( 'Nahrajte prosím obrázek s minimálními rozměry ' + minWidth + ' x ' + minHeight + ' px.', input );
         }
-        imageInput.disabled = false;
+        input.disabled = false;
       };
 
-      var validateImageDimensions = function( imageFile ) {
+      var validateImageDimensions = function( imageFile, input, minDimensions ) {
         var fr = new FileReader;
         fr.onload = function() {
           var img = new Image;
-          img.onload = handleImageDimensionsValidation;
+          img.onload = function() {
+            handleImageDimensionsValidation( this, input, minDimensions );
+          };
           img.src = fr.result;
         };
-        imageInput.disabled = true;
+        input.disabled = true;
         fr.readAsDataURL( imageFile );
       };
 
-      imageInput.onchange = function() {
-        if( ! imageInput.files.length > 0 ) return;
+      var handleValidation = function( input, options ) {
+        if( ! input.files.length > 0 ) return;
 
-        var file = imageInput.files[0];
+        var file = input.files[0];
         var error = false;
 
         error = validateFileType( error, file );
-        error = validateFileSize( error, file );
+        error = validateFileSize( error, file, options.maxFileSize );
 
         if( error ) {
-          handleError( error );
+          handleError( error, input );
           return;
         }
         
-        validateImageDimensions( file );
+        validateImageDimensions( file, input, options.minDimensions );
       };
+
+      var initValidation = function () {
+        inputsToValidate.forEach( function( options ) {
+          var inputs = d.querySelectorAll( options.selector );
+          inputs.forEach( function( input ) {
+            input.onchange = function() {
+              handleValidation( this, options );
+            };
+          } );
+        } );
+      };
+
+      // Initialize validation after new field has been added to the form
+      var form = d.getElementById('acf_onboarding_form');
+      var observer = new MutationObserver( initValidation );
+      observer.observe( form, { childList: true, subtree: true } );
+
+      initValidation();
 
     }(document));
   </script>

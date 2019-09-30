@@ -16,3 +16,7 @@
   text-align: center;
   border-top: #EEEEF0 solid 1px;
 }
+
+.onboarding .acf-repeater.-table .description {
+  font-size: 65%;
+}
