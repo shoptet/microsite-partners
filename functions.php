@@ -768,6 +768,7 @@ class StarterSite extends TimberSite {
 		$twig->addFilter('truncate', new Twig_SimpleFilter('truncate', array($this, 'truncate')));
 		$twig->addFilter('display_url', new Twig_SimpleFilter('display_url', array($this, 'display_url')));
 		$twig->addFilter('currency_i18n', new Twig_SimpleFilter('currency_i18n', array($this, 'currency_i18n')));
+		$twig->addFilter('ensure_protocol', new Twig_SimpleFilter('ensure_protocol', array($this, 'ensure_protocol')));
 		return $twig;
 	}
 
@@ -849,6 +850,14 @@ class StarterSite extends TimberSite {
       return substr($s, 0, strrpos($s, ' ')) . $separator;
 	  }
 	  return $string;
+	}
+
+	function ensure_protocol( $url ) {
+		$url_with_protocol = $url;
+		if ( ! preg_match( '/^(http:|https:)?\/\//i', $url ) ) {
+			$url_with_protocol = '//' . $url_with_protocol;
+		}
+		return $url_with_protocol;
 	}
 
 	function display_url( $url ) {
