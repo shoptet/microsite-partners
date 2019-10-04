@@ -550,7 +550,7 @@ add_action( 'remind_authentication', function() {
  * Set cron for expired professionals checking
  */
 if ( ! wp_next_scheduled( 'expired_professionals_check' ) ) {
-  wp_schedule_event( time(), 'one_minute', 'expired_professionals_check' ); // TODO: change schedule to twicedaily
+  wp_schedule_event( time(), 'twicedaily', 'expired_professionals_check' );
 }
 add_action( 'expired_professionals_check', function() {
 	expired_professionals_check();
@@ -560,7 +560,7 @@ add_action( 'expired_professionals_check', function() {
  * Set cron for onboarding reminding
  */
 if ( ! wp_next_scheduled( 'remind_onboarding' ) ) {
-  wp_schedule_event( time(), 'one_minute', 'remind_onboarding' ); // TODO: change schedule to twicedaily
+  wp_schedule_event( time(), 'twicedaily', 'remind_onboarding' );
 }
 add_action( 'remind_onboarding', function() {
 	remind_onboarding();

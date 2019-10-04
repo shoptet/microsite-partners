@@ -219,9 +219,7 @@ function expired_professionals_check () {
     'posts_per_page' => -1,
     'post_status' => 'onboarding',
     'date_query' => [
-      // TODO: uncomment row bellow
-      //'before' => date( 'Y-m-d', strtotime('-30 days') ),
-      'before' => '10 minute ago',
+      'before' => '-30 days',
     ],
   ] );
 
@@ -243,8 +241,7 @@ function remind_onboarding () {
     'posts_per_page' => -1,
     'post_status' => 'onboarding',
     'date_query' => [
-      // TODO: uncomment row bellow
-      // 'before' => date( 'Y-m-d', strtotime('-7 days') ),
+      'before' => '-7 days',
     ],
     'meta_query' => [
       [
