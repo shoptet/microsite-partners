@@ -713,15 +713,25 @@ add_action( 'pre_get_comments', function( $wp_query ) {
 /**
  * ACF url validation
  */
-add_filter( 'acf/validate_value/name=url', function( $valid, $value ) {
+add_filter( 'acf/validate_value/name=url', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=facebook', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=instagram', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=twitter', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=linkedin', 'handle_url_validation', 10, 2 );
+
+function handle_url_validation( $valid, $value ) {
 	// bail early if value is already invalid
-  if( ! $valid ) return $valid;
-  if ( ! empty( $value ) && ! preg_match('/^(https?:\/\/)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}.*/', $value ) ) {
-    $valid = __( 'Zadejte prosím URL ve správném formátu', 'shp-obchodiste' );
+	if( ! $valid ) return $valid;
+
+	// do not validate empty value
+	if ( empty( $value ) ) return $valid;
+	
+  if ( ! preg_match('/^(https?:\/\/)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}.*/', $value ) ) {
+    $valid = __( 'Zadejte prosím URL ve správném formátu', 'shp-partneri' );
   }
   
   return $valid;
-}, 10, 2 );
+}
 
 Timber::$dirname = array('templates', 'views');
 
