@@ -99,7 +99,7 @@
                 {% if post.get_field('instagram') %}
               <li class="profile-socials-instagram">
           		  <a href="{{ post.get_field('instagram') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Instagramu">
-                  <img src="{{ "instagram.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Instagram" class="unset-align"/>
+                  <svg data-src="{{ "instagram.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Instagram"></svg>
                 </a>
               </li>
         		{% endif %}
