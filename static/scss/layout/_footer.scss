@@ -1,0 +1,88 @@
+.footer {
+  background-color: $gray-100;
+  color: $gray-600;
+  text-align: center;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footer-content {
+  border-bottom: 1px solid $gray-300;
+}
+
+.footer-content-wrapper {
+  display: flex;
+  padding: 1.5rem 0;
+
+  @include media-breakpoint-up(md) {
+    position: relative;
+    min-height: rem-calc(180px);
+  }
+
+  &::before {
+    @include media-breakpoint-up(md) {
+      display: block;
+      position: absolute;
+      bottom: - rem-calc(19px);
+      left: 0;
+      content: "";
+      width: rem-calc(151px);
+      height: rem-calc(173px);
+      background-image: url("../images/shoptetrix-chill.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+}
+
+.footer-content-body {
+  @include media-breakpoint-up(md) {
+    align-self: center;
+    max-width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 35rem;
+  }
+}
+
+.footer-info {
+  padding: 1.5rem 0;
+}
+
+.footer-info-wrapper {
+  @include media-breakpoint-up(md) {
+    @include clearfix;
+    display: flex;
+    position: relative;
+    height: rem-calc(70px);
+
+    p {
+      flex: 1 1 auto;
+      align-self: center;
+      margin-bottom: 0;
+  	  position: relative;
+    }
+  }
+}
+
+.footer-info-social {
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.footer-info-podminky {
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

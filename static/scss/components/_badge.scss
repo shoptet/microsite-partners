@@ -1,0 +1,61 @@
+.badge-verif {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 22rem;
+  color: $green;
+  font-size: 1.25rem;
+  font-weight: $font-weight-bold;
+}
+
+.badge-text {
+  font-weight: 600;
+  font-size: 19px;
+  position: absolute;
+  z-index: 20;
+  top: 12px;
+  left: 86px;
+  line-height: 24px;
+  padding: 0;
+  display: block;
+
+  @include media-breakpoint-down(lg) {
+    font-size: 16px;
+    top: 9px;
+    left: 70px;
+    line-height: 20px;
+  }
+
+  span {
+    @include media-breakpoint-down(md) {
+        display: none;
+    }
+  }
+}
+
+.badge-text-gold span {
+  background: #fff9d6;
+}
+
+.badge-text-silver span {
+  background: #ededed;
+}
+
+.badge-text-bronze span {
+  background: #fce6d0;
+}
+
+.badge-hoder {
+  position: relative;
+  display: block;
+}
+
+.row-badges .h5 {
+  @include media-breakpoint-down(xs) {
+    margin-top: 1.5rem;
+  }
+}
+
+.unset-align {
+  vertical-align: unset;
+}

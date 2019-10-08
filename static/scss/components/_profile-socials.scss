@@ -1,0 +1,35 @@
+.profile-socials {
+  margin-bottom: 0;
+  padding-left: 0;
+
+  > li {
+    display: inline-block;
+  }
+
+  > li > a {
+    display: block;
+    height: rem-calc(25px);
+  }
+
+  li + li {
+    margin-left: .6rem;
+  }
+}
+
+.profile-socials-facebook {
+  path {
+    fill: $brand-facebook;
+  }
+}
+
+.profile-socials-twitter {
+  path {
+    fill: $brand-twitter;
+  }
+}
+
+.profile-socials-linkedin {
+  path {
+    fill: $brand-linkedin;
+  }
+}

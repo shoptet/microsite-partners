@@ -1,0 +1,53 @@
+.category-thumbnail {
+  display: block;
+  position: relative;
+  padding: 1.25rem 2.6rem;
+  margin-bottom: $category-thumbnail-spacing;
+  color: #212529;
+  font-size: 1.1em;
+  font-weight: $font-weight-light;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius-lg;
+  @include transition(border-color .2s ease-in-out);
+
+  @include hover-focus {
+    color: #129fd6;
+    font-weight: $font-weight-light;
+    text-decoration: none;
+    border-color: $blue;
+
+    .category-thumbnail-icon * {
+      fill: $blue !important;
+    }
+  }
+}
+
+.category-thumbnail-has-icon {
+  padding-left: 4.5rem;
+}
+
+.category-thumbnail-icon {
+  position: absolute;
+  top: 50%;
+  left: .6rem;
+  width: 3.5rem;
+  height: 4rem;
+  margin-top: -2rem;
+
+  svg {
+    width: 100%;
+  }
+
+  * {
+    fill: $gray-700 !important;
+  }
+}
+
+.category-thumbnail-count {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.8rem;
+  right: 15px;
+  color: $gray-500;
+  font-weight: $font-weight-light;
+}

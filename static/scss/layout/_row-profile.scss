@@ -1,0 +1,14 @@
+.row-profile {
+  padding: 3rem 0;
+  background-color: $blue-light;
+
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: $font-weight-normal;
+    margin-bottom: 1rem;
+  }
+}
+
+.row-profile-breadcrumb {
+  padding-top: 0;
+}

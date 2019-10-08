@@ -1,0 +1,69 @@
+.profile-thumbnail {
+  display: block;
+  position: relative;
+  padding: 1.4rem 1.1rem;
+  margin-bottom: $profile-thumbnail-spacing;
+  border: 1px solid $profile-thumbnail-border-color;
+  border-radius: $border-radius-lg;
+  color: $body-color;
+  text-decoration: none;
+  background: #fff;
+
+  @include hover-focus {
+    color: $body-color;
+    border-color: $blue;
+    text-decoration: none;
+    @include transition;
+  }
+}
+
+.profile-thumbnail-badge {
+  float: right;
+  position: relative;
+  top: rem-calc(-14px);
+  right: rem-calc(-10px);
+}
+
+.profile-thumbnail-wrapper {
+  display: flex;
+}
+
+.profile-thumbnail-image {
+  margin-right: 1.1rem;
+  border-radius: $border-radius;
+}
+
+.profile-thumbnail-body {
+  flex: 1;
+  align-self: center;
+}
+
+.profile-thumbnail-title {
+  color: $link-color;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: $font-weight-normal;
+}
+
+.profile-thumbnail-description {
+  display: block; // Fallback for non-webkit
+  display: -webkit-box;
+  height: (2 * $line-height-base * 1rem); // 2 lines
+  margin-top: 1rem;
+  -webkit-line-clamp: 2; // 2 lines
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-thumbnail-cta {
+  text-align: center;
+
+  @include hover-focus {
+    border-color: $profile-thumbnail-border-color;
+  }
+}
+
+.profile-thumbnail-cta-title {
+  margin-bottom: 2rem;
+}

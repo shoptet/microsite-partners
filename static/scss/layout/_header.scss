@@ -1,0 +1,71 @@
+.header {
+  @include clearfix;
+  padding: 1.5rem 0;
+
+  @include media-breakpoint-up(sm) {
+    padding: 1.882rem 0;
+  }
+}
+
+.header-logo {
+  display: inline-block;
+  height: rem-calc($header-logo-height);
+
+  @include media-breakpoint-up(sm) {
+    height: 55px;
+  }
+
+  @include media-breakpoint-up(md) {
+    float: left; // because header-form left floating
+  }
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img {
+    height: 100%;
+  }
+}
+
+.header-logo-shoptet {
+  float: right;
+  width: 2.57812rem;
+  padding: .2rem 0;
+  overflow: hidden;
+
+  @include media-breakpoint-up(sm) {
+    width: rem-calc(0.75 * $header-logo-height-sm); // crop 75 % of image from right
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: auto;
+    overflow: auto
+  }
+}
+
+.header-search {
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 1rem;
+    float: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    float: right;
+    position: relative;
+    top: ($header-logo-height-sm / 2);
+    width: rem-calc(260px);
+    margin-left: 1.5rem;
+    transform: translateY(-50%);
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-left: 2.5rem;
+    width: rem-calc(300px);
+  }
+
+}

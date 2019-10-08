@@ -1,0 +1,43 @@
+.hero {
+  color: $white;
+  background-color: $blue;
+}
+
+.hero-bg-img {
+  padding: 6.4rem 0;
+
+  @include media-breakpoint-up(md) {
+    background-image: url("../images/profile-cards.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 16rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: 1.5rem 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    background-size: 18rem;
+  }
+}
+
+.hero-lead {
+  font-family: $font-family-sans-serif;
+  line-height: 1.4;
+  font-size: 1.471rem;
+  font-weight: 100;
+
+  @include media-breakpoint-up(md) {
+    max-width: 13em;
+    font-size: 1.875rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 19em;
+  }
+
+  @include media-breakpoint-up(xl) {
+    margin-left: 60px;
+  }
+}
