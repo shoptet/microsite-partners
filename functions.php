@@ -4,7 +4,7 @@ include_once 'helpers.php';
 
 add_filter( 'wp_mail', function ( $args ) {
 	if ( WP_DEBUG ) {
-		$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
+		$args['to'] = 'jk.oolar@gmail.com';
 	}
 	return $args;
 } );
