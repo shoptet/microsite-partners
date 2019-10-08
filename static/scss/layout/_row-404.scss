@@ -1,0 +1,12 @@
+.row-404 {
+  padding: 3.5rem 0;
+  text-align: center;
+}
+
+.row-404-image {
+  max-width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    max-width: 10rem;
+  }
+}

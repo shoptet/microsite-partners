@@ -1,0 +1,6 @@
+.input-group-btn {
+  > .btn-primary {
+    // Fix button border color
+    border-color: theme-color("primary");
+  }
+}

@@ -1,0 +1,7 @@
+.btn-xl {
+  @include button-size($input-btn-padding-y-xlg, $input-btn-padding-x-xlg, $font-size-lg, $line-height-lg, $btn-border-radius-lg);
+}
+
+.btn-facebook {
+  @include button-variant($brand-facebook, $brand-facebook);
+}

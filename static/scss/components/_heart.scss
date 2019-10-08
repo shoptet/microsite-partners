@@ -1,0 +1,30 @@
+.heart {
+  background-color: $orange;
+  display: inline-block;
+  height: .5rem;
+  margin: 0 .25rem;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: .5rem;
+
+  &::before,
+  &::after {
+    content: "";
+    background-color: $orange;
+    border-radius: 50%;
+    height: .5rem;
+    position: absolute;
+    width: .5rem;
+  }
+
+  &::before {
+    top: -.25rem;
+    left: 0;
+  }
+
+  &::after {
+    left: .25rem;
+    top: 0;
+  }
+}

@@ -1,0 +1,94 @@
+.row-reference {
+  padding: 3rem 0;
+  background-color: $green-light;
+
+  @include media-breakpoint-up(xl) {
+    .container {
+      max-width: 60rem;
+    }
+  }
+}
+
+.row-reference-blockquote {
+  position: relative;
+  padding: 1.5rem 2rem;
+  background-color: $white;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+
+  footer {
+    text-align: right;
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: rem-calc(1.5 * $row-reference-triangle-size + $row-reference-image-size);
+
+    &::before {
+      left: 50%;
+      bottom: - rem-calc(2 * $row-reference-triangle-size + 2px);
+      margin-left: - rem-calc($row-reference-triangle-size + 1px);
+      border-color: $gray-300 transparent transparent transparent;
+      border-width: rem-calc($row-reference-triangle-size + 1px);
+    }
+
+    &::after {
+      left: 50%;
+      bottom: - rem-calc(2 * $row-reference-triangle-size);
+      margin-left: - rem-calc($row-reference-triangle-size);
+      border-color: $white transparent transparent transparent;
+      border-width: rem-calc($row-reference-triangle-size);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-left: rem-calc(2 * $row-reference-triangle-size + $row-reference-image-size);
+    margin-bottom: 0;
+    min-height: $row-reference-image-size;
+
+    &::before {
+      top: rem-calc($row-reference-image-size / 2);
+      left: - rem-calc(2 * $row-reference-triangle-size + 2px);
+      margin-top: - rem-calc($row-reference-triangle-size + 1px);
+      border-color: transparent $gray-300 transparent transparent;
+      border-width: rem-calc($row-reference-triangle-size + 1px);
+    }
+
+    &::after {
+      top: rem-calc($row-reference-image-size / 2);
+      left: - rem-calc(2 * $row-reference-triangle-size);
+      margin-top: - rem-calc($row-reference-triangle-size);
+      border-color: transparent $white transparent transparent;
+      border-width: rem-calc($row-reference-triangle-size);
+    }
+  }
+
+}
+
+.row-reference-blockquote-image {
+  display: block;
+  position: absolute;
+  max-width: rem-calc($row-reference-image-size);
+  border-radius: 50%;
+
+  @include media-breakpoint-down(sm) {
+    bottom: - rem-calc(1.5 * $row-reference-triangle-size + $row-reference-image-size);
+    left: 50%;
+    margin-left: - rem-calc($row-reference-image-size / 2);
+  }
+
+  @include media-breakpoint-up(md) {
+    top: 0;
+    left: 0;
+    margin-left: - rem-calc(2 * $row-reference-triangle-size + $row-reference-image-size);
+  }
+}

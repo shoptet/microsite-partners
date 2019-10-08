@@ -9,5 +9,6 @@ deployment-dev.log
 deployment.log
 webpack-bundle.json
 /vendor/
+/assets/
 /node_modules/
 .htdeployment

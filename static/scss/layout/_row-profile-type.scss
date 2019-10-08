@@ -1,0 +1,64 @@
+.row-profile-type {
+  padding: 3rem 0;
+  border-top: 1px solid $gray-400;
+
+  > * > .row:last-child {
+    margin-bottom: -$category-thumbnail-spacing; //because of row items margin bottom
+  }
+}
+
+.row-profile-type-header {
+  margin-bottom: 2.5rem;
+
+  @include media-breakpoint-up(lg) {
+    max-width: percentage(2/3);
+  }
+}
+
+.row-profile-type-title {
+  margin-bottom: 1rem;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: .75em;
+    height: .75em;
+    margin-right: .4em;
+    background-color: $gray-400;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.row-profile-type-perex {
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.row-profile-type-professionals {
+  border-top-color: $blue;
+
+  .row-profile-type-title::before {
+    background-color: $blue;
+  }
+}
+
+.row-profile-type-plugins {
+  border-top-color: $green;
+
+  .row-profile-type-title::before {
+    background-color: $green;
+  }
+}
+
+.row-profile-type-tools {
+  border-top-color: $orange;
+
+  .row-profile-type-title::before {
+    background-color: $orange;
+  }
+}

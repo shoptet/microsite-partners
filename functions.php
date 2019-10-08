@@ -798,30 +798,6 @@ class StarterSite extends TimberSite {
 		$filePath = get_template_directory() . $fileName;
 		wp_enqueue_style( 'main', $fileUrl, array(), filemtime($filePath), 'all' );
 
-		$fileName = '/assets/reviews.css';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_style( 'reviews', $fileUrl, array(), filemtime($filePath), 'all' );
-
-		$fileName = '/assets/messages.css';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_style( 'messages', $fileUrl, array(), filemtime($filePath), 'all' );
-
-		$fileName = '/assets/utilities.css';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_style( 'utilities', $fileUrl, array(), filemtime($filePath), 'all' );
-
-		$fileName = '/assets/onboarding.css';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_style( 'onboarding', $fileUrl, array(), filemtime($filePath), 'all' );
-
-		$fileName = '/assets/shoptet.css';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_style( 'shoptet', $fileUrl, array(), filemtime($filePath), 'all' );
 	}
 
 	function load_scripts() {
@@ -836,16 +812,6 @@ class StarterSite extends TimberSite {
 		$fileUrl = get_template_directory_uri() . $fileName;
 		$filePath = get_template_directory() . $fileName;
 		wp_enqueue_script( 'main', $fileUrl, array('vendor'), filemtime($filePath), true );
-
-        $fileName = '/assets/jquery-3.3.1.min.js';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_script( 'jquery', $fileUrl, array('vendor'), filemtime($filePath), true );
-
-        $fileName = '/assets/navigation.js';
-		$fileUrl = get_template_directory_uri() . $fileName;
-		$filePath = get_template_directory() . $fileName;
-		wp_enqueue_script( 'navigation', $fileUrl, array('vendor'), filemtime($filePath), true );
 
 	}
 

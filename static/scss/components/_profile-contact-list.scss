@@ -1,0 +1,21 @@
+.profile-contact-list {
+  @include list-unstyled;
+
+  > li {
+    position: relative;
+    padding-left: rem-calc(35px);
+  }
+
+  > li + li {
+    margin-top: .5rem;
+  }
+}
+
+.profile-contact-list-icon {
+  position: absolute;
+  top: rem-calc(4px);
+  left: 0;
+  path {
+    fill: $gray-500;
+  }
+}

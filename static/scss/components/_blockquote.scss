@@ -1,0 +1,13 @@
+.blockquote {
+  font-style: italic;
+
+  .blockquote-footer {
+    font-size: 1rem;
+    color: $body-color;
+    font-style: normal;
+
+    &::before {
+      content: "";
+    }
+  }
+}

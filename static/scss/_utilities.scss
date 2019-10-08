@@ -1,0 +1,81 @@
+.ws-normal {
+  white-space: normal !important;
+}
+
+// Negative Margin
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      @each $size, $length in $spacers {
+
+        .m#{$infix}-n#{$size}  {
+          margin: -$length !important;
+        }
+        .mt#{$infix}-n#{$size},
+        .my#{$infix}-n#{$size} {
+          margin-top: -$length !important;
+        }
+        .mr#{$infix}-n#{$size},
+        .mx#{$infix}-n#{$size} {
+          margin-right: -$length !important;
+        }
+        .mb#{$infix}-n#{$size},
+        .my#{$infix}-n#{$size} {
+          margin-bottom: -$length !important;
+        }
+        .ml#{$infix}-n#{$size},
+        .mx#{$infix}-n#{$size} {
+          margin-left: -$length !important;
+        }
+      }
+
+  }
+}
+
+.fs-70 { font-size: 70% }
+.fs-80 { font-size: 80% }
+.fs-110 { font-size: 110% }
+.fs-115 { font-size: 115% }
+.fs-120 { font-size: 120% }
+.fs-130 { font-size: 130% }
+
+.lh-1 { line-height: 1 }
+.lh-125 { line-height: 1.25 }
+
+.border-top { border-top: 1px solid #dee2e6 }
+.border-bottom { border-bottom: 1px solid #dee2e6 }
+
+.border-radius { border-radius: .3rem }
+
+.bg-gray { background-color: #F4F4F4; }
+
+.bg-blue-light { background-color: #e1f5fd; }
+
+.list-inline-comma li:not(:last-of-type):after {
+  content: ', ';
+}
+
+.flex-grow-1 {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.btn-green {
+  background-color: #a7c720;
+  border-color: #a7c720;
+  color: #fff;
+}
+
+.btn-green:hover {
+  background-color: #9cba1e;
+  border-color: #9cba1e;
+  color: #fff;
+}
+
+.btn-green:focus {
+  background-color: #9cba1e;
+  border-color: #9cba1e;
+  color: #fff;
+}

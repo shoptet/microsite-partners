@@ -1,0 +1,11 @@
+.row-profile-list {
+  padding: 3.5rem 0;
+
+  > * > .row:last-child {
+    margin-bottom: -$profile-thumbnail-spacing; //because of row items margin bottom
+  }
+}
+
+.row-profile-list-title {
+  margin-bottom: 2rem;
+}
