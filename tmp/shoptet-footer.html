@@ -10,7 +10,7 @@
 #shp_footer a, #shp_footer ul li a { color: #14b1ef; text-decoration: none; display: inline; }
 #shp_footer a:hover, #shp_footer ul li a:hover { color: #0F9AD2; }
 #shp_footer p { margin: 5px 0; line-height: 20px; color: #1f1f1f; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 400; text-align: left; color: #1f1f1f; }
-#shp_footer ul { list-style-type: none; list-style-image: url('https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/li.png'); padding: 5px 0 0 15px; margin: 0; }
+#shp_footer ul { list-style-type: none; list-style-image: url('https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/li.png'); padding: 5px 0 0 15px; margin: 0; }
 #shp_footer ul li { padding: 0 0 5px; margin: 0; line-height: 18px; background: none; }
 #shp_footer .mr-15 { margin-right: 15px; }
 /* grid design */
@@ -45,6 +45,8 @@
 #shp_footer form#newsletter-form .fieldset { border: none; padding: 0; justify-content: flex-start; width: 100%; }
 #shp_footer form#newsletter-form input[type="text"] { background: #fff;  color: #1f1f1f; border: 1px solid #e7e7e7; min-width: 10%; }
 #shp_footer form#newsletter-form button[type="submit"] { background: #f7a12b; color: #fff; border: 1px solid #f7a12b; cursor: pointer; white-space: nowrap; margin: 0 0 0 5px; }
+/* terms */
+#shp_footer #shp_footer-terms { display: flex; flex-wrap: wrap; }
 /* copyright */
 #shp_footer #shp_footer-copyright { border-top: 1px solid #e7e7e7; padding: 10px 0 20px; color: #999999; font-weight: 300; font-size: 15px; }
 #shp_footer #shp_footer-copyright img { vertical-align: middle; }
@@ -81,8 +83,8 @@
 }
 @media (max-width: 767px) {
     #shp_footer h2 { padding: 0 0 20px; }
-    #shp_footer ul { display: flex; justify-content: space-between; flex-flow: row wrap; }
-    #shp_footer ul li { padding: 5px 15px 5px 0; }
+    #shp_footer ul { display: flex; flex-flow: row wrap; }
+    #shp_footer ul li { padding: 5px 25px 5px 0; }
     #shp_footer .shp_row { flex-flow: column wrap; margin-left: 0; margin-right: 0; }
     #shp_footer .shp_col { padding-left: 0; padding-right: 0; }
     #shp_footer #shp_footer-main .shp_col { padding-top: 15px; }
@@ -93,6 +95,9 @@
     #shp_footer form#shp_footer-try-us-form input[type="text"] { min-width: 200px; }
     #shp_footer-cookies { font-size: 10px; padding: 5px 0; }
     #shp_footer-cookies form button { font-size: 10px; }
+    #shp_footer form#newsletter-form .fieldset { flex-wrap: wrap; }
+    #shp_footer form#newsletter-form input[type="text"] { flex-basis: 100%; text-align: center; }
+    #shp_footer form#newsletter-form button[type="submit"] { flex-basis: 100%; margin: 5px 0 0; }
 }
 </style>
 <footer id="shp_footer">
@@ -184,13 +189,13 @@
                     <meta itemprop="telephone" content="+420 604 600 444" />
                     <meta itemprop="email" content="info@shoptet.cz" />
                     <link itemprop="url" href="https://www.shoptet.cz/">
-                    <a itemprop="sameAs" href="https://www.facebook.com/shoptet/" target="_blank"><img src="https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/ico-facebook.svg" alt=""></a>
-                    <a itemprop="sameAs" href="https://twitter.com/shoptet" target="_blank"><img src="https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/ico-twitter.svg" alt=""></a>
-                    <a itemprop="sameAs" href="https://www.instagram.com/shoptet.cz/" target="_blank"><img src="https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/ico-instagram.svg" alt=""></a>
-                    <a itemprop="sameAs" href="https://www.youtube.com/channel/UCrmFOFsJ7Nd3viUS_Kf5jsg" target="_blank"><img src="https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/ico-youtube.svg" alt=""></a>
-                    <a itemprop="sameAs" href="https://cz.linkedin.com/company/shoptet" target="_blank"><img src="https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/ico-linkedin.svg" alt=""></a>
+                    <a itemprop="sameAs" href="https://www.facebook.com/shoptet/" target="_blank"><img src="https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/ico-facebook.svg" alt=""></a>
+                    <a itemprop="sameAs" href="https://twitter.com/shoptet" target="_blank"><img src="https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/ico-twitter.svg" alt=""></a>
+                    <a itemprop="sameAs" href="https://www.instagram.com/shoptet.cz/" target="_blank"><img src="https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/ico-instagram.svg" alt=""></a>
+                    <a itemprop="sameAs" href="https://www.youtube.com/channel/UCrmFOFsJ7Nd3viUS_Kf5jsg" target="_blank"><img src="https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/ico-youtube.svg" alt=""></a>
+                    <a itemprop="sameAs" href="https://cz.linkedin.com/company/shoptet" target="_blank"><img src="https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/ico-linkedin.svg" alt=""></a>
                 </div>
-                <p>
+                <p id="shp_footer-terms">
                     <span class="mr-15"><a href="https://www.shoptet.cz/obchodni-podminky/" target="_blank">Obchodní podmínky</a></span>
                     <span><a href="https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/" target="_blank">Ochrana osobních údajů</a></span>
                 </p>
@@ -202,7 +207,7 @@
         <div class="shp_container">
             <div class="shp_row">
                 <div class="shp_col hide-sm">&nbsp;</div>
-                <div class="shp_col text-center">s&nbsp;<img src="https://cdn.myshoptet.com/tpl/0a4530b1/shoptet_responsive/master/templates/shoptet_responsive/img/ico-hearth.png" width="17" height="14" alt="láskou">&nbsp;Shoptet</div>
+                <div class="shp_col text-center">s&nbsp;<img src="https://cdn.myshoptet.com/tpl/306706cc/shoptet_responsive/master/templates/shoptet_responsive/img/ico-hearth.png" width="17" height="14" alt="láskou">&nbsp;Shoptet</div>
                 <div class="shp_col text-right">2008–2019 &copy; Shoptet s.r.o. Všechna práva vyhrazena</div>
             </div>
         </div>

@@ -19,7 +19,7 @@
           {% endif %}
 
           {% if recommendation.url %}
-            <a href="{{ recommendation.url }}" target="_blank">{{ recommendation.url|display_url }}</a>
+            <a href="{{ recommendation.url|ensure_protocol }}" target="_blank">{{ recommendation.url|display_url }}</a>
           {% endif %}
 
         </footer>

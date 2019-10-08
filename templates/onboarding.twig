@@ -1,0 +1,168 @@
+{% extends "base.twig" %}
+
+{% block head %}
+  {{ parent() }}
+  {{ function('acf_form_head') }}
+{% endblock %}
+
+{% block header %}
+  <div class="container text-center py-4">
+    <img
+      class="img-fluid"
+      src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
+      alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
+      width="280"
+    >
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="bg-blue-light onboarding">
+    <div class="container py-5">
+
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+          <div class="list-group-profile">
+            <div class="list-group-profile-item">
+
+              <h1 class="h2 mb-4">
+                {{ __( 'Vyplňte svůj medailonek', 'shp-partneri' ) }}
+              </h1>
+
+              <div class="border-bottom pb-2">{{ options.onboarding_description }}</div>
+
+              <ul class="list-unstyled mt-4 mb-3">
+                <li class="mb-2">
+                  <strong>{{ __( 'Vaše jméno:', 'shp-partneri' ) }}</strong>
+                  {{ post.title }}
+                </li>
+                <li>
+                  <strong>{{ __( 'Váš e-mail:', 'shp-partneri' ) }}</strong>
+                  {{ post.get_field('emailAddress') }}
+                </li>
+              </ul>
+
+              {{ function('acf_form', acf_form_args) }}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  <div class="container text-center py-5">
+    <img
+      class="img-fluid"
+      src="{{ "shoptet-logo.svg"|static_assets }}"
+      alt="{{ __( 'Shoptet', 'shp-partneri' ) }}"
+      width="150"
+    >
+  </div>
+{% endblock %}
+
+{% block footer_script %}
+  <script>
+    (function(d) {
+      var imageFileTypes = [ 'image/jpeg', 'image/png', 'image/gif' ];
+      var inputsToValidate = [
+        {
+          selector: '#acf-field_5d10c3f29b87b',
+          minDimensions: [ 400, 400 ],
+          maxFileSize: 5,
+        },
+        {
+          selector: '[id$=field_59ca4ef1995cf]',
+          minDimensions: [ 200, 200 ],
+          maxFileSize: 3,
+        },
+      ];
+
+      var handleError = function( error, input ) {
+        input.value = '';
+        alert( error );
+      };
+
+      var validateFileSize = function( error, file, maxFileSize ) {
+        if ( error ) return error;
+        var maxFileSizeBytes = maxFileSize * 1024 * 1024;
+        if( file.size > maxFileSizeBytes ) {
+          error = 'Nahrajte prosím soubor menší než ' + maxFileSize + ' MB.';
+        }
+        return error;
+      };
+
+      var validateFileType = function( error, file ) {
+        if ( error ) return error;
+        if( ! imageFileTypes.includes( file.type )  ) {
+          error = 'Nahrajte prosím obrázek ve formátu jpg, png nebo gif.';
+        }
+        return error;
+      };
+
+      var handleImageDimensionsValidation = function( img, input, minDimensions ) {
+        var minWidth = minDimensions[0];
+        var minHeight = minDimensions[1];
+        if ( img.width < minWidth || img.height < minHeight ) {
+          handleError( 'Nahrajte prosím obrázek s minimálními rozměry ' + minWidth + ' x ' + minHeight + ' px.', input );
+        }
+        input.disabled = false;
+      };
+
+      var validateImageDimensions = function( imageFile, input, minDimensions ) {
+        var fr = new FileReader;
+        fr.onload = function() {
+          var img = new Image;
+          img.onload = function() {
+            handleImageDimensionsValidation( this, input, minDimensions );
+          };
+          img.src = fr.result;
+        };
+        input.disabled = true;
+        fr.readAsDataURL( imageFile );
+      };
+
+      var handleValidation = function( input, options ) {
+        if( ! input.files.length > 0 ) return;
+
+        var file = input.files[0];
+        var error = false;
+
+        error = validateFileType( error, file );
+        error = validateFileSize( error, file, options.maxFileSize );
+
+        if( error ) {
+          handleError( error, input );
+          return;
+        }
+        
+        validateImageDimensions( file, input, options.minDimensions );
+      };
+
+      var initValidation = function () {
+        inputsToValidate.forEach( function( options ) {
+          var inputs = d.querySelectorAll( options.selector );
+          inputs.forEach( function( input ) {
+            input.onchange = function() {
+              handleValidation( this, options );
+            };
+          } );
+        } );
+      };
+
+      // Initialize validation after new field has been added to the form
+      var form = d.getElementById('acf_onboarding_form');
+      var observer = new MutationObserver( initValidation );
+      observer.observe( form, { childList: true, subtree: true } );
+
+      initValidation();
+
+    }(document));
+  </script>
+{% endblock %}

@@ -1,0 +1,22 @@
+.onboarding .acf-form > .acf-fields > .acf-field {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.onboarding .acf-repeater .acf-actions {
+  text-align: left;
+}
+
+.onboarding .acf-repeater .acf-actions a {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+.onboarding .acf-form-submit {
+  text-align: center;
+  border-top: #EEEEF0 solid 1px;
+}
+
+.onboarding .acf-repeater.-table .description {
+  font-size: 65%;
+}

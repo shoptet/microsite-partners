@@ -425,6 +425,15 @@
                         </td>
                       </tr>
                     {% endif %}
+                    {% if text_footer %}
+                      <tr>
+                        <td align="middle" style="padding-top: 30px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
+                          <p style="margin-bottom: 15px;font-size: 16px;font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-weight: 300;margin: 0;color: #535353;">
+                            {{ text_footer }}
+                          </p>
+                        </td>
+                      </tr>
+                    {% endif %}
                   </table>
                 </td>
               </tr>

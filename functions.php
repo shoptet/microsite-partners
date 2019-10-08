@@ -2,9 +2,10 @@
 
 include_once 'helpers.php';
 
-// TODO: remove on production
 add_filter( 'wp_mail', function ( $args ) {
-	$args['to'] = 'jk.oolar@gmail.com';
+	if ( WP_DEBUG ) {
+		$args['to'] = 'jk.oolar@gmail.com,sormova@shoptet.cz';
+	}
 	return $args;
 } );
 
@@ -33,6 +34,17 @@ include_once 'remove_default_user_roles.php';
 
 include_once 'custom_search.php';
 
+/**
+ * Add cron schedule interval options
+ */
+add_filter( 'cron_schedules', function ( $schedules ) {
+	$schedules['one_minute'] = [
+		'interval' => 60,
+		'display' => __( 'Každou 1 minutu', 'shp-obchodiste' ),
+  ];
+	return $schedules;
+} );
+
 add_filter('robots_txt', 'add_to_robots_txt');
 function add_to_robots_txt($robot_text) {
 	// via https://moz.com/community/q/default-robots-txt-in-wordpress-should-i-change-it#reply_329849
@@ -42,9 +54,53 @@ Disallow: /wp-includes/
 Disallow: /wp-login.php
 Disallow: /wp-register.php
 Disallow: *?auth_token=*
+Disallow: *?onboarding_token=*
 Disallow: *?s=*
 ";
 }
+
+/**
+ * Add new post status for professionals
+ */
+add_action( 'init', function() {
+  register_post_status( 'onboarding', [
+    'label' => __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' ),
+    'public' => true,
+		'show_in_admin_all_list' => true,
+		'show_in_admin_status_list' => true,
+		'post_type' => [ 'profesionalove' ],
+		'label_count' => _n_noop(
+			'Čeká na vyplnění formuláře <span class="count">(%s)</span>',
+			'Čeká na vyplnění formuláře <span class="count">(%s)</span>'
+		),
+	] );
+	register_post_status( 'expired', [
+    'label' => __( 'Expirováno', 'shp-obchodiste' ),
+    'public' => false,
+		'show_in_admin_all_list' => false,
+		'show_in_admin_status_list' => true,
+		'post_type' => [ 'profesionalove' ],
+		'label_count' => _n_noop(
+			'Expirováno <span class="count">(%s)</span>',
+			'Expirováno <span class="count">(%s)</span>'
+		),
+  ] );
+} );
+
+/**
+ * Add post states to admin list
+ */
+add_filter( 'display_post_states', function ( $states, $post ) {
+  switch ( $post->post_status ) {
+    case 'onboarding':
+    $states[] = __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' );
+		break;
+		case 'expired':
+    $states[] = __( 'Expirováno', 'shp-obchodiste' );
+    break;
+  }
+  return $states;
+}, 10, 2 );
 
 // Make the review rating required.
 add_filter( 'preprocess_comment', function ( $commentdata ) {
@@ -119,11 +175,9 @@ add_action( 'comment_post', function ( $comment_id ) {
 			Je to jen pro ověření, že opravdu existujete :-)
 		</p>
 	', 'shp-partneri' );
-	$context['footer_image'] = 'envelope.png';
+	$context['footer_image'] = 'envelope';
 	Timber::render( 'templates/message/message.twig', $context );
-
-	// TODO: remove on production
-	remind_authentication();
+	
 	die();
 } );
 
@@ -271,24 +325,216 @@ add_filter( 'manage_comments_custom_column', function ( $column, $comment_id ) {
 }, 10, 2 );
 
 add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
-	if ( $contact_form->id !== intval( get_field('contact_form_id', 'option') ) ) return;
+	if ( $contact_form->id() !== intval( get_field('contact_form_id', 'option') ) ) return;
 	$submission = WPCF7_Submission::get_instance() ;
 	if ( ! $submission  || ! $submission->get_posted_data()['your-email'] ) return;
 
 	$email = $submission->get_posted_data()['your-email'];
-	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
-	$email_html_body = Timber::compile( 'templates/mailing/review-survey.twig' );
+	$name = $submission->get_posted_data()['your-name'];
+	$message = $submission->get_posted_data()['your-message'];
 
+	// Check if a post with the e-mail already exists
+	if ( get_post_by_email( $email ) ) {
+		render_onboarding_form_error_message();
+		return;
+	}
+
+	$onboarding_token = bin2hex( openssl_random_pseudo_bytes(32) );
+	$onboarding_url = get_site_url( null, '?onboarding_token=' . $onboarding_token );
+
+  $postarr = [
+    'post_type' => 'profesionalove',
+    'post_title' => $name,
+    'post_status' => 'onboarding',
+    'meta_input' => [
+			'emailAddress' => $email,
+			'onboarded' => 0,
+			'expired' => 0,
+			'onboarding_token' => $onboarding_token,
+			'message' => $message,
+    ],
+  ];
+	wp_insert_post( $postarr );
+
+	// Compile and send e-mail
+	$context = Timber::get_context();
+	$options = get_fields('options');
+	$context['title'] = __( 'Děkujeme', 'shp-partneri' );
+	$context['subtitle'] = __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
+	$context['text'] = __( 'Teď už zbývá jen poslední krok:', 'shp-partneri' );
+	$context['image'] = [
+		'main' => 'shoptetrix-thumb-up-1.png',
+		'complementary' => 'shoptetrix-thumb-up-2.png',
+		'width' => 250,
+	];
+	$context['cta'] = [
+		'title' => 'Vyplnit dotazník',
+		'link' => $onboarding_url,
+	];
+	$context['text_footer'] = sprintf( __( '
+		To proto, abychom od vás měli dostatek informací o vás a vaší práci
+		a&nbsp;mohli tak partnerství potvrdit.<br><br>
+		Na konkrétní <a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">podmínky partnerství</a>
+		se můžete mrknout na našem webu.
+	', 'shp-partneri' ), 'https://partneri.shoptet.cz/certifikaty/' );
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
 	wp_mail(
 		$email,
 		$email_subject,
 		$email_html_body,
 		[
-			'From: ' . get_field('email_from', 'option'),
+			'From: ' . $options['email_from'],
 			'Content-Type: text/html; charset=UTF-8',
 		]
 	);
+
+	// Render message
+	$context = Timber::get_context();
+	$context['wp_title'] = __( 'Zpráva odeslána', 'shp-partneri' );
+	$context['message_type'] = 'success';
+	$context['title'] = __( 'Děkujeme!', 'shp-partneri' );
+	$context['subtitle'] = __( 'Vaše zpráva byla odeslána', 'shp-partneri' );
+	$context['text'] = __( '
+		<p>
+			My teď budeme netrpělivě čekat na vyplnění formuláře,
+			který jsme vám právě poslali e-mailem. Tak na něj prosím
+			nezapomeňte :)
+		</p>
+	', 'shp-partneri' );
+	$context['footer_image'] = 'envelope';
+	Timber::render( 'templates/message/message.twig', $context );
+	die();
 } );
+
+// Check for onboarding token and authenticate
+add_action( 'init' , function () {
+	if ( ! isset( $_GET['onboarding_token'] ) || '' === $_GET['onboarding_token'] ) return;
+	$onboarding_token = $_GET['onboarding_token'];
+
+	$post = get_post_by_onboarding_token( $onboarding_token );
+
+	if ( ! $post ) {
+		wp_die(
+			__( 'Vypadá to, že jste zadali neplatný odkaz. Zkuste to prosím znovu.', 'shp-partneri' ),
+			__( 'Neplatný odkaz', 'shp-partneri' ),
+			[
+				'response' => 200,
+				'link_text' => __( 'Přejít na partneri.shoptet.cz', 'shp-partneri' ),
+				'link_url' => get_site_url(),
+			]
+		);
+		return;
+	}
+
+	if ( $post->post_status === 'expired' ) {
+		// Render expired message
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Odkaz už není platný', 'shp-partneri' );
+		$context['message_type'] = 'error';
+		$context['title'] = __( 'Ouha!', 'shp-partneri' );
+		$context['subtitle'] = __( 'Odkaz už<br>není platný :(', 'shp-partneri' );
+		$context['text'] = __( '
+			<p>
+				Je to už více jak měsíc, co jsme vám formulář poslali
+				a&nbsp;z&nbsp;bezpečnostních důvodů jeho platnost vypršela.
+			</p>
+			<p class="mb-0">
+				Ozvěte se nám na <a href="mail:partneri@shoptet.cz" target="_blank">partneri@shoptet.cz</a>,
+				koukneme na to.
+			</p>
+		', 'shp-partneri' );
+		$context['footer_image'] = 'envelope-x';
+		Timber::render( 'templates/message/message.twig', $context );
+		die();
+		return;
+	} else if ( $post->post_status !== 'onboarding' ) {
+		render_onboarding_form_error_message();
+		return;
+	}
+
+	$updated = ( isset( $_GET['updated'] ) && 'true' === $_GET['updated'] );
+
+	if ( $updated ) {
+		$options = get_fields('options');
+		wp_update_post([
+			'ID' => $post->ID,
+			'post_status' => 'pending',
+		]);
+		update_post_meta( $post->ID, 'onboarded', time() );
+
+		// Send e-mail notification to admin
+		$email_html_body = sprintf(
+			__( '
+				Hej hola!<br><br>
+				Nový Partner (%s) čeká na schválení.<br><br>
+				Mrkni na to :)
+			', 'shp-partneri' ),
+			$post->post_title
+		);
+		$email_subject = __( 'Nový Partner na Partneři.shoptet.cz čeká na schválení', 'shp-partneri' );
+		wp_mail(
+			$options['authorized_review_email_recipient'],
+			$email_subject,
+			$email_html_body,
+			[
+				'From: ' . $options['email_from'],
+				'Content-Type: text/html; charset=UTF-8',
+			]
+		);
+
+		// Render success message
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Úspěšně odesláno', 'shp-partneri' );
+		$context['message_type'] = 'success';
+		$context['title'] = __( 'Super!', 'shp-partneri' );
+		$context['subtitle'] = __( 'Váš formulář byl úspěšně odeslaný.', 'shp-partneri' );
+		$context['text'] = __( '
+			<p>
+				Teď už jen <strong>vyčkejte</strong>. Co nevidět se vám ozve
+				náš Partner manažer a případnou spolupráci společně doladíte.
+			</p>
+		', 'shp-partneri' );
+		$context['footer_image'] = 'envelope';
+		Timber::render( 'templates/message/message.twig', $context );
+		die();
+		return;
+	}
+
+	// Show onboarding form
+	if ( $onboarding_form_id = get_field('onboarding_form_id', 'option') ) {
+		$context = Timber::get_context();
+		$context['wp_title'] = __( 'Vstupní formulář', 'shp-partneri' );
+		$context['post'] = new Timber\Post( $post );
+		$acf_form_args = [
+			'id' => 'acf_onboarding_form',
+			'post_id' => $post->ID,
+			'field_groups' => [ $onboarding_form_id ],
+			'uploader' => 'basic',
+			'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
+		];
+		$context['acf_form_args'] = $acf_form_args;
+		Timber::render( 'templates/onboarding.twig', $context );
+		die();
+	}
+	
+} );
+
+/**
+ * Set professional image as post featured image
+ */
+add_filter( 'acf/update_value/name=image', function( $value, $post_id ) {
+  // Not the correct post type, bail out
+  if ( 'profesionalove' !== get_post_type( $post_id ) ) {
+    return $value;
+  }
+  // Skip empty value
+  if ( $value != ''  ) {
+    // Add the value which is the image ID to the _thumbnail_id meta data for the current post
+    update_post_meta( $post_id, '_thumbnail_id', $value );
+  }
+  return $value;
+}, 10, 2 );
 
 /**
  * Set cron for commnets authentication reminding
@@ -299,7 +545,115 @@ if ( ! wp_next_scheduled( 'remind_authentication' ) ) {
 add_action( 'remind_authentication', function() {
 	remind_authentication();
 });
-//do_action( 'remind_authentication' );
+
+/**
+ * Set cron for expired professionals checking
+ */
+if ( ! wp_next_scheduled( 'expired_professionals_check' ) ) {
+  wp_schedule_event( time(), 'twicedaily', 'expired_professionals_check' );
+}
+add_action( 'expired_professionals_check', function() {
+	expired_professionals_check();
+});
+
+/**
+ * Set cron for onboarding reminding
+ */
+if ( ! wp_next_scheduled( 'remind_onboarding' ) ) {
+  wp_schedule_event( time(), 'twicedaily', 'remind_onboarding' );
+}
+add_action( 'remind_onboarding', function() {
+	remind_onboarding();
+});
+
+function fetch_exchange_rates() {
+  // set API Endpoint and API key 
+  $endpoint = 'latest';
+  $base = 'EUR';
+  $symbols = 'CZK';
+  $access_key = FIXER_API_KEY;
+
+  // Initialize CURL
+  $ch = curl_init('http://data.fixer.io/api/'.$endpoint.'?base='.$base.'&symbols='.$symbols.'&access_key='.$access_key.'');
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+  // Store the data
+  $json = curl_exec($ch);
+  curl_close($ch);
+
+  // Decode JSON response
+  $response = json_decode($json, true);
+
+  if ( ! $response['success'] ) {
+    throw new Exception( 'Response was not successfull' );
+  }
+  
+  // Persist exchange rates
+  $exchange_rates = get_option('exchange_rates');
+  if ( ! is_array( $exchange_rates ) ) {
+    $exchange_rates = [];
+  }
+  $exchange_rates[$base] = $response['rates'];
+  update_option( 'exchange_rates', $exchange_rates );
+}
+
+/**
+ * Convert EUR to base currency (CZK)
+ */
+function convert_price_to_base_currency( $post_id ) {
+	$exchange_rates = get_option( 'exchange_rates' );
+	$price_per_hour_display = get_post_meta( $post_id, 'price_per_hour_display', true );
+	$price_currency = get_post_meta( $post_id, 'price_currency', true );
+
+	if (
+		! $price_per_hour_display ||
+		! $price_currency
+	) return false;
+	
+	if ( $price_currency == BASE_CURRENCY ) {
+		$conversion_result = $price_per_hour_display;
+	} elseif (
+		array_key_exists( $price_currency, $exchange_rates ) &&
+		array_key_exists( BASE_CURRENCY, $exchange_rates[$price_currency] )
+	) {
+		$rate = $exchange_rates[$price_currency][BASE_CURRENCY];
+		$conversion_result = ( $price_per_hour_display * $rate );
+	} else {
+		return false;
+	}
+		
+	return update_post_meta( $post_id, 'price_per_hour_base', $conversion_result );
+}
+
+function convert_all_to_base_currency() {
+	$query = new WP_Query( [
+    'post_type' => 'profesionalove',
+    'posts_per_page' => -1,
+		'post_status' => 'any',
+		'fields' => 'ids',
+  ] );
+
+	foreach( $query->posts as $post_id ) {
+		convert_price_to_base_currency( $post_id );
+	}
+
+}
+
+add_action( 'acf/save_post', function( $post_id ) {
+	if ( 'profesionalove' === get_post_type( $post_id ) ) {
+		convert_price_to_base_currency( $post_id );
+	}
+} );
+
+if ( ! wp_next_scheduled( 'fetch_exchange_rates_and_convert' ) ) {
+  wp_schedule_event( time(), 'daily', 'fetch_exchange_rates_and_convert' );
+}
+add_action( 'fetch_exchange_rates_and_convert', 'fetch_exchange_rates_and_convert' );
+
+function fetch_exchange_rates_and_convert() {
+	fetch_exchange_rates();
+	convert_all_to_base_currency();
+}
 
 /**
  * Add select controls filtering by date to admin
@@ -356,6 +710,29 @@ add_action( 'pre_get_comments', function( $wp_query ) {
 	$wp_query->query_vars['date_query'] = [ 'year' => $year, 'month' => $month ];
 } );
 
+/**
+ * ACF url validation
+ */
+add_filter( 'acf/validate_value/name=url', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=facebook', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=instagram', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=twitter', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=linkedin', 'handle_url_validation', 10, 2 );
+
+function handle_url_validation( $valid, $value ) {
+	// bail early if value is already invalid
+	if( ! $valid ) return $valid;
+
+	// do not validate empty value
+	if ( empty( $value ) ) return $valid;
+	
+  if ( ! preg_match('/^(https?:\/\/)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}.*/', $value ) ) {
+    $valid = __( 'Zadejte prosím URL ve správném formátu', 'shp-partneri' );
+  }
+  
+  return $valid;
+}
+
 Timber::$dirname = array('templates', 'views');
 
 class StarterSite extends TimberSite {
@@ -400,6 +777,8 @@ class StarterSite extends TimberSite {
 		$twig->addFilter('static_assets', new Twig_SimpleFilter('static_assets', array($this, 'static_assets')));
 		$twig->addFilter('truncate', new Twig_SimpleFilter('truncate', array($this, 'truncate')));
 		$twig->addFilter('display_url', new Twig_SimpleFilter('display_url', array($this, 'display_url')));
+		$twig->addFilter('currency_i18n', new Twig_SimpleFilter('currency_i18n', array($this, 'currency_i18n')));
+		$twig->addFilter('ensure_protocol', new Twig_SimpleFilter('ensure_protocol', array($this, 'ensure_protocol')));
 		return $twig;
 	}
 
@@ -433,6 +812,11 @@ class StarterSite extends TimberSite {
 		$fileUrl = get_template_directory_uri() . $fileName;
 		$filePath = get_template_directory() . $fileName;
 		wp_enqueue_style( 'utilities', $fileUrl, array(), filemtime($filePath), 'all' );
+
+		$fileName = '/assets/onboarding.css';
+		$fileUrl = get_template_directory_uri() . $fileName;
+		$filePath = get_template_directory() . $fileName;
+		wp_enqueue_style( 'onboarding', $fileUrl, array(), filemtime($filePath), 'all' );
 
 		$fileName = '/assets/shoptet.css';
 		$fileUrl = get_template_directory_uri() . $fileName;
@@ -478,6 +862,14 @@ class StarterSite extends TimberSite {
 	  return $string;
 	}
 
+	function ensure_protocol( $url ) {
+		$url_with_protocol = $url;
+		if ( ! preg_match( '/^(http:|https:)?\/\//i', $url ) ) {
+			$url_with_protocol = '//' . $url_with_protocol;
+		}
+		return $url_with_protocol;
+	}
+
 	function display_url( $url ) {
 		// Romove protocol
 	  if (substr( $url, 0, 7 ) === 'http://') {
@@ -497,6 +889,20 @@ class StarterSite extends TimberSite {
 		}
 
 	  return $url;
+	}
+
+	function currency_i18n( $currency ) {
+		switch ( $currency ) {
+			case 'CZK':
+			$currency_i18n = __( 'Kč', 'shp-partneri' );
+			break;
+			case 'EUR':
+			$currency_i18n = __( '&euro;', 'shp-partneri' );
+			break;
+			default:
+			$currency_i18n = $currency;
+		}
+	  return $currency_i18n;
 	}
 }
 

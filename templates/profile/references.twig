@@ -9,7 +9,7 @@
             {% spaceless %}
               <a
                 class="reference-list-item"
-                href="{{ reference.url }}"
+                href="{{ reference.url|ensure_protocol }}"
                 target="_blank"
               >
                 <img

@@ -44,8 +44,12 @@
       <div class="message-footer py-4">
         {% if footer_image %}
           <img
-            src="{{ footer_image|static_assets }}"
-            height="60px"
+            src="{{ (footer_image ~ '.png')|static_assets }}"
+            {% if footer_image == 'envelope-x' %}
+              height="75px"
+            {% else %}
+              height="65px"
+            {% endif %}
           >
         {% endif %}
       </div>
