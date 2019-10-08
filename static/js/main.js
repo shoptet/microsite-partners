@@ -9,7 +9,6 @@ import '../images/shoptetrix-meditate.png';
 import '../images/shoptetrix-chill.png';
 import '../images/shoptet-logo.png';
 import '../images/proveren-shoptetem.png';
-import '../images/medal-shoptetrix.png';
 import '../images/medal-bronze.png';
 import '../images/medal-silver.png';
 import '../images/medal-gold.png';
@@ -50,7 +49,7 @@ import 'font-awesome-svg-png/black/svg/phone.svg';
 import 'font-awesome-svg-png/black/svg/facebook-square.svg';
 import 'font-awesome-svg-png/black/svg/twitter-square.svg';
 import 'font-awesome-svg-png/black/svg/linkedin-square.svg';
-import 'font-awesome-svg-png/black/svg/instagram-square.svg';
+import 'font-awesome-svg-png/black/svg/instagram.svg';
 
 $(function () {
 
