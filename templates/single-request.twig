@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+
+{% block head %}
+	<link rel="canonical" href="{{ post.link }}">
+	<meta property="og:url" content="{{ post.link }}">
+	<meta property="og:type" content="profile">
+{% endblock %}
+
+{% block breadcrumb %}
+	<div class="row-breadcrumb row-breadcrumb-bg">
+		<div class="container">
+			{% include 'breadcrumb.twig' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<h1>{{ post.title }}</h1>
+	<div>
+		{{ post.content }}
+	</div>
+
+	{% if post.terms is not empty %}
+		<svg data-src="{{ post.terms.0.get_field('image').sizes.medium }}"></svg>
+	{% endif %}
+
+	{% if post.terms is not empty %}
+		<a href="{{ post.terms.0.link }}">{{ post.terms.0.name }}</a>
+	{% endif %}
+
+	{% if post.author_name %}
+		{{ post.author_name }}
+	{% endif %}
+
+	<time datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date_i18n }}</time>
+
+{% endblock %}

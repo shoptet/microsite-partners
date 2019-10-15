@@ -26,6 +26,14 @@ if( function_exists('acf_add_options_page') ) {
 		'parent_slug' => 'edit.php?post_type=nastroje',
 	));
 
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Nastavení poptávek',
+		'menu_title'	=> 'Nastavení',
+		'menu_slug' 	=> 'requests-settings',
+		'capability'	=> 'edit_posts',
+		'parent_slug' => 'edit.php?post_type=request',
+	));
+
 	acf_add_options_page(array(
 		'menu_title' 	=> 'Šablona',
 		'menu_slug' 	=> 'theme-settings',
