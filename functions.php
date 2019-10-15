@@ -33,6 +33,7 @@ include_once 'taxonomy_slug_rewrite.php';
 include_once 'remove_default_user_roles.php';
 
 include_once 'custom_search.php';
+include_once 'lib/TermSyncer.php';
 
 /**
  * Add cron schedule interval options
@@ -733,6 +734,24 @@ function handle_url_validation( $valid, $value ) {
   return $valid;
 }
 
+add_filter('acf/load_field/name=_post_title', function( $field ) {
+	$field['label'] = __( 'Nadpis poptávky', 'shp-partneri' );
+	$field['placeholder'] = __( 'Srozumitelný a jednoduchý popis problému, který chcete vyřešit', 'shp-partneri' );
+	return $field;
+} );
+
+add_filter('acf/load_field/name=_post_content', function( $field ) {
+	$field['label'] = __( 'Text poptávky' );
+	$field['required'] = true;
+	$field['type'] = 'textarea';
+	return $field;
+} );
+
+// Notify admin about new request
+add_action( 'pending_request', function( $post_id, $post ) {
+	// TODO: send e-mail to admin
+}, 10, 2 );
+
 Timber::$dirname = array('templates', 'views');
 
 class StarterSite extends TimberSite {
@@ -779,6 +798,7 @@ class StarterSite extends TimberSite {
 		$twig->addFilter('display_url', new Twig_SimpleFilter('display_url', array($this, 'display_url')));
 		$twig->addFilter('currency_i18n', new Twig_SimpleFilter('currency_i18n', array($this, 'currency_i18n')));
 		$twig->addFilter('ensure_protocol', new Twig_SimpleFilter('ensure_protocol', array($this, 'ensure_protocol')));
+		$twig->addFilter('date_i18n', new Twig_SimpleFilter('date_i18n', array($this, 'date_i18n')));
 		return $twig;
 	}
 
@@ -857,6 +877,12 @@ class StarterSite extends TimberSite {
 	  return $url;
 	}
 
+	function date_i18n( $date ) {
+		$date_format = get_option( 'date_format' );
+		$timestamp = strtotime( $date );
+	  return date_i18n( $date_format, $timestamp );
+	}
+
 	function currency_i18n( $currency ) {
 		switch ( $currency ) {
 			case 'CZK':
@@ -874,6 +900,7 @@ class StarterSite extends TimberSite {
 
 new StarterSite();
 
+TermSyncer::init();
 
 function wp_getStats() {
    $cacheFile = 'wp-content/uploads/counters.cached';
