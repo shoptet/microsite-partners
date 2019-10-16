@@ -1,0 +1,41 @@
+<div class="list-group-profile-item">
+
+  {{ post.content }}
+
+</div>
+<div class="list-group-profile-item">
+
+  {% if post.author_name %}
+    <div class="row mb-1">
+      <div class="col-6 col-sm-3 text-muted">
+        {{ __( 'Zadavatel', 'shp-partneri' ) }}
+      </div>
+      <div class="col-6 col-sm-8">
+        {{ post.author_name }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if post.post_date %}
+    <div class="row mb-1">
+      <div class="col-6 col-sm-3 text-muted">
+        {{ __( 'Zveřejnění', 'shp-partneri' ) }}
+      </div>
+      <div class="col-6 col-sm-8">
+        <time datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date_i18n }}</time>
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if post.status %}
+    <div class="row">
+      <div class="col-6 col-sm-3 text-muted">
+        {{ __( 'Stav poptávky', 'shp-partneri' ) }}
+      </div>
+      <div class="col-6 col-sm-8">
+        {{ post.status|request_state }}
+      </div>
+    </div>
+  {% endif %}
+
+</div>

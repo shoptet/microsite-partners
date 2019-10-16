@@ -15,23 +15,28 @@
 {% endblock %}
 
 {% block content %}
-	<h1>{{ post.title }}</h1>
-	<div>
-		{{ post.content }}
+
+<div class="row-profile row-profile-breadcrumb">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-1 col-xl-2"></div>
+			<div class="col-lg-10 col-xl-8">
+
+				<div class="list-group-profile mb-4 mb-sm-0">
+
+					{% include 'request/header.twig' %}
+
+					{% include 'request/content.twig' %}
+
+					{% include 'request/contact-form.twig' %}
+
+				</div>
+
+			</div>
+		</div>
+
 	</div>
-
-	{% if post.terms is not empty %}
-		<svg data-src="{{ post.terms.0.get_field('image').sizes.medium }}"></svg>
-	{% endif %}
-
-	{% if post.terms is not empty %}
-		<a href="{{ post.terms.0.link }}">{{ post.terms.0.name }}</a>
-	{% endif %}
-
-	{% if post.author_name %}
-		{{ post.author_name }}
-	{% endif %}
-
-	<time datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date_i18n }}</time>
+</div>
 
 {% endblock %}
