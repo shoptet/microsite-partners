@@ -799,6 +799,7 @@ class StarterSite extends TimberSite {
 		$twig->addFilter('currency_i18n', new Twig_SimpleFilter('currency_i18n', array($this, 'currency_i18n')));
 		$twig->addFilter('ensure_protocol', new Twig_SimpleFilter('ensure_protocol', array($this, 'ensure_protocol')));
 		$twig->addFilter('date_i18n', new Twig_SimpleFilter('date_i18n', array($this, 'date_i18n')));
+		$twig->addFilter('request_state', new Twig_SimpleFilter('request_state', array($this, 'request_state')));
 		return $twig;
 	}
 
@@ -881,6 +882,19 @@ class StarterSite extends TimberSite {
 		$date_format = get_option( 'date_format' );
 		$timestamp = strtotime( $date );
 	  return date_i18n( $date_format, $timestamp );
+	}
+
+	function request_state( $post_status ) {
+		$request_state = $post_status;
+		switch( $post_status ) {
+			case 'publish':
+			$request_state = __( 'Aktivní', 'shp-partneri' );
+			break;
+			case 'expired':
+			$request_state = __( 'Expirovaná', 'shp-partneri' );
+			break;
+		}
+	  return $request_state;
 	}
 
 	function currency_i18n( $currency ) {
