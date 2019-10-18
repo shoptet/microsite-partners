@@ -83,3 +83,9 @@
   border-color: #9cba1e;
   color: #fff;
 }
+
+.required-asterisk::after {
+  display: inline;
+  content: " *";
+  color: theme-color("danger");
+}

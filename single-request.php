@@ -9,8 +9,6 @@
  * @since    Timber 0.1
  */
 
-include_once 'helpers.php';
-
 $context = Timber::get_context();
 $post = Timber::query_post();
 

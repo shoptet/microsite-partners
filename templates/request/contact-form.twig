@@ -1,0 +1,42 @@
+<h2 class="mb-4">{{ __( 'Reakce na poptávku', 'shp-obchodiste' ) }}</h2>
+
+<form>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="required-asterisk" for="requestContactFormName">
+          {{ __( 'Jméno a příjmení', 'shp-obchodiste' ) }}
+        </label>
+        <input type="text" name="name" class="form-control" id="requestContactFormName" required>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="required-asterisk" for="requestContactFormEmail">
+          {{ __( 'E-mail', 'shp-obchodiste' ) }}
+        </label>
+        <input type="email" name="email" class="form-control" id="requestContactFormEmail" required>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label class="required-asterisk" for="requestContactFormMessage">
+      {{ __( 'Text reakce', 'shp-obchodiste' ) }}
+    </label>
+    <textarea class="form-control" name="message" rows="10" id="requestContactFormMessage" required></textarea>
+  </div>
+
+  <input type="hidden" name="post_id" value="{{ post.ID }}">
+
+  <div class="g-recaptcha mb-3" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
+
+  <button type="submit" class="btn btn-primary btn-lg">
+    {{ __( 'Odeslat', 'shp-obchodiste' ) }}
+  </button>
+
+</form>
