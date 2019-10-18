@@ -78,7 +78,7 @@ $(function () {
 
           //hidden navigation
           if (!resNavDiv.find('.hidden-links').length) {
-            resNavDiv.append('<button class="navigation-btn"><svg data-src="./wp-content/themes/shoptet/assets/bars-solid.svg" width="18" height="18" role="img"></svg></button><ul class="hidden-links hidden"></ul>');
+            resNavDiv.append('<button class="navigation-btn"><svg data-src="/wp-content/themes/shoptet/assets/bars-solid.svg" width="18" height="18" role="img"></svg></button><ul class="hidden-links hidden"></ul>');
           }
           hiddenLinks = resNavDiv.find('.hidden-links');
           button = resNavDiv.find('button');
