@@ -1,6 +1,6 @@
 <h2 class="mb-4">{{ __( 'Reakce na poptávku', 'shp-obchodiste' ) }}</h2>
 
-<form>
+<form id="requestContactForm">
 
   <div class="row">
 
@@ -34,6 +34,10 @@
   <input type="hidden" name="post_id" value="{{ post.ID }}">
 
   <div class="g-recaptcha mb-3" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
+
+  <p class="text-danger d-none" id="requestContactFormError"></p>
+
+  <p class="text-success form-control-plaintext font-weight-bold d-none fs-120" id="requestContactFormSuccess"></p>
 
   <button type="submit" class="btn btn-primary btn-lg">
     {{ __( 'Odeslat', 'shp-obchodiste' ) }}

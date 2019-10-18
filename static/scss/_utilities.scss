@@ -89,3 +89,9 @@
   content: " *";
   color: theme-color("danger");
 }
+
+.is-loading {
+  pointer-events: none;
+  opacity: .5;
+  @include transition($transition-fade);
+}

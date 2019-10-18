@@ -5,3 +5,46 @@
     font-size: $h2-font-size;
   }
 }
+
+.request-form {
+  .acf-fields {
+    &.-top > .acf-field {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    &.-left > .acf-field {
+      &:before {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      > .acf-label {
+        padding-left: 0;
+
+        @media screen and (min-width: 641px) {
+          width: 25%;
+        }
+      }
+      > .acf-input {
+        padding-left: 0;
+        padding-right: 0;
+
+        @media screen and (min-width: 641px) {
+          width: 75%;
+        }
+      }
+    }
+
+    > .acf-field {
+      border-top-color: transparent;
+    }
+  }
+
+  .message {
+    background-color: transparent;
+    font-size: 1em;
+    color: $body-color;
+  }
+
+}
+

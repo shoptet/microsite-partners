@@ -133,7 +133,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 		'complementary' => 'shoptetrix-action-2.png',
 		'width' => 250,
 	];
-	$email_html_body = Timber::compile( '../templates/mailing/shoptetrix-inline.twig', $context );
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = sprintf ( __( 'Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
 	wp_mail(
 		$comment->comment_author_email,
@@ -159,7 +159,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 		</p>
 	', 'shp-partneri' );
 	$context['footer_image'] = 'envelope';
-	Timber::render( '../templates/message/message.twig', $context );
+	Timber::render( 'templates/message/message.twig', $context );
 	
 	die();
 } );
@@ -197,7 +197,7 @@ add_action( 'init' , function () {
 				Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.
 			</p>
 		', 'shp-partneri' );
-		Timber::render( '../templates/message/message.twig', $context );
+		Timber::render( 'templates/message/message.twig', $context );
 		die();		 
 		return;
 	}
@@ -207,7 +207,7 @@ add_action( 'init' , function () {
 	$context = Timber::get_context();
 	$post = new Timber\Post( $comment->comment_post_ID );
 	$context['post'] = $post;
-	$email_html_body = Timber::compile( '../templates/mailing/review-authorized.twig', $context );
+	$email_html_body = Timber::compile( 'templates/mailing/review-authorized.twig', $context );
 	$email_subject = __( 'Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení', 'shp-partneri' );
 	wp_mail(
 		$options['authorized_review_email_recipient'],
@@ -228,7 +228,7 @@ add_action( 'init' , function () {
 			Nyní proběhne schvalování vašeho hodnocení.
 		</p>
 	', 'shp-partneri' );
-	Timber::render( '../templates/message/message.twig', $context );
+	Timber::render( 'templates/message/message.twig', $context );
 	die();
 } );
 
@@ -259,7 +259,7 @@ add_action( 'transition_comment_status',  function( $new_status, $old_status, $c
 		'title' => 'Přečíst hodnocení',
 		'link' => $post->link . '#comment-' . $comment->ID,
 	];
-	$email_html_body = Timber::compile( '../templates/mailing/shoptetrix-inline.twig', $context );
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = sprintf ( __( 'Uživatel %s přidal na partneri.shoptet.cz hodnocení k Partnerovi %s', 'shp-partneri' ), $comment->comment_author, $post->post_title );
 
 	if ( $email = $post->get_field('emailAddress') ) {
@@ -360,7 +360,7 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 		Na konkrétní <a href="%s" target="_blank" style="color:#21AFE5;text-decoration:underline;">podmínky partnerství</a>
 		se můžete mrknout na našem webu.
 	', 'shp-partneri' ), 'https://partneri.shoptet.cz/certifikaty/' );
-	$email_html_body = Timber::compile( '../templates/mailing/shoptetrix-inline.twig', $context );
+	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
 	wp_mail(
 		$email,
@@ -386,7 +386,7 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 		</p>
 	', 'shp-partneri' );
 	$context['footer_image'] = 'envelope';
-	Timber::render( '../templates/message/message.twig', $context );
+	Timber::render( 'templates/message/message.twig', $context );
 	die();
 } );
 
@@ -428,7 +428,7 @@ add_action( 'init' , function () {
 			</p>
 		', 'shp-partneri' );
 		$context['footer_image'] = 'envelope-x';
-		Timber::render( '../templates/message/message.twig', $context );
+		Timber::render( 'templates/message/message.twig', $context );
 		die();
 		return;
 	} else if ( $post->post_status !== 'onboarding' ) {
@@ -479,7 +479,7 @@ add_action( 'init' , function () {
 			</p>
 		', 'shp-partneri' );
 		$context['footer_image'] = 'envelope';
-		Timber::render( '../templates/message/message.twig', $context );
+		Timber::render( 'templates/message/message.twig', $context );
 		die();
 		return;
 	}
@@ -497,7 +497,7 @@ add_action( 'init' , function () {
 			'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
 		];
 		$context['acf_form_args'] = $acf_form_args;
-		Timber::render( '../templates/onboarding.twig', $context );
+		Timber::render( 'templates/onboarding.twig', $context );
 		die();
 	}
 	
@@ -729,6 +729,11 @@ add_filter('acf/load_field/name=_post_content', function( $field ) {
 	return $field;
 } );
 
+add_filter('acf/load_field/key=field_5d9f2fbd8e64a', function( $field ) {
+	$field['label'] = '';
+	return $field;
+} );
+
 /**
  * Handle ajax wholesaler and product message request
  */
@@ -762,6 +767,8 @@ function handle_request_message() {
   if ( $is_blacklisted ) {
     wp_die();
 	}
+
+	wp_die($_POST);
 }
 
 // Notify admin about new request
@@ -865,3 +872,9 @@ function wpcf7_dynamic_recipient_filter($recipient, $args=array()) {
 add_filter('wpcf7-dynamic-recipient-filter', 'wpcf7_dynamic_recipient_filter', 10, 2);
 
 add_filter( 'wpcf7_load_js', '__return_false' );
+
+add_action( 'wp_footer', function() {
+  echo '<script>';
+	printf( 'window.ajaxurl = \'%s\';', admin_url( 'admin-ajax.php' ) );
+	echo '</script>';
+} );
