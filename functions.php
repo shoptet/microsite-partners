@@ -537,6 +537,17 @@ add_filter( 'acf/update_value/name=image', function( $value, $post_id ) {
 }, 10, 2 );
 
 /**
+ * Do not show professional category field in wp admin
+ */
+add_filter( 'acf/load_field/key=field_5d10a24f0b5e7', function( $field ) {
+	global $post, $pagenow;
+  if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'profesionalove' === $post->post_type ) {
+		$field = NULL;
+	}
+	return $field;
+} );
+
+/**
  * Set cron for commnets authentication reminding
  */
 if ( ! wp_next_scheduled( 'remind_authentication' ) ) {
