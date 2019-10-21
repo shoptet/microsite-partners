@@ -24,5 +24,4 @@ if ( $terms = $post->terms('category_requests') ) {
 
 $context['breadcrumbs'][ $post->title ] = $post->link;
 
-
 Timber::render( 'single-request.twig', $context );

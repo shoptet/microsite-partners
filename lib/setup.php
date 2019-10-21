@@ -726,7 +726,25 @@ add_filter('acf/load_field/name=_post_content', function( $field ) {
 	$field['label'] = __( 'Text poptávky' );
 	$field['required'] = true;
 	$field['type'] = 'textarea';
+	$field['rows'] = 10;
 	return $field;
+} );
+
+/**
+ * Handle filtering and ordering wholesaler archive and category
+ */
+add_action('pre_get_posts', function( $wp_query ) {
+	// bail early if is in admin, if not main query (allows custom code / plugins to continue working) or if not wholesaler archive or taxonomy page
+	if (
+		is_admin() ||
+		! $wp_query->is_main_query() ||
+		(
+			$wp_query->get( 'post_type' ) !== 'request' &&
+			! $wp_query->is_tax( 'category_requests' )
+		)
+	) return;
+
+	$wp_query->set( 'posts_per_page', -1 );
 } );
 
 /**

@@ -1,0 +1,44 @@
+<a class="request-thumbnail" href="{{ post.link }}">
+  <div class="d-flex">
+
+    <div class="request-thumbnail-icon">
+      {% if post.terms is not empty %}
+        <svg data-src="{{ post.terms.0.get_field('image').sizes.medium }}"></svg>
+      {% endif %}
+    </div>
+
+    <div class="align-self-center">
+
+      <div class="request-thumbnail-body">
+
+        <div>
+          <span class="request-thumbnail-title">{{ post.title }}</span>
+        </div>
+
+        <ul class="request-thumbnail-meta list-inline list-inline-bullet text-muted">
+          {% if post.terms is not empty %}
+            <li class="list-inline-item font-weight-bold">{{ post.terms.0.name }}</li>
+          {% endif %}
+
+          {% if post.author_name %}
+            <li class="list-inline-item" title="{{ __( 'Zadavatel', 'shp-partneri' ) }}">{{ post.author_name }}</span></li>
+          {% endif %}
+
+          {% if post.post_date %}
+            <li class="list-inline-item"><time datetime="{{ post.post_date|date('c') }}" title="{{ __( 'Zveřejnění', 'shp-partneri' ) }}">{{ post.post_date|date_i18n }}</time></li>
+          {% endif %}
+        </ul>
+
+        {% if post.content %}
+          <p class="request-thumbnail-content mb-0" itemprop="description">
+            {{ post.content|striptags|truncate(300, '&hellip;') }}
+          </p>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</a>

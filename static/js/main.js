@@ -50,6 +50,7 @@ import 'font-awesome-svg-png/black/svg/facebook-square.svg';
 import 'font-awesome-svg-png/black/svg/twitter-square.svg';
 import 'font-awesome-svg-png/black/svg/linkedin-square.svg';
 import 'font-awesome-svg-png/black/svg/instagram.svg';
+import 'font-awesome-svg-png/black/svg/plus-circle.svg';
 
 import { initRequestMessage } from './request-message';
 

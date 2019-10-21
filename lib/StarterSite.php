@@ -35,6 +35,8 @@ class StarterSite extends TimberSite {
     $context['options'] = get_fields('options');
     $context['config'] = [];
     $context['config']['G_RECAPTCHA_SITE_KEY'] = G_RECAPTCHA_SITE_KEY;
+    $context['link']['archive']['request'] = get_post_type_archive_link( 'request' );
+    $context['request_posts_count'] = wp_count_posts( 'request' );
     return $context;
   }
 
@@ -48,6 +50,7 @@ class StarterSite extends TimberSite {
     $twig->addFilter('ensure_protocol', new Twig_SimpleFilter('ensure_protocol', array($this, 'ensure_protocol')));
     $twig->addFilter('date_i18n', new Twig_SimpleFilter('date_i18n', array($this, 'date_i18n')));
     $twig->addFilter('request_state', new Twig_SimpleFilter('request_state', array($this, 'request_state')));
+    $twig->addFilter('remove_lastname', new Twig_SimpleFilter('remove_lastname', array($this, 'remove_lastname')));
     return $twig;
   }
 
@@ -85,6 +88,8 @@ class StarterSite extends TimberSite {
     if ( is_singular( 'request' ) ) {
       wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );
     }
+
+    wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js' );
     
   }
 
@@ -145,6 +150,9 @@ class StarterSite extends TimberSite {
       case 'expired':
       $request_state = __( 'Expirovaná', 'shp-partneri' );
       break;
+      case 'pending':
+      $request_state = __( 'Čeká na schválení', 'shp-partneri' );
+      break;
     }
     return $request_state;
   }
@@ -162,4 +170,21 @@ class StarterSite extends TimberSite {
     }
     return $currency_i18n;
   }
+
+  // TODO: update diacritics
+  function remove_lastname( $fullname ) {
+    $removed_lastname = '';
+    $name_parts = explode( ' ', $fullname );
+    for( $i = 0; $i < count( $name_parts ); $i++  ) {
+      $word = $name_parts[$i];
+      if( $i == 0 ) {
+        $removed_lastname .= $word;
+        continue;
+      }
+      if( strlen( $word ) ) {
+        $removed_lastname .= ' ' . strtoupper( substr( $word, 0, 1 ) ) . '.';
+      }
+    }
+    return $removed_lastname;
   }
+}

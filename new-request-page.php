@@ -9,6 +9,10 @@ $post = new TimberPost();
 $context['post'] = $post;
 $template = 'new-request-page.twig';
 
+$context['breadcrumbs'] = [];
+$context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = get_post_type_archive_link( 'request' );
+$context['breadcrumbs'][ $post->title ] = $post->link;
+
 $acf_form_args_base = [
   'id' => 'acf-form',
   'post_id' => 'new_post',
