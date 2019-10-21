@@ -26,6 +26,7 @@ $acf_form_args = [
   'top' => [
     'fields' => [
       'field_5d9f2ebf8e646', // name
+      'field_5da06f824e26a', // email
       'field_5d9f2efc8e647', // url
       'field_5d9f2f4a8e648', // category
       '_post_title',

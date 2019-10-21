@@ -5,17 +5,6 @@
   {{ function('acf_form_head') }}
 {% endblock %}
 
-{% block header %}
-  <div class="container text-center py-4">
-    <img
-      class="img-fluid"
-      src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
-      alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
-      width="280"
-    >
-  </div>
-{% endblock %}
-
 {% block content %}
   <div class="bg-blue-light request-form">
     <div class="container py-5">
@@ -32,7 +21,9 @@
               </h1>
 
               {% if submited %}
-              Odesláno!
+                <div class="alert alert-success">
+                  <strong>Poptávka byla odeslána.</strong> Vyčkejte prosím na její schválení.
+                </div>
               {% endif %}
 
               <form
@@ -78,16 +69,5 @@
       </div>
 
     </div>
-  </div>
-{% endblock %}
-
-{% block footer %}
-  <div class="container text-center py-5">
-    <img
-      class="img-fluid"
-      src="{{ "shoptet-logo.svg"|static_assets }}"
-      alt="{{ __( 'Shoptet', 'shp-partneri' ) }}"
-      width="150"
-    >
   </div>
 {% endblock %}

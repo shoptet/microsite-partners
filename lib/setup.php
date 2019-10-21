@@ -729,8 +729,13 @@ add_filter('acf/load_field/name=_post_content', function( $field ) {
 	return $field;
 } );
 
+/**
+ * Do not show is_shoptet checkbox label on frontend
+ */
 add_filter('acf/load_field/key=field_5d9f2fbd8e64a', function( $field ) {
-	$field['label'] = '';
+	if ( ! is_admin() ) {
+		$field['label'] = '';
+	}
 	return $field;
 } );
 
