@@ -15,16 +15,23 @@
 
           <div class="list-group-profile">
             <div class="list-group-profile-item">
+            
+              {% if submited %}
+                <div class="alert alert-success">
+                  <strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její schválení.
+                </div>
+              {% endif %}
 
-              <h1 class="h2 mb-4">
+              <h1 class="h2 mb-3">
                 {{ __( 'Nová poptávka', 'shp-partneri' ) }}
               </h1>
 
-              {% if submited %}
-                <div class="alert alert-success">
-                  <strong>Poptávka byla odeslána.</strong> Vyčkejte prosím na její schválení.
-                </div>
-              {% endif %}
+              <p>
+                Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.
+                My vaši poptávku zkontrolujeme, pokud bude třeba, tak s vámi doladíme
+                a po jejím schválení ji rozešleme všem partnerům z dané kategorie.
+                Po 24 hodinách po tomto schálení se zobrazí i na tomto webu.
+              </p>
 
               <form
                 id="{{ acf_form_args.id }}"
@@ -45,7 +52,7 @@
                       __(
                         'Souhlasím se <a href="%s" target="_blank">zpracováním osobních údajů</a>',
                         'shp-obchodiste'
-                      )|format('https://www.google.com/')
+                      )|format('https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/')
                     }}
                     <span class="acf-required">*</span>
                   </label>
