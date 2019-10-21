@@ -14,8 +14,15 @@ $post = Timber::query_post();
 
 $context['post'] = $post;
 
+$context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = get_post_type_archive_link( 'request' );
+
 if ( $terms = $post->terms('category_requests') ) {
-  $context['term'] = $terms[0];
+  $term = $terms[0];
+  $context['term'] = $term;
+  $context['breadcrumbs'][ $term->name ] = $term->link;
 }
+
+$context['breadcrumbs'][ $post->title ] = $post->link;
+
 
 Timber::render( 'single-request.twig', $context );
