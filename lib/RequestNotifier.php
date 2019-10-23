@@ -32,6 +32,7 @@ class RequestNotifier
     $subject = __( 'Nová poptávka čeká na schválení', 'shp-partneri' );
 
     $context = Timber::get_context();
+    $context['post_admin_link'] = admin_url( sprintf( 'post.php?post=%s&action=edit', $post_id ) );
     $context['post'] = new Timber\Post( $post_id );
     $html_message = Timber::compile( $template, $context );
     
