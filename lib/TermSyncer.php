@@ -3,8 +3,8 @@
 class TermSyncer
 {
 
-  const TAX_BASE = 'category_professionals';
-  const TAX_TO_SYNC = 'category_requests';
+  const TAX_BASE = ProfessionalPost::TAXONOMY;
+  const TAX_TO_SYNC = RequestPost::TAXONOMY;
   const IMAGE_FIELD_KEY = 'field_59cab50932231';
 
   public static function init()
@@ -49,7 +49,6 @@ class TermSyncer
     $to_sync_terms = self::getTerms( self::TAX_TO_SYNC );
     foreach( $to_sync_terms as $term ) {
       $match = get_term_by( 'slug', $term->slug, self::TAX_BASE );
-      wp_die($to_sync_terms);
       if ( ! $match ) {
         wp_delete_term( $term->term_id, self::TAX_TO_SYNC );
       }

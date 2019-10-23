@@ -1,0 +1,17 @@
+Ahoj, Shoptet Partnere,
+<br><br>
+v kategorii {{ category_name }} přibyla nová poptávka, která tě může zajímat.
+Na poptávku můžeš jednoduše reagovat odpovědí na tento e-mail.
+<br><br>
+-----
+<br>
+{{ request_post.content|striptags('<br><p><a>') }}
+<br>
+-----
+<br><br>
+Honem! Díky tomu, že patříš mezi Shoptet Partnery,
+tak máš 24 hodin náskok než se poptávka zobrazí na webu.
+<br><br>
+Nechceš dostávat další poptávky, z kategorie {{ category_name }} kromě těch,
+které jdou z tvého profilu přímo tobě? Tak se odhlaš pomocí linku <a href="{{ unsubscribe_category_link }}">zde</a>.
+Samozřejmě nám v budoucnu můžeš napsat a opět ti poptávky aktivujeme.

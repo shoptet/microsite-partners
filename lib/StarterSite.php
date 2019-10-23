@@ -153,6 +153,9 @@ class StarterSite extends TimberSite {
       case 'pending':
       $request_state = __( 'Čeká na schválení', 'shp-partneri' );
       break;
+      case 'future':
+      $request_state = __( 'Naplánováno', 'shp-partneri' );
+      break;
     }
     return $request_state;
   }

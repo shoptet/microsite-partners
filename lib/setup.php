@@ -716,20 +716,6 @@ function handle_url_validation( $valid, $value ) {
   return $valid;
 }
 
-add_filter('acf/load_field/name=_post_title', function( $field ) {
-	$field['label'] = __( 'Nadpis poptávky', 'shp-partneri' );
-	$field['placeholder'] = __( 'Srozumitelný a jednoduchý popis problému, který chcete vyřešit', 'shp-partneri' );
-	return $field;
-} );
-
-add_filter('acf/load_field/name=_post_content', function( $field ) {
-	$field['label'] = __( 'Text poptávky' );
-	$field['required'] = true;
-	$field['type'] = 'textarea';
-	$field['rows'] = 10;
-	return $field;
-} );
-
 /**
  * Handle filtering and ordering wholesaler archive and category
  */
@@ -747,53 +733,6 @@ add_action('pre_get_posts', function( $wp_query ) {
 	$wp_query->set( 'posts_per_page', -1 );
 } );
 
-/**
- * Do not show is_shoptet checkbox label on frontend
- */
-add_filter('acf/load_field/key=field_5d9f2fbd8e64a', function( $field ) {
-	if ( ! is_admin() ) {
-		$field['label'] = '';
-	}
-	return $field;
-} );
-
-/**
- * Handle ajax wholesaler and product message request
- */
-add_action( 'wp_ajax_request_message', 'handle_request_message' );
-add_action( 'wp_ajax_nopriv_request_message', 'handle_request_message' );
-function handle_request_message() {
-
-  // Verify reCAPTCHA
-  $recaptcha_response = sanitize_text_field( $_POST[ 'g-recaptcha-response' ] );
-  $recaptcha = new \ReCaptcha\ReCaptcha( G_RECAPTCHA_SECRET_KEY );
-  $resp = $recaptcha->verify( $recaptcha_response, $_SERVER['REMOTE_ADDR'] );
-  if ( ! $resp->isSuccess() ) {
-    status_header( 403 );
-    die();
-	}
-	
-  // Sanitize message post data
-  $name = sanitize_text_field( $_POST[ 'name' ] );
-  $email = sanitize_email( $_POST[ 'email' ] );
-  $message = sanitize_textarea_field( $_POST[ 'message' ] );
-	$post_id = intval( $_POST[ 'post_id' ] );
-	
-  // WordPress comments blacklist check
-  $user_url = '';
-  $user_ip = $_SERVER['REMOTE_ADDR'];
-  $user_ip = preg_replace( '/[^0-9a-fA-F:., ]/', '', $user_ip );
-  $user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
-  $user_agent = substr( $user_agent, 0, 254 );
-  $is_blacklisted = wp_blacklist_check( $name, $email, $user_url, $message, $user_ip, $user_agent );
-
-  if ( $is_blacklisted ) {
-    wp_die();
-	}
-
-	wp_die($_POST);
-}
-
 // Notify admin about new request
 add_action( 'pending_request', function( $post_id, $post ) {
 	// TODO: send e-mail to admin
@@ -804,6 +743,12 @@ Timber::$dirname = array('templates', 'views');
 new StarterSite();
 
 TermSyncer::init();
+
+RequestNotifier::init();
+
+RequestForm::init();
+
+RequestService::init();
 
 function wp_getStats() {
    $cacheFile = 'wp-content/uploads/counters.cached';

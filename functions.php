@@ -2,7 +2,13 @@
 require __DIR__ . '/vendor/autoload.php';
 $includes = [
 	'lib/StarterSite.php',
+	'lib/Post.php',
+	'lib/ProfessionalPost.php',
 	'lib/TermSyncer.php',
+	'lib/RequestService.php',
+	'lib/RequestPost.php',
+	'lib/RequestNotifier.php',
+	'lib/RequestForm.php',
 	'lib/setup.php',
 	'lib/helpers.php',
 	'lib/cpt_posts.php',
