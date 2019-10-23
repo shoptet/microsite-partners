@@ -13,6 +13,8 @@ $context['breadcrumbs'] = [];
 $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = get_post_type_archive_link( 'request' );
 $context['breadcrumbs'][ $post->title ] = $post->link;
 
+$expiration_token = bin2hex( openssl_random_pseudo_bytes(16) );
+
 $acf_form_args_base = [
   'id' => 'acf-form',
   'post_id' => 'new_post',
@@ -21,6 +23,9 @@ $acf_form_args_base = [
   'new_post' => [
     'post_type' => 'request',
     'post_status' => 'pending',
+    'meta_input' => [
+      '_expiration_token' => $expiration_token,
+    ],
   ],
   'form' => false,
   'updated_message' => false,

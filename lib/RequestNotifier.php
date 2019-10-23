@@ -9,7 +9,7 @@ class RequestNotifier
     add_action( 'shp/request_service/approve', [ get_called_class(), 'approvedRequestAuthor' ] );
     add_action( 'shp/request_service/approve', [ get_called_class(), 'approvedRequestProfessionals' ] );
     add_action( 'shp/request_message/validate', [ get_called_class(), 'messageRequestAuthor' ], 10, 2 );
-    add_action( 'shp/request_post/expire', [ get_called_class(), 'expiredRequestAuthor' ] );
+    add_action( 'shp/request_service/expire', [ get_called_class(), 'expiredRequestAuthor' ] );
     add_action( 'xxx', [ get_called_class(), 'unsubscribeRequestPartner' ], 10, 2 );
   }
 
@@ -49,7 +49,7 @@ class RequestNotifier
     $subject = __( 'Děkujeme za vložení vaší poptávky. Koukněte co se bude dít dále.', 'shp-partneri' );
 
     $context = Timber::get_context();
-    $context['expire_link'] = $request_post->getAuthorExpireLink();
+    $context['expiration_link'] = $request_post->getExpirationURL();
     $html_message = Timber::compile( $template, $context );
     
     wp_mail( $author_email, $subject, $html_message, $headers );
@@ -66,7 +66,7 @@ class RequestNotifier
 
     $context = Timber::get_context();
     $context['term'] = $request_post->getTerm();
-    $context['expire_link'] = $request_post->getAuthorExpireLink();
+    $context['expiration_link'] = $request_post->getExpirationURL();
     $html_message = Timber::compile( $template, $context );
     
     wp_mail( $author_email, $subject, $html_message, $headers );
@@ -130,7 +130,7 @@ class RequestNotifier
 
     $context = Timber::get_context();
     $context['message'] = $message_arr;
-    $context['expire_link'] = $request_post->getAuthorExpireLink();
+    $context['expiration_link'] = $request_post->getExpirationURL();
     $html_message = Timber::compile( $template, $context );
     
     wp_mail( $author_email, $subject, $html_message, $headers );

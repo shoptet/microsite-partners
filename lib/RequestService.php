@@ -5,6 +5,7 @@ class RequestService
 
   static function init () {
     add_action( 'init', [ get_called_class(), 'registerPostStatus' ] );
+    add_action( 'init', [ get_called_class(), 'handleExpirationURL' ] );
     add_action( 'transition_post_status', [ get_called_class(), 'updatePreviousStatus' ], 10, 3 );
     add_action( 'pending_to_publish', [ get_called_class(), 'schedulePost' ] );
     add_action( 'acf/save_post', [ get_called_class(), 'notify' ], 20 );
@@ -22,6 +23,44 @@ class RequestService
       'label_count' => _n_noop( 'Expirováno <span class="count">(%s)</span>', 'Expirováno <span class="count">(%s)</span>' ),
     ];
     register_post_status( 'expired', $args );
+  }
+
+  static function handleExpirationURL() {
+    if( ! isset( $_GET['request_expiration_token'] ) || '' === $_GET['request_expiration_token'] ) return;
+    $request_expiration_token = $_GET['request_expiration_token'];
+
+    $request_post = RequestPost::getByExpirationToken( $request_expiration_token );
+
+    if( ! $request_post ) {
+      wp_die(
+        __( 'Vypadá to, že jste zadali neplatný odkaz. Zkuste to prosím znovu.', 'shp-partneri' ),
+        __( 'Neplatný odkaz', 'shp-partneri' )
+      );
+      return;
+    }
+
+    $post_status = get_post_status( $request_post->getID() );
+    if( ! in_array( $post_status, [ 'pending', 'future', 'publish' ] ) ) {
+      wp_die(
+        __( 'Poptávka je již expirována', 'shp-partneri' ),
+        __( 'Poptávka expirována', 'shp-partneri' )
+      );
+      return;
+    }
+
+    $postarr = [
+      'ID' => $request_post->getID(),
+      'post_status' => 'expired',
+    ];
+    wp_update_post( $postarr );
+    $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
+
+    wp_die(
+			__( 'Poptávka byla expirována', 'shp-partneri' ),
+			__( 'Poptávka expirována', 'shp-partneri' )
+    );
+
+    do_action( 'shp/request_service/expire', $request_post->getID() );    
   }
 
   static function updatePreviousStatus( $new_status, $old_status, $post ) {
