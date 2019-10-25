@@ -161,7 +161,7 @@ function cptui_register_my_cpts() {
 		"has_archive" => 'poptavky',
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
-		"exclude_from_search" => true,
+		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
 		"hierarchical" => false,
@@ -169,7 +169,6 @@ function cptui_register_my_cpts() {
 		"query_var" => true,
 		"menu_icon" => "dashicons-clipboard",
 		"supports" => array( "title", "editor", "revisions" ),
-		"taxonomies" => array( "category_requests" ),
 	);
 
 	register_post_type( "request", $args );

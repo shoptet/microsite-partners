@@ -24,16 +24,7 @@ $context['terms'] = Timber::get_terms('category_requests', [
   'hide_empty' => true,
 ]);
 
-$context['posts'] = new Timber\PostQuery( [
-  'post_type' => 'request',
-  'posts_per_page' => -1,
-  'tax_query' => [
-    [
-      'taxonomy' => 'category_requests',
-      'terms' => $term->id,
-    ],
-  ],
-] );
+$context['posts'] = new Timber\PostQuery();
 
 $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = get_post_type_archive_link( 'request' );
 $context['breadcrumbs'][ $term->name ] = $term->link;

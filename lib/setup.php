@@ -730,13 +730,8 @@ add_action('pre_get_posts', function( $wp_query ) {
 		)
 	) return;
 
-	$wp_query->set( 'posts_per_page', -1 );
+	$wp_query->set( 'posts_per_page', 10 );
 } );
-
-// Notify admin about new request
-add_action( 'pending_request', function( $post_id, $post ) {
-	// TODO: send e-mail to admin
-}, 10, 2 );
 
 Timber::$dirname = array('templates', 'views');
 
