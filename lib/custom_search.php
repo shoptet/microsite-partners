@@ -67,7 +67,7 @@ add_filter( 'posts_distinct', 'cf_search_distinct' );
 
 function search_filter($query) {
 
-	if (!is_admin() && is_search()) {
+	if (!is_admin() && is_search() && $query->is_main_query()) {
 		// Enlarge number of post in search results
 		$query->set('posts_per_page', 12);
 		// Include only custom posts
