@@ -18,17 +18,12 @@ class RequestPost extends Post
     return $term;
   }
 
-  public function getAuthorExpireLink() {
-    return 'expiration_link';
-  }
-
   public function getExpirationURL() {
     $onboarding_token = $this->getMeta( '_expiration_token' );
     return get_site_url( null, '?request_expiration_token=' . $onboarding_token );;
   }
 
   static public function getByExpirationToken( $expiration_token ) {
-    // Get all professionals in category
     $query = new WP_Query( [
       'post_type' => self::POST_TYPE,
       'posts_per_page' => 1,

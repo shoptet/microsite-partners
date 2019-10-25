@@ -42,8 +42,8 @@ class RequestService
     $post_status = get_post_status( $request_post->getID() );
     if( ! in_array( $post_status, [ 'pending', 'future', 'publish' ] ) ) {
       wp_die(
-        __( 'Poptávka je již expirována', 'shp-partneri' ),
-        __( 'Poptávka expirována', 'shp-partneri' )
+        __( 'Poptávka již byla expirována', 'shp-partneri' ),
+        __( 'Poptávka již expirována', 'shp-partneri' )
       );
       return;
     }
@@ -55,12 +55,12 @@ class RequestService
     wp_update_post( $postarr );
     $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
 
+    do_action( 'shp/request_service/expire', $request_post->getID() );    
+
     wp_die(
-			__( 'Poptávka byla expirována', 'shp-partneri' ),
+			__( 'Poptávka byla úspěšně expirována', 'shp-partneri' ),
 			__( 'Poptávka expirována', 'shp-partneri' )
     );
-
-    do_action( 'shp/request_service/expire', $request_post->getID() );    
   }
 
   static function updatePreviousStatus( $new_status, $old_status, $post ) {
@@ -157,7 +157,6 @@ class RequestService
     ];
 
     do_action( 'shp/request_message/validate', $post_id, $message_arr );
-
   }
 
 }
