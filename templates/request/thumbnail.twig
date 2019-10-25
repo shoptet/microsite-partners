@@ -21,7 +21,7 @@
           {% endif %}
 
           {% if post.author_name %}
-            <li class="list-inline-item" title="{{ __( 'Zadavatel', 'shp-partneri' ) }}">{{ post.author_name }}</span></li>
+            <li class="list-inline-item" title="{{ __( 'Zadavatel', 'shp-partneri' ) }}">{{ post.author_name|remove_lastname }}</span></li>
           {% endif %}
 
           {% if post.post_date %}

@@ -1,46 +1,59 @@
 <h2 class="mb-4">{{ __( 'Reakce na poptávku', 'shp-obchodiste' ) }}</h2>
 
-<form id="requestContactForm">
+{% if post.status != 'expired' %}
 
-  <div class="row">
+  <form id="requestContactForm">
 
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="required-asterisk" for="requestContactFormName">
-          {{ __( 'Jméno a příjmení', 'shp-obchodiste' ) }}
-        </label>
-        <input type="text" name="name" class="form-control" id="requestContactFormName" required>
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="required-asterisk" for="requestContactFormName">
+            {{ __( 'Jméno a příjmení', 'shp-obchodiste' ) }}
+          </label>
+          <input type="text" name="name" class="form-control" id="requestContactFormName" required>
+        </div>
       </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="required-asterisk" for="requestContactFormEmail">
+            {{ __( 'E-mail', 'shp-obchodiste' ) }}
+          </label>
+          <input type="email" name="email" class="form-control" id="requestContactFormEmail" required>
+        </div>
+      </div>
+
     </div>
 
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="required-asterisk" for="requestContactFormEmail">
-          {{ __( 'E-mail', 'shp-obchodiste' ) }}
-        </label>
-        <input type="email" name="email" class="form-control" id="requestContactFormEmail" required>
-      </div>
+    <div class="form-group">
+      <label class="required-asterisk" for="requestContactFormMessage">
+        {{ __( 'Text reakce', 'shp-obchodiste' ) }}
+      </label>
+      <textarea class="form-control" name="message" rows="10" id="requestContactFormMessage" required></textarea>
     </div>
 
-  </div>
+    <input type="hidden" name="post_id" value="{{ post.ID }}">
 
-  <div class="form-group">
-    <label class="required-asterisk" for="requestContactFormMessage">
-      {{ __( 'Text reakce', 'shp-obchodiste' ) }}
-    </label>
-    <textarea class="form-control" name="message" rows="10" id="requestContactFormMessage" required></textarea>
-  </div>
+    <div class="g-recaptcha mb-3" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
 
-  <input type="hidden" name="post_id" value="{{ post.ID }}">
+    <p class="text-danger d-none" id="requestContactFormError"></p>
 
-  <div class="g-recaptcha mb-3" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
+    <p class="text-success form-control-plaintext font-weight-bold d-none fs-120" id="requestContactFormSuccess"></p>
 
-  <p class="text-danger d-none" id="requestContactFormError"></p>
+    <button type="submit" class="btn btn-primary btn-lg">
+      {{ __( 'Odeslat', 'shp-obchodiste' ) }}
+    </button>
 
-  <p class="text-success form-control-plaintext font-weight-bold d-none fs-120" id="requestContactFormSuccess"></p>
+  </form>
 
-  <button type="submit" class="btn btn-primary btn-lg">
-    {{ __( 'Odeslat', 'shp-obchodiste' ) }}
-  </button>
+{% else %}
 
-</form>
+  <p>
+    Poptávka byla zadávajícím označena jako vyřízena, nelze na ni již reagovat.
+    Rychlejší přístup k&nbsp;novým objednávkám si můžete zajistit členstvím v&nbsp;Shoptet
+    Partneři, které je zdarma. Shoptet Partnerům zasíláme poptávky 24 hodin před
+    zveřejněním na webu.
+  </p>
+
+{% endif %}

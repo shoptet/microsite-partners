@@ -174,19 +174,17 @@ class StarterSite extends TimberSite {
     return $currency_i18n;
   }
 
-  // TODO: update diacritics
   function remove_lastname( $fullname ) {
+    $words = preg_split( '/\s+/', $fullname );
     $removed_lastname = '';
-    $name_parts = explode( ' ', $fullname );
-    for( $i = 0; $i < count( $name_parts ); $i++  ) {
-      $word = $name_parts[$i];
+    for( $i = 0; $i < count( $words ); $i++  ) {
+      $word = $words[$i];
       if( $i == 0 ) {
         $removed_lastname .= $word;
         continue;
       }
-      if( strlen( $word ) ) {
-        $removed_lastname .= ' ' . strtoupper( substr( $word, 0, 1 ) ) . '.';
-      }
+      $first_letter = mb_substr( $word, 0, 1 );
+      $removed_lastname .= ' ' . $first_letter . '.';
     }
     return $removed_lastname;
   }
