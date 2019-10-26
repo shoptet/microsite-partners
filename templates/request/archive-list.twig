@@ -14,7 +14,7 @@
 
           <div class="d-md-flex justify-content-between mb-3">
             <h1 class="h2 mb-3 mb-md-0">
-              {{ title ?: __( 'Přehled poptávek', 'shp-partneri' ) }}
+              {{ title }}
             </h1>
             <div class="ml-md-3">
               <a href="/nova-poptavka/" class="btn btn-primary">
@@ -32,13 +32,19 @@
             <p>{{ description }}</p>
           {% endif %}
 
+          {% include 'request/order.twig' %}          
+
         </div>
 
         {% for post in posts %}
           {% include 'request/thumbnail.twig' %}
         {% endfor %}
 
-			  {% include 'pagination.twig' with {class:'mt-4'} %}
+        <div class="text-muted text-right mt-3">
+          {{ __( 'Celkem %d z %d', 'shp-partneri' )|format( posts_count, posts_found ) }}
+        </div>
+
+			  {% include 'pagination.twig' with {class:'mt-3'} %}
 
       {% else %}
 

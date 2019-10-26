@@ -23,17 +23,32 @@ $context['posts'] = $posts = new Timber\PostQuery();
 $context['terms'] = Timber::get_terms('category_requests', [
   'hide_empty' => true,
 ]);
-
 $archive_link = get_post_type_archive_link( 'request' );
-
 $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = $archive_link;
-
 $context['pagination'] = Timber::get_pagination();
 
-$context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $archive_link : $archive_link . 'strana/' . $context['pagination']['current'];
+if( is_tax() ) {
+  $term = new Timber\Term();
+  $context['term'] = $term;
+  $context['title'] = $term->name . __( ' poptávky', 'shp-partneri' );
+  $context['breadcrumbs'][ $term->name ] = $term->link;
+  $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . 'strana/' . $context['pagination']['current'];
+  $context['meta_description'] = $term->description;
+  $context['description'] = $term->description;
+} else {
+  $context['title'] = __( 'Přehled poptávek', 'shp-partneri' );
+  $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $archive_link : $archive_link . 'strana/' . $context['pagination']['current'];
+  $context['description'] = __( 'Víte co potřebujete, ale nechcete hledat konkrétního Shoptet Partnera? Zadejte si poptávku zdarma a jen čekejte na první nabídky.', 'shp-partneri' );
+  $context['meta_description'] = $context['description'];
+}
 
-$context['meta_description'] = '';
+$context['posts_count'] = $wp_query->post_count;
+$context['posts_found'] = $wp_query->found_posts;
 
-$context['description'] = __( 'Víte co potřebujete, ale nechcete hledat konkrétního Shoptet Partnera? Zadejte si poptávku zdarma a jen čekejte na první nabídky.', 'shp-partneri' );
+$context['order_choices'] = [
+  'date_desc' => __( 'Nejnověji přidáno', 'shp-partneri' ),
+  'date_asc' => __( 'Nejpozději přidáno', 'shp-partneri' ),
+];
+$context['selected_orderby'] = isset( $_GET[ 'orderby' ] ) ? $_GET[ 'orderby' ] : null;
 
 Timber::render( 'archive-request.twig', $context );

@@ -51,6 +51,7 @@ class StarterSite extends TimberSite {
     $twig->addFilter('date_i18n', new Twig_SimpleFilter('date_i18n', array($this, 'date_i18n')));
     $twig->addFilter('request_state', new Twig_SimpleFilter('request_state', array($this, 'request_state')));
     $twig->addFilter('remove_lastname', new Twig_SimpleFilter('remove_lastname', array($this, 'remove_lastname')));
+    $twig->addFilter('posts_in_term', new Twig_SimpleFilter('posts_in_term', array($this, 'posts_in_term')));
     return $twig;
   }
 
@@ -187,5 +188,21 @@ class StarterSite extends TimberSite {
       $removed_lastname .= ' ' . $first_letter . '.';
     }
     return $removed_lastname;
+  }
+
+  function posts_in_term( $term ) {
+    $query = new WP_Query( [
+      'post_type' => 'request',
+      'posts_per_page' => -1,
+      'post_status' => [ 'publish', 'expired' ],
+      'fields' => 'ids',
+      'tax_query' => [
+        [
+          'taxonomy' => $term->taxonomy,
+          'terms' => $term->term_id,
+        ]
+      ],
+    ] );
+    return $query->found_posts;
   }
 }

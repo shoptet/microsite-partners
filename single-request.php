@@ -18,6 +18,7 @@ $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = get_post_type_arc
 
 $request_post = new RequestPost( $post->ID );
 if ( $term = $request_post->getTerm() ) {
+  $term = new Timber\Term( $term );
   $context['term'] = $term;
   $context['breadcrumbs'][ $term->name ] = $term->link;
 }

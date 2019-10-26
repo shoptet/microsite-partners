@@ -25,7 +25,12 @@
           {% endif %}
 
           {% if post.post_date %}
-            <li class="list-inline-item"><time datetime="{{ post.post_date|date('c') }}" title="{{ __( 'Zveřejnění', 'shp-partneri' ) }}">{{ post.post_date|date_i18n }}</time></li>
+            <li class="list-inline-item">
+              <time datetime="{{ post.post_date|date('c') }}" title="{{ __( 'Zveřejnění', 'shp-partneri' ) }}">{{ post.post_date|date_i18n }}</time>
+              {% if post.status == 'expired' %}
+                ({{ __( 'Expirovaná', 'shp-partneri' ) }})
+              {% endif %}
+            </li>
           {% endif %}
         </ul>
 

@@ -5,6 +5,7 @@ $includes = [
 	'lib/Post.php',
 	'lib/ProfessionalPost.php',
 	'lib/TermSyncer.php',
+	'lib/RequestArchive.php',
 	'lib/RequestService.php',
 	'lib/RequestPost.php',
 	'lib/RequestNotifier.php',

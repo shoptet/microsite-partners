@@ -1,0 +1,19 @@
+<form class="form-inline">
+  <div class="form-group mb-0">
+    <label for="orderSelect">
+      {{ __( 'Seřadit podle:', 'shp-partneri' ) }}
+    </label>
+    <select class="form-control custom-select ml-sm-2 mr-sm-4" id="orderSelect" name="orderby" onchange="this.form.submit()">
+      {% for key, title in  order_choices %}
+        <option
+          value="{{ key }}"
+          {% if ( selected_orderby == key ) %}
+            selected
+          {% endif %}
+        >
+          {{ title }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</form>
