@@ -22,4 +22,12 @@ class Post
     return get_post_meta( $this->post_id, $key, $single );
   }
 
+  public function setStatus( $status ) {
+    $postarr = [
+      'ID' => $this->getID(),
+      'post_status' => $status,
+    ];
+    wp_update_post( $postarr );
+  } 
+
 }

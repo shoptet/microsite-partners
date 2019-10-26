@@ -3,6 +3,9 @@
 class RequestService
 {
 
+  const EXPIRATION_TIME = '-15 minutes'; // TODO: change to -90 days
+  const EXPIRATION_CHECK_RECURRENCE = 'one_minute'; // TODO: change to twicedaily
+
   static function init () {
     add_action( 'init', [ get_called_class(), 'registerPostStatus' ] );
     add_action( 'init', [ get_called_class(), 'handleExpirationURL' ] );
@@ -11,13 +14,18 @@ class RequestService
     add_action( 'acf/save_post', [ get_called_class(), 'notify' ], 20 );
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
+    add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
+
+    if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
+      wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
+    }
   }
 
   static function registerPostStatus() {
     $args = [
       'label' => __( 'Expirováno', 'shp-partneri' ),
       'public' => true,
-      'show_in_admin_all_list' => false,
+      'show_in_admin_all_list' => true,
       'show_in_admin_status_list' => true,
       'post_type' => [ RequestPost::POST_TYPE ],
       'label_count' => _n_noop( 'Expirováno <span class="count">(%s)</span>', 'Expirováno <span class="count">(%s)</span>' ),
@@ -48,11 +56,7 @@ class RequestService
       return;
     }
 
-    $postarr = [
-      'ID' => $request_post->getID(),
-      'post_status' => 'expired',
-    ];
-    wp_update_post( $postarr );
+    $request_post->setStatus( 'expired' );
     $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
 
     do_action( 'shp/request_service/expire', $request_post->getID() );    
@@ -61,6 +65,25 @@ class RequestService
 			__( 'Poptávka byla úspěšně expirována', 'shp-partneri' ),
 			__( 'Poptávka expirována', 'shp-partneri' )
     );
+  }
+
+  function expirationCheck() {
+    // Get all requests to expire
+    $query = new WP_Query( [
+      'post_type' => 'request',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      'date_query' => [
+        'before' => self::EXPIRATION_TIME,
+      ],
+    ] );
+
+    // Set status to expired
+    foreach( $query->posts as $post ) {
+      $request_post = new RequestPost( $post->ID );
+      $request_post->setStatus( 'expired' );
+      $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
+    }
   }
 
   static function updatePreviousStatus( $new_status, $old_status, $post ) {
