@@ -20,9 +20,7 @@ $context = Timber::get_context();
 
 $context['posts'] = $posts = new Timber\PostQuery();
 
-$context['terms'] = Timber::get_terms('category_requests', [
-  'hide_empty' => true,
-]);
+$context['terms'] = Timber::get_terms( RequestPost::TAXONOMY );
 $archive_link = get_post_type_archive_link( 'request' );
 $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = $archive_link;
 $context['pagination'] = Timber::get_pagination();
