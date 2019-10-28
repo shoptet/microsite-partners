@@ -5,3 +5,8 @@
 .btn-facebook {
   @include button-variant($brand-facebook, $brand-facebook);
 }
+
+.btn-input {
+  @include button-variant($input-bg, $input-border-color, darken($input-bg, 7.5%), $input-border-color);
+  color: $gray-600;
+}
