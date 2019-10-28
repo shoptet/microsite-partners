@@ -35,7 +35,7 @@ class StarterSite extends TimberSite {
     $context['options'] = get_fields('options');
     $context['config'] = [];
     $context['config']['G_RECAPTCHA_SITE_KEY'] = G_RECAPTCHA_SITE_KEY;
-    $context['link']['archive']['request'] = get_post_type_archive_link( 'request' );
+    $context['link']['request']['archive'] = get_post_type_archive_link( 'request' );
     $context['request_posts_count'] = wp_count_posts( 'request' );
     return $context;
   }

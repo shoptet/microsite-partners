@@ -62,3 +62,22 @@
     background-color: $orange;
   }
 }
+
+.row-profile-type-requests {
+  .row-profile-type-container {
+    max-width: rem-calc(825px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .row-profile-type-header {
+    max-width: rem-calc(600px);
+    margin: 0 auto;
+  }
+
+  .row-profile-type-title {    
+    &::before {
+      content: none;
+    }
+  }
+}

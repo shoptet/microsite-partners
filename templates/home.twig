@@ -32,6 +32,44 @@
 		</div>
 	{% endif %}
 
+	<div class="row-profile-type row-profile-type-requests">
+			<div class="container">
+
+				<div class="row-profile-type-container">
+
+					<div class="row-profile-type-header text-center">
+
+						<h2 class="row-profile-type-title"><a href="{{ link.request.archive }}">Poptávky</a></h2>
+
+						<p class="mb-5">
+							Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet Partnera?
+							Zadejte si poptávku zdarma a jen čekejte na první nabídky.
+						</p>
+
+					</div>
+
+					{% for post in recent_request_posts %}
+						{% include 'request/thumbnail.twig' %}
+					{% endfor %}
+
+					<ul class="list-inline mt-3 text-center text-sm-right">
+						<li class="list-inline-item mt-2">
+							<a href="/nova-poptavka/" class="btn btn-link">
+								{{ __( 'Vložit vlastní poptávku', 'shp-partneri' ) }}
+							</a>
+						</li>
+						<li class="list-inline-item mt-2">
+							<a href="{{ link.request.archive }}" class="btn btn-primary">
+								{{ __( 'Prohlédnout poptávky', 'shp-partneri' ) }}
+							</a>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+		</div>
+
 	{% if show_category_plugins %}
 		<div class="row-profile-type row-profile-type-plugins">
 			<div class="container">
