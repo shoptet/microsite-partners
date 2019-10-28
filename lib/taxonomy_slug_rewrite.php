@@ -35,7 +35,7 @@ function taxonomy_slug_rewrite($wp_rewrite) {
     // merge with global rules
     $wp_rewrite->rules = $rules + $wp_rewrite->rules;
 }
-add_filter('gsenerate_rewrite_rules', 'taxonomy_slug_rewrite');
+add_filter('generate_rewrite_rules', 'taxonomy_slug_rewrite');
 
 /*
  * Rewrite Pagination slug rules
