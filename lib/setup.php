@@ -18,6 +18,18 @@ if ( ! class_exists( 'Timber' ) ) {
 }
 
 /**
+ * Do not show professional category field in wp admin
+ */
+add_filter( 'acf/load_field/key=field_5d10a24f0b5e7', function( $field ) {
+	global $post, $pagenow;
+  if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'profesionalove' === $post->post_type ) {
+		$field = NULL;
+	}
+	return $field;
+} );
+
+
+/**
  * Add cron schedule interval options
  */
 add_filter( 'cron_schedules', function ( $schedules ) {
