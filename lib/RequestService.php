@@ -3,7 +3,8 @@
 class RequestService
 {
 
-  const EXPIRATION_TIME = '-15 minutes'; // TODO: change to -90 days
+  const PUBLISH_AFTER = '+5 minutes'; // TODO: change to +24 hours
+  const EXPIRATION_TIME = '-5 minutes'; // TODO: change to -90 days
   const EXPIRATION_CHECK_RECURRENCE = 'one_minute'; // TODO: change to twicedaily
 
   static function init () {
@@ -98,7 +99,7 @@ class RequestService
     if( RequestPost::POST_TYPE != get_post_type( $post->ID ) ) return;
 
     $date_format = 'Y-m-d H:i:s';
-    $time = '+24 hours';
+    $time = self::PUBLISH_AFTER;
     $current_time = current_time( 'timestamp', false );
     $current_time_gmt = current_time( 'timestamp', true );
     $future_date = strtotime( $time, $current_time );

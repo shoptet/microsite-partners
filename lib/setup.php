@@ -819,6 +819,19 @@ function wpcf7_dynamic_recipient_filter($recipient, $args=array()) {
 }
 add_filter('wpcf7-dynamic-recipient-filter', 'wpcf7_dynamic_recipient_filter', 10, 2);
 
+// Do not show image field only in professional edit page
+add_filter( 'acf/load_field/key=field_5d10c3f29b87b' , function( $field ) {
+	global $pagenow;
+	if (
+		'post.php' == $pagenow &&
+		isset( $_GET['post'] ) &&
+		'profesionalove' == get_post_type( $_GET['post'] )
+	) {
+		return false;
+	}
+	return $field;
+} );
+
 add_filter( 'wpcf7_load_js', '__return_false' );
 
 add_action( 'wp_footer', function() {
