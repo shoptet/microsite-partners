@@ -25,4 +25,6 @@ if ( $term = $request_post->getTerm() ) {
 
 $context['breadcrumbs'][ $post->title ] = $post->link;
 
+$context['meta_description'] = $post->content;
+
 Timber::render( 'single-request.twig', $context );
