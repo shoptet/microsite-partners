@@ -53,10 +53,12 @@ import 'font-awesome-svg-png/black/svg/instagram.svg';
 import 'font-awesome-svg-png/black/svg/plus-circle.svg';
 
 import { initRequestMessage } from './request-message';
+import { initRecaptchaRequired } from './recaptcha-required';
 
 $(function () {
 
   initRequestMessage();
+  initRecaptchaRequired();
 
   $.fn.shpResponsiveNavigation = function() {
     return this.each(function() {

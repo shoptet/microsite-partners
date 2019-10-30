@@ -11,7 +11,8 @@ class RequestForm
     add_filter( 'acf/load_field/name=_post_content', [ get_called_class(), 'loadPostContentField' ] );
     add_filter( 'acf/load_field/key=' . self::IS_SHOPTET_FIELD_KEY , [ get_called_class(), 'loadIsShoptetField' ] );
 
-    add_action( 'acf/save_post', [ get_called_class(), 'saveForm' ], 15 );
+    add_action( 'acf/save_post', [ get_called_class(), 'verifyForm' ], 5 ); // before acf post data saved
+    add_action( 'acf/save_post', [ get_called_class(), 'saveForm' ], 15 ); // after acf post data saved
   }
 
   public static function loadPostTitleField( $field )
@@ -30,6 +31,7 @@ class RequestForm
       $field['required'] = true;
       $field['type'] = 'textarea';
       $field['rows'] = 10;
+      $field['maxlength'] = '';
     }
     return $field;
   }
@@ -41,6 +43,21 @@ class RequestForm
       $field['label'] = '';
     }
     return $field;
+  }
+
+  public static function verifyForm( $post_id ) {
+    if (
+      'request' == get_post_type( $post_id ) &&
+      is_page_template( self::REQUEST_FORM_TEMPLATE ) &&
+      ! verify_recaptcha()
+    ) {
+      wp_delete_post( $post_id, true );
+      wp_die(
+        'ReCaptcha not verified',
+        'ReCaptcha not verified',
+        [ 'response' => 403 ]
+      );
+    }
   }
 
   public static function saveForm( $post_id )

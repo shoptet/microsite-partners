@@ -86,9 +86,7 @@ class StarterSite extends TimberSite {
     $filePath = get_template_directory() . $fileName;
     wp_enqueue_script( 'main', $fileUrl, array('vendor'), filemtime($filePath), true );
 
-    if ( is_singular( 'request' ) ) {
-      wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );
-    }
+    wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );
 
     wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js' );
     

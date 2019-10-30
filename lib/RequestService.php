@@ -68,7 +68,7 @@ class RequestService
     );
   }
 
-  function expirationCheck() {
+  static function expirationCheck() {
     // Get all requests to expire
     $query = new WP_Query( [
       'post_type' => 'request',
@@ -138,17 +138,16 @@ class RequestService
     }
   }
 
-  function handleMessage() {
+  static function handleMessage() {
 
-    // Verify reCAPTCHA
-    $recaptcha_response = sanitize_text_field( $_POST[ 'g-recaptcha-response' ] );
-    $recaptcha = new \ReCaptcha\ReCaptcha( G_RECAPTCHA_SECRET_KEY );
-    $resp = $recaptcha->verify( $recaptcha_response, $_SERVER['REMOTE_ADDR'] );
-    if ( ! $resp->isSuccess() ) {
-      status_header( 403 );
-      die();
+    if ( ! verify_recaptcha() ) {
+      wp_die(
+        'ReCaptcha not verified',
+        'ReCaptcha not verified',
+        [ 'response' => 403 ]
+      );
     }
-    
+
     // Sanitize message post data
     $name = sanitize_text_field( $_POST[ 'name' ] );
     $email = sanitize_email( $_POST[ 'email' ] );
@@ -157,7 +156,11 @@ class RequestService
 
     // Check correct post status
     if ( 'publish' != get_post_status( $post_id ) ) {
-      wp_die();
+      wp_die(
+        'Not correct post',
+        'Not correct post',
+        [ 'response' => 403 ]
+      );
       return;
     }
     
