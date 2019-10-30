@@ -18,16 +18,20 @@ if ( ! class_exists( 'Timber' ) ) {
 }
 
 /**
- * Do not show professional category field in wp admin
+ * Do not show professional category and image field in wp admin
  */
-add_filter( 'acf/load_field/key=field_5d10a24f0b5e7', function( $field ) {
+add_filter( 'acf/load_field/key=field_5d10a24f0b5e7', 'hide_field_in_admin' );
+add_filter( 'acf/load_field/key=field_5d10c3f29b87b', 'hide_field_in_admin' );
+function hide_field_in_admin( $field ) {
 	global $post, $pagenow;
-  if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'profesionalove' === $post->post_type ) {
-		$field = NULL;
+  if (
+		( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) &&
+		ProfessionalPost::POST_TYPE === $post->post_type
+	) {
+		$field = false;
 	}
 	return $field;
-} );
-
+}
 
 /**
  * Add cron schedule interval options
@@ -830,19 +834,6 @@ function wpcf7_dynamic_recipient_filter($recipient, $args=array()) {
     return $recipient;
 }
 add_filter('wpcf7-dynamic-recipient-filter', 'wpcf7_dynamic_recipient_filter', 10, 2);
-
-// Do not show image field only in professional edit page
-add_filter( 'acf/load_field/key=field_5d10c3f29b87b' , function( $field ) {
-	global $pagenow;
-	if (
-		'post.php' == $pagenow &&
-		isset( $_GET['post'] ) &&
-		'profesionalove' == get_post_type( $_GET['post'] )
-	) {
-		return false;
-	}
-	return $field;
-} );
 
 add_filter( 'wpcf7_load_js', '__return_false' );
 
