@@ -38,7 +38,7 @@
                 Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.
                 My vaši poptávku zkontrolujeme, pokud bude třeba, tak s vámi doladíme
                 a po jejím schválení ji rozešleme všem partnerům z dané kategorie.
-                Po 24 hodinách po tomto schálení se zobrazí i na tomto webu.
+                Po 24 hodinách po tomto schválení se zobrazí i na tomto webu.
               </p>
 
               <form
@@ -53,18 +53,14 @@
 
                 {{ function('acf_form', acf_form_args.bottom) }}
 
-                <div>
-                  <input type="checkbox" id="defaultCheck1" required>
-                  <label class="required" for="defaultCheck1">
-                    {{
-                      __(
-                        'Souhlasím se <a href="%s" target="_blank">zpracováním osobních údajů</a>',
-                        'shp-obchodiste'
-                      )|format('https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/')
-                    }}
-                    <span class="acf-required">*</span>
-                  </label>
-                </div>
+                <p>
+                  {{
+                    __(
+                      'Odesláním poptávky souhlasím se <a href="%s" target="_blank">zpracováním osobních údajů</a>',
+                      'shp-obchodiste'
+                    )|format('https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/')
+                  }}
+                </p>
 
                 <div class="g-recaptcha g-recaptcha-required mt-2" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
 
