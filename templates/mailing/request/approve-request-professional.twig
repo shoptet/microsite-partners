@@ -4,9 +4,44 @@ v kategorii {{ category_name }} přibyla nová poptávka, která tě může zaj�
 Na poptávku můžeš jednoduše reagovat odpovědí na tento e-mail.
 <br><br>
 -----
-<br>
-{{ request_post.content|striptags('<br><p><a>') }}
-<br>
+<br><br>
+
+{% if request_post.title %}
+  Název poptávky:<br>
+  {{ request_post.title }}
+  <br><br>
+{% endif %}
+
+{% if request_post.content %}
+  Text poptávky:<br>
+  {{ request_post.content|striptags('<br><p><a>') }}
+  <br>
+{% endif %}
+
+{% if request_post.terms is not empty %}
+  Kategorie:
+  {{ request_post.terms.0.name }}
+  <br><br>
+{% endif %}
+
+{% if request_post.author_name %}
+  Zadavatel:
+  {{ request_post.author_name|remove_lastname }}
+  {% if request_post.author_email %}
+    ({{ request_post.author_email }})
+  {% endif %}
+  <br><br>
+{% endif %}
+
+{% if request_post.url %}
+  URL projektu:
+  <a href="{{ request_post.url|ensure_protocol }}" target="_blank">{{ request_post.url|display_url }}</a>
+  {% if request_post.is_shoptet %}
+    (Provozováno na Shoptet)
+  {% endif %}
+  <br><br>
+{% endif %}
+
 -----
 <br><br>
 Honem! Díky tomu, že patříš mezi Shoptet Partnery,
