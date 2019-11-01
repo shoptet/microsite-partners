@@ -20,16 +20,16 @@
 
       <ul class="list-unstyled mb-0">
         <li>
-          <a class="filter-link" href="{{ link.request.archive }}">
+          <a class="filter-link" href="{{ link.request.archive|keep_query_string }}">
             {{ __( 'Všechny poptávky', 'shp-obchodiste' ) }}
-            <span class="text-semilight">({{ request_posts_count.publish + request_posts_count.expired }})</span>
+            <span class="text-semilight">({{ filterby == 'active' ? request_posts_count.publish : request_posts_count.publish + request_posts_count.expired }})</span>
           </a>
         </li>
         {% for t in terms if t|posts_in_term %}
           <li>
-            <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link }}">
+            <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link|keep_query_string }}">
               {{ t.name }}
-              <span class="text-semilight">({{ t|posts_in_term }})</span>
+              <span class="text-semilight">({{ filterby == 'active' ? t|posts_in_term(['publish']): t|posts_in_term }})</span>
             </a>
           </li>
         {% endfor %}
