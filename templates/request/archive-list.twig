@@ -8,33 +8,33 @@
     {% endif %}
     <div class="col-12 col-md-8 col-lg-9">
 
-      {% if posts is not empty %}
+      <div class="mb-4">
 
-        <div class="mb-4">
-
-          <div class="d-md-flex justify-content-between mb-3">
-            <h1 class="h2 mb-3 mb-md-0">
-              {{ title }}
-            </h1>
-            <div class="ml-md-3">
-              <a href="/nova-poptavka/" class="btn btn-primary">
-                <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                {{ __( 'Přidat poptávku', 'shp-partneri' ) }}
-              </a>
-            </div>
+        <div class="d-md-flex justify-content-between mb-3">
+          <h1 class="h2 mb-3 mb-md-0">
+            {{ title }}
+          </h1>
+          <div class="ml-md-3">
+            <a href="/nova-poptavka/" class="btn btn-primary">
+              <i class="fas fa-plus-circle" aria-hidden="true"></i>
+              {{ __( 'Přidat poptávku', 'shp-partneri' ) }}
+            </a>
           </div>
-
-          <div class="mb-3">
-            {% include 'breadcrumb.twig' %}
-          </div>
-
-          {% if description %}
-            <p>{{ description }}</p>
-          {% endif %}
-
-          {% include 'request/filter.twig' %}          
-
         </div>
+
+        <div class="mb-3">
+          {% include 'breadcrumb.twig' %}
+        </div>
+
+        {% if description %}
+          <p>{{ description }}</p>
+        {% endif %}
+
+        {% include 'request/filter.twig' %}          
+
+      </div>
+
+      {% if posts is not empty %}
 
         {% for post in posts %}
           {% include 'request/thumbnail.twig' %}
@@ -48,12 +48,16 @@
 
       {% else %}
 
-        <p class="h3 mb-2">
-          {{ __( 'Nemůžeme najít žádné poptávky s těmito požadavky', 'shp-partneri' ) }}
-        </p>
-        <p>
-          {{ __( 'Zkuste prosím vybrat jinou kategorii.', 'shp-partneri' ) }}
-        </p>
+        <div class="border-top pt-5">
+
+          <p class="h3 mb-2">
+            {{ __( 'Nemůžeme najít žádné poptávky s těmito požadavky', 'shp-partneri' ) }}
+          </p>
+          <p>
+            {{ __( 'Zkuste prosím vybrat jinou kategorii.', 'shp-partneri' ) }}
+          </p>
+
+        </div>
 
       {% endif %}
 
