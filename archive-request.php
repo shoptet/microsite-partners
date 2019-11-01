@@ -44,9 +44,10 @@ $context['posts_count'] = $wp_query->post_count;
 $context['posts_found'] = $wp_query->found_posts;
 
 $context['order_choices'] = [
-  'date_desc' => __( 'Nejnověji přidáno', 'shp-partneri' ),
-  'date_asc' => __( 'Nejpozději přidáno', 'shp-partneri' ),
+  'date_desc' => __( 'Nejnovějších', 'shp-partneri' ),
+  'date_asc' => __( 'Nejstarších', 'shp-partneri' ),
 ];
-$context['selected_orderby'] = isset( $_GET[ 'orderby' ] ) ? $_GET[ 'orderby' ] : null;
+$context['orderby'] = isset( $_GET[ 'orderby' ] ) ? $_GET[ 'orderby' ] : null;
+$context['filterby'] = isset( $_GET[ 'filterby' ] ) ? $_GET[ 'filterby' ] : null;
 
 Timber::render( 'archive-request.twig', $context );

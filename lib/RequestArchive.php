@@ -42,8 +42,13 @@ class RequestArchive
     }
 
     // Sort by date ascending
-    if( $query == [ 'date', 'asc' ] ) {
+    if( $query != [ 'date', 'desc' ] ) {
       $this->wp_query->set( 'orderby', [ 'meta_value_num' => 'desc', 'post_date' => $query[1] ] );
+    }
+
+    // Filter by publish posts
+    if( isset( $_GET[ 'filterby' ] ) && 'active' == $_GET[ 'filterby' ] ) {
+      $this->wp_query->set( 'post_status', 'publish' );
     }
   }
 

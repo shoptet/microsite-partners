@@ -54,11 +54,13 @@ import 'font-awesome-svg-png/black/svg/plus-circle.svg';
 
 import { initRequestMessage } from './request-message';
 import { initRecaptchaRequired } from './recaptcha-required';
+import { initRequestArchiveFilter } from './request-archive-filter';
 
 $(function () {
 
   initRequestMessage();
   initRecaptchaRequired();
+  initRequestArchiveFilter();
 
   $.fn.shpResponsiveNavigation = function() {
     return this.each(function() {
