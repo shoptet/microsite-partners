@@ -12,6 +12,7 @@ class RequestService
     add_action( 'shp/request_service/url_action', [ get_called_class(), 'handleURLAction' ] );
     add_action( 'transition_post_status', [ get_called_class(), 'updatePreviousStatus' ], 10, 3 );
     add_action( 'pending_to_publish', [ get_called_class(), 'schedulePost' ] );
+    add_action( 'expired_to_publish', [ get_called_class(), 'setExpiredPostStatus' ] );
     add_action( 'acf/save_post', [ get_called_class(), 'notify' ], 20 );
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
@@ -108,6 +109,12 @@ class RequestService
       'post_date_gmt' => $formated_future_date_gmt,
     ];
     wp_update_post( $postarr );
+  }
+
+  static function setExpiredPostStatus( $post ) {
+    if( RequestPost::POST_TYPE != get_post_type( $post->ID ) ) return;
+    $request_post = new RequestPost( $post->ID );
+    $request_post->setStatus('expired');
   }
 
   static function notify( $post_id ) {
