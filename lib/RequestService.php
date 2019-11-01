@@ -9,7 +9,7 @@ class RequestService
 
   static function init () {
     add_action( 'init', [ get_called_class(), 'registerPostStatus' ] );
-    add_action( 'init', [ get_called_class(), 'handleExpirationURL' ] );
+    add_action( 'shp/request_service/url_action', [ get_called_class(), 'handleURLAction' ] );
     add_action( 'transition_post_status', [ get_called_class(), 'updatePreviousStatus' ], 10, 3 );
     add_action( 'pending_to_publish', [ get_called_class(), 'schedulePost' ] );
     add_action( 'acf/save_post', [ get_called_class(), 'notify' ], 20 );
@@ -34,20 +34,14 @@ class RequestService
     register_post_status( 'expired', $args );
   }
 
-  static function handleExpirationURL() {
-    if( ! isset( $_GET['request_expiration_token'] ) || '' === $_GET['request_expiration_token'] ) return;
-    $request_expiration_token = $_GET['request_expiration_token'];
-
-    $request_post = RequestPost::getByExpirationToken( $request_expiration_token );
-
-    if( ! $request_post ) {
-      wp_die(
-        __( 'Vypadá to, že jste zadali neplatný odkaz. Zkuste to prosím znovu.', 'shp-partneri' ),
-        __( 'Neplatný odkaz', 'shp-partneri' )
-      );
-      return;
+  static function handleURLAction( $post_id ) {
+    if( isset( $_GET['action'] ) && 'expire' == $_GET['action'] ) {
+      self::expire( $post_id );
     }
+  }
 
+  static function expire( $post_id ) {
+    $request_post = new RequestPost( $post_id );
     $post_status = get_post_status( $request_post->getID() );
     if( ! in_array( $post_status, [ 'pending', 'future', 'publish' ] ) ) {
       wp_die(
@@ -129,13 +123,7 @@ class RequestService
       return;
     }
 
-    if (
-      ! $request_post->getMeta( '_notification_sent' ) &&
-      $request_post->getMeta( 'author_email' )
-    ) {
-      do_action( 'shp/request_service/approve', $post_id );
-      $request_post->setMeta( '_notification_sent', true );
-    }
+    do_action( 'shp/request_service/approve', $post_id );
   }
 
   static function handleMessage() {

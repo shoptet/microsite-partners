@@ -10,7 +10,7 @@ class RequestNotifier
     add_action( 'shp/request_service/approve', [ get_called_class(), 'approvedRequestProfessionals' ] );
     add_action( 'shp/request_message/validate', [ get_called_class(), 'messageRequestAuthor' ], 10, 2 );
     add_action( 'shp/request_service/expire', [ get_called_class(), 'expiredRequestAuthor' ] );
-    add_action( 'xxx', [ get_called_class(), 'unsubscribeRequestPartner' ], 10, 2 );
+    add_action( 'shp/professional_service/unsubscribe', [ get_called_class(), 'unsubscribeRequestPartner' ] );
   }
 
   static function getDefaultEmailHeaders() {
@@ -49,7 +49,7 @@ class RequestNotifier
     $subject = __( 'Děkujeme za vložení vaší poptávky. Koukněte co se bude dít dále.', 'shp-partneri' );
 
     $context = Timber::get_context();
-    $context['expiration_link'] = $request_post->getExpirationURL();
+    $context['expiration_link'] = $request_post->getAuthTokenURL( [ 'action' => 'expire' ] );
     $html_message = Timber::compile( $template, $context );
     
     wp_mail( $author_email, $subject, $html_message, $headers );
@@ -61,12 +61,22 @@ class RequestNotifier
 
     $request_post = new RequestPost( $post_id );
     $author_email = $request_post->getMeta( 'author_email' );
+    $term =  $request_post->getTerm();
+
+    if( ! $author_email ) {
+      throw new Exception( 'No author e-mail at a request post with ID ' . $post_id );
+    }
+
+    if( ! $term ) {
+      throw new Exception( 'No term related to a request post with ID ' . $post_id );
+    }
+
     $headers = self::getDefaultEmailHeaders();
     $subject = __( 'Vaše poptávka byla schválena. Držíme palce ať si vyberete toho nejlepšího partnera.', 'shp-partneri' );
 
     $context = Timber::get_context();
-    $context['term'] = $request_post->getTerm();
-    $context['expiration_link'] = $request_post->getExpirationURL();
+    $context['term'] = $term;
+    $context['expiration_link'] = $request_post->getAuthTokenURL( [ 'action' => 'expire' ] );
     $html_message = Timber::compile( $template, $context );
     
     wp_mail( $author_email, $subject, $html_message, $headers );
@@ -77,20 +87,24 @@ class RequestNotifier
     $template = 'templates/mailing/request/approve-request-professional.twig';
 
     $request_post = new RequestPost( $post_id );
+    
+    if ( $request_post->getMeta( '_notification_sent' ) ) {
+      return;
+    }
+
     $author_email = $request_post->getMeta( 'author_email' );
+    $term =  $request_post->getTerm();
 
     if( ! $author_email ) {
       throw new Exception( 'No author e-mail at a request post with ID ' . $post_id );
     }
 
-    $headers = self::getDefaultEmailHeaders();
-    $headers[] = 'Reply-To: ' . $author_email;
-
-    $term =  $request_post->getTerm();
-
     if( ! $term ) {
       throw new Exception( 'No term related to a request post with ID ' . $post_id );
     }
+
+    $headers = self::getDefaultEmailHeaders();
+    $headers[] = 'Reply-To: ' . $author_email;
 
     $related_term = get_term_by( 'slug', $term->slug, ProfessionalPost::TAXONOMY );
 
@@ -105,18 +119,25 @@ class RequestNotifier
       $professional_email = $professional_post->getMeta( 'emailAddress' );
 
       if( ! $professional_email ) {
-        throw new Exception( 'Professional ( ' . $professional_post->getID() . ' ) has no e-mail.' );
+        try {
+          throw new Exception( 'Professional ( ' . $professional_post->getID() . ' ) has no e-mail.' );
+        } catch ( Exception $e ) {
+          error_log( $e->getMessage() );
+        }
+        continue;
       }
       
       $context = Timber::get_context();
       $context['request_post'] = new TimberPost( $request_post->getID() );
       $context['category_name'] = $related_term->name;
-      $context['unsubscribe_category_link'] = 'unsubscribe_category_link';
-      $context['unsubscribe_all_link'] = 'unsubscribe_all_link';
+      $context['unsubscribe_category_link'] = $professional_post->getAuthTokenURL( [ 'unsubscribe_category' => $related_term->term_id ] );
+      $context['unsubscribe_all_link'] = $professional_post->getAuthTokenURL( [ 'unsubscribe' => 'all' ] );
       $html_message = Timber::compile( $template, $context );
 
       wp_mail( $professional_email, $subject, $html_message, $headers );
     }
+
+    $request_post->setMeta( '_notification_sent', true );
   }
 
   static function messageRequestAuthor( $post_id, $message_arr )
@@ -130,7 +151,7 @@ class RequestNotifier
 
     $context = Timber::get_context();
     $context['message'] = $message_arr;
-    $context['expiration_link'] = $request_post->getExpirationURL();
+    $context['expiration_link'] = $request_post->getAuthTokenURL( [ 'action' => 'expire' ] );
     $html_message = Timber::compile( $template, $context );
     
     wp_mail( $author_email, $subject, $html_message, $headers );
@@ -151,7 +172,7 @@ class RequestNotifier
     wp_mail( $author_email, $subject, $html_message, $headers );
   }
 
-  static function unsubscribeRequestPartner( $post_id, $term )
+  static function unsubscribeRequestPartner( $post_id )
   {
     $template = 'templates/mailing/request/unsubscribe-request-professional.twig';
 
@@ -159,7 +180,7 @@ class RequestNotifier
     $professional_email = $professional_post->getMeta( 'emailAddress' );
 
     if( ! $professional_email ) {
-      throw new Exception( 'Professional ( ' . $p->ID . ' ) has no e-mail.' );
+      throw new Exception( 'Professional (' . $p->ID . ') has no e-mail.' );
     }
 
     $headers = self::getDefaultEmailHeaders();

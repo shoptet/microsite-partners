@@ -742,9 +742,15 @@ RequestNotifier::init();
 
 RequestForm::init();
 
+ProfessionalService::init();
+
 RequestService::init();
 
+PostService::init();
+
 new RequestArchive();
+
+Migrations::init();
 
 function wp_getStats() {
    $cacheFile = 'wp-content/uploads/counters.cached';
