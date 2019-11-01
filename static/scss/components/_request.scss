@@ -72,6 +72,12 @@
   }
 }
 
+.request-thumbnail-lg {
+  @include media-breakpoint-up(lg) {
+    padding: 1rem 0;
+  }
+}
+
 .request-thumbnail-icon {
   margin-right: .5rem;
   flex: 0 0 15%;
