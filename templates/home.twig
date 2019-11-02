@@ -32,7 +32,8 @@
 		</div>
 	{% endif %}
 
-	<div class="row-profile-type row-profile-type-requests">
+	{% if recent_request_posts is not empty %}
+		<div class="row-profile-type row-profile-type-requests">
 			<div class="container">
 
 				<div class="row-profile-type-header">
@@ -66,6 +67,7 @@
 			</div>
 
 		</div>
+	{% endif %}
 
 	{% if show_category_plugins %}
 		<div class="row-profile-type row-profile-type-plugins">
