@@ -64,7 +64,7 @@ Disallow: *?s=*
 add_action( 'init', function() {
   register_post_status( 'onboarding', [
     'label' => __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' ),
-    'public' => true,
+    'public' => false,
 		'show_in_admin_all_list' => true,
 		'show_in_admin_status_list' => true,
 		'post_type' => [ 'profesionalove' ],
