@@ -39,7 +39,7 @@ function hide_field_in_admin( $field ) {
 add_filter( 'cron_schedules', function ( $schedules ) {
 	$schedules['one_minute'] = [
 		'interval' => 60,
-		'display' => __( 'Každou 1 minutu', 'shp-obchodiste' ),
+		'display' => __( 'Každou 1 minutu', 'shp-partneri' ),
   ];
 	return $schedules;
 } );
@@ -63,7 +63,7 @@ Disallow: *?s=*
  */
 add_action( 'init', function() {
   register_post_status( 'onboarding', [
-    'label' => __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' ),
+    'label' => __( 'Čeká na vyplnění formuláře', 'shp-partneri' ),
     'public' => false,
 		'show_in_admin_all_list' => true,
 		'show_in_admin_status_list' => true,
@@ -74,7 +74,7 @@ add_action( 'init', function() {
 		),
 	] );
 	register_post_status( 'expired', [
-    'label' => __( 'Expirováno', 'shp-obchodiste' ),
+    'label' => __( 'Expirováno', 'shp-partneri' ),
     'public' => false,
 		'show_in_admin_all_list' => false,
 		'show_in_admin_status_list' => true,
@@ -92,10 +92,10 @@ add_action( 'init', function() {
 add_filter( 'display_post_states', function ( $states, $post ) {
   switch ( $post->post_status ) {
     case 'onboarding':
-    $states[] = __( 'Čeká na vyplnění formuláře', 'shp-obchodiste' );
+    $states[] = __( 'Čeká na vyplnění formuláře', 'shp-partneri' );
 		break;
 		case 'expired':
-    $states[] = __( 'Expirováno', 'shp-obchodiste' );
+    $states[] = __( 'Expirováno', 'shp-partneri' );
     break;
   }
   return $states;

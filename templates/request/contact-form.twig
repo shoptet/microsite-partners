@@ -1,4 +1,4 @@
-<h2 class="mb-4">{{ __( 'Reakce na poptávku', 'shp-obchodiste' ) }}</h2>
+<h2 class="mb-4">{{ __( 'Reakce na poptávku', 'shp-partneri' ) }}</h2>
 
 {% if post.status != 'expired' %}
 
@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label class="required-asterisk" for="requestContactFormName">
-            {{ __( 'Jméno a příjmení', 'shp-obchodiste' ) }}
+            {{ __( 'Jméno a příjmení', 'shp-partneri' ) }}
           </label>
           <input type="text" name="name" class="form-control" id="requestContactFormName" required>
         </div>
@@ -18,7 +18,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label class="required-asterisk" for="requestContactFormEmail">
-            {{ __( 'E-mail', 'shp-obchodiste' ) }}
+            {{ __( 'E-mail', 'shp-partneri' ) }}
           </label>
           <input type="email" name="email" class="form-control" id="requestContactFormEmail" required>
         </div>
@@ -28,7 +28,7 @@
 
     <div class="form-group">
       <label class="required-asterisk" for="requestContactFormMessage">
-        {{ __( 'Text reakce', 'shp-obchodiste' ) }}
+        {{ __( 'Text reakce', 'shp-partneri' ) }}
       </label>
       <textarea class="form-control" name="message" rows="10" id="requestContactFormMessage" required></textarea>
     </div>
@@ -42,7 +42,7 @@
     <p class="text-success form-control-plaintext font-weight-bold d-none fs-120" id="requestContactFormSuccess"></p>
 
     <button type="submit" class="btn btn-primary btn-lg">
-      {{ __( 'Odeslat', 'shp-obchodiste' ) }}
+      {{ __( 'Odeslat', 'shp-partneri' ) }}
     </button>
 
   </form>

@@ -8,20 +8,20 @@
     aria-expanded="false"
     aria-controls="filtersCollapse"
   >
-    {{ __( 'Zobrazit filtry', 'shp-obchodiste' ) }}
+    {{ __( 'Zobrazit filtry', 'shp-partneri' ) }}
   </button>
 
   <div class="collapse d-md-block" id="filtersCollapse">
 
     <div class="mt-3 mt-md-0">
       <p class="h5 font-weight-bold mt-0 mb-2">
-        {{ __( 'Kategorie', 'shp-obchodiste' ) }}
+        {{ __( 'Kategorie', 'shp-partneri' ) }}
       </p>
 
       <ul class="list-unstyled mb-0">
         <li>
           <a class="filter-link" href="{{ link.request.archive|keep_query_string }}">
-            {{ __( 'Všechny poptávky', 'shp-obchodiste' ) }}
+            {{ __( 'Všechny poptávky', 'shp-partneri' ) }}
             <span class="text-semilight">({{ filterby == 'active' ? request_posts_count.publish : request_posts_count.publish + request_posts_count.expired }})</span>
           </a>
         </li>
