@@ -148,7 +148,7 @@ class StarterSite extends TimberSite {
       $request_state = __( 'Aktivní', 'shp-partneri' );
       break;
       case 'expired':
-      $request_state = __( 'Expirovaná', 'shp-partneri' );
+      $request_state = __( 'Poptávka již byla vyřízena', 'shp-partneri' );
       break;
       case 'pending':
       $request_state = __( 'Čeká na schválení', 'shp-partneri' );
