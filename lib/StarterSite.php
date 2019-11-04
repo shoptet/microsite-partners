@@ -109,7 +109,7 @@ class StarterSite extends TimberSite {
   function ensure_protocol( $url ) {
     $url_with_protocol = $url;
     if ( ! preg_match( '/^(http:|https:)?\/\//i', $url ) ) {
-      $url_with_protocol = '//' . $url_with_protocol;
+      $url_with_protocol = 'http://' . $url_with_protocol;
     }
     return $url_with_protocol;
   }
