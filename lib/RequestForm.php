@@ -28,6 +28,7 @@ class RequestForm
   {
     if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
       $field['label'] = __( 'Text poptávky', 'shp-partneri' );
+      $field['placeholder'] = __( 'Sepište co nejvíce informací o problému, s nímž potřebujete pomoct.', 'shp-partneri' );
       $field['required'] = true;
       $field['type'] = 'textarea';
       $field['rows'] = 10;
