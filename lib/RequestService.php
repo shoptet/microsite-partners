@@ -3,9 +3,9 @@
 class RequestService
 {
 
-  const PUBLISH_AFTER = '+5 minutes'; // TODO: change to +24 hours
-  const EXPIRATION_TIME = '-5 minutes'; // TODO: change to -90 days
-  const EXPIRATION_CHECK_RECURRENCE = 'one_minute'; // TODO: change to twicedaily
+  const PUBLISH_AFTER = '+24 hours';
+  const EXPIRATION_TIME = '-90 days';
+  const EXPIRATION_CHECK_RECURRENCE = 'twicedaily';
 
   static function init () {
     add_action( 'init', [ get_called_class(), 'registerPostStatus' ] );
