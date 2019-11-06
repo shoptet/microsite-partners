@@ -755,43 +755,7 @@ new RequestArchive();
 
 Migrations::init();
 
-function wp_getStats() {
-   $cacheFile = 'wp-content/uploads/counters.cached';
-   $modifyLimit = 3600; // hour in seconds
-
-
-   if (!file_exists($cacheFile) || (time() - filemtime($cacheFile) > $modifyLimit)) {
-       $tmp = @file_get_contents('https://www.shoptet.cz/projectAction/ShoptetStatisticCounts/Index');
-       if ($tmp !== FALSE) {
-           file_put_contents(
-               $cacheFile,
-               $tmp
-           );
-       }
-   }
-
-   $content = file_get_contents($cacheFile);
-   if ($content !== FALSE) {
-       return (array) json_decode($content);
-   }
-
-   return array(
-       'projectsCount' => 8060,
-       'transactionsCount' => 81476,
-       'sales' => 32020068
-   );
-}
-
-function wp_showProjectsCount() {
-    $projectStats = wp_getStats();
-    if(!empty($projectStats) && !empty($projectStats['projectsCount'])) {
-        return $projectStats['projectsCount'];
-    } else {
-        return '13000';
-    }
-}
-
-add_shortcode('projectCount', 'wp_showProjectsCount');
+ShoptetProjectCount::init();
 
 function get_shoptet_footer() {
     // params

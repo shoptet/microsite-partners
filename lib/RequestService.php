@@ -17,6 +17,7 @@ class RequestService
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
+    add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
 
     if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
       wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
@@ -61,6 +62,11 @@ class RequestService
 			__( 'Poptávka byla úspěšně expirována', 'shp-partneri' ),
 			__( 'Poptávka expirována', 'shp-partneri' )
     );
+  }
+
+  static function disableGutenberg( $current_status, $post_type ) {
+    if ( $post_type === RequestPost::POST_TYPE ) return false;
+    return $current_status;
   }
 
   static function expirationCheck() {
