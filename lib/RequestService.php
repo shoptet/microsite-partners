@@ -12,12 +12,12 @@ class RequestService
     add_action( 'shp/request_service/url_action', [ get_called_class(), 'handleURLAction' ] );
     add_action( 'transition_post_status', [ get_called_class(), 'updatePreviousStatus' ], 10, 3 );
     add_action( 'pending_to_publish', [ get_called_class(), 'schedulePost' ] );
-    add_action( 'expired_to_publish', [ get_called_class(), 'setExpiredPostStatus' ] );
     add_action( 'acf/save_post', [ get_called_class(), 'notify' ], 20 );
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
+    add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
 
     if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
       wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
@@ -117,12 +117,6 @@ class RequestService
     wp_update_post( $postarr );
   }
 
-  static function setExpiredPostStatus( $post ) {
-    if( RequestPost::POST_TYPE != get_post_type( $post->ID ) ) return;
-    $request_post = new RequestPost( $post->ID );
-    $request_post->setStatus('expired');
-  }
-
   static function notify( $post_id ) {
     if ( RequestPost::POST_TYPE != get_post_type( $post_id ) ) return;
 
@@ -137,6 +131,29 @@ class RequestService
     }
 
     do_action( 'shp/request_service/approve', $post_id );
+  }
+
+  static function addPostStatusControlsToAdmin() {
+    global $post;
+    if ( RequestPost::POST_TYPE != $post->post_type ) return;
+    ?>
+    <script>
+      $(function () {
+        $('select#post_status').append(`
+          <option value="expired" <?php echo ('expired' == $post->post_status) ? 'selected' : ''; ?>>
+            <?php _e( 'Expirováno', 'shp-partneri' ); ?>
+          </option>
+          <option value="publish" <?php echo ('publish' == $post->post_status) ? 'selected' : ''; ?>>
+            <?php _e( 'Publikováno', 'shp-partneri' ); ?>
+          </option>
+        `);
+        <?php if ( 'expired' == $post->post_status ): ?>
+          $('#post-status-display').text('<?php _e( 'Expirováno', 'shp-partneri' ); ?>');
+          $('input#publish').removeAttr('name').val('<?php _e( 'Aktualizovat', 'shp-partneri' ); ?>');
+        <?php endif; ?>
+      });
+    </script>
+    <?php
   }
 
   static function handleMessage() {
