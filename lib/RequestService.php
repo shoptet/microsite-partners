@@ -166,7 +166,10 @@ class RequestService
       return;
     }
 
+    if ( $request_post->getMeta( '_notification_sent' ) ) return;
+    
     do_action( 'shp/request_service/approve', $post_id );
+    $request_post->setMeta( '_notification_sent', true );
   }
 
   static function addPostStatusControlsToAdmin() {

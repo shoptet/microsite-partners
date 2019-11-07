@@ -87,10 +87,6 @@ class RequestNotifier
     $template = 'templates/mailing/request/approve-request-professional.twig';
 
     $request_post = new RequestPost( $post_id );
-    
-    if ( $request_post->getMeta( '_notification_sent' ) ) {
-      return;
-    }
 
     $author_email = $request_post->getMeta( 'author_email' );
     $term =  $request_post->getTerm();
@@ -132,8 +128,6 @@ class RequestNotifier
 
       wp_mail( $professional_email, $subject, $html_message, $headers );
     }
-
-    $request_post->setMeta( '_notification_sent', true );
   }
 
   static function messageRequestAuthor( $post_id, $message_arr )
