@@ -154,7 +154,7 @@ class StarterSite extends TimberSite {
       $request_state = __( 'Čeká na schválení', 'shp-partneri' );
       break;
       case 'future':
-      $request_state = __( 'Naplánováno', 'shp-partneri' );
+      $request_state = __( 'Aktivní jen pro Shoptet partnery', 'shp-partneri' );
       break;
     }
     return $request_state;
