@@ -14,6 +14,10 @@ class Post
     return $this->post_id;
   }
 
+  public function getSlug() {
+    return get_post_field( 'post_name', $this->post_id );
+  }
+
   public function setMeta( $key, $value ) {
     update_post_meta( $this->post_id, $key, $value );
   }

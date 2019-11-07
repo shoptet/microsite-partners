@@ -1,23 +1,14 @@
 Ahoj, Shoptet Partnere,
 <br><br>
-v kategorii {{ category_name }} přibyla nová poptávka, která tě může zajímat.
-Na poptávku můžeš jednoduše reagovat odpovědí na tento e-mail.
+v kategorii {{ category_name }} přibyla nová poptávka, která tě může zajímat:
 <br><br>
 -----
 <br><br>
 
 {% if request_post.title %}
-  <b>Název poptávky:</b><br>
+  <b>Název poptávky:</b>
   {{ request_post.title }}
   <br><br>
-{% endif %}
-
-{% if request_post.content %}
-  <b>Text poptávky:</b><br>
-  <div style="font-style:italic">
-    {{ request_post.content|striptags('<br><p><a>') }}
-  </div>
-  <br>
 {% endif %}
 
 {% if request_post.terms is not empty %}
@@ -29,27 +20,16 @@ Na poptávku můžeš jednoduše reagovat odpovědí na tento e-mail.
 {% if request_post.author_name %}
   <b>Zadavatel:</b>
   {{ request_post.author_name }}
-  {% if request_post.author_email %}
-    ({{ request_post.author_email }})
-  {% endif %}
   <br><br>
 {% endif %}
 
-{% if request_post.url %}
-  <b>URL projektu:</b>
-  <a href="{{ request_post.url|ensure_protocol }}" target="_blank">{{ request_post.url|display_url }}</a>
-  {% if request_post.is_shoptet %}
-    (Provozováno na Shoptet)
-  {% endif %}
-  <br><br>
-{% endif %}
+<a href="{{ preview_link }}">Zobrazit celé znění poptávky na webu</a>
+<br><br>
 
 -----
 <br><br>
 Honem! Díky tomu, že patříš mezi Shoptet Partnery,
 tak máš 24 hodin náskok než se poptávka zobrazí na webu.
-<br><br>
-Tip: odpovězte poptávajícímu v novém emailu, bude to vypadat profesionálněji :).
 <br><br>
 
 {% include 'mailing/request/includes/footer-professional.twig' %}

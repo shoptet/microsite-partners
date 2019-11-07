@@ -11,6 +11,7 @@ class PostService
   static function init () {
     add_action( 'init', [ get_called_class(), 'handleAuthTokenURL' ] );
     add_action( 'save_post', [ get_called_class(), 'setAuthToken' ], 10, 3 );
+    add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
   }
 
   static function handleAuthTokenURL() {
@@ -52,6 +53,14 @@ class PostService
       $p = new Post( $post_id );
       $p->setAuthToken();
     }
+  }
+
+  static function filterRobotsTxt( $robot_text ) {
+    return $robot_text . "
+Disallow: *?token=*
+Disallow: *?orderby=*
+Disallow: *?filterby=*
+";
   }
 
 }

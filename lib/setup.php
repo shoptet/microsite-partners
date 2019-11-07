@@ -54,10 +54,7 @@ Disallow: /wp-login.php
 Disallow: /wp-register.php
 Disallow: *?auth_token=*
 Disallow: *?onboarding_token=*
-Disallow: *?token=*
 Disallow: *?s=*
-Disallow: *?orderby=*
-Disallow: *?filterby=*
 ";
 }
 

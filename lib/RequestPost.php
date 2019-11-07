@@ -18,4 +18,10 @@ class RequestPost extends Post
     return $term;
   }
 
+  public function getFuturePreviewLink()
+  {
+    $slug = $this->getSlug();
+    return get_site_url( null, 'future-request/' . $slug . '/' );
+  }
+
 }

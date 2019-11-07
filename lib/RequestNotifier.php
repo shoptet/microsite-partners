@@ -95,16 +95,11 @@ class RequestNotifier
     $author_email = $request_post->getMeta( 'author_email' );
     $term =  $request_post->getTerm();
 
-    if( ! $author_email ) {
-      throw new Exception( 'No author e-mail at a request post with ID ' . $post_id );
-    }
-
     if( ! $term ) {
       throw new Exception( 'No term related to a request post with ID ' . $post_id );
     }
 
     $headers = self::getDefaultEmailHeaders();
-    $headers[] = 'Reply-To: ' . $author_email;
 
     $related_term = get_term_by( 'slug', $term->slug, ProfessionalPost::TAXONOMY );
 
@@ -129,6 +124,7 @@ class RequestNotifier
       
       $context = Timber::get_context();
       $context['request_post'] = new TimberPost( $request_post->getID() );
+      $context['preview_link'] = $request_post->getFuturePreviewLink();
       $context['category_name'] = $related_term->name;
       $context['unsubscribe_category_link'] = $professional_post->getAuthTokenURL( [ 'unsubscribe_category' => $related_term->term_id ] );
       $context['unsubscribe_all_link'] = $professional_post->getAuthTokenURL( [ 'unsubscribe' => 'all' ] );

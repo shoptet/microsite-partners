@@ -9,6 +9,8 @@ class RequestService
 
   static function init () {
     add_action( 'init', [ get_called_class(), 'registerPostStatus' ] );
+    add_action( 'init', [ get_called_class(), 'addFuturePreviewRewriteRules' ] );
+    add_filter( 'the_posts', [ get_called_class(), 'handleFuturePreview' ], 10, 2 );
     add_action( 'shp/request_service/url_action', [ get_called_class(), 'handleURLAction' ] );
     add_action( 'transition_post_status', [ get_called_class(), 'updatePreviousStatus' ], 10, 3 );
     add_action( 'pending_to_publish', [ get_called_class(), 'schedulePost' ] );
@@ -16,8 +18,9 @@ class RequestService
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
-    add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
+    add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
+    add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
 
     if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
       wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
@@ -34,6 +37,39 @@ class RequestService
       'label_count' => _n_noop( 'Expirováno <span class="count">(%s)</span>', 'Expirováno <span class="count">(%s)</span>' ),
     ];
     register_post_status( 'expired', $args );
+  }
+
+  static function addFuturePreviewRewriteRules() {
+    add_rewrite_tag( '%request_future_preview%', '[^/]' );
+    add_rewrite_rule(
+      '^future-request/(.+)/?$',
+      'index.php?post_type=request&name=$matches[1]&request_future_preview=true',
+      'top'
+    );
+    flush_rewrite_rules();
+  }
+
+  static function handleFuturePreview( $posts, $query ) {
+    if( ! array_key_exists( 'request_future_preview', $query->query_vars )  ) return $posts;
+    
+    $new_query = new WP_Query( [
+      'post_type' => RequestPost::POST_TYPE,
+      'name' => $query->query['name'],
+      'posts_per_page' => 1,
+      'post_status' => 'future,publish,expired',
+    ] );
+  
+    if( empty( $new_query->posts ) ) return $posts;
+  
+    $request_post = $new_query->posts[0];
+  
+    if( 'future' != get_post_status( $request_post ) ) {
+      $permalink = get_permalink( $request_post );
+      wp_redirect( $permalink, 302 );
+      exit;
+    }
+    
+    return [ $request_post ];
   }
 
   static function handleURLAction( $post_id ) {
@@ -171,9 +207,10 @@ class RequestService
     $email = sanitize_email( $_POST[ 'email' ] );
     $message = sanitize_textarea_field( $_POST[ 'message' ] );
     $post_id = intval( $_POST[ 'post_id' ] );
+    $post_status = get_post_status( $post_id );
 
     // Check correct post status
-    if ( 'publish' != get_post_status( $post_id ) ) {
+    if ( ! in_array( $post_status, [ 'future', 'publish' ] ) ) {
       wp_die(
         'Not correct post',
         'Not correct post',
@@ -202,6 +239,12 @@ class RequestService
     ];
 
     do_action( 'shp/request_message/validate', $post_id, $message_arr );
+  }
+
+  static function filterRobotsTxt( $robot_text ) {
+    return $robot_text . "
+Disallow: /future-request/*
+";
   }
 
 }
