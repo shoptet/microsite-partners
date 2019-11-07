@@ -27,9 +27,9 @@ if( function_exists('acf_add_options_page') ) {
 	));
 
 	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Nastavení poptávek',
-		'menu_title'	=> 'Nastavení',
-		'menu_slug' 	=> 'requests-settings',
+		'page_title' 	=> 'Nastavení mailingu poptávek',
+		'menu_title'	=> 'Mailing',
+		'menu_slug' 	=> 'requests-mailing',
 		'capability'	=> 'edit_posts',
 		'parent_slug' => 'edit.php?post_type=request',
 	));
