@@ -19,8 +19,15 @@
   			{% include 'profile/categories.twig' %}
 
         <div class="mt-2">
-          <a href="#comments">
-            {% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}
+          <span class="mr-1">
+            {% include 'review-rating-stars.twig' with {rating: average_rating} %}
+          </span>
+          <a class="text-muted" href="#comments">
+            {% if post.comments|length > 0 %}
+              ({{ __('%s hodnocení', 'shp-partneri')|format(post.comments|length) }})
+            {% else %}
+              ({{ __('žádné hodnocení', 'shp-partneri') }})
+            {% endif %}
           </a>
         </div>
 
