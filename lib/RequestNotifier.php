@@ -137,6 +137,8 @@ class RequestNotifier
     $request_post = new RequestPost( $post_id );
     $author_email = $request_post->getMeta( 'author_email' );
     $headers = self::getDefaultEmailHeaders();
+    $headers[] = 'Reply-To: ' . $message_arr['email'];
+    $headers[] = 'Cc: ' . $message_arr['email'];
     $subject = __( 'Máte novou reakci na vaši poptávku. Omkrněte jí.', 'shp-partneri' );
 
     $context = Timber::get_context();
