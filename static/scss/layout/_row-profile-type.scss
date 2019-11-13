@@ -9,10 +9,6 @@
 
 .row-profile-type-header {
   margin-bottom: 2.5rem;
-
-  @include media-breakpoint-up(lg) {
-    max-width: percentage(2/3);
-  }
 }
 
 .row-profile-type-title {
@@ -60,5 +56,13 @@
 
   .row-profile-type-title::before {
     background-color: $orange;
+  }
+}
+
+.row-profile-type-requests {
+  .row-profile-type-title {   
+    &::before {
+      content: none;
+    }
   }
 }

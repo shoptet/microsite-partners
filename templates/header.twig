@@ -1,54 +1,69 @@
 <header class="header" role="banner">
-	<div class="container" itemscope itemtype="https://schema.org/WebSite">
+	<div class="container">
+		<div class="header-inner" itemscope itemtype="https://schema.org/WebSite">
 
-		<meta itemprop="headline" content="
-			{% if wp_title %}
-	      {{ wp_title }}, {{ site.name }}
-	    {% else %}
-	      {{ site.name }}, {{ site.description }}
-	    {% endif %}
-		">
+			<meta itemprop="headline" content="
+				{% if wp_title %}
+					{{ wp_title }}, {{ site.name }}
+				{% else %}
+					{{ site.name }}, {{ site.description }}
+				{% endif %}
+			">
 
-		<meta itemprop="url" content="{{ site.url }}">
-		<meta itemprop="text" content="{{ meta_description|striptags }}">
+			<meta itemprop="url" content="{{ site.url }}">
+			<meta itemprop="text" content="{{ meta_description|striptags }}">
 
-		<a
-			class="header-logo"
-			href="{{ site.url }}"
-			title="Zpět na domovskou stránku"
-		>
-			<img
-				src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
-				alt="Shoptet Partneři"
+			<a
+				class="header-logo"
+				href="{{ site.url }}"
+				title="Zpět na domovskou stránku"
 			>
-		</a>
-
-		<form
-			class="header-search"
-			action="{{ site.url }}"
-			role="search"
-            itemprop="potentialAction"
-            itemscope
-            itemtype="http://schema.org/SearchAction"
-		>
-			<meta itemprop="target" content="?s={s}">
-			<div class="input-group">
-	        <input
-					type="search"
-					class="form-control"
-					name="s"
-					value="{{ query }}"
-					placeholder="Zadejte hledaný výraz..."
-					autocomplete="off"
-					required
-                    itemprop="query-input"
+				<img
+					src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
+					alt="Shoptet Partneři"
 				>
-	      <span class="input-group-btn">
-	        <button class="btn btn-primary" type="submit">Hledat</button>
-	      </span>
-	    </div>
-    </form>
+			</a>
 
+			<form
+				class="header-search"
+				action="{{ site.url }}"
+				role="search"
+							itemprop="potentialAction"
+							itemscope
+							itemtype="http://schema.org/SearchAction"
+			>
+				<meta itemprop="target" content="?s={s}">
+				<div class="input-group">
+					<input
+						type="search"
+						class="form-control border-right-0"
+						name="s"
+						value="{{ query }}"
+						placeholder="Zadejte hledaný výraz..."
+						autocomplete="off"
+						required
+						itemprop="query-input"
+					>
+					<span class="input-group-btn">
+						<button class="btn btn-input border-left-0 px-2" type="submit">
+							<i class="fas fa-search" aria-hidden="true"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+
+			{% if not hide_header_action %}
+
+				<div class="header-action">
+					<a href="/nova-poptavka/" class="btn btn-primary">
+						<i class="fas fa-plus-circle" aria-hidden="true"></i> 
+						{{ __( 'Přidat poptávku', 'shp-partneri' ) }}
+					</a>
+				</div>
+
+			{% endif %}
+
+		</div>
 	</div>
 </header>
 

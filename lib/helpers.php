@@ -291,3 +291,13 @@ function remind_onboarding () {
     update_post_meta( $post->ID, 'onboarding_reminded', time() );    
   }
 }
+
+function verify_recaptcha () {
+  if ( ! $_POST[ 'g-recaptcha-response' ] ) {
+    return false;
+  }
+  $recaptcha_response = sanitize_text_field( $_POST[ 'g-recaptcha-response' ] );
+  $recaptcha = new \ReCaptcha\ReCaptcha( G_RECAPTCHA_SECRET_KEY );
+  $resp = $recaptcha->verify( $recaptcha_response, $_SERVER['REMOTE_ADDR'] );
+  return $resp->isSuccess();
+}

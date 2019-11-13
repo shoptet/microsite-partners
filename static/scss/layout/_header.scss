@@ -1,29 +1,27 @@
-.header {
-  @include clearfix;
+.header-inner {
   padding: 1.5rem 0;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 1.882rem 0;
   }
 }
 
 .header-logo {
-  display: inline-block;
-  height: rem-calc($header-logo-height);
+  height: rem-calc(37px);
 
   @include media-breakpoint-up(sm) {
-    height: 55px;
+    height: rem-calc(55px);
   }
 
   @include media-breakpoint-up(md) {
-    float: left; // because header-form left floating
+    height: rem-calc(37px);
   }
 
-  @include media-breakpoint-down(sm) {
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  @include media-breakpoint-up(lg) {
+    height: rem-calc(55px);
   }
 
   img {
@@ -31,41 +29,33 @@
   }
 }
 
-.header-logo-shoptet {
-  float: right;
-  width: 2.57812rem;
-  padding: .2rem 0;
-  overflow: hidden;
+.header-search,
+.header-action {
+  margin-top: 1rem;
 
-  @include media-breakpoint-up(sm) {
-    width: rem-calc(0.75 * $header-logo-height-sm); // crop 75 % of image from right
+  @include media-breakpoint-up(md) {
+    margin-top: 0;
+    margin-left: 1rem;
   }
 
-  @include media-breakpoint-up(lg) {
-    width: auto;
-    overflow: auto
+}
+
+.header-logo,
+.header-search,
+.header-action {
+  @include media-breakpoint-down(sm) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 }
 
 .header-search {
-
-  @include media-breakpoint-down(sm) {
-    margin-top: 1rem;
-    float: none;
-  }
-
-  @include media-breakpoint-up(md) {
-    float: right;
-    position: relative;
-    top: ($header-logo-height-sm / 2);
-    width: rem-calc(260px);
-    margin-left: 1.5rem;
-    transform: translateY(-50%);
-  }
+  max-width: rem-calc(400px);
 
   @include media-breakpoint-up(lg) {
-    margin-left: 2.5rem;
+    flex-basis: rem-calc(300px);
     width: rem-calc(300px);
   }
-
 }

@@ -63,6 +63,11 @@
 
    $context['show_breadcrumb'] = false;
 
+   $context['recent_request_posts'] = Timber::get_posts( [
+     'post_type' => 'request',
+     'posts_per_page' => 3,
+   ] );
+    
  	 array_unshift( $templates, 'home.twig' );
  }
 

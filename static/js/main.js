@@ -50,8 +50,17 @@ import 'font-awesome-svg-png/black/svg/facebook-square.svg';
 import 'font-awesome-svg-png/black/svg/twitter-square.svg';
 import 'font-awesome-svg-png/black/svg/linkedin-square.svg';
 import 'font-awesome-svg-png/black/svg/instagram.svg';
+import 'font-awesome-svg-png/black/svg/plus-circle.svg';
+
+import { initRequestMessage } from './request-message';
+import { initRecaptchaRequired } from './recaptcha-required';
+import { initRequestArchiveFilter } from './request-archive-filter';
 
 $(function () {
+
+  initRequestMessage();
+  initRecaptchaRequired();
+  initRequestArchiveFilter();
 
   $.fn.shpResponsiveNavigation = function() {
     return this.each(function() {
@@ -78,7 +87,7 @@ $(function () {
 
           //hidden navigation
           if (!resNavDiv.find('.hidden-links').length) {
-            resNavDiv.append('<button class="navigation-btn"><svg data-src="./wp-content/themes/shoptet/assets/bars-solid.svg" width="18" height="18" role="img"></svg></button><ul class="hidden-links hidden"></ul>');
+            resNavDiv.append('<button class="navigation-btn"><svg data-src="/wp-content/themes/shoptet/assets/bars-solid.svg" width="18" height="18" role="img"></svg></button><ul class="hidden-links hidden"></ul>');
           }
           hiddenLinks = resNavDiv.find('.hidden-links');
           button = resNavDiv.find('button');

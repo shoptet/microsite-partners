@@ -1,0 +1,26 @@
+<div class="list-group-profile-item py-3">
+
+  <div class="row">
+
+    {% if post.terms is not empty %}
+      <div class="col-2 p-0">
+        <svg
+          class="w-100 h-auto"
+          data-src="{{ post.terms.0.get_field('image').sizes.medium }}"
+        ></svg>
+      </div>
+    {% endif %}
+
+    <div class="col-10 align-self-center">
+
+      <h1 class="request-title mb-1">{{ post.title }}</h1>
+
+      {% if post.terms is not empty %}
+        <a href="{{ post.terms.0.link }}">{{ post.terms.0.name }}</a>
+      {% endif %}
+
+    </div>
+
+  </div>
+  
+</div>

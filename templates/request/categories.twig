@@ -1,0 +1,40 @@
+<div class="filter mb-4 mb-md-0">
+  <button
+    class="btn btn-primary d-md-none"
+    type="button"
+    data-toggle="collapse"
+    href="#filtersCollapse"
+    role="button"
+    aria-expanded="false"
+    aria-controls="filtersCollapse"
+  >
+    {{ __( 'Zobrazit filtry', 'shp-partneri' ) }}
+  </button>
+
+  <div class="collapse d-md-block" id="filtersCollapse">
+
+    <div class="mt-3 mt-md-0">
+      <p class="h5 font-weight-bold mt-0 mb-2">
+        {{ __( 'Kategorie', 'shp-partneri' ) }}
+      </p>
+
+      <ul class="list-unstyled mb-0">
+        <li>
+          <a class="filter-link" href="{{ link.request.archive|keep_query_string }}">
+            {{ __( 'Všechny poptávky', 'shp-partneri' ) }}
+            <span class="text-semilight">({{ filterby == 'active' ? request_posts_count.publish : request_posts_count.publish + request_posts_count.expired }})</span>
+          </a>
+        </li>
+        {% for t in terms if t|posts_in_term %}
+          <li>
+            <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link|keep_query_string }}">
+              {{ t.name }}
+              <span class="text-semilight">({{ filterby == 'active' ? t|posts_in_term(['publish']): t|posts_in_term }})</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+  </div>
+</div>

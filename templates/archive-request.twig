@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+
+{% set hide_header_action = true %}
+
+{% block head %}
+
+
+	{% if posts.pagination.total > 1 %}
+
+		{% if posts.pagination.prev %}
+			<link rel="prev" href="{{posts.pagination.prev.link}}">
+		{% endif %}
+
+		{% if posts.pagination.next %}
+			<link rel="next" href="{{posts.pagination.next.link}}">
+		{% endif %}
+
+		<link rel="canonical" href="{{ canonical.link }}">
+
+	{% else %}
+		<link rel="canonical" href="{{ term.link }}">
+	{% endif %}
+
+	<meta property="og:url" content="{{ term.link }}">
+	<meta property="og:type" content="website">
+
+{% endblock %}
+
+{% block content %}
+
+	{% include 'request/archive-list.twig' %}
+
+	{% include 'row-become-partner.twig' %}
+
+	{% include 'row-complaint.twig' %}
+
+{% endblock %}

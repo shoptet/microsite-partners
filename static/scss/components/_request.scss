@@ -1,0 +1,122 @@
+.request-title {
+  font-size: $h3-font-size;
+
+  @include media-breakpoint-up(md) {
+    font-size: $h2-font-size;
+  }
+}
+
+.request-form {
+  .acf-fields {
+    &.-top > .acf-field {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    &.-left > .acf-field {
+      &:before {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      > .acf-label {
+        padding-left: 0;
+
+        @media screen and (min-width: 641px) {
+          width: 25%;
+        }
+      }
+      > .acf-input {
+        padding-left: 0;
+        padding-right: 0;
+
+        @media screen and (min-width: 641px) {
+          width: 75%;
+        }
+      }
+    }
+
+    > .acf-field {
+      border-top-color: transparent;
+    }
+  }
+
+  .message {
+    background-color: transparent;
+    font-size: 1em;
+    color: $body-color;
+    padding-left: 3px;
+  }
+
+}
+
+.request-thumbnail {
+  display: block;
+  color: $body-color;
+  border-bottom: 1px solid $profile-thumbnail-border-color;
+  padding: 1.5rem 0;
+
+  @include hover-focus {
+    color: $body-color;
+    text-decoration: none;
+    background-color: lighten($blue, 47%);;
+    @include transition;
+
+    .request-thumbnail-icon * {
+      fill: $blue !important;
+      @include transition;
+    }
+  }
+
+  &:first-of-type {
+    border-top: 1px solid $profile-thumbnail-border-color;
+  }
+}
+
+.request-thumbnail-lg {
+  @include media-breakpoint-up(lg) {
+    padding: 1rem 0;
+  }
+}
+
+.request-thumbnail-icon {
+  margin-right: .5rem;
+  flex: 0 0 15%;
+  max-width: 15%;
+
+  @include media-breakpoint-up(md) {
+    flex: 0 0 10%;
+    max-width: 10%;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.request-thumbnail-title {
+  color: $link-color;
+  line-height: 1;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.request-thumbnail-meta {
+  padding: .25rem 0;
+  margin-bottom: 0;
+  font-size: 90%;
+
+  @include media-breakpoint-up(sm) {
+    padding: .5rem 0;
+  }
+}
+
+.request-thumbnail-content {
+  font-size: 90%;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 100%;
+  }
+}

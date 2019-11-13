@@ -1,0 +1,25 @@
+<form class="form-inline" id="requestArchiveFilterForm">
+  <div class="form-group">
+    <label for="orderSelect">
+      {{ __( 'Seřadit podle:', 'shp-partneri' ) }}
+    </label>
+    <select class="form-control custom-select ml-sm-2 mr-sm-4" id="orderSelect" name="orderby">
+      {% for key, title in  order_choices %}
+        <option
+          value="{{ key }}"
+          {% if ( orderby == key ) %}
+            selected
+          {% endif %}
+        >
+          {{ title }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="filterby" value="active" {% if filterby == 'active' %}checked{% endif %}>
+      {{ __( 'Jen aktivní', 'shp-partneri' ) }}
+    </label>
+  </div>
+</form>

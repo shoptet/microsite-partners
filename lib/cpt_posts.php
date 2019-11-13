@@ -73,7 +73,7 @@ function cptui_register_my_cpts() {
 		"show_in_rest" => false,
 		"rest_base" => "",
 		"has_archive" => false,
-		"show_in_menu" => true,
+		"show_in_menu" => false,
 		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
@@ -115,7 +115,7 @@ function cptui_register_my_cpts() {
 		"show_in_rest" => false,
 		"rest_base" => "",
 		"has_archive" => false,
-		"show_in_menu" => true,
+		"show_in_menu" => false,
 		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
@@ -127,6 +127,51 @@ function cptui_register_my_cpts() {
 	);
 
 	register_post_type( "nastroje", $args );
+
+
+	/**
+	 * Post Type: Poptávky.
+	 */
+
+	$labels = array(
+		"name" => __( "Poptávky", "custom-post-type-ui" ),
+		"singular_name" => __( "Poptávka", "custom-post-type-ui" ),
+		"menu_name" => __( "Poptávky", "custom-post-type-ui" ),
+		"all_items" => __( "Všechny poptávky", "custom-post-type-ui" ),
+		"add_new" => __( "Přidat novou", "custom-post-type-ui" ),
+		"add_new_item" => __( "Přidat novou poptávku", "custom-post-type-ui" ),
+		"edit_item" => __( "Upravit poptávku", "custom-post-type-ui" ),
+		"new_item" => __( "Nová poptávka", "custom-post-type-ui" ),
+		"view_item" => __( "Zobrazit poptávku", "custom-post-type-ui" ),
+		"view_items" => __( "Zobrazit poptávky", "custom-post-type-ui" ),
+		"search_items" => __( "Vyhledat poptávku", "custom-post-type-ui" ),
+	);
+
+	$args = array(
+		"label" => __( "Poptávky", "custom-post-type-ui" ),
+		"labels" => $labels,
+		"description" => "",
+		"public" => true,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"delete_with_user" => false,
+		"show_in_rest" => true,
+		"rest_base" => "",
+		"rest_controller_class" => "WP_REST_Posts_Controller",
+		"has_archive" => 'poptavky',
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => false,
+		"rewrite" => array( "slug" => "poptavka", "with_front" => true ),
+		"query_var" => true,
+		"menu_icon" => "dashicons-clipboard",
+		"supports" => array( "title", "editor", "revisions" ),
+	);
+
+	register_post_type( "request", $args );
 }
 
 add_action( 'init', 'cptui_register_my_cpts' );

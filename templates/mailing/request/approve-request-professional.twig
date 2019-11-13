@@ -1,0 +1,35 @@
+Ahoj, Shoptet Partnere,
+<br><br>
+v kategorii {{ category_name }} přibyla nová poptávka, která tě může zajímat:
+<br><br>
+-----
+<br><br>
+
+{% if request_post.title %}
+  <b>Název poptávky:</b>
+  {{ request_post.title }}
+  <br><br>
+{% endif %}
+
+{% if request_post.terms is not empty %}
+  <b>Kategorie:</b>
+  {{ request_post.terms.0.name }}
+  <br><br>
+{% endif %}
+
+{% if request_post.author_name %}
+  <b>Zadavatel:</b>
+  {{ request_post.author_name }}
+  <br><br>
+{% endif %}
+
+<a href="{{ preview_link }}">Zobrazit celé znění poptávky na webu</a>
+<br><br>
+
+-----
+<br><br>
+Honem! Díky tomu, že patříš mezi Shoptet Partnery,
+tak máš 24 hodin náskok než se poptávka zobrazí na webu.
+<br><br>
+
+{% include 'mailing/request/includes/footer-professional.twig' %}

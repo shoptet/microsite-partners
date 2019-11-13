@@ -72,6 +72,13 @@ acf_add_local_field_group(array (
 				'value' => 'category_tools',
 			),
 		),
+		array (
+			array (
+				'param' => 'taxonomy',
+				'operator' => '==',
+				'value' => 'category_requests',
+			),
+		),
 	),
 	'menu_order' => 0,
 	'position' => 'normal',

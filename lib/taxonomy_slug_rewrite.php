@@ -43,8 +43,9 @@ add_filter('generate_rewrite_rules', 'taxonomy_slug_rewrite');
 function pagination_slug_rewrite() {
   global $wp_rewrite;
   $wp_rewrite->pagination_base = 'strana';
+  $wp_rewrite->flush_rules();
 }
-add_filter('init', 'pagination_slug_rewrite');
+add_filter( 'init', 'pagination_slug_rewrite', 0 );
 
 /*
  * Flush Rewrite Rules when a post is saved
