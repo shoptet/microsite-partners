@@ -50,9 +50,13 @@
   display: block;
 }
 
-.row-badges .h5 {
-  @include media-breakpoint-down(xs) {
-    margin-top: 1.5rem;
+.row-badges {
+  .h5 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    @include media-breakpoint-down(xs) {
+      margin-top: 1.5rem;
+    }
   }
 }
 

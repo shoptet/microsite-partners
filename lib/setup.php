@@ -812,3 +812,9 @@ add_action( 'wp_footer', function() {
 	printf( 'window.ajaxurl = \'%s\';', admin_url( 'admin-ajax.php' ) );
 	echo '</script>';
 } );
+
+add_shortcode( 'partner-badges' , function() {
+	$context = Timber::get_context();
+	$html = Timber::compile( 'templates/row-badges.twig', $context );
+	return $html;
+} );
