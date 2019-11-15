@@ -63,14 +63,12 @@
 	<div class="row-profile-list">
 		<div class="container">
 
-			{% include 'profile/list.twig' %}
+			{% include 'profile/list.twig' with {show_rating:true} %}
 
 			{% include 'pagination.twig' %}
 
 		</div>
 	</div>
-
-    {% include 'row-become-partner.twig' %}
 
     {% include 'row-complaint.twig' %}
 

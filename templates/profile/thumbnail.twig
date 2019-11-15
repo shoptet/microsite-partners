@@ -31,6 +31,10 @@
         {{ post.title }}
       </div>
 
+      {% if show_rating %}
+        {% include 'review-rating-stars.twig' with {rating: post|average_rating, size:'small'} %}
+      {% endif %}
+
       {% if post.get_field('price_per_hour_display') %}
         <div class="text-muted text-truncate">
           {{ post.get_field('price_per_hour_display') }}&nbsp;{{ post.get_field('price_currency')|currency_i18n }}/hod

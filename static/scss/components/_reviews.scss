@@ -14,6 +14,12 @@
     height: 1.3rem;
 }
 
+.review-rating-stars-small svg {
+    width: .85rem !important;
+    height: .85rem !important;
+    vertical-align: baseline !important;
+}
+
 .review-rating-stars li {
     display: inline-block;
     color: #BCBCBC;

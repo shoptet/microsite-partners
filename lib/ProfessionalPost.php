@@ -19,7 +19,40 @@ class ProfessionalPost extends Post
     return $is_unsubscribed;
   }
 
-  static public function getAllToNotify( $term ) {
+  public function getRatingStars()
+  {
+    $rating_stars = [];
+    for ( $i = 1; $i <= 5; $i++ ) {
+      $rating_stars[$i] = 0;
+    }
+    foreach ( $this->getComments() as $comment ) {
+      if ( $rating = get_comment_meta( $comment->comment_ID, 'rating', true ) ) {
+        $rating = intval( $rating );
+        $rating_stars[ $rating ]++;
+      }
+    }
+    return $rating_stars;
+  }
+
+  public function getAverageRating()
+  {
+    $rating_sum = 0;
+    $comments_count = 0;
+    foreach ( $this->getComments() as $comment ) {
+      if ( $rating = get_comment_meta( $comment->comment_ID, 'rating', true ) ) {
+        $rating_sum += intval( $rating );
+        $comments_count++;
+      }
+    }
+    $average_rating = 0;
+    if ( $comments_count > 0 ) {
+      $average_rating = round( $rating_sum / $comments_count );
+    }
+    return $average_rating;
+  }
+
+  static public function getAllToNotify( $term )
+  {
 
     // Get all professionals in category
     $query = new WP_Query( [

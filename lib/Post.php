@@ -57,6 +57,19 @@ class Post
     return $added;
   }
 
+  public function getComments()
+  {
+    $comment_query = new WP_Comment_Query( [
+      'post_id' => $this->getID(),
+      'status' => 'approve',
+      'type' => 'comment',
+      'no_found_rows' => true,
+      'update_comment_meta_cache' => false,
+      'update_comment_post_cache' => false,
+    ] );
+    return $comment_query->comments;
+  }
+
   static public function getByAuthToken( $auth_token, $post_type ) {
     $query = new WP_Query( [
       'post_type' => $post_type,

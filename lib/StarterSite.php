@@ -53,6 +53,7 @@ class StarterSite extends TimberSite {
     $twig->addFilter('remove_lastname', new Twig_SimpleFilter('remove_lastname', array($this, 'remove_lastname')));
     $twig->addFilter('posts_in_term', new Twig_SimpleFilter('posts_in_term', array($this, 'posts_in_term')));
     $twig->addFilter('keep_query_string', new Twig_SimpleFilter('keep_query_string', array($this, 'keep_query_string')));
+    $twig->addFilter('average_rating', new Twig_SimpleFilter('average_rating', array($this, 'average_rating')));
     return $twig;
   }
 
@@ -208,5 +209,10 @@ class StarterSite extends TimberSite {
   function keep_query_string( $link ) {
     if ( empty( $_SERVER['QUERY_STRING'] ) ) return $link;
     return $link . '?' . $_SERVER['QUERY_STRING'];
+  }
+
+  function average_rating( $post ) {
+    $professional_post = new ProfessionalPost( $post->ID );
+    return $professional_post->getAverageRating();
   }
 }
