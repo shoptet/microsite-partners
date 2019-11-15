@@ -109,25 +109,15 @@
 		</div>
 	{% endif %}
 
-    <div class="row-breadcrumb-bg pt-5 pb-5">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h2>Nejnovější Shoptet Partneři</h2>
-                </div>
-            </div>
+	<div class="row-profile-type">
+			<div class="container">
+				<h2 class="mb-4">Nejnovější Shoptet Partneři</h2>
+				{% include 'profile/list.twig' with {'posts': newest_posts, 'hide_cta': true} %}
+			</div>
+	</div>
 
-	        {% include 'profile/list.twig' with {'posts': newest_posts, 'hide_cta': true} %}
+	{% include 'row-reference.twig' %}
 
-        </div>
-    </div>
-
-    {% include 'row-reference.twig' %}
-
-    {% include 'row-badges.twig' %}
-
-    {% include 'row-become-partner.twig' %}
-
-    {% include 'row-complaint.twig' %} 
+	{% include 'row-complaint.twig' %} 
 
 {% endblock %}
