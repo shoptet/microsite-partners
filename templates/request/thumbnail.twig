@@ -1,4 +1,9 @@
-<a class="request-thumbnail {% if size %}request-thumbnail-{{ size }}{% endif %}" href="{{ post.link }}">
+<a
+  class="request-thumbnail {% if size %}request-thumbnail-{{ size }}{% endif %}"
+  href="{{ post.link }}"
+  itemscope
+	itemtype="http://schema.org/Demand"
+>
   <div class="d-flex">
 
     <div class="request-thumbnail-icon">
@@ -12,7 +17,7 @@
       <div class="request-thumbnail-body">
 
         <div>
-          <span class="request-thumbnail-title">{{ post.title }}</span>
+          <span class="request-thumbnail-title" itemprop="name">{{ post.title }}</span>
         </div>
 
         <ul class="request-thumbnail-meta list-inline list-inline-bullet text-muted">
@@ -22,6 +27,10 @@
 
           {% if post.author_name %}
             <li class="list-inline-item" title="{{ __( 'Zadavatel', 'shp-partneri' ) }}">{{ post.author_name|remove_lastname }}</span></li>
+          {% endif %}
+
+          {% if post.url %}
+            <meta itemprop="url" content="{{ post.url|ensure_protocol }}">
           {% endif %}
 
           {% if post.post_date %}
@@ -35,9 +44,10 @@
         </ul>
 
         {% if post.content %}
-          <p class="request-thumbnail-content mb-0" itemprop="description">
+          <p class="request-thumbnail-content mb-0">
             {{ post.content|striptags|truncate(300, '&hellip;') }}
           </p>
+          <meta itemprop="description" content="{{ post.content|striptags }}">
         {% endif %}
 
       </div>

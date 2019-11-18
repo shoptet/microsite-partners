@@ -13,7 +13,7 @@
 
     <div class="col-10 align-self-center">
 
-      <h1 class="request-title mb-1">{{ post.title }}</h1>
+      <h1 class="request-title mb-1" itemprop="name">{{ post.title }}</h1>
 
       {% if post.terms is not empty %}
         <a href="{{ post.terms.0.link }}">{{ post.terms.0.name }}</a>
