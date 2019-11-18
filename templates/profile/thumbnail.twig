@@ -31,7 +31,7 @@
         {{ post.title }}
       </div>
 
-      {% if show_rating %}
+      {% if show_rating and post.comments|length > 0 %}
         {% include 'review-rating-stars.twig' with {rating: post|average_rating, size:'small'} %}
       {% endif %}
 
