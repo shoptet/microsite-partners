@@ -32,7 +32,26 @@
       </div>
 
       {% if show_rating and post.comments|length > 0 %}
-        {% include 'review-rating-stars.twig' with {rating: post|average_rating, size:'small'} %}
+        {% with { average_rating: post|average_rating } %}
+          <div
+            itemprop="aggregateRating"
+            itemscope
+            itemtype="http://schema.org/AggregateRating"
+          >
+            <meta itemprop="bestRating" content="5">
+            <meta itemprop="worstRating" content="0">
+            <meta itemprop="ratingValue" content="{{ average_rating }}">
+            <meta itemprop="reviewCount" content="{{ post.comments|length }}">
+            <span
+              itemprop="itemReviewed"
+              itemscope
+              itemtype="http://schema.org/Person"
+            >
+              <meta itemprop="name" content="{{ post.title }}">
+            </span>
+            {% include 'review-rating-stars.twig' with { rating: average_rating, size: 'small' } %}
+          </div>
+        {% endwith %}
       {% endif %}
 
       {% if post.get_field('price_per_hour_display') %}
