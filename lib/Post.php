@@ -14,8 +14,25 @@ class Post
     return $this->post_id;
   }
 
+  public function getTitle() {
+    return get_the_title( $this->post_id );
+  }
+
+  public function getContent() {
+    $content = get_post_field( 'post_content', $this->post_id );
+    return apply_filters( 'the_content', $content );
+  }
+
   public function getSlug() {
     return get_post_field( 'post_name', $this->post_id );
+  }
+
+  public function getLink() {
+    return get_permalink( $this->post_id );
+  }
+
+  public function getAdminEditLink() {
+    return admin_url( sprintf( 'post.php?post=%s&action=edit', $this->post_id ) );
   }
 
   public function setMeta( $key, $value ) {

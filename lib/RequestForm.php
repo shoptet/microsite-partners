@@ -12,7 +12,7 @@ class RequestForm
     add_filter( 'acf/load_field/key=' . self::IS_SHOPTET_FIELD_KEY , [ get_called_class(), 'loadIsShoptetField' ] );
 
     add_action( 'acf/save_post', [ get_called_class(), 'verifyForm' ], 5 ); // before acf post data saved
-    add_action( 'acf/save_post', [ get_called_class(), 'saveForm' ], 15 ); // after acf post data saved
+    add_action( 'acf/save_post', [ get_called_class(), 'saveForm' ], 20 ); // after acf post data saved
   }
 
   public static function loadPostTitleField( $field )
