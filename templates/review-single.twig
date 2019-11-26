@@ -36,13 +36,6 @@
       <div class="comment-body" itemprop="reviewBody">
         {{ comment.comment_content|wpautop }}
       </div>
-      <span
-        itemprop="itemReviewed"
-        itemscope
-        itemtype="http://schema.org/Person"
-      >
-        <meta itemprop="name" content="{{ post.title }}">
-      </span>
       <div class="d-md-flex justify-content-between">
         {% spaceless %}
           <ul class="d-inline-block mb-md-0 list-inline list-inline-comma">
