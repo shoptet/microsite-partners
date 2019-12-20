@@ -3,22 +3,6 @@
 class RequestNotifier
 {
 
-  const REQUEST_VARIABLES_FIELD_NAMES = [
-    'request_new_author',
-    'request_new_admin',
-    'request_approve_author',
-    'request_approve_professional',
-    'request_message_author',
-    'request_expired_author',
-    'request_footer_author',
-  ];
-  const PROFESSIONAL_VARIABLES_FIELD_NAMES = [
-    'request_approve_professional',
-    'request_unsubscribed_professional',
-  ];
-  const MESSAGE_VARIABLES_FIELD_NAMES = [
-    'request_message_author',
-  ];
   const AUTHOR_FOOTER_FILED_NAME = 'request_footer_author';
   const SHOW_AUTHOR_FOOTER_FIELD_NAMES = [
     'request_new_author',
@@ -34,50 +18,6 @@ class RequestNotifier
     add_action( 'shp/request_message/validate', [ get_called_class(), 'messageRequestAuthor' ], 10, 2 );
     add_action( 'shp/request_service/expire', [ get_called_class(), 'expiredRequestAuthor' ] );
     add_action( 'shp/professional_service/unsubscribe', [ get_called_class(), 'unsubscribeRequestPartner' ] );
-
-    foreach( self::REQUEST_VARIABLES_FIELD_NAMES as $field_name ) {
-      add_filter( 'acf/load_field/name=' . $field_name , [ get_called_class(), 'showRequestVariablesInstructions' ] );
-    }
-    foreach( self::PROFESSIONAL_VARIABLES_FIELD_NAMES as $field_name ) {
-      add_filter( 'acf/load_field/name=' . $field_name , [ get_called_class(), 'showProfessionalVariablesInstructions' ] );
-    }
-    foreach( self::MESSAGE_VARIABLES_FIELD_NAMES as $field_name ) {
-      add_filter( 'acf/load_field/name=' . $field_name , [ get_called_class(), 'showMessageVariablesInstructions' ] );
-    }
-    foreach( self::SHOW_AUTHOR_FOOTER_FIELD_NAMES as $field_name ) {
-      add_filter( 'acf/load_field/name=' . $field_name , [ get_called_class(), 'showAuthorFooterInstructions' ] );
-    }
-  }
-
-  static function showRequestVariablesInstructions( $field )
-  {
-    $instructions = '<br><strong>Proměnné poptávky</strong>';
-    $instructions .= '<br><code>%request_name%</code>, <code>%request_category%</code>, <code>%request_admin_edit_url%</code>, <code>%request_text%</code>, <code>%request_author_name%</code>, <code>%request_author_email%</code>, <code>%request_preview_url%</code>, <code>%request_url%</code>, <code>%request_expiration_url%</code><br>';
-    $field['instructions'] .= $instructions;
-    return $field;
-  }
-
-  static function showProfessionalVariablesInstructions( $field )
-  {
-    $instructions = '<br><strong>Proměnné partnera</strong>';
-    $instructions .= '<br><code>%partner_name%</code>, <code>%partner_unsubscribe_category_url%</code>, <code>%partner_unsubscribe_all_url%</code><br>';
-    $field['instructions'] .= $instructions;
-    return $field;
-  }
-
-  static function showMessageVariablesInstructions( $field )
-  {
-    $instructions = '<br><strong>Proměnné reakce</strong>';
-    $instructions .= '<br><code>%message_name%</code>, <code>%message_email%</code>, <code>%message_text%</code><br>';
-    $field['instructions'] .= $instructions;
-    return $field;
-  }
-
-  static function showAuthorFooterInstructions( $field )
-  {
-    $instructions = 'Za touto zprávou se zobrazí patička s expiračním odkazem (viz níže)<br>';
-    $field['sub_fields'][1]['instructions'] .= $instructions;
-    return $field;
   }
 
   static function getDefaultEmailHeaders()
