@@ -19,60 +19,63 @@
 {% block content %}
 
 	<div
-		class="row-profile row-profile-breadcrumb"
 		itemscope
-		itemtype="http://schema.org/{% if post.post_type == 'profesionalove' %}Person{% else %}Product{% endif %}"
+		itemtype="http://schema.org/Organization"
 	>
-		<div class="container">
+	
+		<div class="row-profile row-profile-breadcrumb">
+			<div class="container">
 
-			<div class="d-lg-none">
-				{% include 'profile/verified.twig' %}
-			</div>
+				<div class="d-lg-none">
+					{% include 'profile/verified.twig' %}
+				</div>
 
-			<div class="row">
-			  <div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-8">
 
-					<div class="list-group-profile mb-4 mb-sm-0">
+						<div class="list-group-profile mb-4 mb-sm-0">
 
-						{% include 'profile/main.twig' %}
+							{% include 'profile/main.twig' %}
 
-						{% include 'profile/price.twig' %}
+							{% include 'profile/price.twig' %}
 
-						{% include 'profile/about.twig' %}
+							{% include 'profile/about.twig' %}
 
-						{% include 'profile/references.twig' %}
+							{% include 'profile/references.twig' %}
+
+						</div>
 
 					</div>
+					<div class="col-lg-4">
+							{% if post.get_field('isVerified') is not empty %}
+								<div class="d-none d-lg-block">
+									{% include 'profile/verified.twig' %}
+								</div>
+							{% endif %}
 
+											{% include 'profile/contact.twig' %}
+
+											{% if post.get_field('recommendations') is not empty %}
+								{% include 'profile/recommendation.twig' %}
+							{% endif %}
+					</div>
+
+					<hr>
 				</div>
-				<div class="col-lg-4">
-    				{% if post.get_field('isVerified') is not empty %}
-    					<div class="d-none d-lg-block">
-    						{% include 'profile/verified.twig' %}
-    					</div>
-    				{% endif %}
 
-                    {% include 'profile/contact.twig' %}
-
-                    {% if post.get_field('recommendations') is not empty %}
-					    {% include 'profile/recommendation.twig' %}
-    				{% endif %}
-				</div>
-
-				<hr>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="{{ similar_posts|length > 0 ? 'border-bottom' }}">
-		<div class="container pt-5">
-			<div class="row">
-				<div class="col-xl-9">
-					{% include 'reviews.twig' %}
-				</div>
 			</div>
 		</div>
+
+		<div class="{{ similar_posts|length > 0 ? 'border-bottom' }}">
+			<div class="container pt-5">
+				<div class="row">
+					<div class="col-xl-9">
+						{% include 'reviews.twig' %}
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 	{% if similar_posts|length > 0 %}

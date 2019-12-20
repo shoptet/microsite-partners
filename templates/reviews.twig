@@ -15,14 +15,6 @@
         <meta itemprop="worstRating" content="0">
         <meta itemprop="ratingValue" content="{{ average_rating }}">
         <meta itemprop="reviewCount" content="{{ post.comments|length }}">
-
-        <span
-            itemprop="itemReviewed"
-            itemscope
-            itemtype="http://schema.org/Person"
-        >
-            <meta itemprop="name" content="{{ post.title }}">
-        </span>
       {% endif %}
 
       <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}</div>

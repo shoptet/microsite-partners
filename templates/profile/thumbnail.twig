@@ -3,7 +3,7 @@
   class="profile-thumbnail mb-4"
   title="Zobrazit profil"
   itemscope
-  itemtype="http://schema.org/{% if post.post_type == 'profesionalove' %}Person{% else %}Product{% endif %}"
+  itemtype="http://schema.org/Organization"
 >
 
   <div class="profile-thumbnail-badge">
@@ -45,7 +45,7 @@
             <span
               itemprop="itemReviewed"
               itemscope
-              itemtype="http://schema.org/Person"
+              itemtype="http://schema.org/Organization"
             >
               <meta itemprop="name" content="{{ post.title }}">
             </span>
