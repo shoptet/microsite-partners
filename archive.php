@@ -16,23 +16,16 @@
 
 global $wp_query;
 
-$post_query_args = array_merge( $wp_query->query_vars, array(
-  'posts_per_page' => '11',
-  'meta_key' => 'verifiedLevel',
-  'orderby' => array(
-      'verifiedLevel' => 'DESC',
-      'title'    => 'ASC'
-    )
-));
-
 $context = Timber::get_context();
 
 $term = new TimberTerm();
 $termTitle = ( $term->title ? $term->title : $term->name);
 
+$context['terms'] = Timber::get_terms( ProfessionalPost::TAXONOMY );
+
 $context['term'] = $term;
 $context['term_title'] = $termTitle;
-$context['posts'] = $posts = new Timber\PostQuery($post_query_args);
+$context['posts'] = $posts = new Timber\PostQuery();
 $context['wp_title'] = $termTitle;
 $context['breadcrumbs'] = array(
   $termTitle => $term->link );
@@ -42,7 +35,5 @@ $context['pagination'] = Timber::get_pagination();
 $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . 'strana/' . $context['pagination']['current'];
 
 $context['meta_description'] = $term->description;
-
-//print_r($context);
 
 Timber::render( 'archive.twig', $context );

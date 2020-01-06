@@ -63,9 +63,18 @@
 	<div class="row-profile-list">
 		<div class="container">
 
-			{% include 'profile/list.twig' with {show_rating:true} %}
+			<div class="row">
+    		<div class="col-12 col-md-4 col-lg-3">
+					{% include 'profile/filter.twig' %}
+				</div>
+				<div class="col-12 col-md-8 col-lg-9">
 
-			{% include 'pagination.twig' %}
+					{% include 'profile/list.twig' with {show_rating:true, col_class:'col-12 col-lg-6'} %}
+
+					{% include 'pagination.twig' %}
+
+				</div>
+			</div>
 
 		</div>
 	</div>

@@ -768,6 +768,27 @@ Migrations::init();
 
 ShoptetProjectCount::init();
 
+/**
+ * Handle filtering and ordering wholesaler archive and category
+ */
+add_action('pre_get_posts', function( $wp_query ) {
+  if (
+    is_admin() ||
+    ! $wp_query->is_main_query() ||
+    (
+      $wp_query->get( 'post_type' ) !== 'profesionalove' &&
+      ! $wp_query->is_tax( 'category_professionals' )
+    )
+  ) return;
+
+  $fs = new FacetedSearch( $wp_query );
+  $fs->filterBySearchQuery();
+  $fs->filterByMetaQuery( 'region', 'OR' );
+	$fs->filterByMetaQuery( 'blank_template_creator' );
+	$fs->filterByTaxQuery( 'category_professionals' );
+  $fs->order();
+} );
+
 function get_shoptet_footer() {
     // params
     $id = 'partnerishoptetcz';
