@@ -1,4 +1,4 @@
-let $form;
+let $forms;
 
 const createUrl = (data) => {
   // Remove default ordering and empty value
@@ -18,13 +18,13 @@ const createUrl = (data) => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  const data = $form.serializeArray();
+  const data = $forms.serializeArray();
   const url = createUrl(data);
   window.location.href = url;
 };
 
-export const initRequestArchiveFilter = () => {
-  $form = $('#requestArchiveFilterForm');
-  $form.on('submit', handleFormSubmit);
-  $form.find(':input').change(() => $form.submit());
+export const initArchiveFilter = () => {
+  $forms = $('#requestArchiveFilterForm, #professionalArchiveFilterForm');
+  $forms.on('submit', handleFormSubmit);
+  $forms.find(':input').change(() => $forms.submit());
 };

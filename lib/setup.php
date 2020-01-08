@@ -776,8 +776,8 @@ add_action('pre_get_posts', function( $wp_query ) {
     is_admin() ||
     ! $wp_query->is_main_query() ||
     (
-      $wp_query->get( 'post_type' ) !== 'profesionalove' &&
-      ! $wp_query->is_tax( 'category_professionals' )
+      $wp_query->get( 'post_type' ) !== ProfessionalPost::POST_TYPE &&
+      ! $wp_query->is_tax( ProfessionalPost::TAXONOMY )
     )
   ) return;
 
@@ -785,7 +785,7 @@ add_action('pre_get_posts', function( $wp_query ) {
   $fs->filterBySearchQuery();
   $fs->filterByMetaQuery( 'region', 'OR' );
 	$fs->filterByMetaQuery( 'blank_template_creator' );
-	$fs->filterByTaxQuery( 'category_professionals' );
+	$fs->filterByTaxQuery( ProfessionalPost::TAXONOMY );
   $fs->order();
 } );
 

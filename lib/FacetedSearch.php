@@ -5,7 +5,7 @@ class FacetedSearch
 
   protected $wp_query;
 
-  protected const POSTS_PER_PAGE = 11;
+  protected const POSTS_PER_PAGE = 13;
 
   public function __construct( &$wp_query )
   {
@@ -34,8 +34,10 @@ class FacetedSearch
   public function filterByMetaQuery( $key, $relation = 'AND', $compare = '=' )
   {
     $meta_query = $this->getMetaQuery();
+
+    if( ! isset( $_GET[ $key ] ) ) return;
     
-    if( isset( $_GET[ $key ] ) && is_array( $_GET[ $key ] ) ) {
+    if( is_array( $_GET[ $key ] ) ) {
       $result = [ 'relation' => $relation ];
       foreach( $_GET[ $key ] as $value ) {
         $result[] = [
@@ -44,8 +46,14 @@ class FacetedSearch
           'compare' => $compare,
         ];
       }
-      $meta_query[] = $result;
+    } elseif( ! empty( $_GET[ $key ] ) ) {
+      $result[] = [
+        'key' => $key,
+        'value' => $_GET[ $key ],
+        'compare' => $compare,
+      ];
     }
+    $meta_query[] = $result;
 
     $this->wp_query->set( 'meta_query', $meta_query );
   }

@@ -1,4 +1,4 @@
-<div class="filter mb-4 mb-md-0">
+<form class="filter mb-4 mb-md-0" id="professionalArchiveFilterForm">
   <button
     class="btn btn-primary d-md-none"
     type="button"
@@ -14,21 +14,71 @@
   <div class="collapse d-md-block" id="filtersCollapse">
 
     <div class="mt-3 mt-md-0">
-      <p class="h5 font-weight-bold mt-0 mb-2">
-        {{ __( 'Kategorie', 'shp-partneri' ) }}
-      </p>
 
-      <ul class="list-unstyled mb-0">
-        {% for t in terms if t.count %}
-          <li>
-            <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link|keep_query_string }}">
-              {{ t.name }}
-              <span class="text-semilight">({{ t.count }})</span>
-            </a>
-          </li>
+      <div class="pb-3 mb-4 border-bottom">
+        <div class="form-check mb-0">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="blank_template_creator"
+              value="1"
+              {% if blank_template_creator == '1' %}
+                checked
+              {% endif %}
+            >
+            {{ __( 'Tvůrce blank šablon', 'shp-partneri' ) }}
+          </label>
+        </div>
+      </div>
+
+      <div class="border-bottom pb-3 mb-4">
+
+        <p class="h5 font-weight-bold mt-0 mb-2">
+          {{ __( 'Kategorie', 'shp-partneri' ) }}
+        </p>
+
+        <ul class="list-unstyled mb-0">
+          {% for t in terms if t.count %}
+            <li>
+              <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link|keep_query_string }}">
+                {{ t.name }}
+                <span class="text-semilight">({{ t.count }})</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+
+      <div>
+
+        <p class="h5 font-weight-bold mt-0 mb-2">
+          {{ __( 'Lokalita', 'shp-partneri' ) }}
+        </p>
+
+        {% for country_code, country in regions_by_country %}
+          <p class="font-weight-bold my-2">{{ country.name }}</p>
+          {% for region in country.regions %}
+            <div class="form-check mb-0">
+              <label class="form-check-label">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="region[]"
+                  value="{{ region.id }}"
+                  {% if region.id in checked_regions %}
+                    checked
+                  {% endif %}
+                >
+                {{ region.name }}
+              </label>
+            </div>
+          {% endfor %}
         {% endfor %}
-      </ul>
+
+      </div>
 
     </div>
   </div>
-</div>
+</form>

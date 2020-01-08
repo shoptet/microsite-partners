@@ -301,3 +301,38 @@ function verify_recaptcha () {
   $resp = $recaptcha->verify( $recaptcha_response, $_SERVER['REMOTE_ADDR'] );
   return $resp->isSuccess();
 }
+
+/**
+ * Get regions by country
+ */
+function get_regions_by_country( $post_type ): array
+{
+  $countries = [
+    'cz' => [
+      'name' => __( 'Česko', 'shp-obchodiste' ),
+      'field' => 'field_5d3ebb18c804a',
+    ],
+    'sk' => [
+      'name' => __( 'Slovensko', 'shp-obchodiste' ),
+      'field' => 'field_5d3ebb6bc804b',
+    ],
+  ];
+  $regions_by_country = [];
+  foreach ( $countries as $country_code => $country ) {
+    $regions_in_country = get_field_object( $country[ 'field' ] )[ 'choices' ];
+    $regions = [];
+    foreach ( $regions_in_country as $region_id => $region_name ) {
+      $regions[] = [
+        'id' => $region_id,
+        'name' => $region_name,
+      ];
+    }
+    if ( empty( $regions ) ) continue;
+    
+    $regions_by_country[ $country_code ] = [
+      'name' => $country[ 'name' ],
+      'regions' => $regions,
+    ];
+  }
+  return $regions_by_country;
+}
