@@ -23,9 +23,11 @@ $termTitle = ( $term->title ? $term->title : $term->name);
 
 $context['terms'] = Timber::get_terms( ProfessionalPost::TAXONOMY );
 
-$context['regions_by_country'] = get_regions_by_country( ProfessionalPost::POST_TYPE );
+$context['regions_by_country'] = get_regions_by_country( ProfessionalPost::POST_TYPE, $term );
 $context['checked_regions'] = ( isset($_GET[ 'region' ]) && is_array($_GET[ 'region' ]) ) ? $_GET[ 'region' ] : [];
 $context['blank_template_creator'] = isset( $_GET[ 'blank_template_creator' ] ) ? $_GET[ 'blank_template_creator' ] : null;
+$context['blank_template_creator_count'] = get_post_count( 'blank_template_creator', '1', ProfessionalPost::POST_TYPE, $term );
+
 $context['term'] = $term;
 $context['term_title'] = $termTitle;
 $context['posts'] = $posts = new Timber\PostQuery();

@@ -4,7 +4,8 @@
   background-color: lighten($blue, 47%);
   border-radius: $border-radius;
 
-  .border-bottom {
+  .border-bottom,
+  .border-top {
     border-color: lighten($blue, 35%);
   }
 }

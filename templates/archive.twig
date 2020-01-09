@@ -38,8 +38,6 @@
 		<div class="container">
 			<div class="row-category-header-wrapper">
 
-
-
 				<div class="row-category-header-body">
 					{% if term.get_field('image') %}
 				    <div class="row-category-header-icon">
@@ -69,9 +67,22 @@
 				</div>
 				<div class="col-12 col-md-8 col-lg-9">
 
-					{% include 'profile/list.twig' with {show_rating:true, col_class:'col-12 col-lg-6'} %}
+      		{% if posts is not empty %}
 
-					{% include 'pagination.twig' %}
+						{% include 'profile/list.twig' with {show_rating:true, col_class:'col-12 col-lg-6'} %}
+
+						{% include 'pagination.twig' %}
+
+					{% else %}
+
+						<p class="h3 mb-2">
+							{{ __( 'Nemůžeme najít žádné partnery s těmito požadavky', 'shp-partneri' ) }}
+						</p>
+						<p>
+							{{ __( 'Zkuste prosím snížit vaše požadavky pomocí filtrů.', 'shp-partneri' ) }}
+						</p>
+
+					{% endif %}
 
 				</div>
 			</div>

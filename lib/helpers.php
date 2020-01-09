@@ -303,9 +303,38 @@ function verify_recaptcha () {
 }
 
 /**
+ * Get post count by meta key and value
+ */
+function get_post_count( $meta_key, $meta_value, $post_type, $term ): int
+{
+  $query = new WP_Query( [
+    'post_type' => $post_type,
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'fields' => 'ids',
+    'no_found_rows' => true,
+    'update_post_meta_cache' => false,
+    'update_post_term_cache' => false,
+    'meta_query' => [
+      [
+        'key' => $meta_key,
+        'value' => $meta_value,
+      ],
+    ],
+    'tax_query' => [
+      [
+        'taxonomy' => $term->taxonomy,
+        'terms' => $term->term_id,
+      ],
+    ],
+  ] );
+  return count( $query->posts );
+}
+
+/**
  * Get regions by country
  */
-function get_regions_by_country( $post_type ): array
+function get_regions_by_country( $post_type, $term ): array
 {
   $countries = [
     'cz' => [
@@ -322,10 +351,14 @@ function get_regions_by_country( $post_type ): array
     $regions_in_country = get_field_object( $country[ 'field' ] )[ 'choices' ];
     $regions = [];
     foreach ( $regions_in_country as $region_id => $region_name ) {
-      $regions[] = [
-        'id' => $region_id,
-        'name' => $region_name,
-      ];
+      $posts_in_region = get_post_count( 'region', $region_id, ProfessionalPost::POST_TYPE, $term );
+      if ( $posts_in_region > 0 ) {
+        $regions[] = [
+          'id' => $region_id,
+          'name' => $region_name,
+          'count' => $posts_in_region,
+        ];
+      }
     }
     if ( empty( $regions ) ) continue;
     
