@@ -5,7 +5,7 @@ class FacetedSearch
 
   protected $wp_query;
 
-  protected const POSTS_PER_PAGE = 13;
+  const POSTS_PER_PAGE = 11;
 
   public function __construct( &$wp_query )
   {
