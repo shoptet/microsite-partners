@@ -34,6 +34,20 @@ function hide_field_in_admin( $field ) {
 }
 
 /**
+ * Show only basic text fields in frontend onboarding form
+ */
+add_filter( 'acf/load_field/key=field_59ca425ee9a9e', 'basic_text_field_for_non_admin' ); // ACF field name: description
+add_filter( 'acf/load_field/key=field_59e8ac0d91d4b', 'basic_text_field_for_non_admin' ); // ACF field name: benefit
+function basic_text_field_for_non_admin ( $field ) {
+	if( ! is_admin() ) {
+		$field['tabs'] = 'visual';
+		$field['toolbar'] = 'basic';
+		$field['media_upload'] = 0;
+	}
+	return $field;
+}
+
+/**
  * Add cron schedule interval options
  */
 add_filter( 'cron_schedules', function ( $schedules ) {
