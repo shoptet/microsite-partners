@@ -15,7 +15,7 @@ class Migrations {
   static function makeMigrations() {
     foreach( self::MIGRATIONS as $migration ) {
       $option = self::OPTION_PREFIX . $migration;
-      if ( get_option( $option ) !== false ) return;
+      if ( get_option( $option ) !== false ) continue;
       self::{$migration}();
       add_option( $option, true );
     }
