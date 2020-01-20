@@ -177,8 +177,8 @@ class RequestService
     if ( RequestPost::POST_TYPE != $post->post_type ) return;
     ?>
     <script>
-      $(function () {
-        $('select#post_status').append(`
+      jQuery(function () {
+        jQuery('select#post_status').append(`
           <option value="expired" <?php echo ('expired' == $post->post_status) ? 'selected' : ''; ?>>
             <?php _e( 'Expirováno', 'shp-partneri' ); ?>
           </option>
@@ -187,8 +187,8 @@ class RequestService
           </option>
         `);
         <?php if ( 'expired' == $post->post_status ): ?>
-          $('#post-status-display').text('<?php _e( 'Expirováno', 'shp-partneri' ); ?>');
-          $('input#publish').removeAttr('name').val('<?php _e( 'Aktualizovat', 'shp-partneri' ); ?>');
+          jQuery('#post-status-display').text('<?php _e( 'Expirováno', 'shp-partneri' ); ?>');
+          jQuery('input#publish').removeAttr('name').val('<?php _e( 'Aktualizovat', 'shp-partneri' ); ?>');
         <?php endif; ?>
       });
     </script>
