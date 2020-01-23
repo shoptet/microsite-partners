@@ -66,6 +66,7 @@
    $context['recent_request_posts'] = Timber::get_posts( [
      'post_type' => 'request',
      'posts_per_page' => 3,
+     'post_status' => 'publish',
    ] );
     
  	 array_unshift( $templates, 'home.twig' );
