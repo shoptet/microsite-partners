@@ -1,6 +1,4 @@
-let $forms;
-
-const createUrl = (data) => {
+const createUrl = (data, currentURL) => {
   // Remove default ordering and empty value
   data = data.filter((item) => {
     const skipDefaultOrderBy = (item.name === 'orderby' && item.value === 'date_desc');
@@ -12,19 +10,23 @@ const createUrl = (data) => {
   data.forEach((item, i) => {
     queryString += (i == 0 ? '?' : '&' ) + item.name + '=' + item.value;
   });
-  const $currentUrlPath = location.protocol + '//' + location.host + location.pathname;
-  return $currentUrlPath + queryString;
+  return currentURL + queryString;
 };
 
-const handleFormSubmit = (e) => {
+function handleFormSubmit (e) {
   e.preventDefault();
-  const data = $forms.serializeArray();
-  const url = createUrl(data);
+  const $form = $(this);
+  const data = $form.serializeArray();
+  const currentURL = $form.attr('action');
+  const url = createUrl(data, currentURL);
   window.location.href = url;
 };
 
 export const initArchiveFilter = () => {
-  $forms = $('#requestArchiveFilterForm, #professionalArchiveFilterForm');
-  $forms.on('submit', handleFormSubmit);
-  $forms.find(':input').change(() => $forms.submit());
+  const $forms = $('#requestArchiveFilterForm, #professionalArchiveFilterForm');
+  $forms.each( function() {
+    const $form = $(this);
+    $form.on('submit', handleFormSubmit);
+    $form.find(':input').change(() => $form.submit());
+  } );
 };
