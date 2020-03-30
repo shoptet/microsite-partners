@@ -56,7 +56,7 @@
 
 				{% if posts is not empty %}
 					<h2 class="h5 mb-3">Profily ({{ posts_count }})</h2>
-					{% include 'profile/list.twig' with {'hide_cta': true} %}
+					{% include 'profile/list.twig' with {show_rating: true, 'hide_cta': true} %}
 
 					{% include 'pagination.twig' %}
 				{% endif %}
