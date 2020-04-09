@@ -35,13 +35,13 @@
     </div>
   {% endif %}
 
-  {% if post.post_date %}
+  {% if post.date %}
     <div class="row mb-3 mb-sm-1">
       <div class="col-sm-3 text-muted">
         {{ __( 'Zveřejnění', 'shp-partneri' ) }}
       </div>
       <div class="col-sm-8">
-        <time datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date_i18n }}</time>
+        <time datetime="{{ post.date|date('c') }}">{{ post.date }}</time>
       </div>
     </div>
   {% endif %}
