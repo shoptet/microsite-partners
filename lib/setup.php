@@ -1,5 +1,8 @@
 <?php
 
+// Disable DOMDocument warnings while e-mail sending. Warnings are caused by lh-multipart-email plugin.
+libxml_use_internal_errors(true);
+
 add_filter( 'wp_mail', function ( $args ) {
 	if ( WP_DEBUG ) {
 		$args['to'] = 'jk.oolar@gmail.com';
