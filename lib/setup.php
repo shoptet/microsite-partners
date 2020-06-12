@@ -661,9 +661,11 @@ add_action( 'acf/save_post', function( $post_id ) {
 	}
 } );
 
-if ( ! wp_next_scheduled( 'fetch_exchange_rates_and_convert' ) ) {
-  wp_schedule_event( time(), 'daily', 'fetch_exchange_rates_and_convert' );
-}
+// Temporarily disabled for debugging purpose
+wp_clear_scheduled_hook( 'fetch_exchange_rates_and_convert' );
+// if ( ! wp_next_scheduled( 'fetch_exchange_rates_and_convert' ) ) {
+//   wp_schedule_event( time(), 'daily', 'fetch_exchange_rates_and_convert' );
+// }
 add_action( 'fetch_exchange_rates_and_convert', 'fetch_exchange_rates_and_convert' );
 
 function fetch_exchange_rates_and_convert() {

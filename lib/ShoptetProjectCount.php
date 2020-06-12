@@ -6,7 +6,7 @@ class ShoptetProjectCount
   const ENDPOINT_URL = 'https://www.shoptet.cz/projectAction/ShoptetStatisticCounts/Index';
   const CACHE_FILE = 'wp-content/uploads/counters.cached';
   const CACHE_FILE_MODIFY_LIMIT = 3600; // one hour in seconds
-  const FETCH_RECURRENCE = 'hourly';
+  const FETCH_RECURRENCE = 'daily';
 
   static function init()
   {
