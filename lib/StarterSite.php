@@ -43,17 +43,17 @@ class StarterSite extends TimberSite {
   function add_to_twig( $twig ) {
     /* this is where you can add your own functions to twig */
     $twig->addExtension( new Twig_Extension_StringLoader() );
-    $twig->addFilter('static_assets', new Twig_SimpleFilter('static_assets', array($this, 'static_assets')));
-    $twig->addFilter('truncate', new Twig_SimpleFilter('truncate', array($this, 'truncate')));
-    $twig->addFilter('display_url', new Twig_SimpleFilter('display_url', array($this, 'display_url')));
-    $twig->addFilter('currency_i18n', new Twig_SimpleFilter('currency_i18n', array($this, 'currency_i18n')));
-    $twig->addFilter('ensure_protocol', new Twig_SimpleFilter('ensure_protocol', array($this, 'ensure_protocol')));
-    $twig->addFilter('date_i18n', new Twig_SimpleFilter('date_i18n', array($this, 'date_i18n')));
-    $twig->addFilter('request_state', new Twig_SimpleFilter('request_state', array($this, 'request_state')));
-    $twig->addFilter('remove_lastname', new Twig_SimpleFilter('remove_lastname', array($this, 'remove_lastname')));
-    $twig->addFilter('posts_in_term', new Twig_SimpleFilter('posts_in_term', array($this, 'posts_in_term')));
-    $twig->addFilter('keep_query_string', new Twig_SimpleFilter('keep_query_string', array($this, 'keep_query_string')));
-    $twig->addFilter('average_rating', new Twig_SimpleFilter('average_rating', array($this, 'average_rating')));
+    $twig->addFilter( new Timber\Twig_Filter('static_assets', array($this, 'static_assets')));
+    $twig->addFilter( new Timber\Twig_Filter('truncate', array($this, 'truncate')));
+    $twig->addFilter( new Timber\Twig_Filter('display_url', array($this, 'display_url')));
+    $twig->addFilter( new Timber\Twig_Filter('currency_i18n', array($this, 'currency_i18n')));
+    $twig->addFilter( new Timber\Twig_Filter('ensure_protocol', array($this, 'ensure_protocol')));
+    $twig->addFilter( new Timber\Twig_Filter('date_i18n', array($this, 'date_i18n')));
+    $twig->addFilter( new Timber\Twig_Filter('request_state', array($this, 'request_state')));
+    $twig->addFilter( new Timber\Twig_Filter('remove_lastname', array($this, 'remove_lastname')));
+    $twig->addFilter( new Timber\Twig_Filter('posts_in_term', array($this, 'posts_in_term')));
+    $twig->addFilter( new Timber\Twig_Filter('keep_query_string', array($this, 'keep_query_string')));
+    $twig->addFilter( new Timber\Twig_Filter('average_rating', array($this, 'average_rating')));
     return $twig;
   }
 
