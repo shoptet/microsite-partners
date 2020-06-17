@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" {{ site.language_attributes }}>
 	<head>
-      {% if options.themeGTMId %}
-		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','{{ options.themeGTMId }}');</script>
-		<!-- End Google Tag Manager -->
-	  {% endif %}
-
 	  <meta charset="{{ site.charset }}">
 	  <title>
 	    {% if wp_title %}
@@ -59,12 +49,6 @@
 	</head>
 
 	<body class="{{ body_class }}">
-
-		{# Web Google Tag Manager (noscript) #}
-		{% if options.themeGTMId %}
-			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ options.themeGTMId }}"
-			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		{% endif %}
 
 		{# Web Font Loader #}
 		{#
