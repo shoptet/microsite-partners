@@ -1,25 +1,25 @@
 <?php
 
-$instructions_request = '<br><strong>Proměnné poptávky</strong>';
+$instructions_request = '<br><strong>' . __( 'Proměnné poptávky', 'shp-partneri' ) . '</strong>';
 $instructions_request .= '<br><code>%request_name%</code>, <code>%request_category%</code>, <code>%request_admin_edit_url%</code>, <code>%request_text%</code>, <code>%request_author_name%</code>, <code>%request_author_email%</code>, <code>%request_preview_url%</code>, <code>%request_url%</code>, <code>%request_expiration_url%</code><br>';
 
-$instructions_professional = '<br><strong>Proměnné partnera</strong>';
+$instructions_professional = '<br><strong>' . __( 'Proměnné partnera', 'shp-partneri' ) . '</strong>';
 $instructions_professional .= '<br><code>%partner_name%</code>, <code>%partner_unsubscribe_category_url%</code>, <code>%partner_unsubscribe_all_url%</code><br>';
 
-$instructions_message = '<br><strong>Proměnné reakce</strong>';
+$instructions_message = '<br><strong>' . __( 'Proměnné reakce', 'shp-partneri' ) . '</strong>';
 $instructions_message .= '<br><code>%message_name%</code>, <code>%message_email%</code>, <code>%message_text%</code><br>';
 
-$instructions_author_footer = 'Za touto zprávou se zobrazí patička s expiračním odkazem (viz níže)<br>';
+$instructions_author_footer = __( 'Za touto zprávou se zobrazí patička s expiračním odkazem (viz níže)<br>', 'shp-partneri' );
 
 if( function_exists('acf_add_local_field_group') ):
 
   acf_add_local_field_group(array(
     'key' => 'group_5dc2c3c920d55',
-    'title' => 'Nastavení mailingu poptávek',
+    'title' => __( 'Nastavení mailingu poptávek', 'shp-partneri' ),
     'fields' => array(
       array(
         'key' => 'field_5dc2c47283ead',
-        'label' => 'E-mail zadavateli po vložení poptávky ke schválení',
+        'label' => __( 'E-mail zadavateli po vložení poptávky ke schválení', 'shp-partneri' ),
         'name' => 'request_new_author',
         'type' => 'group',
         'instructions' => $instructions_request,
@@ -34,7 +34,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dc2c4d883eae',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -53,7 +53,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dc2c4e583eaf',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => $instructions_author_footer,
@@ -74,7 +74,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dc2c69a39ef6',
-        'label' => 'E-mail adminovi po vložení poptávky ke schválení',
+        'label' => __( 'E-mail adminovi po vložení poptávky ke schválení', 'shp-partneri' ),
         'name' => 'request_new_admin',
         'type' => 'group',
         'instructions' => $instructions_request,
@@ -89,7 +89,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dc2c69a39ef7',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -108,7 +108,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dc2c69a39ef8',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => '',
@@ -129,7 +129,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dc2c7c1f354b',
-        'label' => 'E-mail zadavateli po schválení poptávky',
+        'label' => __( 'E-mail zadavateli po schválení poptávky', 'shp-partneri' ),
         'name' => 'request_approve_author',
         'type' => 'group',
         'instructions' => $instructions_request,
@@ -144,7 +144,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dc2c7c1f354c',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -163,7 +163,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dc2c7c1f354d',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => $instructions_author_footer,
@@ -184,7 +184,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dc2c807f354e',
-        'label' => 'E-mail partnerovi po schválení poptávky',
+        'label' => __( 'E-mail partnerovi po schválení poptávky', 'shp-partneri' ),
         'name' => 'request_approve_professional',
         'type' => 'group',
         'instructions' => $instructions_request . $instructions_professional,
@@ -199,7 +199,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dc2c807f354f',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -218,7 +218,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dc2c807f3550',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => '',
@@ -239,7 +239,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dce823ef51cc',
-        'label' => 'E-mail zadavateli s odpovědí na poptávku',
+        'label' => __( 'E-mail zadavateli s odpovědí na poptávku', 'shp-partneri' ),
         'name' => 'request_message_author',
         'type' => 'group',
         'instructions' => $instructions_request . $instructions_message,
@@ -254,7 +254,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dce823ef51cd',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -273,7 +273,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dce823ef51ce',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => '',
@@ -294,7 +294,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dce82dff51cf',
-        'label' => 'E-mail zadavateli po expiraci poptávky',
+        'label' => __( 'E-mail zadavateli po expiraci poptávky', 'shp-partneri' ),
         'name' => 'request_expired_author',
         'type' => 'group',
         'instructions' => $instructions_request,
@@ -309,7 +309,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dce82dff51d0',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -328,7 +328,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dce82dff51d1',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => '',
@@ -349,7 +349,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dce832ef51d2',
-        'label' => 'E-mail partnerovi po odhlášení z mailingu',
+        'label' => __( 'E-mail partnerovi po odhlášení z mailingu', 'shp-partneri' ),
         'name' => 'request_unsubscribed_professional',
         'type' => 'group',
         'instructions' => $instructions_professional,
@@ -364,7 +364,7 @@ if( function_exists('acf_add_local_field_group') ):
         'sub_fields' => array(
           array(
             'key' => 'field_5dce832ef51d3',
-            'label' => 'Předmět',
+            'label' => __( 'Předmět', 'shp-partneri' ),
             'name' => 'subject',
             'type' => 'text',
             'instructions' => '',
@@ -383,7 +383,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
           array(
             'key' => 'field_5dce832ef51d4',
-            'label' => 'Zpráva',
+            'label' => __( 'Zpráva', 'shp-partneri' ),
             'name' => 'message',
             'type' => 'wysiwyg',
             'instructions' => '',
@@ -404,7 +404,7 @@ if( function_exists('acf_add_local_field_group') ):
       ),
       array(
         'key' => 'field_5dce83eff51d6',
-        'label' => 'Patička e-mailu zadavateli s expiračním odkazem',
+        'label' => __( 'Patička e-mailu zadavateli s expiračním odkazem', 'shp-partneri' ),
         'name' => 'request_footer_author',
         'type' => 'textarea',
         'instructions' => $instructions_request,

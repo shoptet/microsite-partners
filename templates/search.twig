@@ -23,7 +23,7 @@
 
 				<div class="row-category-header-body">
 
-					<h1 class="row-category-header-title">Výsledky vyhledávání pro: <strong>{{ query }}</strong></h1>
+					<h1 class="row-category-header-title">{{ __( 'Výsledky vyhledávání pro:', 'shp-partneri' ) }} <strong>{{ query }}</strong></h1>
 
 				</div>
 
@@ -38,24 +38,24 @@
 				{% if pagination.current == 1 %}
 
 					{% if terms_professionals is not empty %}
-						<h2 class="h5 mb-3">Kategorie profesionálů ({{ terms_professionals|length }})</h2>
+						<h2 class="h5 mb-3">{{ __( 'Kategorie profesionálů', 'shp-partneri' ) }} ({{ terms_professionals|length }})</h2>
 						{% include 'category/list.twig' with {'terms': terms_professionals} %}
 					{% endif %}
 
 					{% if terms_plugins is not empty %}
-						<h2 class="h5 mb-3">Kategorie napojení ({{ terms_plugins|length }})</h2>
+						<h2 class="h5 mb-3">{{ __( 'Kategorie napojení', 'shp-partneri' ) }} ({{ terms_plugins|length }})</h2>
 						{% include 'category/list.twig' with {'terms': terms_plugins} %}
 					{% endif %}
 
 					{% if terms_tools is not empty %}
-						<h2 class="h5 mb-3">Kategorie nástrojů ({{ terms_tools|length }})</h2>
+						<h2 class="h5 mb-3">{{ __( 'Kategorie nástrojů', 'shp-partneri' ) }} ({{ terms_tools|length }})</h2>
 						{% include 'category/list.twig' with {'terms': terms_tools} %}
 					{% endif %}
 
 				{% endif %}
 
 				{% if posts is not empty %}
-					<h2 class="h5 mb-3">Profily ({{ posts_count }})</h2>
+					<h2 class="h5 mb-3">{{ __( 'Profily', 'shp-partneri' ) }} ({{ posts_count }})</h2>
 					{% include 'profile/list.twig' with {show_rating: true, 'hide_cta': true} %}
 
 					{% include 'pagination.twig' %}
@@ -66,8 +66,8 @@
 	{% else %}
 		<div class="row-not-found">
 			<div class="container">
-				<p class="h2 font-italic">Nebylo nic nalezeno</p>
-				<p class="lead mb-0">Zkuste prosím vyhledat jinou frázi.</p>
+				<p class="h2 font-italic">{{ __( 'Nebylo nic nalezeno', 'shp-partneri' ) }}</p>
+				<p class="lead mb-0">{{ __( 'Zkuste prosím vyhledat jinou frázi.', 'shp-partneri' ) }}</p>
 			</div>
 		</div>
 	{% endif %}

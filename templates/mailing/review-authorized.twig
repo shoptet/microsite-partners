@@ -1,5 +1,5 @@
-Hej hola!
+{{ __( 'Hej hola!
 <br><br>
-Nové hodnocení Partnera <a href="{{ post.link }}" target="_blank">{{ post.title }}</a> čeká na schválení.
+Nové hodnocení Partnera <a href="%s" target="_blank">%s</a> čeká na schválení.
 <br><br>
-Mrkni na to :)
+Mrkni na to :)', 'shp-partneri' )|format(post.link,post.title) }}

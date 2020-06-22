@@ -28,7 +28,7 @@ $context['pagination'] = Timber::get_pagination();
 if( is_tax() ) {
   $term = new Timber\Term();
   $context['term'] = $term;
-  $context['title'] = $term->name . __( ' poptávky', 'shp-partneri' );
+  $context['title'] = sprintf( __( '%s poptávky', 'shp-partneri' ), $term->name );
   $context['breadcrumbs'][ $term->name ] = $term->link;
   $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . 'strana/' . $context['pagination']['current'];
   $context['meta_description'] = $term->description;

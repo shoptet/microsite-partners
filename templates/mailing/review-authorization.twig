@@ -4,10 +4,10 @@
 
   <table border="0" cellspacing="0" cellpadding="0" style="padding-bottom:8px;">
     <tr>
-      <td style="padding-bottom:13px;">Děkujeme za vložený příspěvek.</td>
+      <td style="padding-bottom:13px;">{{ __('Děkujeme za vložený příspěvek.', 'shp-partneri') }}</td>
     </tr>
     <tr>
-      <td style="padding-bottom:13px;">Pro jeho odeslání ke schválení prosím klikněte na tlačítko „Odeslat“ pod přehledem vašeho příspěvku.</td>
+      <td style="padding-bottom:13px;">{{ __('Pro jeho odeslání ke schválení prosím klikněte na tlačítko „Odeslat“ pod přehledem vašeho příspěvku.', 'shp-partneri') }}</td>
     </tr>
   </table>
 
@@ -17,6 +17,6 @@
 
 	{% include 'templates/mailing/review.twig' with {content:comment.comment_content|nl2br} %}    
 
-	{% include 'templates/mailing/cta.twig' with {url:auth_url,text:'Odeslat'} %}  
+	{% include 'templates/mailing/cta.twig' with {url:auth_url,text:__('Odeslat', 'shp-partneri') } %}  
 
 {% endblock %}

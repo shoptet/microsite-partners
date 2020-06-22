@@ -34,7 +34,7 @@ class RequestService
       'show_in_admin_all_list' => true,
       'show_in_admin_status_list' => true,
       'post_type' => [ RequestPost::POST_TYPE ],
-      'label_count' => _n_noop( 'Expirováno <span class="count">(%s)</span>', 'Expirováno <span class="count">(%s)</span>' ),
+      'label_count' => _n_noop( 'Expirováno <span class="count">(%s)</span>', 'Expirováno <span class="count">(%s)</span>', 'shp-partneri' ),
     ];
     register_post_status( 'expired', $args );
   }

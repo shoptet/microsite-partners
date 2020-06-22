@@ -28,12 +28,12 @@ const validateForm = function() {
     $this = $(this);
     value = $.trim($this.val());
     if (!value) {
-      formError('Vyplňte prosím všechna pole');
+      formError(local.requestAllFieldsRequiredMessage);
       isValid = false;
       return false;
     }
     if ($this.attr('type') === 'email' && !isEmail(value)) {
-      formError('Vyplňte prosím správný e-mail');
+      formError(local.requestCorrectEmailMessage);
       isValid = false;
       return false;
     }
@@ -45,11 +45,11 @@ const validateForm = function() {
 const onSuccess = function() {
   $contactForm.find('button[type=submit]').remove();
   formError('');
-  formSuccess('Odesláno!');
+  formSuccess(local.requestFormSent);
 };
 
 const onError = function(xhr) {
-  formError('Omlouvám se, ale při odeslání došlo k chybě. Než chybu opravíme, kontaktujte raději obchodníka přímo e-mailem.');
+  formError(local.requestFormErrorMessage);
   console.error(xhr);
 };
 

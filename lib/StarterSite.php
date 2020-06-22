@@ -88,6 +88,16 @@ class StarterSite extends TimberSite {
     $filePath = get_template_directory() . $fileName;
     wp_enqueue_script( 'main', $fileUrl, array('vendor'), filemtime($filePath), true );
 
+    wp_localize_script( 'main', 'local',
+      [
+        'recaptchaRequiredMessage' => __( 'Zaškrtněte prosím, že nejste robot', 'shp-partneri' ),
+        'requestAllFieldsRequiredMessage' => __( 'Vyplňte prosím všechna pole', 'shp-partneri' ),
+        'requestCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
+        'requestFormSent' => __( 'Odesláno!', 'shp-partneri' ),
+        'requestFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
+      ],
+    );
+
     wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );
 
     wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js' );

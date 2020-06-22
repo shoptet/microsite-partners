@@ -1,7 +1,7 @@
 const showError = function ($recaptcha) {
   console.error('recaptcha is required!');
   const $errorEl = $('<div class="g-recaptcha-required-error"></div>');
-  $errorEl.text('Zaškrtněte prosím, že nejste robot');
+  $errorEl.text(local.recaptchaRequiredMessage);
   $recaptcha.after($errorEl);
 };
 

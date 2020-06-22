@@ -17,7 +17,7 @@
 			<div class="container">
 
 				<div class="row-profile-type-header">
-					<h2 class="row-profile-type-title"><a href="profesionalove/">Profesionálové</a></h2>
+					<h2 class="row-profile-type-title"><a href="profesionalove/">{{ __( 'Profesionálové', 'shp-partneri' ) }}</a></h2>
 
 					{% if options.perexProfessional %}
 						<div class="row-profile-type-perex">
@@ -38,11 +38,11 @@
 
 				<div class="row-profile-type-header">
 
-					<h2 class="row-profile-type-title"><a href="{{ link.request.archive }}">Nové poptávky</a></h2>
+					<h2 class="row-profile-type-title"><a href="{{ link.request.archive }}">{{ __( 'Nové poptávky', 'shp-partneri' ) }}</a></h2>
 
 					<p class="mb-5">
-						Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet Partnera?
-						Zadejte si poptávku zdarma a jen čekejte na první nabídky.
+						{{ __( 'Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet Partnera?
+						Zadejte si poptávku zdarma a jen čekejte na první nabídky.', 'shp-partneri' ) }}
 					</p>
 
 				</div>
@@ -111,7 +111,7 @@
 
 	<div class="row-profile-type">
 			<div class="container">
-				<h2 class="mb-4">Nejnovější Shoptet Partneři</h2>
+				<h2 class="mb-4">{{ __( 'Nejnovější Shoptet Partneři', 'shp-partneri' ) }}</h2>
 				{% include 'profile/list.twig' with {'posts': newest_posts, 'hide_cta': true} %}
 			</div>
 	</div>
