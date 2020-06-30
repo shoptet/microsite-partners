@@ -2,10 +2,9 @@
   <div class="list-group-profile-item">
     <h2 class="h4">{{ __( 'Ceny', 'shp-partneri' ) }}</h2>
 
-    {% if post.get_field('price_per_hour_display') > 0 %}
+    {% if post|display_price %}
       <p class="mb-0">
-        {{ post.get_field('price_per_hour_display') }}&nbsp;{{ post.get_field('price_currency')|currency_i18n }}/hod
-        {% if post.get_field('vat_payer') %}{{ __( 'bez DPH', 'shp-partneri' ) }}{% else %}{{ __( '(Neplátce DPH)', 'shp-partneri' ) }}{% endif %}
+        {{ post|display_price }}
       </p>
     {% endif %}
 

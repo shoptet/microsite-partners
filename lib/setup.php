@@ -4,13 +4,27 @@
 libxml_use_internal_errors(true);
 
 add_filter( 'wp_mail', function ( $args ) {
-	if ( WP_DEBUG ) {
+	if ( true || WP_DEBUG ) {
 		$args['to'] = 'jk.oolar@gmail.com';
 	}
 	return $args;
 } );
 
 ini_set('display_errors', 1);
+
+/**
+ * Load translations
+ */
+add_action( 'after_setup_theme', function () {
+	load_theme_textdomain( 'shp-partneri', get_template_directory() . '/languages' );
+} );
+
+/**
+ * Set domain for ACF
+ */
+add_filter('acf/settings/l10n_textdomain', function () {
+	return 'shp-partneri';
+} );
 
 if ( ! class_exists( 'Timber' ) ) {
 	add_action( 'admin_notices', function() {
@@ -479,21 +493,19 @@ add_action( 'init' , function () {
 	}
 
 	// Show onboarding form
-	if ( $onboarding_form_id = get_field('onboarding_form_id', 'option') ) {
-		$context = Timber::get_context();
-		$context['wp_title'] = __( 'Vstupní formulář', 'shp-partneri' );
-		$context['post'] = new Timber\Post( $post );
-		$acf_form_args = [
-			'id' => 'acf_onboarding_form',
-			'post_id' => $post->ID,
-			'field_groups' => [ $onboarding_form_id ],
-			'uploader' => 'basic',
-			'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
-		];
-		$context['acf_form_args'] = $acf_form_args;
-		Timber::render( 'templates/onboarding.twig', $context );
-		die();
-	}
+	$context = Timber::get_context();
+	$context['wp_title'] = __( 'Vstupní formulář', 'shp-partneri' );
+	$context['post'] = new Timber\Post( $post );
+	$acf_form_args = [
+		'id' => 'acf_onboarding_form',
+		'post_id' => $post->ID,
+		'field_groups' => [ 'group_5d109cc9c2b65' ],
+		'uploader' => 'basic',
+		'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
+	];
+	$context['acf_form_args'] = $acf_form_args;
+	Timber::render( 'templates/onboarding.twig', $context );
+	die();
 	
 } );
 
