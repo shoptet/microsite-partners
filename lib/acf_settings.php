@@ -1263,7 +1263,7 @@ acf_add_local_field_group(array (
 	'fields' => array (
 		array (
 			'key' => 'field_iSSf05wMeSG7B',
-			'label' => __( 'Formulář (shortcode)', 'shp-partneri' ),
+			'label' => __( 'Formulář ID', 'shp-partneri' ),
 			'name' => 'themePartnerContactForm',
 			'type' => 'text',
 			'instructions' => '',

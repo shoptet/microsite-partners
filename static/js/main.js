@@ -194,4 +194,8 @@ $(function () {
     dataLayer.push({'event': 'hodnoceniPartnera'});
   });
 
+  // Remove query param from url
+  var newUrl = window.location.href.replace('?wpcf7_mail_sent=1','');
+  history.pushState({}, null, newUrl);
+
 });
