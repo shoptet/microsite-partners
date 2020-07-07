@@ -2,6 +2,9 @@
 
 class RequestForm
 {
+  const AUTHOR_NAME_FIELD_KEY = 'field_5d9f2ebf8e646';
+  const URL_FIELD_KEY = 'field_5d9f2efc8e647';
+  const CATEGORY_FIELD_KEY = 'field_5d10a24f0b5e7';
   const IS_SHOPTET_FIELD_KEY = 'field_5d9f2fbd8e64a';
   const REQUEST_FORM_TEMPLATE = 'new-request-page.php';
 
@@ -10,6 +13,11 @@ class RequestForm
     add_filter( 'acf/load_field/name=_post_title', [ get_called_class(), 'loadPostTitleField' ] );
     add_filter( 'acf/load_field/name=_post_content', [ get_called_class(), 'loadPostContentField' ] );
     add_filter( 'acf/load_field/key=' . self::IS_SHOPTET_FIELD_KEY , [ get_called_class(), 'loadIsShoptetField' ] );
+
+    // Placeholder and instructions cannot be translated in acf_add_local_field_group
+    add_filter( 'acf/load_field/key=' . self::AUTHOR_NAME_FIELD_KEY, [ get_called_class(), 'loadAuthorNameField' ] );
+    add_filter( 'acf/load_field/key=' . self::URL_FIELD_KEY, [ get_called_class(), 'loadUrlField' ] );
+    add_filter( 'acf/load_field/key=' . self::CATEGORY_FIELD_KEY, [ get_called_class(), 'loadCategoryField' ] );
 
     add_action( 'acf/save_post', [ get_called_class(), 'verifyForm' ], 5 ); // before acf post data saved
     add_action( 'acf/save_post', [ get_called_class(), 'saveForm' ], 20 ); // after acf post data saved
@@ -42,6 +50,30 @@ class RequestForm
     // Do not show input label in frontend form
     if( ! is_admin() ) {
       $field['label'] = '';
+    }
+    return $field;
+  }
+
+  public static function loadAuthorNameField( $field )
+  {
+    if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
+      $field['placeholder'] = __( 'Jméno a příjmení', 'shp-partneri' );
+    }
+    return $field;
+  }
+
+  public static function loadUrlField( $field )
+  {
+    if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
+      $field['placeholder'] = __( 'Webová adresa vašeho e-shopu nebo prezentace', 'shp-partneri' );
+    }
+    return $field;
+  }
+
+  public static function loadCategoryField( $field )
+  {
+    if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
+      $field['instructions'] = sprintf( __( 'Zvolte <a href="%s" target="_blank">obor</a>, do kterého byste chtěli zařadit', 'shp-partneri' ), 'https://partneri.shoptet.cz/profesionalove/' );
     }
     return $field;
   }

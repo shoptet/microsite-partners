@@ -39,7 +39,7 @@
       <div class="d-md-flex justify-content-between">
         {% spaceless %}
           <ul class="d-inline-block mb-md-0 list-inline list-inline-comma">
-            <li class="list-inline-item"><strong><span itemprop="author">{{ comment.comment_author }}</span>{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong></li>
+            <li class="list-inline-item"><strong><span itemprop="author">{{ comment.comment_author }}</span>{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'shp-partneri') }}){% endif %}</strong></li>
             {% if comment.comment_author_url %}
               <li class="list-inline-item">
                 <a href="{{ comment.comment_author_url }}" target="_blank" rel="nofollow">{{ comment.comment_author_url|display_url }}</a>
@@ -53,7 +53,7 @@
         {% if is_root_review %}
           <div class="mt-3 ml-md-3">
             <a class="btn btn-primary btn-sm" href="#commentForm{{ comment.ID }}" data-toggle="collapse" aria-expanded="false" aria-controls="commentForm{{ comment.ID }}">
-              {{ __('Reagovat', 'wavee-theme') }}
+              {{ __('Reagovat', 'shp-partneri') }}
             </a>
           </div>
         {% endif %}

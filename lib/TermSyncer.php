@@ -74,10 +74,7 @@ class TermSyncer
     if ( $is_request_category_page ) : ?>
       <div class="notice notice-warning">
         <p>
-          <?php _e( '
-            Všechny kategorie poptávek jsou automaticky synchronizovány dle kategorií profesionálů.
-            Není tedy možné přidat nebo odebrat kategorii poptávek.
-          ', 'shp-partneri' ); ?>
+          <?php _e( 'Všechny kategorie poptávek jsou automaticky synchronizovány dle kategorií profesionálů. Není tedy možné přidat nebo odebrat kategorii poptávek.', 'shp-partneri' ); ?>
         </p>
       </div>
     <?php endif;

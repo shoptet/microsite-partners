@@ -102,18 +102,13 @@ function remind_authentication () {
     $auth_url = get_site_url( null, '?auth_token=' . $auth_token );
     $context['title'] = __( 'Pozor!', 'shp-partneri' );
     $context['subtitle'] = __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
-    $context['text'] = __( '
-      Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>.
-      Asi se ztratil váš potvrzovací email.
-      Bez potvrzení to ale nepůjde.
-      Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.
-    ', 'shp-partneri' );
+    $context['text'] = __( 'Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>. Asi se ztratil váš potvrzovací email. Bez potvrzení to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.', 'shp-partneri' );
     $context['image'] = [
       'main' => 'shoptetrix-warning-mail.png',
       'width' => 250,
     ];
     $context['cta'] = [
-      'title' => 'Potvrdit hodnocení',
+      'title' => __( 'Potvrdit hodnocení', 'shp-partneri' ),
       'link' => $auth_url,
     ];
     $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
@@ -196,16 +191,14 @@ function render_onboarding_form_error_message() {
   $context['message_type'] = 'error';
   $context['title'] = __( 'Ouha!', 'shp-partneri' );
   $context['subtitle'] = __( 'Odeslání formuláře se&nbsp;nezdařilo :(', 'shp-partneri' );
-  $context['text'] = __( '
+  $context['text'] = '
     <p>
-      Možná už jste ho v minulosti odeslali, nebo je na vaši
-      e-mailovou adresu už jedna registrace na webu Partneři Shoptet hotová.
+      ' . __( 'Možná už jste ho v minulosti odeslali, nebo je na vaši e-mailovou adresu už jedna registrace na webu Partneři Shoptet hotová.', 'shp-partneri' ) . '
     </p>
     <p class="mb-0">
-      Ozvěte se nám na <a href="mail:partneri@shoptet.cz" target="_blank">partneri@shoptet.cz</a>,
-      koukneme na to.
+      ' . sprintf ( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), 'partneri@shoptet.cz', 'partneri@shoptet.cz' ) . '
     </p>
-  ', 'shp-partneri' );
+  ';
   $context['footer_image'] = 'envelope-x';
   Timber::render( 'templates/message/message.twig', $context );
   die();
@@ -262,18 +255,13 @@ function remind_onboarding () {
     $onboarding_url = get_site_url( null, '?onboarding_token=' . $onboarding_token );
     $context['title'] = __( 'Pozor!', 'shp-partneri' );
     $context['subtitle'] = __( 'Ještě jste nevyplnili formulář<br>:-(', 'shp-partneri' );
-    $context['text'] = __( '
-      Je to už týden, co jsme vám poslali e-mail s&nbsp;formulářem.
-      Sloužil pro dokončení registrace mezi <strong>Shoptet Partnery</strong>.<br><br>
-      Bez něj to ale nepůjde.
-      Tak to pojďme zkusit znovu, ať můžeme registraci dokončit.
-    ', 'shp-partneri' );
+    $context['text'] = __( 'Je to už týden, co jsme vám poslali e-mail s&nbsp;formulářem. Sloužil pro dokončení registrace mezi <strong>Shoptet Partnery</strong>.<br><br>Bez něj to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme registraci dokončit.', 'shp-partneri' );
     $context['image'] = [
       'main' => 'shoptetrix-warning-mail.png',
       'width' => 250,
     ];
     $context['cta'] = [
-      'title' => 'Vyplnit formulář',
+      'title' => __( 'Vyplnit formulář', 'shp-partneri' ),
       'link' => $onboarding_url,
     ];
     $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
@@ -338,11 +326,11 @@ function get_regions_by_country( $post_type, $term ): array
 {
   $countries = [
     'cz' => [
-      'name' => __( 'Česko', 'shp-obchodiste' ),
+      'name' => __( 'Česko', 'shp-partneri' ),
       'field' => 'field_5d3ebb18c804a',
     ],
     'sk' => [
-      'name' => __( 'Slovensko', 'shp-obchodiste' ),
+      'name' => __( 'Slovensko', 'shp-partneri' ),
       'field' => 'field_5d3ebb6bc804b',
     ],
   ];

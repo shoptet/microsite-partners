@@ -26,7 +26,7 @@
             
               {% if submited %}
                 <div class="alert alert-success">
-                  <strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její schválení.
+                  {{ __( '<strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její schválení.', 'shp-partneri' ) }}
                 </div>
               {% endif %}
 
@@ -35,10 +35,10 @@
               </h1>
 
               <p>
-                Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.
+                {{ __( 'Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.
                 My vaši poptávku zkontrolujeme, pokud bude třeba, tak s vámi doladíme
                 a po jejím schválení ji rozešleme všem partnerům z dané kategorie.
-                Po 24 hodinách po tomto schválení se zobrazí i na tomto webu.
+                Po 24 hodinách po tomto schválení se zobrazí i na tomto webu.', 'shp-partneri' ) }}
               </p>
 
               <form

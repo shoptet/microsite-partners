@@ -37,7 +37,7 @@
 
   			{% if post.get_field('url') %}
     			<li>
-            <svg class="profile-contact-list-icon" data-src="{{ "external-link.svg"|static_assets }}" width="17" height="17" role="img" aria-label="Web"></svg>
+            <svg class="profile-contact-list-icon" data-src="{{ "external-link.svg"|static_assets }}" width="17" height="17" role="img" aria-label="{{ __('Web', 'shp-partneri') }}"></svg>
             <a href="{{ post.get_field('url')|ensure_protocol }}" target="_blank" itemprop="url">
               {{ post.get_field('url')|display_url }}
             </a>
@@ -46,7 +46,7 @@
 
   			{# % if post.get_field('emailAddress') %}
     			<li>
-            <svg class="profile-contact-list-icon" data-src="{{ "envelope-o.svg"|static_assets }}" width="17" height="17" role="img" aria-label="E-mail"></svg>
+            <svg class="profile-contact-list-icon" data-src="{{ "envelope-o.svg"|static_assets }}" width="17" height="17" role="img" aria-label="{{ __('E-mail', 'shp-partneri') }}"></svg>
             <a href="mailto:{{ post.get_field('emailAddress') }}" itemprop="email">
               {{ post.get_field('emailAddress') }}
             </a>
@@ -55,21 +55,21 @@
 
   			{% if post.get_field('phoneNumber') %}
     			<li>
-            <svg class="profile-contact-list-icon" data-src="{{ "phone.svg"|static_assets }}" width="17" height="17" role="img" aria-label="Telefon"></svg>
+            <svg class="profile-contact-list-icon" data-src="{{ "phone.svg"|static_assets }}" width="17" height="17" role="img" aria-label="{{ __('Telefon', 'shp-partneri') }}"></svg>
             <span itemprop="telephone">{{ post.get_field('phoneNumber') }}</span>
           </li>
   			{% endif %}
 
   			{% if post.get_field('cin') %}
     			<li>
-            <svg class="profile-contact-list-icon" data-src="{{ "icon-ic.svg"|static_assets }}" width="17" height="15" role="img" aria-label="Identifikační číslo"></svg>
+            <svg class="profile-contact-list-icon" data-src="{{ "icon-ic.svg"|static_assets }}" width="17" height="15" role="img" aria-label="{{ __('Identifikační číslo', 'shp-partneri') }}"></svg>
             <span itemprop="identifier">{{ post.get_field('cin') }}</span>
           </li>
   			{% endif %}
 
         {% if post.get_field('tin') %}
     			<li>
-            <svg class="profile-contact-list-icon" data-src="{{ "icon-dic.svg"|static_assets }}" width="28" height="15" role="img" aria-label="Daňové identifikační číslo"></svg>
+            <svg class="profile-contact-list-icon" data-src="{{ "icon-dic.svg"|static_assets }}" width="28" height="15" role="img" aria-label="{{ __('Daňové identifikační číslo', 'shp-partneri') }}"></svg>
             <span itemprop="taxID">{{ post.get_field('tin') }}</span>
           </li>
   			{% endif %}
@@ -81,7 +81,7 @@
 
         		{% if post.get_field('facebook') %}
               <li class="profile-socials-facebook">
-          		  <a href="{{ post.get_field('facebook') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Facebooku">
+          		  <a href="{{ post.get_field('facebook') }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Facebooku', 'shp-partneri') }}">
                   <svg data-src="{{ "facebook-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Facebook"></svg>
                 </a>
               </li>
@@ -89,7 +89,7 @@
 
         		{% if post.get_field('twitter') %}
               <li class="profile-socials-twitter">
-          		  <a href="{{ post.get_field('twitter') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Twitteru">
+          		  <a href="{{ post.get_field('twitter') }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Twitteru', 'shp-partneri') }}">
                   <svg data-src="{{ "twitter-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Twitter"></svg>
                 </a>
               </li>
@@ -97,7 +97,7 @@
 
         		{% if post.get_field('linkedin') %}
               <li class="profile-socials-linkedin">
-          		  <a href="{{ post.get_field('linkedin') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na LinkedIn">
+          		  <a href="{{ post.get_field('linkedin') }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na LinkedIn', 'shp-partneri') }}">
                   <svg data-src="{{ "linkedin-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="LinkedIn"></svg>
                 </a>
               </li>

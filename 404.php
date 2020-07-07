@@ -11,7 +11,7 @@
 
 $context = Timber::get_context();
 
-$page_title = __( 'Page not found' );
+$page_title = __( 'Stránka nenalezena', 'shp-partneri' );
 
 $context['breadcrumbs'] = array(
 	$page_title => '',

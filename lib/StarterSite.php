@@ -47,6 +47,7 @@ class StarterSite extends TimberSite {
     $twig->addFilter( new Timber\Twig_Filter('truncate', array($this, 'truncate')));
     $twig->addFilter( new Timber\Twig_Filter('display_url', array($this, 'display_url')));
     $twig->addFilter( new Timber\Twig_Filter('currency_i18n', array($this, 'currency_i18n')));
+    $twig->addFilter( new Timber\Twig_Filter('display_price', array($this, 'display_price')));
     $twig->addFilter( new Timber\Twig_Filter('ensure_protocol', array($this, 'ensure_protocol')));
     $twig->addFilter( new Timber\Twig_Filter('date_i18n', array($this, 'date_i18n')));
     $twig->addFilter( new Timber\Twig_Filter('request_state', array($this, 'request_state')));
@@ -87,6 +88,16 @@ class StarterSite extends TimberSite {
     $fileUrl = get_template_directory_uri() . $fileName;
     $filePath = get_template_directory() . $fileName;
     wp_enqueue_script( 'main', $fileUrl, array('vendor'), filemtime($filePath), true );
+
+    wp_localize_script( 'main', 'local',
+      [
+        'recaptchaRequiredMessage' => __( 'Zaškrtněte prosím, že nejste robot', 'shp-partneri' ),
+        'requestAllFieldsRequiredMessage' => __( 'Vyplňte prosím všechna pole', 'shp-partneri' ),
+        'requestCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
+        'requestFormSent' => __( 'Odesláno!', 'shp-partneri' ),
+        'requestFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
+      ],
+    );
 
     wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );
 
@@ -164,15 +175,41 @@ class StarterSite extends TimberSite {
   function currency_i18n( $currency ) {
     switch ( $currency ) {
       case 'CZK':
-      $currency_i18n = __( 'Kč', 'shp-partneri' );
+      $currency_i18n = 'Kč';
       break;
       case 'EUR':
-      $currency_i18n = __( '&euro;', 'shp-partneri' );
+      $currency_i18n = '&euro;';
       break;
       default:
-      $currency_i18n = $currency;
+      switch ( get_locale() ) {
+        case 'hu_HU':
+        $currency_i18n = 'Ft';
+        break;
+        default:
+        $currency_i18n = $currency;
+      }
     }
     return $currency_i18n;
+  }
+
+  function display_price( $post ) {
+    $display_price = '';
+    
+    if ( $price_per_hour = get_field( 'price_per_hour_display', $post->ID ) ) {
+      $currency = get_field( 'price_currency', $post->ID );
+      $currency_i18n = $this->currency_i18n( $currency );
+      $display_price .= sprintf( __( '%s&nbsp;%s/hod', 'shp-partneri' ), $price_per_hour, $currency_i18n );
+      $display_price .= ' ';
+      if ( get_field( 'vat_payer', $post->ID ) ) {
+        $display_price .= __( 'bez DPH', 'shp-partneri' );
+      } else {
+        $display_price .= __( '(Neplátce DPH)', 'shp-partneri' );
+      }
+    } else if ( $price = get_field( 'price', $post->ID ) ) {
+      $display_price .= $price;
+    }
+  
+    return $display_price;
   }
 
   function remove_lastname( $fullname ) {

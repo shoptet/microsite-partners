@@ -42,7 +42,7 @@ add_filter('generate_rewrite_rules', 'taxonomy_slug_rewrite');
  */
 function pagination_slug_rewrite() {
   global $wp_rewrite;
-  $wp_rewrite->pagination_base = 'strana';
+  $wp_rewrite->pagination_base = __( 'strana', 'shp-partneri' );
   $wp_rewrite->flush_rules();
 }
 add_filter( 'init', 'pagination_slug_rewrite', 0 );

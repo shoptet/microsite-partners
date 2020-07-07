@@ -93,7 +93,7 @@
         if ( error ) return error;
         var maxFileSizeBytes = maxFileSize * 1024 * 1024;
         if( file.size > maxFileSizeBytes ) {
-          error = 'Nahrajte prosím soubor menší než ' + maxFileSize + ' MB.';
+          error = '{{ __( 'Nahrajte prosím soubor menší než', 'shp-partneri' ) }} ' + maxFileSize + ' MB.';
         }
         return error;
       };
@@ -101,7 +101,7 @@
       var validateFileType = function( error, file ) {
         if ( error ) return error;
         if( ! imageFileTypes.includes( file.type )  ) {
-          error = 'Nahrajte prosím obrázek ve formátu jpg, png nebo gif.';
+          error = '{{ __( 'Nahrajte prosím obrázek ve formátu jpg, png nebo gif.', 'shp-partneri' ) }}';
         }
         return error;
       };
@@ -110,7 +110,7 @@
         var minWidth = minDimensions[0];
         var minHeight = minDimensions[1];
         if ( img.width < minWidth || img.height < minHeight ) {
-          handleError( 'Nahrajte prosím obrázek s minimálními rozměry ' + minWidth + ' x ' + minHeight + ' px.', input );
+          handleError( '{{ __( 'Nahrajte prosím obrázek s minimálními rozměry', 'shp-partneri' ) }} ' + minWidth + ' x ' + minHeight + ' px.', input );
         }
         input.disabled = false;
       };

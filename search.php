@@ -34,7 +34,7 @@ $terms_tools = Timber::get_terms(array_merge( $terms_args, array(
   'taxonomy' => 'category_tools'
 )));
 
-$context['wp_title'] = $query . ' – Výsledky vyhledávání';
+$context['wp_title'] = sprintf( __( '%s  – Výsledky vyhledávání', 'shp-partneri' ), $query );
 $context['query'] = $query;
 
 if( empty($posts) && empty($terms_professionals) && empty($terms_plugins) && empty($terms_tools) ) {
@@ -52,7 +52,7 @@ $context['terms_tools'] = $terms_tools;
 $context['pagination'] = Timber::get_pagination();
 
 $context['breadcrumbs'] = array(
-  'Výsledky vyhledávání' => ''
+  __( 'Výsledky vyhledávání', 'shp-partneri' ) => ''
 );
 
 Timber::render( 'search.twig', $context );

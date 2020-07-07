@@ -81,7 +81,7 @@
 	{% if similar_posts|length > 0 %}
 		<div class="row-profile-list">
 			<div class="container">
-					<h2 class="row-profile-list-title">Nevybrali jste? Co zkusit jiné?</h2>
+					<h2 class="row-profile-list-title">{{ __( 'Nevybrali jste? Co zkusit jiné?', 'shp-partneri' ) }}</h2>
 					{% include 'profile/list.twig' with {'posts': similar_posts, 'hide_cta': true} %}
 			</div>
 		</div>

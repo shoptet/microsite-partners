@@ -26,7 +26,7 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
-            <strong>{{ comment.comment_author }}{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'wavee-theme') }}){% endif %}</strong>,
+            <strong>{{ comment.comment_author }}{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'shp-partneri') }}){% endif %}</strong>,
             {% if comment.comment_author_url %}
               <a style="color:#21AFE5;text-decoration:none;" href="{{ comment.comment_author_url }}" target="_blank">{{ comment.comment_author_url|display_url }}</a>,
             {% endif %}

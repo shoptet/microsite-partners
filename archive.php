@@ -37,7 +37,7 @@ $context['breadcrumbs'] = array(
 
 $context['pagination'] = Timber::get_pagination();
 
-$context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . 'strana/' . $context['pagination']['current'];
+$context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'];
 
 $context['meta_description'] = $term->description;
 

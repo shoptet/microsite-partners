@@ -1,11 +1,10 @@
 {% if post.get_field('price_per_hour_display') is not empty %}
   <div class="list-group-profile-item">
-    <h2 class="h4">Ceny</h2>
+    <h2 class="h4">{{ __( 'Ceny', 'shp-partneri' ) }}</h2>
 
-    {% if post.get_field('price_per_hour_display') > 0 %}
+    {% if post|display_price %}
       <p class="mb-0">
-        {{ post.get_field('price_per_hour_display') }}&nbsp;{{ post.get_field('price_currency')|currency_i18n }}/hod
-        {% if post.get_field('vat_payer') %}bez DPH{% else %}(Neplátce DPH){% endif %}
+        {{ post|display_price }}
       </p>
     {% endif %}
 
@@ -17,7 +16,7 @@
   </div>
 {% elseif post.get_field('price') %}
   <div class="list-group-profile-item">
-    <h2 class="h4">Ceny</h2>
+    <h2 class="h4">{{ __( 'Ceny', 'shp-partneri' ) }}</h2>
 
     <p class="mb-0">
       {{ post.get_field('price') }}
