@@ -17,6 +17,7 @@
 global $wp_query;
 
 $context = Timber::get_context();
+$options = get_fields('options');
 
 $context['posts'] = $posts = new Timber\PostQuery();
 
@@ -36,7 +37,7 @@ if( is_tax() ) {
 } else {
   $context['title'] = __( 'Přehled poptávek', 'shp-partneri' );
   $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $archive_link : $archive_link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'];
-  $context['description'] = __( 'Víte co potřebujete, ale nechcete hledat konkrétního Shoptet Partnera? Zadejte si poptávku zdarma a jen čekejte na první nabídky.', 'shp-partneri' );
+  $context['description'] = isset($options['request_archive_description']) ? $options['request_archive_description'] : '' ;
   $context['meta_description'] = $context['description'];
 }
 

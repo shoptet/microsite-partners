@@ -23,6 +23,7 @@ $includes = [
 	'lib/acf_add_options_page.php',
 	'lib/acf_settings.php',
 	'lib/acf_request_mailing.php',
+	'lib/acf_request_archive.php',
 	'lib/taxonomy_slug_rewrite.php',
 	'lib/remove_default_user_roles.php',
 	'lib/custom_search.php',

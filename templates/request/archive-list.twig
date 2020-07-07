@@ -27,7 +27,9 @@
         </div>
 
         {% if description %}
-          <p>{{ description }}</p>
+          <div class="mb-3">
+            {{ description }}
+          </div>
         {% endif %}
 
         {% include 'request/filter.twig' %}          
