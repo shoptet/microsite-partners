@@ -96,7 +96,7 @@ class StarterSite extends TimberSite {
         'requestCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
         'requestFormSent' => __( 'Odesláno!', 'shp-partneri' ),
         'requestFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
-      ],
+      ]
     );
 
     wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );

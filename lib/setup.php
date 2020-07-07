@@ -4,7 +4,7 @@
 libxml_use_internal_errors(true);
 
 add_filter( 'wp_mail', function ( $args ) {
-	if ( true || WP_DEBUG ) {
+	if ( WP_DEBUG ) {
 		$args['to'] = 'jk.oolar@gmail.com';
 	}
 	return $args;
