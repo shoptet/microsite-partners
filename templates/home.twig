@@ -32,6 +32,11 @@
 		</div>
 	{% endif %}
 
+	<div class="container">
+		<h2 class="mb-4">{{ options.themeBadgesTitle }}</h2>
+		{% include 'row-badges.twig' %}
+	</div>
+
 	{% if recent_request_posts is not empty %}
 		<div class="row-profile-type row-profile-type-requests">
 			<div class="container">
