@@ -198,4 +198,24 @@ $(function () {
   var newUrl = window.location.href.replace('?wpcf7_mail_sent=1','');
   history.pushState({}, null, newUrl);
 
+  jQuery.fn.preventDoubleSubmission = function() {
+    $(this).on('submit',function(e){
+      var $form = $(this);
+  
+      if ($form.data('submitted') === true) {
+        // Previously submitted - don't submit again
+        e.preventDefault();
+      } else {
+        // Mark it so that the next submit can be ignored
+        $form.data('submitted', true);
+      }
+    });
+  
+    // Keep chainability
+    return this;
+  };
+
+  // Prevent double submission partner contact form
+  $('#cf7-partner-contact').preventDoubleSubmission();
+
 });
