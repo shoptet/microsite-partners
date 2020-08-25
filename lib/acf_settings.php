@@ -2202,8 +2202,8 @@ acf_add_local_field_group(array(
 			'label' => __( 'Doporučení', 'shp-partneri'),
 			'name' => 'recommendations',
 			'type' => 'repeater',
-			'instructions' => __( 'Vložte sem doporučení od některých vašich klientů (ideálně klientů fungujících na platformě Shoptet). Doporučení není nutné, ale ve vašem medailonku by být mělo.', 'shp-partneri'),
-			'required' => 0,
+			'instructions' => __( 'Vložte sem doporučení od některých vašich klientů (ideálně klientů fungujících na platformě Shoptet).', 'shp-partneri'),
+			'required' => 1,
 			'conditional_logic' => 0,
 			'wrapper' => array(
 				'width' => '',
@@ -2211,7 +2211,7 @@ acf_add_local_field_group(array(
 				'id' => '',
 			),
 			'collapsed' => '',
-			'min' => 0,
+			'min' => 1,
 			'max' => 3,
 			'layout' => 'block',
 			'button_label' => __( 'Přidat doporučení', 'shp-partneri'),
@@ -2222,7 +2222,7 @@ acf_add_local_field_group(array(
 					'name' => 'text',
 					'type' => 'textarea',
 					'instructions' => __( 'Vložte cca 2 věty doporučení', 'shp-partneri'),
-					'required' => 0,
+					'required' => 1,
 					'conditional_logic' => 0,
 					'wrapper' => array(
 						'width' => '',
@@ -2241,7 +2241,7 @@ acf_add_local_field_group(array(
 					'name' => 'name',
 					'type' => 'text',
 					'instructions' => __( 'Klienta budeme odkazovat pod doporučením, proto potřebujeme jeho jméno a pozici ve firmě.', 'shp-partneri'),
-					'required' => 0,
+					'required' => 1,
 					'conditional_logic' => 0,
 					'wrapper' => array(
 						'width' => '',
