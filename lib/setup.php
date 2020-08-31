@@ -65,6 +65,27 @@ function basic_text_field_for_non_admin ( $field ) {
 }
 
 /**
+ * Make recommandations filed required in frontend onboarding form
+ */
+
+add_filter( 'acf/load_field/key=field_59cab1b28ed7f', 'disable_min_recommandations_for_admin' );
+add_filter( 'acf/load_field/key=field_59cab1b28ed7f', 'disable_required_recommandations_for_admin' );
+add_filter( 'acf/load_field/key=field_59cab2018ed82', 'disable_required_recommandations_for_admin' );
+add_filter( 'acf/load_field/key=field_59cab1d88ed80', 'disable_required_recommandations_for_admin' );
+function disable_required_recommandations_for_admin( $field ) {
+	if( is_user_logged_in() ) {
+		$field['required'] = 0;
+	}
+	return $field;
+}
+function disable_min_recommandations_for_admin( $field ) {
+	if( is_user_logged_in() ) {
+		$field['min'] = 0;
+	}
+	return $field;
+}
+
+/**
  * Add cron schedule interval options
  */
 add_filter( 'cron_schedules', function ( $schedules ) {
