@@ -65,9 +65,8 @@ function basic_text_field_for_non_admin ( $field ) {
 }
 
 /**
- * Make recommandations filed required in frontend onboarding form
+ * Disable required recommandations in WP admin
  */
-
 add_filter( 'acf/load_field/key=field_59cab1b28ed7f', 'disable_min_recommandations_for_admin' );
 add_filter( 'acf/load_field/key=field_59cab1b28ed7f', 'disable_required_recommandations_for_admin' );
 add_filter( 'acf/load_field/key=field_59cab2018ed82', 'disable_required_recommandations_for_admin' );
