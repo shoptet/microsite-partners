@@ -1307,7 +1307,7 @@ acf_add_local_field_group(array(
 	'fields' => array(
 		array(
 			'key' => 'field_5cb4b7dd2ee57',
-			'label' => __( 'Contact Form ID', 'shp-partneri' ),
+			'label' => __( 'ID kontaktního formuláře', 'shp-partneri' ),
 			'name' => 'contact_form_id',
 			'type' => 'number',
 			'instructions' => __( 'Mělo by odpovídat ID kontaktního formuláře z políčka "Kontaktní formulář (shortcode)".', 'shp-partneri' ),
@@ -1549,7 +1549,7 @@ acf_add_local_field_group(array(
 
 acf_add_local_field_group(array(
 	'key' => 'group_5ca1ee8b9e2c5',
-	'title' => __( 'Review', 'shp-partneri' ),
+	'title' => __( 'Hodnocení', 'shp-partneri' ),
 	'fields' => array(
 		array(
 			'key' => 'field_5ca1f16a65b32',

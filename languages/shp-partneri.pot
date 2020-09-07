@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Shoptet Partners\n"
-"POT-Creation-Date: 2020-06-29 16:58+0200\n"
-"PO-Revision-Date: 2020-06-29 16:58+0200\n"
+"POT-Creation-Date: 2020-09-07 13:53+0200\n"
+"PO-Revision-Date: 2020-09-07 13:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -19,42 +19,38 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
 
 #: 404.php:14
 msgid "Stránka nenalezena"
 msgstr ""
 
-#: archive-request.php:25 lib/cpt_posts.php:138 lib/cpt_posts.php:140
+#: archive-request.php:26 lib/cpt_posts.php:138 lib/cpt_posts.php:140
 #: lib/cpt_posts.php:152 new-request-page.php:13 single-request.php:17
 msgid "Poptávky"
 msgstr ""
 
-#: archive-request.php:31
+#: archive-request.php:32
 #, php-format
 msgid "%s poptávky"
 msgstr ""
 
-#: archive-request.php:33 archive-request.php:38 archive.php:40
+#: archive-request.php:34 archive-request.php:39 archive.php:40
 #: lib/taxonomy_slug_rewrite.php:45
 msgid "strana"
 msgstr ""
 
-#: archive-request.php:37
+#: archive-request.php:38
 msgid "Přehled poptávek"
 msgstr ""
 
-#: archive-request.php:39
-msgid ""
-"Víte co potřebujete, ale nechcete hledat konkrétního Shoptet Partnera? "
-"Zadejte si poptávku zdarma a jen čekejte na první nabídky."
-msgstr ""
-
-#: archive-request.php:47
+#: archive-request.php:48
 msgid "Nejnovějších"
 msgstr ""
 
-#: archive-request.php:48
+#: archive-request.php:49
 msgid "Nejstarších"
 msgstr ""
 
@@ -66,12 +62,12 @@ msgstr ""
 msgid "Manager"
 msgstr ""
 
-#: lib/PostService.php:32 lib/ProfessionalService.php:42 lib/setup.php:421
+#: lib/PostService.php:32 lib/ProfessionalService.php:42 lib/setup.php:441
 msgid "Vypadá to, že jste zadali neplatný odkaz. Zkuste to prosím znovu."
 msgstr ""
 
-#: lib/PostService.php:33 lib/ProfessionalService.php:43 lib/setup.php:215
-#: lib/setup.php:422
+#: lib/PostService.php:33 lib/ProfessionalService.php:43 lib/setup.php:235
+#: lib/setup.php:442
 msgid "Neplatný odkaz"
 msgstr ""
 
@@ -131,11 +127,11 @@ msgid ""
 msgstr ""
 
 #: lib/RequestService.php:32 lib/RequestService.php:183
-#: lib/RequestService.php:190 lib/setup.php:109 lib/setup.php:131
+#: lib/RequestService.php:190 lib/setup.php:129 lib/setup.php:151
 msgid "Expirováno"
 msgstr ""
 
-#: lib/RequestService.php:37 lib/setup.php:115
+#: lib/RequestService.php:37 lib/setup.php:135
 #, php-format
 msgid "Expirováno <span class=\"count\">(%s)</span>"
 msgid_plural "Expirováno <span class=\"count\">(%s)</span>"
@@ -226,7 +222,7 @@ msgid "Nastavení profesionálů"
 msgstr ""
 
 #: lib/acf_add_options_page.php:7 lib/acf_add_options_page.php:15
-#: lib/acf_add_options_page.php:23 lib/acf_add_options_page.php:47
+#: lib/acf_add_options_page.php:23 lib/acf_add_options_page.php:55
 #: lib/acf_settings.php:424
 msgid "Nastavení"
 msgstr ""
@@ -247,28 +243,40 @@ msgstr ""
 msgid "Mailing"
 msgstr ""
 
-#: lib/acf_add_options_page.php:38
-msgid "Šablona"
+#: lib/acf_add_options_page.php:38 lib/acf_request_archive.php:7
+msgid "Nastavení archivu poptávek"
+msgstr ""
+
+#: lib/acf_add_options_page.php:39
+msgid "Archiv"
 msgstr ""
 
 #: lib/acf_add_options_page.php:46
+msgid "Šablona"
+msgstr ""
+
+#: lib/acf_add_options_page.php:54
 msgid "Nastavení šablony"
 msgstr ""
 
-#: lib/acf_add_options_page.php:52
+#: lib/acf_add_options_page.php:60
 msgid "Obecná správa"
 msgstr ""
 
-#: lib/acf_add_options_page.php:53
+#: lib/acf_add_options_page.php:61
 msgid "Obecné"
 msgstr ""
 
-#: lib/acf_add_options_page.php:58
+#: lib/acf_add_options_page.php:66
 msgid "Nastavení patičky webu"
 msgstr ""
 
-#: lib/acf_add_options_page.php:59 lib/acf_settings.php:338
+#: lib/acf_add_options_page.php:67 lib/acf_settings.php:338
 msgid "Patička"
+msgstr ""
+
+#: lib/acf_request_archive.php:11
+msgid "Popis"
 msgstr ""
 
 #: lib/acf_request_mailing.php:3
@@ -531,7 +539,7 @@ msgid "Partnerský formulář"
 msgstr ""
 
 #: lib/acf_settings.php:1266
-msgid "Formulář (shortcode)"
+msgid "Formulář ID"
 msgstr ""
 
 #: lib/acf_settings.php:1306 templates/row-complaint.twig:5
@@ -540,7 +548,7 @@ msgid "Kontakt"
 msgstr ""
 
 #: lib/acf_settings.php:1310
-msgid "Contact Form ID"
+msgid "ID kontaktního formuláře"
 msgstr ""
 
 #: lib/acf_settings.php:1313
@@ -593,8 +601,8 @@ msgstr ""
 msgid "Provozuji e-shop na Shoptetu"
 msgstr ""
 
-#: lib/acf_settings.php:1552
-msgid "Review"
+#: lib/acf_settings.php:1552 lib/setup.php:332 templates/reviews.twig:4
+msgid "Hodnocení"
 msgstr ""
 
 #: lib/acf_settings.php:1556
@@ -767,8 +775,7 @@ msgstr ""
 #: lib/acf_settings.php:2205
 msgid ""
 "Vložte sem doporučení od některých vašich klientů (ideálně klientů "
-"fungujících na platformě Shoptet). Doporučení není nutné, ale ve vašem "
-"medailonku by být mělo."
+"fungujících na platformě Shoptet)."
 msgstr ""
 
 #: lib/acf_settings.php:2217
@@ -1088,7 +1095,7 @@ msgstr ""
 msgid "Odeslání se nezdařilo"
 msgstr ""
 
-#: lib/helpers.php:192 lib/setup.php:231 lib/setup.php:437
+#: lib/helpers.php:192 lib/setup.php:251 lib/setup.php:457
 msgid "Ouha!"
 msgstr ""
 
@@ -1102,7 +1109,7 @@ msgid ""
 "jedna registrace na webu Partneři Shoptet hotová."
 msgstr ""
 
-#: lib/helpers.php:199 lib/setup.php:444
+#: lib/helpers.php:199 lib/setup.php:464
 #, php-format
 msgid ""
 "Ozvěte se nám na <a href=\"mailto:%s\" target=\"_blank\">%s</a>, koukneme na "
@@ -1132,35 +1139,35 @@ msgstr ""
 msgid "Česko"
 msgstr ""
 
-#: lib/setup.php:73
+#: lib/setup.php:93
 msgid "Každou 1 minutu"
 msgstr ""
 
-#: lib/setup.php:97 lib/setup.php:128
+#: lib/setup.php:117 lib/setup.php:148
 msgid "Čeká na vyplnění formuláře"
 msgstr ""
 
-#: lib/setup.php:103
+#: lib/setup.php:123
 #, php-format
 msgid "Čeká na vyplnění formuláře <span class=\"count\">(%s)</span>"
 msgid_plural "Čeká na vyplnění formuláře <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/setup.php:143
+#: lib/setup.php:163
 msgid ""
 "Chyba: Nepřidali jste hodnocení. Běžte prosím zpět a přidejte hodnocení."
 msgstr ""
 
-#: lib/setup.php:172 lib/setup.php:375
+#: lib/setup.php:192 lib/setup.php:395
 msgid "Děkujeme"
 msgstr ""
 
-#: lib/setup.php:173
+#: lib/setup.php:193
 msgid "Za vaše hodnocení"
 msgstr ""
 
-#: lib/setup.php:174
+#: lib/setup.php:194
 #, php-format
 msgid ""
 "Teď už jen klikněte <strong style=\"%s\"><a href=\"%s\" target=\"_blank\" "
@@ -1168,114 +1175,110 @@ msgid ""
 "hodnocení.<br><br>Přejeme krásný den,<br>tým Shoptet"
 msgstr ""
 
-#: lib/setup.php:181
+#: lib/setup.php:201
 #, php-format
 msgid "Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s"
 msgstr ""
 
-#: lib/setup.php:194 lib/setup.php:197
+#: lib/setup.php:214 lib/setup.php:217
 msgid "Hodnocení odesláno"
 msgstr ""
 
-#: lib/setup.php:196 lib/setup.php:258 lib/setup.php:486
+#: lib/setup.php:216 lib/setup.php:278 lib/setup.php:506
 msgid "Super!"
 msgstr ""
 
-#: lib/setup.php:198
+#: lib/setup.php:218
 msgid ""
 "A teď už zbývá jen kliknout na potvrzující odkaz v <strong>e-mailu, který "
 "jsme vám právě poslali</strong>. Je to jen pro ověření, že opravdu "
 "existujete :-)"
 msgstr ""
 
-#: lib/setup.php:214
+#: lib/setup.php:234
 msgid ""
 "Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to "
 "prosím znovu."
 msgstr ""
 
-#: lib/setup.php:218 lib/setup.php:425
+#: lib/setup.php:238 lib/setup.php:445
 msgid "Přejít na partneri.shoptet.cz"
 msgstr ""
 
-#: lib/setup.php:229
+#: lib/setup.php:249
 msgid "Hodnocení bylo již ověřeno"
 msgstr ""
 
-#: lib/setup.php:232
+#: lib/setup.php:252
 msgid "Toto hodnocení bylo již ověřeno!"
 msgstr ""
 
-#: lib/setup.php:233
+#: lib/setup.php:253
 msgid "Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování."
 msgstr ""
 
-#: lib/setup.php:245
+#: lib/setup.php:265
 msgid "Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení"
 msgstr ""
 
-#: lib/setup.php:256
+#: lib/setup.php:276
 msgid "Hodnocení ověřeno"
 msgstr ""
 
-#: lib/setup.php:259
+#: lib/setup.php:279
 msgid "Vaše<br>hodnocení bylo ověřeno!"
 msgstr ""
 
-#: lib/setup.php:260
+#: lib/setup.php:280
 msgid "Nyní proběhne schvalování vašeho hodnocení."
 msgstr ""
 
-#: lib/setup.php:278
+#: lib/setup.php:298
 msgid "Bingo!"
 msgstr ""
 
-#: lib/setup.php:279
+#: lib/setup.php:299
 msgid "Máte nové hodnocení"
 msgstr ""
 
-#: lib/setup.php:280
+#: lib/setup.php:300
 msgid "Přečíst a reagovat na něj můžete v detailu svého medailonku"
 msgstr ""
 
-#: lib/setup.php:289 templates/mailing/review-approved.twig:20
+#: lib/setup.php:309 templates/mailing/review-approved.twig:20
 msgid "Přečíst hodnocení"
 msgstr ""
 
-#: lib/setup.php:293
+#: lib/setup.php:313
 #, php-format
 msgid "Uživatel %s přidal na partneri.shoptet.cz hodnocení k Partnerovi %s"
 msgstr ""
 
-#: lib/setup.php:312 templates/reviews.twig:4
-msgid "Hodnocení"
-msgstr ""
-
-#: lib/setup.php:314
+#: lib/setup.php:334
 msgid "E-mailové ověření"
 msgstr ""
 
-#: lib/setup.php:331
+#: lib/setup.php:351
 msgid "Ověřeno"
 msgstr ""
 
-#: lib/setup.php:334
+#: lib/setup.php:354
 msgid "Neověřeno"
 msgstr ""
 
-#: lib/setup.php:376
+#: lib/setup.php:396
 msgid "Za váš zájem stát se Shoptet partnerem."
 msgstr ""
 
-#: lib/setup.php:377
+#: lib/setup.php:397
 msgid "Teď už zbývá jen poslední krok:"
 msgstr ""
 
-#: lib/setup.php:384
+#: lib/setup.php:404
 msgid "Vyplnit dotazník"
 msgstr ""
 
-#: lib/setup.php:387
+#: lib/setup.php:407
 #, php-format
 msgid ""
 "To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;"
@@ -1284,91 +1287,91 @@ msgid ""
 "webu."
 msgstr ""
 
-#: lib/setup.php:389
+#: lib/setup.php:409
 msgid ""
 "Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete "
 "ho!"
 msgstr ""
 
-#: lib/setup.php:402
+#: lib/setup.php:422
 msgid "Zpráva odeslána"
 msgstr ""
 
-#: lib/setup.php:404
+#: lib/setup.php:424
 msgid "Děkujeme!"
 msgstr ""
 
-#: lib/setup.php:405
+#: lib/setup.php:425
 msgid "Vaše zpráva byla odeslána"
 msgstr ""
 
-#: lib/setup.php:406
+#: lib/setup.php:426
 msgid ""
 "My teď budeme netrpělivě čekat na vyplnění formuláře, který jsme vám právě "
 "poslali e-mailem. Tak na něj prosím nezapomeňte :)"
 msgstr ""
 
-#: lib/setup.php:435
+#: lib/setup.php:455
 msgid "Odkaz už není platný"
 msgstr ""
 
-#: lib/setup.php:438
+#: lib/setup.php:458
 msgid "Odkaz už<br>není platný :("
 msgstr ""
 
-#: lib/setup.php:441
+#: lib/setup.php:461
 msgid ""
 "Je to už více jak měsíc, co jsme vám formulář poslali a&nbsp;z&nbsp;"
 "bezpečnostních důvodů jeho platnost vypršela."
 msgstr ""
 
-#: lib/setup.php:468
+#: lib/setup.php:488
 #, php-format
 msgid ""
 "Hej hola!<br><br>Nový Partner (%s) čeká na schválení.<br><br>Mrkni na to :)"
 msgstr ""
 
-#: lib/setup.php:471
+#: lib/setup.php:491
 msgid "Nový Partner na Partneři.shoptet.cz čeká na schválení"
 msgstr ""
 
-#: lib/setup.php:484
+#: lib/setup.php:504
 msgid "Úspěšně odesláno"
 msgstr ""
 
-#: lib/setup.php:487
+#: lib/setup.php:507
 msgid "Váš formulář byl úspěšně odeslaný."
 msgstr ""
 
-#: lib/setup.php:488
+#: lib/setup.php:508
 msgid ""
 "Teď už jen <strong>vyčkejte</strong>. Co nevidět se vám ozve náš Partner "
 "manažer a případnou spolupráci společně doladíte."
 msgstr ""
 
-#: lib/setup.php:497
+#: lib/setup.php:517
 msgid "Vstupní formulář"
 msgstr ""
 
-#: lib/setup.php:504
+#: lib/setup.php:524
 msgid "Odeslat medailonek"
 msgstr ""
 
-#: lib/setup.php:669
-msgid "Filter by date"
+#: lib/setup.php:689
+msgid "Filtrovat podle data"
 msgstr ""
 
-#: lib/setup.php:671
-msgid "All dates"
+#: lib/setup.php:691
+msgid "— Datum —"
 msgstr ""
 
 #. translators: 1: month name, 2: 4-digit year
-#: lib/setup.php:684
+#: lib/setup.php:704
 #, php-format
 msgid "%1$s %2$d"
 msgstr ""
 
-#: lib/setup.php:721
+#: lib/setup.php:741
 msgid "Zadejte prosím URL ve správném formátu"
 msgstr ""
 
@@ -1389,7 +1392,7 @@ msgstr ""
 msgid "Nemůžeme najít žádné partnery s těmito požadavky"
 msgstr ""
 
-#: templates/archive.twig:82 templates/request/archive-list.twig:57
+#: templates/archive.twig:82 templates/request/archive-list.twig:59
 msgid "Zkuste prosím snížit vaše požadavky pomocí filtrů."
 msgstr ""
 
@@ -1420,11 +1423,11 @@ msgstr ""
 msgid "Přidat poptávku"
 msgstr ""
 
-#: templates/home.twig:41
+#: templates/home.twig:46
 msgid "Nové poptávky"
 msgstr ""
 
-#: templates/home.twig:44
+#: templates/home.twig:49
 msgid ""
 "Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet "
 "Partnera?\n"
@@ -1432,15 +1435,15 @@ msgid ""
 "jen čekejte na první nabídky."
 msgstr ""
 
-#: templates/home.twig:57
+#: templates/home.twig:62
 msgid "Prohlédnout poptávky"
 msgstr ""
 
-#: templates/home.twig:62
+#: templates/home.twig:67
 msgid "Vložit vlastní poptávku"
 msgstr ""
 
-#: templates/home.twig:114
+#: templates/home.twig:119
 msgid "Nejnovější Shoptet Partneři"
 msgstr ""
 
@@ -1587,6 +1590,10 @@ msgstr ""
 msgid "Kontaktovat partnera"
 msgstr ""
 
+#: templates/profile/contact.twig:11
+msgid "Zpráva úspěšně odeslána"
+msgstr ""
+
 #: templates/profile/filter.twig:11 templates/request/categories.twig:11
 msgid "Zobrazit filtry"
 msgstr ""
@@ -1651,12 +1658,12 @@ msgstr ""
 msgid "Bronzový Shoptet <br>partner"
 msgstr ""
 
-#: templates/request/archive-list.twig:44
+#: templates/request/archive-list.twig:46
 #, php-format
 msgid "Celkem %d z %d"
 msgstr ""
 
-#: templates/request/archive-list.twig:54
+#: templates/request/archive-list.twig:56
 msgid "Nemůžeme najít žádné poptávky s těmito požadavky"
 msgstr ""
 

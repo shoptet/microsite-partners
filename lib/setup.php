@@ -686,9 +686,9 @@ add_action( 'restrict_manage_comments', function () {
 
 	$m = isset( $_GET['m'] ) ? (int) $_GET['m'] : 0;
 	?>
-	<label for="filter-by-date" class="screen-reader-text"><?php _e( 'Filter by date' ); ?></label>
+	<label for="filter-by-date" class="screen-reader-text"><?php _e( 'Filtrovat podle data', 'shp-partneri' ); ?></label>
 	<select name="m" id="filter-by-date">
-		<option<?php selected( $m, 0 ); ?> value="0"><?php _e( 'All dates' ); ?></option>
+		<option<?php selected( $m, 0 ); ?> value="0"><?php _e( '— Datum —', 'shp-partneri' ); ?></option>
 	<?php
 	foreach ( $months as $arc_row ) {
 		if ( 0 == $arc_row->year ) {
