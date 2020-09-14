@@ -132,7 +132,9 @@ function only_alphanumeric( $text ) {
 
 function get_comment_by_auth_token( $auth_token ) {
   // Get all comments
-	$args = [];
+	$args = [
+    'status' => 'any',
+  ];
 	$comments_query = new WP_Comment_Query;
   $comments = $comments_query->query( $args );
   
