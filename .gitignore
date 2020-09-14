@@ -4,6 +4,7 @@ composer.phar
 deployment*.ini
 deployment*.log
 deployment*.phar
+deployment*.sh
 webpack-bundle.json
 /vendor/
 /assets/
