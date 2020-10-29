@@ -1312,50 +1312,6 @@ acf_add_local_field_group(array (
 	'description' => '',
 ));
 
-acf_add_local_field_group(array (
-	'key' => 'group_59r61pfbr3d26',
-	'title' => __( 'Partnerský formulář', 'shp-partneri' ),
-	'fields' => array (
-		array (
-			'key' => 'field_iSSf05wMeSG7B',
-			'label' => __( 'Formulář ID', 'shp-partneri' ),
-			'name' => 'themePartnerContactForm',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array (
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
-	),
-
-	'location' => array (
-		array (
-			array (
-				'param' => 'options_page',
-				'operator' => '==',
-				'value' => 'acf-options-obecne',
-			),
-		),
-	),
-	'menu_order' => 40,
-	'position' => 'normal',
-	'style' => 'default',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => 1,
-	'description' => '',
-));
-
 acf_add_local_field_group(array(
 	'key' => 'group_5cb4b7d67cd75',
 	'title' => __( 'Kontakt', 'shp-partneri' ),
