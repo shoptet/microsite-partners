@@ -92,10 +92,10 @@ class StarterSite extends TimberSite {
     wp_localize_script( 'main', 'local',
       [
         'recaptchaRequiredMessage' => __( 'Zaškrtněte prosím, že nejste robot', 'shp-partneri' ),
-        'requestAllFieldsRequiredMessage' => __( 'Vyplňte prosím všechna pole', 'shp-partneri' ),
-        'requestCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
-        'requestFormSent' => __( 'Odesláno!', 'shp-partneri' ),
-        'requestFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
+        'contactAllFieldsRequiredMessage' => __( 'Vyplňte prosím všechna pole', 'shp-partneri' ),
+        'contactCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
+        'contactFormSent' => __( 'Odesláno!', 'shp-partneri' ),
+        'contactFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
       ]
     );
 

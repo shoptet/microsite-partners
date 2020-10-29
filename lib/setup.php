@@ -828,25 +828,6 @@ function get_shoptet_footer() {
 
 add_filter('acf/format_value/type=text', 'do_shortcode');
 
-function wpcf7_dynamic_recipient_filter($recipient, $args=array()) {
-    if (isset($args['partner-email-address'])) {
-        $recipient = $args['partner-email-address'];
-    } else {
-        $recipient = 'hanzlikova@shoptet.cz';
-    }
-    return $recipient;
-}
-add_filter('wpcf7-dynamic-recipient-filter', 'wpcf7_dynamic_recipient_filter', 10, 2);
-
-add_action( 'wpcf7_mail_sent', function ( $contact_form ) {
-	if ( $contact_form->id() == intval( get_field('themePartnerContactForm', 'option') ) ) {
-		global $wp;
-		$current_url = home_url( add_query_arg( [ 'wpcf7_mail_sent' => 1 ], $wp->request ) );
-		wp_redirect( $current_url );
-		exit;
-	}
-} );
-
 add_filter( 'wpcf7_load_js', '__return_false' );
 
 add_action( 'wp_footer', function() {

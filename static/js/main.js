@@ -52,13 +52,13 @@ import 'font-awesome-svg-png/black/svg/linkedin-square.svg';
 import 'font-awesome-svg-png/black/svg/instagram.svg';
 import 'font-awesome-svg-png/black/svg/plus-circle.svg';
 
-import { initRequestMessage } from './request-message';
+import { initContactMessage } from './contact-message';
 import { initRecaptchaRequired } from './recaptcha-required';
 import { initArchiveFilter } from './archive-filter';
 
 $(function () {
 
-  initRequestMessage();
+  initContactMessage();
   initRecaptchaRequired();
   initArchiveFilter();
 
@@ -185,37 +185,10 @@ $(function () {
     if($('div.wpcf7-mail-sent-ok').closest('form').attr('id') == 'cf7-general-contact') {
       dataLayer.push({'event': 'PartneriKontakt'});
     }
-    if($('div.wpcf7-mail-sent-ok').closest('form').attr('id') == 'cf7-partner-contact') {
-      dataLayer.push({'event': 'kontaktovatPartnera'});
-    }
   }
 
   $('form.review-form').submit(function(){
     dataLayer.push({'event': 'hodnoceniPartnera'});
   });
-
-  // Remove query param from url
-  var newUrl = window.location.href.replace('?wpcf7_mail_sent=1','');
-  history.pushState({}, null, newUrl);
-
-  jQuery.fn.preventDoubleSubmission = function() {
-    $(this).on('submit',function(e){
-      var $form = $(this);
-  
-      if ($form.data('submitted') === true) {
-        // Previously submitted - don't submit again
-        e.preventDefault();
-      } else {
-        // Mark it so that the next submit can be ignored
-        $form.data('submitted', true);
-      }
-    });
-  
-    // Keep chainability
-    return this;
-  };
-
-  // Prevent double submission partner contact form
-  $('#cf7-partner-contact').preventDoubleSubmission();
 
 });

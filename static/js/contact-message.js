@@ -28,12 +28,12 @@ const validateForm = function() {
     $this = $(this);
     value = $.trim($this.val());
     if (!value) {
-      formError(local.requestAllFieldsRequiredMessage);
+      formError(local.contactAllFieldsRequiredMessage);
       isValid = false;
       return false;
     }
     if ($this.attr('type') === 'email' && !isEmail(value)) {
-      formError(local.requestCorrectEmailMessage);
+      formError(local.contactCorrectEmailMessage);
       isValid = false;
       return false;
     }
@@ -45,11 +45,15 @@ const validateForm = function() {
 const onSuccess = function() {
   $contactForm.find('button[type=submit]').remove();
   formError('');
-  formSuccess(local.requestFormSent);
+  formSuccess(local.contactFormSent);
+
+  if ( 'partner_message' == $contactForm.data('action') ) {
+    dataLayer.push({'event': 'kontaktovatPartnera'});
+  }
 };
 
 const onError = function(xhr) {
-  formError(local.requestFormErrorMessage);
+  formError(local.contactFormErrorMessage);
   console.error(xhr);
 };
 
@@ -84,12 +88,22 @@ const sendData = function(data) {
   });
 };
 
-export const initRequestMessage = () => {
+export const initContactMessage = () => {
   $contactForm.on('submit', function(e) {
     e.preventDefault();
-    if (!validateForm()) return;
+    
+    if ( !validateForm() ) {
+      return;
+    }
+
+    if ($contactForm.data('submitted') === true) {
+      return;
+    }
+    $contactForm.data('submitted', true);
+
     $contactForm.addClass('is-loading');
     const data = getFormData();
     sendData(data);
+
   });
 };

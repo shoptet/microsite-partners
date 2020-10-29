@@ -66,6 +66,4 @@ $professional_post = new ProfessionalPost( $post->ID );
 $context['rating_stars'] = $professional_post->getRatingStars();
 $context['average_rating'] = $professional_post->getAverageRating();
 
-$context['contact_form_sent'] = isset( $_GET['wpcf7_mail_sent'] ) && '1' == $_GET['wpcf7_mail_sent'];
-
 Timber::render( 'single.twig', $context );
