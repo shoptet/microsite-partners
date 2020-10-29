@@ -1,0 +1,39 @@
+
+<form id="contactForm" data-action="partner_message">
+
+  <div class="form-group">
+    <label class="sr-only" for="contactFormName">
+      {{ __( 'Jméno a příjmení', 'shp-partneri' ) }}
+    </label>
+    <input type="text" name="name" class="form-control" id="contactFormName" placeholder="{{ __( 'Vaše jméno', 'shp-partneri' ) }}" required>
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="contactFormEmail">
+      {{ __( 'E-mail', 'shp-partneri' ) }}
+    </label>
+    <input type="email" name="email" class="form-control" id="contactFormEmail" placeholder="{{ __( 'Váš e-mail', 'shp-partneri' ) }}" required>
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="contactFormMessage">
+      {{ __( 'Zpráva partnerovi', 'shp-partneri' ) }}
+    </label>
+    <textarea class="form-control" name="message" rows="10" id="contactFormMessage" placeholder="{{ __( 'Zpráva partnerovi', 'shp-partneri' ) }}" required></textarea>
+  </div>
+
+  <p>{{ __( 'Vložením e-mailu souhlasíte s <a href="https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/" target="_blank">podmínkami ochrany osobních údajů</a>', 'shp-partneri' ) }}</p>
+
+  <input type="hidden" name="post_id" value="{{ post.ID }}">
+
+  <div class="g-recaptcha g-recaptcha-small mb-3" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
+
+  <p class="text-danger d-none" id="contactFormError"></p>
+
+  <p class="text-success form-control-plaintext font-weight-bold d-none fs-120" id="contactFormSuccess"></p>
+
+  <button type="submit" class="btn btn-primary btn-block">
+    {{ __( 'Odeslat', 'shp-partneri' ) }}
+  </button>
+
+</form>

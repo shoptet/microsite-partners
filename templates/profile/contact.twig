@@ -1,15 +1,8 @@
 <div class="list-group-profile mb-4">
-
     <div class="list-group-profile-item list-group-profile-item-title">
         <h2 class="h4 mb-0">{{ __( 'Kontaktovat partnera', 'shp-partneri' ) }}</h2>
     </div>
     <div class="list-group-profile-item">
-        {{ function('do_shortcode', '[contact-form-7 id="%d" html_id="cf7-partner-contact"]'|format(options.themePartnerContactForm)) }}
-
-        {% if contact_form_sent %}
-            <div class="alert alert-success mb-0">
-                {{ __( 'Zpráva úspěšně odeslána', 'shp-partneri' ) }}
-            </div>
-        {% endif %}
+        {% include 'profile/contact-form.twig' %}
     </div>
 </div>

@@ -1,3 +1,8 @@
+.g-recaptcha-small {
+  transform:scale(0.88);
+  transform-origin:0 0;
+}
+
 .g-recaptcha-required-error {
   margin-top: .5rem;
   color: theme-color("danger");

@@ -1,6 +1,6 @@
-const $contactForm = $('#requestContactForm');
-const $contactFormError = $('#requestContactFormError');
-const $contactFormSuccess = $('#requestContactFormSuccess');
+const $contactForm = $('#contactForm');
+const $contactFormError = $('#contactFormError');
+const $contactFormSuccess = $('#contactFormSuccess');
 
 const formError = function(text) {
   if (text.length > 0) {
@@ -66,12 +66,13 @@ const getFormData = function() {
 };
 
 const sendData = function(data) {
+  const action = $contactForm.data('action');
   $.ajax({
     type: 'POST',
     url: window.ajaxurl,
     data: Object.assign(
       {
-        action: 'request_message',
+        action: action,
       },
       data
     ),
