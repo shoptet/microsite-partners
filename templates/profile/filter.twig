@@ -12,59 +12,22 @@
   </button>
 
   <div class="collapse d-md-block" id="filtersCollapse">
-
     <div class="mt-4 mt-md-0">
 
-      {% if blank_template_creator_count > 0 %}
-        <div class="d-flex justify-content-between align-items-center pb-3 mb-4 border-bottom">
+      <p class="h5 font-weight-bold mt-0 mb-2">
+        {{ __( 'Kategorie', 'shp-partneri' ) }}
+      </p>
 
-          
-          <div class="form-check mb-0">
-            <label class="form-check-label">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="blank_template_creator"
-                value="1"
-                {% if blank_template_creator == '1' %}
-                  checked
-                {% endif %}
-              >
-              {{ __( 'Tvůrce blank šablon', 'shp-partneri' ) }}
-              <span class="text-semilight">({{ blank_template_creator_count }})</span>
-            </label>
-          </div>
-
-          <div>
-            <span
-              class="fs-90"
-              data-toggle="popover"
-              data-content="{{ __('Partner byl proškolen v tvorbě <a href=\'%s\' target=\'_blank\'>blank&nbsp;šablon</a> přímo na školení v Shoptetu', 'shp-partneri')|format('https://blog.shoptet.cz/blank-sablona/') }}"
-            >
-              <i class="fas fa-info-circle" aria-hidden="true"></i>
-            </span>
-          </div>
-        </div>
-      {% endif %}
-
-      <div>
-
-        <p class="h5 font-weight-bold mt-0 mb-2">
-          {{ __( 'Kategorie', 'shp-partneri' ) }}
-        </p>
-
-        <ul class="list-unstyled mb-0">
-          {% for t in terms if t.count %}
-            <li>
-              <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link}}">
-                {{ t.name }}
-                <span class="text-semilight">({{ t.count }})</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-
-      </div>
+      <ul class="list-unstyled mb-0">
+        {% for t in terms if t.count %}
+          <li>
+            <a class="filter-link {% if t.id == term.id %}filter-link-active{% endif %}" href="{{ t.link}}">
+              {{ t.name }}
+              <span class="text-semilight">({{ t.count }})</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
 
       {% if regions_by_country is not empty %}
         <div class="border-top pt-4 mt-3">

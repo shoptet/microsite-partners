@@ -782,7 +782,6 @@ add_action('pre_get_posts', function( $wp_query ) {
   $fs = new FacetedSearch( $wp_query );
   $fs->filterBySearchQuery();
   $fs->filterByMetaQuery( 'region', 'OR' );
-	$fs->filterByMetaQuery( 'blank_template_creator' );
 	$fs->filterByTaxQuery( ProfessionalPost::TAXONOMY );
   $fs->order();
 } );
