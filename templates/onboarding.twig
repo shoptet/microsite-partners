@@ -44,7 +44,15 @@
                 </li>
               </ul>
 
-              {{ function('acf_form', acf_form_args) }}
+              {% if read_only_enabled %}
+
+                {% do action('read_only_fallback') %}
+
+              {% else %}
+
+                {{ function('acf_form', acf_form_args) }}
+
+              {% endif %}
 
             </div>
           </div>

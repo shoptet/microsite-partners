@@ -6,7 +6,11 @@
                 {{ options.themeComplaintContactText }}
             </div>
             <div class="col-sm-12 col-md-6">
-                {{ options.themeComplaintContact }}
+                {% if read_only_enabled %}
+                    {% do action('read_only_fallback') %}
+                {% else %}
+                    {{ options.themeComplaintContact }}
+                {% endif %}
             </div>
         </div>
     </div>
