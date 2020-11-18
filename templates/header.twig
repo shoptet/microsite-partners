@@ -19,7 +19,7 @@
 				title="{{ __( 'Zpět na domovskou stránku', 'shp-partneri' ) }}"
 			>
 				<img
-					src="{{ "shoptet-partneri-logo.svg"|static_assets }}"
+					src="{{ logo_url ?: "shoptet-logo.svg"|static_assets }}"
 					alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
 				>
 			</a>
@@ -28,9 +28,9 @@
 				class="header-search"
 				action="{{ site.url }}"
 				role="search"
-							itemprop="potentialAction"
-							itemscope
-							itemtype="http://schema.org/SearchAction"
+				itemprop="potentialAction"
+				itemscope
+				itemtype="http://schema.org/SearchAction"
 			>
 				<meta itemprop="target" content="?s={s}">
 				<div class="input-group">

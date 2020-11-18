@@ -17,6 +17,7 @@ ini_set('display_errors', 1);
  */
 add_action( 'after_setup_theme', function () {
 	load_theme_textdomain( 'shp-partneri', get_template_directory() . '/languages' );
+	add_theme_support( 'custom-logo' );
 } );
 
 /**

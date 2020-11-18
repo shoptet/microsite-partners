@@ -29,6 +29,7 @@ class StarterSite extends TimberSite {
   function add_to_context( $context ) {
     $context['header_menu'] = new Timber\Menu( 'header-menu' );
     $context['archive_link'] =  get_post_type_archive_link( 'profesionalove' );
+    $context['logo_url'] =  get_custom_logo_url();
     $context['all_categories'] = Timber::get_terms( ProfessionalPost::TAXONOMY, 'hide_empty=true');
     $context['site'] = $this;
     $context['show_breadcrumb'] = true;

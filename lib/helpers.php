@@ -359,3 +359,11 @@ function get_regions_by_country( $post_type, $term ): array
   }
   return $regions_by_country;
 }
+
+function get_custom_logo_url (): string
+{
+  if ( ! has_custom_logo() ) return '';
+  $custom_logo_id = get_theme_mod( 'custom_logo' );
+  $logo_url = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+  return $logo_url[0];
+}
