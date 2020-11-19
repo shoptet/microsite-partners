@@ -17,7 +17,6 @@ $includes = [
 	'lib/RequestService.php',
 	'lib/RequestNotifier.php',
 	'lib/RequestForm.php',
-	'lib/Migrations.php',
 	'lib/setup.php',
 	'lib/helpers.php',
 	'lib/acf_add_options_page.php',

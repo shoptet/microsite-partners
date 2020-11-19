@@ -763,8 +763,6 @@ PostService::init();
 
 new RequestArchive();
 
-Migrations::init();
-
 ShoptetProjectCount::init();
 
 Shoptet\ShoptetExternal::init();
