@@ -39,6 +39,7 @@ class StarterSite extends TimberSite {
     $context['link']['request']['archive'] = get_post_type_archive_link( 'request' );
     $context['request_posts_count'] = wp_count_posts( 'request' );
     $context['read_only_enabled'] = apply_filters( 'read_only_enabled', false );
+    $context['footer'] = Shoptet\ShoptetExternal::get_footer();
     return $context;
   }
 

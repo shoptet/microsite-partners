@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec171eaa8654f73a3ec4f1238d7a2c46",
+    "content-hash": "cb24a5b958e1c365c5f7bce6a95f2983",
     "packages": [
         {
             "name": "google/recaptcha",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/recaptcha.git",
-                "reference": "98c4a6573b27e8b0990ea8789c74ea378795134c"
+                "reference": "614f25a9038be4f3f2da7cbfd778dc5b357d2419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/recaptcha/zipball/98c4a6573b27e8b0990ea8789c74ea378795134c",
-                "reference": "98c4a6573b27e8b0990ea8789c74ea378795134c",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/614f25a9038be4f3f2da7cbfd778dc5b357d2419",
+                "reference": "614f25a9038be4f3f2da7cbfd778dc5b357d2419",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,33 @@
                 "recaptcha",
                 "spam"
             ],
-            "time": "2019-08-16T15:48:25+00:00"
+            "time": "2020-03-31T17:50:54+00:00"
+        },
+        {
+            "name": "shoptet/shoptet-wp-common",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shoptet/shoptet-wp-common.git",
+                "reference": "9f20be0be2469a9d1bcc17b7267262a5feb89685"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shoptet/shoptet-wp-common/zipball/9f20be0be2469a9d1bcc17b7267262a5feb89685",
+                "reference": "9f20be0be2469a9d1bcc17b7267262a5feb89685",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shoptet\\": "src/"
+                }
+            },
+            "support": {
+                "source": "https://github.com/shoptet/shoptet-wp-common/tree/1.1.0",
+                "issues": "https://github.com/shoptet/shoptet-wp-common/issues"
+            },
+            "time": "2020-11-19T11:22:18+00:00"
         }
     ],
     "packages-dev": [],

@@ -1,5 +1,14 @@
 {
+  "name": "shoptet/microsite-partners",
+  "description": "",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/shoptet/shoptet-wp-common.git"
+    }
+  ],
   "require": {
-    "google/recaptcha": "^1.2"
+    "google/recaptcha": "^1.2",
+    "shoptet/shoptet-wp-common": "^1"
   }
 }
