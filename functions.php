@@ -4,7 +4,6 @@ $includes = [
 	'lib/cpt_posts.php',
 	'lib/cpt_taxonomies.php',
 	'lib/FacetedSearch.php',
-	'lib/ShoptetProjectCount.php',
 	'lib/StarterSite.php',
 	'lib/Post.php',
 	'lib/PostService.php',

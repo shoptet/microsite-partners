@@ -672,11 +672,11 @@ PostService::init();
 
 new RequestArchive();
 
-ShoptetProjectCount::init();
-
 Shoptet\ShoptetExternal::init();
 
 Shoptet\ShoptetUserRoles::init();
+
+Shoptet\ShoptetStats::init();
 
 /**
  * Handle filtering and ordering wholesaler archive and category
