@@ -678,6 +678,8 @@ Shoptet\ShoptetUserRoles::init();
 
 Shoptet\ShoptetStats::init();
 
+Shoptet\ShoptetSecurity::init();
+
 /**
  * Handle filtering and ordering wholesaler archive and category
  */
