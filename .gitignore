@@ -5,3 +5,4 @@ webpack-bundle.json
 /vendor/
 /assets/
 /node_modules/
+*.mo
