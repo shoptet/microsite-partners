@@ -320,15 +320,15 @@
                       <td>
                         <img
                           class="d-block"
-                          src="{{ 'shoptet-partneri-logo.png'|static_assets }}"
+                          src="{{ logo_url ?: "shoptet-logo.svg"|static_assets }}"
                           alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
                           width="200"
                         >
                       </td>
                       <td align="right" style="vertical-align:bottom;font-size:13px;">
-                        <strong><a href="https://partneri.shoptet.cz/" target="_blank">partneri.shoptet.cz</a></strong>
+                        <strong><a href="https://{{ __( 'partneri.shoptet.cz', 'shp-partneri' ) }}/" target="_blank">{{ __( 'partneri.shoptet.cz', 'shp-partneri' ) }}</a></strong>
                         <span class="text-muted"> | </span>
-                        <a class="text-muted" href="mailto:partneri@shoptet.cz" target="_blank">partneri@shoptet.cz</a>
+                        <a class="text-muted" href="mailto:{{ __( 'partneri@shoptet.cz', 'shp-partneri' ) }}" target="_blank">{{ __( 'partneri@shoptet.cz', 'shp-partneri' ) }}</a>
                       </td>
                     </tr>
                   </table>

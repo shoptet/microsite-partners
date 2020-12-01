@@ -198,7 +198,7 @@ function render_onboarding_form_error_message() {
       ' . __( 'Možná už jste ho v minulosti odeslali, nebo je na vaši e-mailovou adresu už jedna registrace na webu Partneři Shoptet hotová.', 'shp-partneri' ) . '
     </p>
     <p class="mb-0">
-      ' . sprintf ( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), 'partneri@shoptet.cz', 'partneri@shoptet.cz' ) . '
+      ' . sprintf ( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ) ) . '
     </p>
   ';
   $context['footer_image'] = 'envelope-x';

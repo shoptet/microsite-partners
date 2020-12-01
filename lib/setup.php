@@ -462,7 +462,7 @@ add_action( 'init' , function () {
 				' . __( 'Je to už více jak měsíc, co jsme vám formulář poslali a&nbsp;z&nbsp;bezpečnostních důvodů jeho platnost vypršela.', 'shp-partneri' ) . '
 			</p>
 			<p class="mb-0">
-				' . sprintf( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), 'partneri@shoptet.cz', 'partneri@shoptet.cz' ) . '
+				' . sprintf( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ) ) . '
 			</p>
 		';
 		$context['footer_image'] = 'envelope-x';

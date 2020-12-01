@@ -159,7 +159,7 @@ function cptui_register_my_cpts() {
 		'show_in_rest' => true,
 		'rest_base' => '',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'has_archive' => 'poptavky',
+		'has_archive' => __( 'poptavky', 'shp-partneri' ),
 		'show_in_menu' => true,
 		'show_in_nav_menus' => true,
 		'exclude_from_search' => false,
