@@ -213,7 +213,7 @@ msgstr "Csak a Shoptet partnerek számára aktív"
 #: lib/StarterSite.php:204
 #, php-format
 msgid "%s&nbsp;%s/hod"
-msgstr ""
+msgstr "%s&nbsp;%s/óra"
 
 #: lib/StarterSite.php:207
 msgid "bez DPH"
@@ -893,7 +893,7 @@ msgstr ""
 #: templates/header.twig:74 templates/home.twig:20
 #: templates/page-profesionalove.twig:18
 msgid "Profesionálové"
-msgstr ""
+msgstr "Szakemberek"
 
 #: lib/cpt_posts.php:11
 msgid "Profesionál"
