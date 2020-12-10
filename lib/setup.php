@@ -680,6 +680,24 @@ Shoptet\ShoptetStats::init();
 
 Shoptet\ShoptetSecurity::init();
 
+Shoptet\ShoptetPostCount::init();
+
+/**
+ * Add query arguments to post count api
+ */
+add_filter( 'shoptet_post_count_query_args', function($query_args) {
+	return [
+		'partneriRequestsCount' => [
+			'post_type' => 'request',
+			'post_status' => [ 'publish', 'expired' ],
+		],
+		'partneriPartnersCount' => [
+			'post_type' => 'profesionalove',
+			'post_status' => 'publish',
+		],
+	];
+} );
+
 /**
  * Handle filtering and ordering wholesaler archive and category
  */
