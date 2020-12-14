@@ -1399,24 +1399,6 @@ acf_add_local_field_group(array(
 			'append' => '',
 			'maxlength' => '',
 		),
-		array(
-			'key' => 'field_5ca5e9b129968',
-			'label' => __( 'Příjemce e-mailu s upozorněním o nově autorizovaném hodnocení', 'shp-partneri' ),
-			'name' => 'authorized_review_email_recipient',
-			'type' => 'email',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-		),
 	),
 	'location' => array(
 		array(

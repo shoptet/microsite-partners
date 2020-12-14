@@ -35,6 +35,14 @@ if( function_exists('acf_add_options_page') ) {
 	));
 
 	acf_add_options_sub_page(array(
+		'page_title' 	=> __( 'Nastavení mailingu komentářů', 'shp-partneri' ),
+		'menu_title'	=> __( 'Mailing', 'shp-partneri' ),
+		'menu_slug' 	=> 'comments-mailing',
+		'capability'	=> 'edit_posts',
+		'parent_slug' => 'edit-comments.php',
+	));
+
+	acf_add_options_sub_page(array(
 		'page_title' 	=> __( 'Nastavení archivu poptávek', 'shp-partneri' ),
 		'menu_title'	=> __( 'Archiv', 'shp-partneri' ),
 		'menu_slug' 	=> 'requests-archive',

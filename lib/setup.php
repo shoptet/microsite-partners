@@ -259,20 +259,24 @@ add_action( 'init' , function () {
 
 	update_comment_meta( $comment->comment_ID, 'authenticated', time() );
 	$options = get_fields('options');
-	$context = Timber::get_context();
-	$post = new Timber\Post( $comment->comment_post_ID );
-	$context['post'] = $post;
-	$email_html_body = Timber::compile( 'templates/mailing/review-authorized.twig', $context );
-	$email_subject = __( 'Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení', 'shp-partneri' );
-	wp_mail(
-		$options['authorized_review_email_recipient'],
-		$email_subject,
-		$email_html_body,
-		[
-			'From: ' . $options['email_from'],
-			'Content-Type: text/html; charset=UTF-8',
-		]
-	);
+
+	if ( !isset($options['authorized_review_email_enabled']) || !empty($options['authorized_review_email_enabled']) ) {
+		$context = Timber::get_context();
+		$post = new Timber\Post( $comment->comment_post_ID );
+		$context['post'] = $post;
+		$email_html_body = Timber::compile( 'templates/mailing/review-authorized.twig', $context );
+		$email_subject = __( 'Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení', 'shp-partneri' );
+		wp_mail(
+			$options['authorized_review_email_recipient'],
+			$email_subject,
+			$email_html_body,
+			[
+				'From: ' . $options['email_from'],
+				'Content-Type: text/html; charset=UTF-8',
+			]
+		);
+	}
+
 	$context = Timber::get_context();
 	$context['wp_title'] = __( 'Hodnocení ověřeno', 'shp-partneri' );
 	$context['message_type'] = 'thumb-up';

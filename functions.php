@@ -20,6 +20,7 @@ $includes = [
 	'lib/helpers.php',
 	'lib/acf_add_options_page.php',
 	'lib/acf_settings.php',
+	'lib/acf_comment_mailing.php',
 	'lib/acf_request_mailing.php',
 	'lib/acf_request_archive.php',
 	'lib/taxonomy_slug_rewrite.php',
