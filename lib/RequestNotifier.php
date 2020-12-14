@@ -30,6 +30,17 @@ class RequestNotifier
     return $headers;
   }
 
+  static function isEnabled( $field_name )
+  {
+    $options = get_fields( 'options' );
+    $field = $options[ $field_name ];
+    $is_enabled = true;
+    if ( isset($field[ 'is_enabled' ]) && empty($field[ 'is_enabled' ]) ) {
+      $is_enabled = false;
+    }
+    return $is_enabled;
+  }
+
   static function compileMail( $field_name, $args = [] )
   {
     $options = get_fields( 'options' );
@@ -105,6 +116,11 @@ class RequestNotifier
   static function newRequestAdmin( $post_id )
   {
     $field_name = 'request_new_admin';
+    
+    if ( ! self::isEnabled($field_name) ) {
+      return;
+    }
+    
 	  $options = get_fields( 'options' );
     $admin_email = $options['authorized_review_email_recipient'];
     $headers = self::getDefaultEmailHeaders();
