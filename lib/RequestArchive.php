@@ -42,7 +42,7 @@ class RequestArchive
     }
 
     // Sort by date ascending
-    if( $query != [ 'date', 'desc' ] ) {
+    if( $query == [ 'date', 'asc' ] ) {
       $this->wp_query->set( 'orderby', [ 'meta_value_num' => 'desc', 'post_date' => $query[1] ] );
     }
 
