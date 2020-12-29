@@ -40,10 +40,19 @@ $pagination = [
 ];
 
 for ( $i = 1; $i <= $comments_total_pages; $i++ ) {
+	$is_first = ( $i == 1 );
+	$is_last = ( $i == $comments_total_pages );
+	$is_current = ( $i == $comments_current_page );
+	$is_pre_current = ( $i == $comments_current_page - 1 );
+	$is_post_current = ( $i == $comments_current_page + 1 );
+	$show = ( $comments_total_pages <= 6 || $is_first || $is_last || $is_current || $is_pre_current || $is_post_current );
+	$link = ( $i > 1 ? $post->link . 'comment-page-' . $i . '#comments' : $post->link );
+
 	$pagination['pages'][] = [
-		'link' => ( $i > 1 ? $post->link . 'comment-page-' . $i . '#comments' : $post->link ),
+		'link' => $link,
 		'title' => $i,
-		'current' => ( $i === $comments_current_page ),
+		'current' => $is_current,
+		'hide' => !$show,
 	];
 }
 

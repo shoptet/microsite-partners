@@ -24,7 +24,7 @@ $context['posts'] = $posts = new Timber\PostQuery();
 $context['terms'] = Timber::get_terms( RequestPost::TAXONOMY );
 $archive_link = get_post_type_archive_link( 'request' );
 $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = $archive_link;
-$context['pagination'] = Timber::get_pagination();
+$context['pagination'] = Timber::get_pagination(['mid_size'=>1]);
 
 if( is_tax() ) {
   $term = new Timber\Term();

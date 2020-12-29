@@ -1,42 +1,53 @@
 {% if pagination.total > 1 %}
-  <nav aria-label="{{ __( 'Stránkování výpisu', 'shp-partneri' ) }}">
+  <nav>
+
     <ul class="pagination justify-content-center mt-3 mb-0 {{ class }}">
 
-      {% if pagination.prev %}
-        <li class="page-item ">
-          {% if not pagination.prev %}
-            <span class="page-link">{{ __( 'Předchozí', 'shp-partneri' ) }}</span>
-          {% else %}
-            <a class="page-link" href="{{pagination.prev.link}}">{{ __( 'Předchozí', 'shp-partneri' ) }}</a>
-          {% endif %}
-        </li>
-      {% endif %}
+      <li class="page-item {% if not pagination.prev %}disabled{% endif %}">
+        {% if pagination.prev %}
+          <a class="page-link" href="{{pagination.prev.link}}">
+        {% else %}
+          <span class="page-link">
+        {% endif %}
+        <span class="d-md-none">&laquo;</span>
+        <span class="d-none d-md-inline">{{ __( 'Předchozí', 'shp-partneri' ) }}</span>
+        {% if pagination.prev %}
+          </a>
+        {% else %}
+          </span>
+        {% endif %}
+      </li>
 
       {% for page in pagination.pages %}
-        {% if page.link %}
-          <li class="page-item">
-            <a class="page-link" href="{{page.link}}">
-              {{page.title}}
-            </a>
+        {% if page.current %}
+          <li class="page-item active">
+            <span class="page-link">{{page.title}}</span>
           </li>
-        {% else %}
-          <li class="page-item {% if page.current %}active{% endif %}">
-            <span class="page-link">
-              {{page.title}} <span class="sr-only">{{ __( '(nyní)', 'shp-partneri' ) }}</span>
-            </span>
+        {% elseif page.link and not page.hide %}
+          <li class="page-item">
+            <a class="page-link" href="{{page.link}}">{{page.title}}</a>
+          </li>
+        {% elseif not page.link or not pagination.pages[ loop.index0 - 1 ].hide %}
+          <li class="page-item disabled">
+            <span class="page-link px-1">...</span>
           </li>
         {% endif %}
       {% endfor %}
 
-      {% if pagination.next %}
-        <li class="page-item">
-          {% if not pagination.next %}
-            <span class="page-link">{{ __( 'Další', 'shp-partneri' ) }}</span>
-          {% else %}
-            <a class="page-link" href="{{pagination.next.link}}">{{ __( 'Další', 'shp-partneri' ) }}</a>
-          {% endif %}
-        </li>
-      {% endif %}
+      <li class="page-item {% if not pagination.next %}disabled{% endif %}">
+        {% if pagination.next %}
+          <a class="page-link" href="{{pagination.next.link}}">
+        {% else %}
+          <span class="page-link">
+        {% endif %}
+        <span class="d-none d-md-inline">{{ __( 'Další', 'shp-partneri' ) }}</span>
+        <span class="d-md-none">&raquo;</span>
+        {% if pagination.next %}
+          </a>
+        {% else %}
+          </span>
+        {% endif %}
+      </li>
 
     </ul>
   </nav>

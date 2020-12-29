@@ -33,7 +33,7 @@ $context['wp_title'] = $termTitle;
 $context['breadcrumbs'] = array(
   $termTitle => $term->link );
 
-$context['pagination'] = Timber::get_pagination();
+  $context['pagination'] = Timber::get_pagination(['mid_size'=>1]);
 
 $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'];
 
