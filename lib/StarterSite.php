@@ -3,7 +3,6 @@
 class StarterSite extends TimberSite {
 
   function __construct() {
-    add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
     add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
