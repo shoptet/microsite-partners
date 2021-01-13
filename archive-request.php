@@ -31,12 +31,12 @@ if( is_tax() ) {
   $context['term'] = $term;
   $context['title'] = sprintf( __( '%s poptávky', 'shp-partneri' ), $term->name );
   $context['breadcrumbs'][ $term->name ] = $term->link;
-  $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'];
+  $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'] . '/';
   $context['meta_description'] = $term->description;
   $context['description'] = $term->description;
 } else {
   $context['title'] = __( 'Přehled poptávek', 'shp-partneri' );
-  $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $archive_link : $archive_link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'];
+  $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $archive_link : $archive_link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'] . '/';
   $context['description'] = isset($options['request_archive_description']) ? $options['request_archive_description'] : '' ;
   $context['meta_description'] = $context['description'];
 }
