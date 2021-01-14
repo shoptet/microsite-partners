@@ -409,7 +409,7 @@ add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
 		'title' => __( 'Vyplnit dotazník', 'shp-partneri' ),
 		'link' => $onboarding_url,
 	];
-	$context['text_footer'] = sprintf( __( 'To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;mohli tak partnerství potvrdit.<br><br>Na konkrétní <a href="%s" target="_blank" style="%s">podmínky partnerství</a> se můžete mrknout na našem webu.', 'shp-partneri' ), 'https://partneri.shoptet.cz/certifikace/', 'color:#21AFE5;text-decoration:underline;' );
+	$context['text_footer'] = sprintf( __( 'To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;mohli tak partnerství potvrdit.<br><br>Na konkrétní <a href="%s" target="_blank" style="%s">podmínky partnerství</a> se můžete mrknout na našem webu.', 'shp-partneri' ), 'https://partneri.shoptet.cz/poptavky-a-certifikace-partneru/', 'color:#21AFE5;text-decoration:underline;' );
 	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
 	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
 	wp_mail(
