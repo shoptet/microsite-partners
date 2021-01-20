@@ -44,6 +44,7 @@ function hide_field_in_admin( $field ) {
 	global $post, $pagenow;
   if (
 		( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) &&
+		isset($post->post_type) &&
 		ProfessionalPost::POST_TYPE === $post->post_type
 	) {
 		$field = false;
@@ -533,6 +534,23 @@ add_action( 'init' , function () {
 	die();
 	
 } );
+
+/**
+ * Disallow changing an onboarding partner status in the admin
+ */
+add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
+	if (
+		ProfessionalPost::POST_TYPE == $post->post_type &&
+		is_admin() &&
+		'onboarding' == $old_status &&
+		in_array( $new_status, [ 'publish', 'pending', 'draft' ] )
+	) {
+		wp_update_post([
+			'ID' => $post->ID,
+			'post_status' => 'onboarding',
+		]);
+	}
+}, 10, 3 );
 
 /**
  * Set professional image as post featured image

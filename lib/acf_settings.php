@@ -1698,6 +1698,8 @@ acf_add_local_field_group(array(
 			'layout' => 'vertical',
 			'return_format' => 'value',
 			'save_other_choice' => 0,
+			'allow_quickedit' => 1,
+			'allow_bulkedit' => 1,
 		),
 		array(
 			'key' => 'field_59ca41f49c478',
