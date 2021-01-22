@@ -169,24 +169,6 @@ function get_post_by_onboarding_token( $onboarding_token ) {
   return $query->posts[0];
 }
 
-function get_post_by_email( $email ) {
-  $query = new WP_Query( [
-    'post_type' => 'profesionalove',
-    'posts_per_page' => 1,
-    'post_status' => 'any',
-    'meta_query' => [
-      [
-        'key' => 'emailAddress',
-        'value' => $email,
-      ],
-    ],
-  ] );
-
-  if ( empty( $query->posts ) ) return null;
-
-  return $query->posts[0];
-}
-
 function render_onboarding_form_error_message() {
   $context = Timber::get_context();
   $context['wp_title'] = __( 'Odeslání se nezdařilo', 'shp-partneri' );
@@ -290,6 +272,15 @@ function verify_recaptcha () {
   $recaptcha = new \ReCaptcha\ReCaptcha( G_RECAPTCHA_SECRET_KEY );
   $resp = $recaptcha->verify( $recaptcha_response, $_SERVER['REMOTE_ADDR'] );
   return $resp->isSuccess();
+}
+
+function is_blacklisted ( $name, $email, $message ) {
+  $user_url = '';
+  $user_ip = $_SERVER['REMOTE_ADDR'];
+  $user_ip = preg_replace( '/[^0-9a-fA-F:., ]/', '', $user_ip );
+  $user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
+  $user_agent = substr( $user_agent, 0, 254 );
+  return wp_check_comment_disallowed_list( $name, $email, $user_url, $message, $user_ip, $user_agent );
 }
 
 /**

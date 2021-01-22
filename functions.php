@@ -9,6 +9,7 @@ $includes = [
 	'lib/PostService.php',
 	'lib/ProfessionalService.php',
 	'lib/ProfessionalPost.php',
+	'lib/ContactForm.php',
 	'lib/AdminProfessionalList.php',
 	'lib/TermSyncer.php',
 	'lib/RequestPost.php',

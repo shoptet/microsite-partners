@@ -47,7 +47,7 @@ const onSuccess = function() {
   formError('');
   formSuccess(local.contactFormSent);
 
-  if ( 'partner_message' == $contactForm.data('action') ) {
+  if ( 'partner_message' == $contactForm.data('ajax-action') ) {
     dataLayer.push({'event': 'kontaktovatPartnera'});
   }
 };
@@ -70,7 +70,7 @@ const getFormData = function() {
 };
 
 const sendData = function(data) {
-  const action = $contactForm.data('action');
+  const action = $contactForm.data('ajax-action');
   $.ajax({
     type: 'POST',
     url: window.ajaxurl,
@@ -96,14 +96,20 @@ export const initContactMessage = () => {
       return;
     }
 
-    if ($contactForm.data('submitted') === true) {
-      return;
+    if ( $contactForm.data('ajax-action') ) {
+      if ($contactForm.data('submitted') === true) {
+        return;
+      }
+      $contactForm.data('submitted', true);
+      $contactForm.addClass('is-loading');
+      const data = getFormData();
+      sendData(data);
+    } else {
+      if ( 'onboarding_contact' == $contactForm.data('action') ) {
+        dataLayer.push({'event': 'PartneriKontakt'});
+      }
+      this.submit();
     }
-    $contactForm.data('submitted', true);
-
-    $contactForm.addClass('is-loading');
-    const data = getFormData();
-    sendData(data);
 
   });
 };

@@ -103,14 +103,7 @@ class ProfessionalService
       return;
     }
     
-    // WordPress comments blacklist check
-    $user_url = '';
-    $user_ip = $_SERVER['REMOTE_ADDR'];
-    $user_ip = preg_replace( '/[^0-9a-fA-F:., ]/', '', $user_ip );
-    $user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
-    $user_agent = substr( $user_agent, 0, 254 );
-
-    if ( wp_check_comment_disallowed_list( $name, $email, $user_url, $message, $user_ip, $user_agent ) ) {
+    if ( is_blacklisted( $name, $email, $message ) ) {
       wp_send_json_error( null, 403 );
       return;
     }

@@ -363,78 +363,6 @@ add_filter( 'manage_comments_custom_column', function ( $column, $comment_id ) {
 	}	
 }, 10, 2 );
 
-add_action( 'wpcf7_before_send_mail', function ( $contact_form ) {
-	if ( $contact_form->id() !== intval( get_field('contact_form_id', 'option') ) ) return;
-	$submission = WPCF7_Submission::get_instance() ;
-	if ( ! $submission  || ! $submission->get_posted_data()['your-email'] ) return;
-
-	$email = $submission->get_posted_data()['your-email'];
-	$name = $submission->get_posted_data()['your-name'];
-	$message = $submission->get_posted_data()['your-message'];
-
-	// Check if a post with the e-mail already exists
-	if ( get_post_by_email( $email ) ) {
-		render_onboarding_form_error_message();
-		return;
-	}
-
-	$onboarding_token = bin2hex( openssl_random_pseudo_bytes(32) );
-	$onboarding_url = get_site_url( null, '?onboarding_token=' . $onboarding_token );
-
-  $postarr = [
-    'post_type' => 'profesionalove',
-    'post_title' => $name,
-    'post_status' => 'onboarding',
-    'meta_input' => [
-			'emailAddress' => $email,
-			'onboarded' => 0,
-			'expired' => 0,
-			'onboarding_token' => $onboarding_token,
-			'message' => $message,
-    ],
-  ];
-	wp_insert_post( $postarr );
-
-	// Compile and send e-mail
-	$context = Timber::get_context();
-	$options = get_fields('options');
-	$context['title'] = __( 'Děkujeme', 'shp-partneri' );
-	$context['subtitle'] = __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
-	$context['text'] = __( 'Teď už zbývá jen poslední krok:', 'shp-partneri' );
-	$context['image'] = [
-		'main' => 'shoptetrix-thumb-up-1.png',
-		'complementary' => 'shoptetrix-thumb-up-2.png',
-		'width' => 250,
-	];
-	$context['cta'] = [
-		'title' => __( 'Vyplnit dotazník', 'shp-partneri' ),
-		'link' => $onboarding_url,
-	];
-	$context['text_footer'] = sprintf( __( 'To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;mohli tak partnerství potvrdit.<br><br>Na konkrétní <a href="%s" target="_blank" style="%s">podmínky partnerství</a> se můžete mrknout na našem webu.', 'shp-partneri' ), 'https://partneri.shoptet.cz/poptavky-a-certifikace-partneru/', 'color:#21AFE5;text-decoration:underline;' );
-	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
-	$email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
-	wp_mail(
-		$email,
-		$email_subject,
-		$email_html_body,
-		[
-			'From: ' . $options['email_from'],
-			'Content-Type: text/html; charset=UTF-8',
-		]
-	);
-
-	// Render message
-	$context = Timber::get_context();
-	$context['wp_title'] = __( 'Zpráva odeslána', 'shp-partneri' );
-	$context['message_type'] = 'success';
-	$context['title'] = __( 'Děkujeme!', 'shp-partneri' );
-	$context['subtitle'] = __( 'Vaše zpráva byla odeslána', 'shp-partneri' );
-	$context['text'] = '<p>' . __( 'My teď budeme netrpělivě čekat na vyplnění formuláře, který jsme vám právě poslali e-mailem. Tak na něj prosím nezapomeňte :)', 'shp-partneri' ) . '</p>';
-	$context['footer_image'] = 'envelope';
-	Timber::render( 'templates/message/message.twig', $context );
-	die();
-} );
-
 // Check for onboarding token and authenticate
 add_action( 'init' , function () {
 	if ( ! isset( $_GET['onboarding_token'] ) || '' === $_GET['onboarding_token'] ) return;
@@ -686,6 +614,8 @@ RequestNotifier::init();
 
 RequestForm::init();
 
+new ContactForm();
+
 ProfessionalService::init();
 
 RequestService::init();
@@ -741,8 +671,6 @@ add_action('pre_get_posts', function( $wp_query ) {
 } );
 
 add_filter('acf/format_value/type=text', 'do_shortcode');
-
-add_filter( 'wpcf7_load_js', '__return_false' );
 
 add_action( 'wp_footer', function() {
   echo '<script>';

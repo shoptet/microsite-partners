@@ -221,16 +221,8 @@ class RequestService
       );
       return;
     }
-    
-    // WordPress comments blacklist check
-    $user_url = '';
-    $user_ip = $_SERVER['REMOTE_ADDR'];
-    $user_ip = preg_replace( '/[^0-9a-fA-F:., ]/', '', $user_ip );
-    $user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
-    $user_agent = substr( $user_agent, 0, 254 );
-    $is_blacklisted = wp_blacklist_check( $name, $email, $user_url, $message, $user_ip, $user_agent );
 
-    if ( $is_blacklisted ) {
+    if ( is_blacklisted( $name, $email, $message ) ) {
       wp_die();
       return;
     }
