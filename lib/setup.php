@@ -38,19 +38,17 @@ if ( ! class_exists( 'Timber' ) ) {
 /**
  * Do not show professional category and image field in wp admin
  */
-add_filter( 'acf/load_field/key=field_5d10a24f0b5e7', 'hide_field_in_admin' );
-add_filter( 'acf/load_field/key=field_5d10c3f29b87b', 'hide_field_in_admin' );
-function hide_field_in_admin( $field ) {
-	global $post, $pagenow;
-  if (
-		( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) &&
-		isset($post->post_type) &&
-		ProfessionalPost::POST_TYPE === $post->post_type
-	) {
-		$field = false;
+add_filter( 'acf/load_fields', function ( $fields ) {
+	if ( is_admin() ) {
+		$fields =  array_filter($fields, function ($field) {
+			return ( ! isset($field['key']) || ! in_array( $field['key'], [
+				'field_5d10a24f0b5e7',
+				'field_5d10c3f29b87b',
+			] ) );
+		} );
 	}
-	return $field;
-}
+	return $fields;
+} );
 
 /**
  * Show only basic text fields in frontend onboarding form
