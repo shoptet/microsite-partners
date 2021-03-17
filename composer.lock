@@ -51,20 +51,25 @@
                 "recaptcha",
                 "spam"
             ],
+            "support": {
+                "forum": "https://groups.google.com/forum/#!forum/recaptcha",
+                "issues": "https://github.com/google/recaptcha/issues",
+                "source": "https://github.com/google/recaptcha"
+            },
             "time": "2020-03-31T17:50:54+00:00"
         },
         {
             "name": "shoptet/shoptet-wp-common",
-            "version": "1.4.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shoptet/shoptet-wp-common.git",
-                "reference": "484f2f8f1954ad937acdc078c73622f4796e55c7"
+                "reference": "1a01e05abfe15cd218a1dd73ef5e98de65a6c4a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shoptet/shoptet-wp-common/zipball/484f2f8f1954ad937acdc078c73622f4796e55c7",
-                "reference": "484f2f8f1954ad937acdc078c73622f4796e55c7",
+                "url": "https://api.github.com/repos/shoptet/shoptet-wp-common/zipball/1a01e05abfe15cd218a1dd73ef5e98de65a6c4a6",
+                "reference": "1a01e05abfe15cd218a1dd73ef5e98de65a6c4a6",
                 "shasum": ""
             },
             "type": "library",
@@ -74,10 +79,10 @@
                 }
             },
             "support": {
-                "source": "https://github.com/shoptet/shoptet-wp-common/tree/1.4.0",
+                "source": "https://github.com/shoptet/shoptet-wp-common/tree/1.5.1",
                 "issues": "https://github.com/shoptet/shoptet-wp-common/issues"
             },
-            "time": "2020-12-10T15:21:32+00:00"
+            "time": "2021-03-17T10:09:57+00:00"
         }
     ],
     "packages-dev": [],
@@ -87,5 +92,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
