@@ -1651,6 +1651,7 @@ acf_add_local_field_group(array(
 				'Marcela Coufalová' => 'Marcela Coufalová',
 				'Ondřej Mikoláš' => 'Ondřej Mikoláš',
 				'Katarína Bukovini' => 'Katarína Bukovini',
+				'Jakub Rarbovsky' => 'Jakub Rarbovsky',
 			),
 			'allow_null' => 0,
 			'other_choice' => 0,
