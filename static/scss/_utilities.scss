@@ -6,6 +6,13 @@
   white-space: nowrap !important;
 }
 
+.content-with-images {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 // Negative Margin
 
 @each $breakpoint in map-keys($grid-breakpoints) {
