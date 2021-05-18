@@ -19,14 +19,14 @@ function taxonomy_slug_rewrite($wp_rewrite) {
             foreach ($taxonomy->object_type as $object_type) {
 
                 // check if taxonomy is registered for this custom type
-                if ($object_type == $post_type->rewrite['slug']) {
+                if ($object_type == $post_type->name) {
 
                     // get category objects
                     $terms = get_categories(array('type' => $object_type, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0));
 
                     // make rules
                     foreach ($terms as $term) {
-                        $rules[$object_type . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+                        $rules[$post_type->rewrite['slug'] . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
                     }
                 }
             }

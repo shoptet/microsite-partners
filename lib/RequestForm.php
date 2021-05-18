@@ -73,7 +73,8 @@ class RequestForm
   public static function loadCategoryField( $field )
   {
     if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
-      $field['instructions'] = sprintf( __( 'Zvolte <a href="%s" target="_blank">obor</a>, do kterého byste chtěli zařadit', 'shp-partneri' ), 'https://partneri.shoptet.cz/profesionalove/' );
+      $options = get_fields('options');
+      $field['instructions'] = sprintf( __( 'Zvolte <a href="%s" target="_blank">obor</a>, do kterého byste chtěli zařadit', 'shp-partneri' ), $options['themeProfessionalPageUrl'] );
     }
     return $field;
   }
