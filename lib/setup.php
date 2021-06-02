@@ -616,6 +616,8 @@ new ContactForm();
 
 ProfessionalService::init();
 
+ProfessionalAdmin::init();
+
 RequestService::init();
 
 PostService::init();

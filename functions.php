@@ -7,6 +7,7 @@ $includes = [
 	'lib/StarterSite.php',
 	'lib/Post.php',
 	'lib/PostService.php',
+	'lib/ProfessionalAdmin.php',
 	'lib/ProfessionalService.php',
 	'lib/ProfessionalPost.php',
 	'lib/ContactForm.php',

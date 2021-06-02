@@ -358,3 +358,31 @@ function get_custom_logo_url (): string
   $logo_url = wp_get_attachment_image_src( $custom_logo_id , 'full' );
   return $logo_url[0];
 }
+
+function is_current_user_admin() {
+  $user = wp_get_current_user();
+  $admin_roles = [ 'administrator', 'shoptet_administrator' ];
+
+  if ( ! $user || ! $user->roles ) {
+    return false;
+  }
+
+  return array_intersect( $admin_roles, $user->roles );
+}
+
+function stop_the_insanity () {
+	global $wpdb, $wp_object_cache;
+
+	$wpdb->queries = [];
+
+	if ( is_object( $wp_object_cache ) ) {
+		$wp_object_cache->group_ops      = [];
+		$wp_object_cache->stats          = [];
+		$wp_object_cache->memcache_debug = [];
+		$wp_object_cache->cache          = [];
+
+		if ( method_exists( $wp_object_cache, '__remoteset' ) ) {
+			$wp_object_cache->__remoteset();
+		}
+	}
+}
