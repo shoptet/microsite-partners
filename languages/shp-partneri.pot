@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Shoptet Partners\n"
-"POT-Creation-Date: 2021-05-13 17:41+0200\n"
+"POT-Creation-Date: 2021-06-02 16:40+0200\n"
 "PO-Revision-Date: 2020-09-07 13:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "%s poptávky"
 msgstr ""
 
-#: archive-request.php:34 archive-request.php:39 archive.php:38
+#: archive-request.php:34 archive-request.php:39 archive.php:39
 #: lib/taxonomy_slug_rewrite.php:45
 msgid "strana"
 msgstr ""
@@ -118,6 +118,18 @@ msgstr ""
 #: lib/PostService.php:33 lib/ProfessionalService.php:45 lib/setup.php:235
 #: lib/setup.php:374
 msgid "Neplatný odkaz"
+msgstr ""
+
+#: lib/ProfessionalAdmin.php:14
+msgid "Export profesionálů"
+msgstr ""
+
+#: lib/ProfessionalAdmin.php:15
+msgid "Export"
+msgstr ""
+
+#: lib/ProfessionalAdmin.php:26
+msgid "Exportovat profesionály"
 msgstr ""
 
 #: lib/ProfessionalService.php:26
@@ -236,32 +248,44 @@ msgstr ""
 msgid "Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později."
 msgstr ""
 
-#: lib/StarterSite.php:163
+#: lib/StarterSite.php:102
+msgid "Vyberte"
+msgstr ""
+
+#: lib/StarterSite.php:103
+msgid "Načítám..."
+msgstr ""
+
+#: lib/StarterSite.php:104
+msgid "Načítám další..."
+msgstr ""
+
+#: lib/StarterSite.php:166
 msgid "Aktivní"
 msgstr ""
 
-#: lib/StarterSite.php:166 templates/request/thumbnail.twig:40
+#: lib/StarterSite.php:169 templates/request/thumbnail.twig:40
 msgid "Poptávka již byla vyřízena"
 msgstr ""
 
-#: lib/StarterSite.php:169
+#: lib/StarterSite.php:172
 msgid "Čeká na schválení"
 msgstr ""
 
-#: lib/StarterSite.php:172
+#: lib/StarterSite.php:175
 msgid "Aktivní jen pro Shoptet partnery"
 msgstr ""
 
-#: lib/StarterSite.php:204
+#: lib/StarterSite.php:207
 #, php-format
 msgid "%s&nbsp;%s/hod"
 msgstr ""
 
-#: lib/StarterSite.php:207
+#: lib/StarterSite.php:210
 msgid "bez DPH"
 msgstr ""
 
-#: lib/StarterSite.php:209
+#: lib/StarterSite.php:212
 msgid "(Neplátce DPH)"
 msgstr ""
 
@@ -419,8 +443,8 @@ msgid "Patička e-mailu zadavateli s expiračním odkazem"
 msgstr ""
 
 #: lib/acf_settings.php:7 lib/acf_settings.php:1843 lib/cpt_taxonomies.php:12
-#: lib/cpt_taxonomies.php:42 lib/cpt_taxonomies.php:71
-#: lib/cpt_taxonomies.php:100 templates/profile/filter.twig:18
+#: lib/cpt_taxonomies.php:41 lib/cpt_taxonomies.php:70
+#: lib/cpt_taxonomies.php:99 templates/profile/filter.twig:18
 #: templates/request/categories.twig:18
 msgid "Kategorie"
 msgstr ""
@@ -991,7 +1015,8 @@ msgstr ""
 msgid "Nebyl nalezen žádný profesionál"
 msgstr ""
 
-#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:27
+#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26 templates/header.twig:74
+#: templates/home.twig:20
 msgid "profesionalove"
 msgstr ""
 
@@ -1093,7 +1118,7 @@ msgstr ""
 msgid "Vyhledat poptávku"
 msgstr ""
 
-#: lib/cpt_posts.php:162 lib/cpt_taxonomies.php:119
+#: lib/cpt_posts.php:162 lib/cpt_taxonomies.php:118
 msgid "poptavky"
 msgstr ""
 
@@ -1106,43 +1131,43 @@ msgstr ""
 msgid "Kategorie profesionálů"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:13 lib/cpt_taxonomies.php:43
-#: lib/cpt_taxonomies.php:72 lib/cpt_taxonomies.php:105
+#: lib/cpt_taxonomies.php:13 lib/cpt_taxonomies.php:42
+#: lib/cpt_taxonomies.php:71 lib/cpt_taxonomies.php:104
 msgid "Přidat novou kategorii"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:40 lib/cpt_taxonomies.php:41
-#: lib/cpt_taxonomies.php:47 templates/search.twig:46
+#: lib/cpt_taxonomies.php:39 lib/cpt_taxonomies.php:40
+#: lib/cpt_taxonomies.php:46 templates/search.twig:46
 msgid "Kategorie napojení"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:69 lib/cpt_taxonomies.php:70
-#: lib/cpt_taxonomies.php:76 templates/search.twig:51
+#: lib/cpt_taxonomies.php:68 lib/cpt_taxonomies.php:69
+#: lib/cpt_taxonomies.php:75 templates/search.twig:51
 msgid "Kategorie nástrojů"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:98 lib/cpt_taxonomies.php:99
-#: lib/cpt_taxonomies.php:110
+#: lib/cpt_taxonomies.php:97 lib/cpt_taxonomies.php:98
+#: lib/cpt_taxonomies.php:109
 msgid "Kategorie poptávek"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:101
+#: lib/cpt_taxonomies.php:100
 msgid "Všechny kategorie"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:102
+#: lib/cpt_taxonomies.php:101
 msgid "Upravit kategorii"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:103
+#: lib/cpt_taxonomies.php:102
 msgid "Zobrazit kategorii"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:104
+#: lib/cpt_taxonomies.php:103
 msgid "Upravit název kategorie"
 msgstr ""
 
-#: lib/cpt_taxonomies.php:106
+#: lib/cpt_taxonomies.php:105
 msgid "Nové jméno kategorie"
 msgstr ""
 
@@ -1819,4 +1844,8 @@ msgstr ""
 
 #. Template Name of the plugin/theme
 msgid "New request page"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Partners"
 msgstr ""
