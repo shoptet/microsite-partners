@@ -389,6 +389,8 @@ function stop_the_insanity () {
 			$wp_object_cache->__remoteset();
 		}
 	}
+}
+
 function get_currencies (): array
 {
   $locale = get_locale(); // cs_CZ, sk_SK, hu_HU
