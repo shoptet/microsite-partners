@@ -185,3 +185,19 @@ $(function () {
   });
 
 });
+
+acf.addFilter('select2_args', function(args, $select, settings, field, instance) {
+  // Changing the placeholder in args has no effect so change data attribute before initialization
+  // args.placeholder = local.select2_placeholder;
+  $select.data('placeholder', local.select2_placeholder);
+
+  args.language = {
+    searching: function() {
+      return local.select2_searching;
+    },
+    loadingMore: function() {
+      return local.select2_loading_more;
+    },
+  };
+  return args;
+});

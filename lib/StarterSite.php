@@ -99,6 +99,9 @@ class StarterSite extends TimberSite {
         'contactCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
         'contactFormSent' => __( 'Odesláno!', 'shp-partneri' ),
         'contactFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
+        'select2_placeholder' => __( 'Vyberte', 'shp-partneri' ),
+        'select2_searching' => __( 'Načítám...', 'shp-partneri' ),
+        'select2_loading_more' => __( 'Načítám další...', 'shp-partneri' ),
       ]
     );
 
