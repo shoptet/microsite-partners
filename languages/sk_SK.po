@@ -535,7 +535,7 @@ msgstr "Predvyplnený text e-mailu"
 
 #: lib/acf_settings.php:938
 msgid "Výzva k akci v seznamu"
-msgstr "Výzva k akcií v zozname"
+msgstr "Výzva k akcii v zozname"
 
 #: lib/acf_settings.php:942
 msgid "Zobrazit v seznamu profilů"
@@ -602,7 +602,7 @@ msgstr "V tvare \"Jméno &lt;email&gt;\""
 
 #: lib/acf_settings.php:1478
 msgid "Logo v mailu"
-msgstr "Logo v maily"
+msgstr "Logo v e-maily"
 
 #: lib/acf_settings.php:1481
 msgid "PNG, JPG nebo GIF"
@@ -774,7 +774,7 @@ msgstr "Som platcom DPH"
 
 #: lib/acf_settings.php:2270
 msgid "Další informace k ceně"
-msgstr "Ďaľšie informácie k cene"
+msgstr "Ďalšie informácie k cene"
 
 #: lib/acf_settings.php:2289
 msgid "O mně"
@@ -810,7 +810,7 @@ msgstr "Text odporúčania"
 
 #: lib/acf_settings.php:2349
 msgid "Vložte cca 2 věty doporučení"
-msgstr "Vložte cca 2 vety odporäčaní"
+msgstr "Vložte cca 2 vety odporúčaní"
 
 #: lib/acf_settings.php:2365
 msgid "Jméno klienta"
@@ -822,7 +822,7 @@ msgstr "Klienta budeme odkazovať pod odporúčaním, preto potrebujeme jeho men
 
 #: lib/acf_settings.php:2384
 msgid "Pozice klienta"
-msgstr "Pozívia klienta"
+msgstr "Pozícia klienta"
 
 #: lib/acf_settings.php:2403
 msgid "Web klienta"
@@ -834,11 +834,11 @@ msgstr "A webovú adresu."
 
 #: lib/acf_settings.php:2424
 msgid "Další reference"
-msgstr "Ďaľšie referencie"
+msgstr "Ďalšie referencie"
 
 #: lib/acf_settings.php:2427
 msgid "Vložte zde loga svých dalších referenčních klientů (odlišných od uvedených v Doporučení výše). Klienti by měli ideálně zase hlavně klienty fungující na platformě Shoptet. V medailonku vypadají loga moc pěkně, proto je, prosím, nevynechejte."
-msgstr "Vložte tu logá svojich ďalších referenčných klientov (odlišných od uvedených v Odporúčania vyššie). Klienti by mali ideálne zase hlavne klientmi fungujúci na platforme Shoptet. V medailónika vyzerajú logá moc pekne, preto je, prosím, nevynechajte."
+msgstr "Vložte tu logá svojich ďalších referenčných klientov (odlišných od uvedených v Odporúčania vyššie). Klienti by mali ideálne byť hlavne klientmi fungujúcimi na platforme Shoptet. V medailóniku vyzerajú logá moc pekne, preto ich, prosím, nevynechajte."
 
 #: lib/acf_settings.php:2439
 msgid "Přidat logo"
@@ -888,7 +888,7 @@ msgstr "Partnerovi budú chodiť na e-mail dopytu podľa kategórií, ku ktorým
 #: templates/header.twig:74 templates/home.twig:20
 #: templates/page-profesionalove.twig:18
 msgid "Profesionálové"
-msgstr "Profesionály"
+msgstr "Profesionáli"
 
 #: lib/cpt_posts.php:11
 msgid "Profesionál"
@@ -933,7 +933,7 @@ msgstr "Nebol nájdený žiadny profesionál"
 #: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26 templates/header.twig:74
 #: templates/home.twig:20
 msgid "profesionalove"
-msgstr "profesionaly"
+msgstr "profesionali"
 
 #: lib/cpt_posts.php:53 lib/cpt_posts.php:54 lib/cpt_posts.php:55
 #: lib/cpt_posts.php:68 templates/page-napojeni.twig:18
@@ -1019,7 +1019,7 @@ msgstr "Upraviť dopyt"
 
 #: lib/cpt_posts.php:145 templates/new-request-page.twig:34
 msgid "Nová poptávka"
-msgstr "Nový dopyť"
+msgstr "Nový dopyt"
 
 #: lib/cpt_posts.php:146
 msgid "Zobrazit poptávku"
@@ -1096,7 +1096,7 @@ msgstr "Ešte ste nepotvrdil hodnotenie<br>:-("
 
 #: lib/helpers.php:105
 msgid "Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>. Asi se ztratil váš potvrzovací email. Bez potvrzení to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit."
-msgstr "Je to už nejaký čas, čo ste napísal <strong>svoje hodnotenie</ strong>. Asi sa stratil váš potvrdzovací email. Bez potvrdenia to ale nepôjde. Tak to poďme skúsiť znova, nech môžeme hodnotenia zverejniť."
+msgstr "Je to už nejaký čas, čo ste napísal <strong>svoje hodnotenie</strong>. Asi sa stratil váš potvrdzovací e-mail. Bez potvrdenia to ale nepôjde. Tak to poďme skúsiť znova, nech môžeme hodnotenia zverejniť."
 
 #: lib/helpers.php:111
 msgid "Potvrdit hodnocení"
@@ -1120,7 +1120,7 @@ msgstr "Odoslanie formulára sa&nbsp;nepodarilo :("
 
 #: lib/helpers.php:180
 msgid "Možná už jste ho v minulosti odeslali, nebo je na vaši e-mailovou adresu už jedna registrace na webu Partneři Shoptet hotová."
-msgstr "Možno už ste ho v minulosti odoslali, alebo je na vašu e-mailovú adresu už jedna registrácia na webe Partneri Shoptet hotová."
+msgstr "Možno ste ho už v minulosti odoslali, alebo je na vašu e-mailovú adresu už jedna registrácia na webe Partneri Shoptet hotová."
 
 #: lib/helpers.php:183 lib/setup.php:396
 msgid "Ozvěte se nám na <a href=\"mailto:%s\" target=\"_blank\">%s</a>, koukneme na to."
@@ -1198,7 +1198,7 @@ msgstr "A teraz už zostáva len kliknúť na opakovaný odkaz v <strong>e-maily
 
 #: lib/setup.php:234
 msgid "Vypadá to, že jste zadali neplatný odkaz na ověření komentáře. Zkuste to prosím znovu."
-msgstr "Vyzerá to, že ste zadali neplatný odkaz na overenie komentáre. Skúste to prosím znova."
+msgstr "Vyzerá to, že ste zadali neplatný odkaz na overenie komentára. Skúste to prosím znova."
 
 #: lib/setup.php:238 lib/setup.php:377
 msgid "Přejít na partneri.shoptet.cz"
@@ -1214,7 +1214,7 @@ msgstr "Toto hodnotenie bolo už overené!"
 
 #: lib/setup.php:253
 msgid "Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování."
-msgstr "Pokiaľ ho na stránke partnera nevidíte, tak prebieha jeho schvaľovania."
+msgstr "Pokiaľ ho na stránke partnera nevidíte, tak prebieha jeho schvaľovanie."
 
 #: lib/setup.php:267
 msgid "Nové hodnocení Partnera na partneri.shoptet.cz čeká na schválení"
@@ -1339,15 +1339,15 @@ msgstr "Nemôžeme nájsť žiadnych partnerov s týmito požiadavkami"
 
 #: templates/archive.twig:82 templates/request/archive-list.twig:59
 msgid "Zkuste prosím snížit vaše požadavky pomocí filtrů."
-msgstr "Skúste prosím znížiť svoje požiadavky pomocou filtrou."
+msgstr "Skúste prosím znížiť svoje požiadavky pomocou filtrov."
 
 #: templates/category/thumbnail.twig:10
 msgid "Zobrazit profily v této kategorii"
-msgstr "Zobraziť profily v tejto kategórií"
+msgstr "Zobraziť profily v tejto kategórii"
 
 #: templates/category/thumbnail.twig:23
 msgid "Počet profilů v této kategorii"
-msgstr "Počet profilov v tejto kategórií"
+msgstr "Počet profilov v tejto kategórii"
 
 #: templates/header.twig:19
 msgid "Zpět na domovskou stránku"
@@ -1462,8 +1462,8 @@ msgid "Popište srozumitelně o jaké služby Shoptet Partnerů byste měli záj
 "                  a po jejím schválení ji rozešleme všem partnerům z dané kategorie.\n"
 "                  Po 24 hodinách po tomto schválení se zobrazí i na tomto webu."
 msgstr "Popíšte zrozumiteľne o aké služby Shoptet Partnerov by ste mali záujem.\n"
-"                   My vašu dopyt skontrolujeme, ak bude treba, tak s vami doladíme\n"
-"                   a po jej schválení ju rozošleme všetkým partnerom z danej kategórie.\n"
+"                   My váš dopyt skontrolujeme, ak bude treba, tak ho s vami doladíme\n"
+"                   a po jeho schválení ho rozošleme všetkým partnerom z danej kategórie.\n"
 "                   Po 24 hodinách po tomto schválení sa zobrazí aj na tomto webe."
 
 #: templates/new-request-page.twig:78
@@ -1472,7 +1472,7 @@ msgstr "Odoslať dopyt"
 
 #: templates/onboarding.twig:31
 msgid "Vyplňte svůj medailonek"
-msgstr "Vyplňte svoj medaelónik"
+msgstr "Vyplňte svoj medailónik"
 
 #: templates/onboarding.twig:38
 msgid "Vaše jméno:"
@@ -1504,11 +1504,11 @@ msgstr "Predchádzajúci"
 
 #: templates/pagination.twig:43
 msgid "Další"
-msgstr "Ďaľší"
+msgstr "Ďalší"
 
 #: templates/profile/about.twig:40
 msgid "Doporučit na Facebooku"
-msgstr "Odporúčiť na Facebooku"
+msgstr "Odporučiť na Facebooku"
 
 #: templates/profile/contact-form.twig:20
 #: templates/profile/contact-form.twig:22
@@ -1588,9 +1588,9 @@ msgid "Poptávka byla zadávajícím označena jako vyřízena, nelze na ni již
 "      Rychlejší přístup k&nbsp;novým objednávkám si můžete zajistit členstvím v&nbsp;Shoptet\n"
 "      Partneři, které je zdarma. Shoptet Partnerům zasíláme poptávky 24 hodin před\n"
 "      zveřejněním na webu."
-msgstr "Dopyt bol obstarávateľom označená ako vybavená, nemožno na ňu už reagovať.\n"
+msgstr "Dopyt bol obstarávateľom označený ako vybavený, nemožno naň už reagovať.\n"
 "       Rýchlejší prístup k&nbsp; novým objednávkam si môžete zaistiť členstvom v&nbsp; Shoptet\n"
-"       Partneri, ktoré je zadarmo. Shoptet Partnerom zasielame dopytu 24 hodín pred\n"
+"       Partneri, ktoré je zadarmo. Shoptet Partnerom zasielame dopyty 24 hodín pred\n"
 "       zverejnením na webe."
 
 #: templates/request/content.twig:13 templates/request/thumbnail.twig:29
