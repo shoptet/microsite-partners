@@ -683,3 +683,39 @@ add_shortcode( 'partner-badges' , function() {
 	$html = Timber::compile( 'templates/row-badges.twig', $context );
 	return $html;
 } );
+
+add_action( 'rest_api_init', function () {
+
+	if (is_current_user_admin()):
+
+	register_rest_field( 'profesionalove', 'email_address', [
+		'get_callback' => function ($object) {
+			return get_post_meta($object['id'], 'emailAddress', true);
+		},
+	] );
+
+	register_rest_field( 'profesionalove', 'partner_manager', [
+		'get_callback' => function ($object) {
+			return get_post_meta($object['id'], 'partnerManager', true);
+		},
+	] );
+
+	register_rest_field( 'profesionalove', 'verified_level', [
+		'get_callback' => function ($object) {
+			return get_post_meta($object['id'], 'verifiedLevel', true);
+		},
+	] );
+
+	register_rest_field( 'profesionalove', 'term', [
+		'get_callback' => function ($object) {
+			$terms = wp_get_post_terms($object['id'], 'category_professionals', ['fields' => 'names']);
+			if (!is_array($terms) || empty($terms)) {
+				return null;
+			}
+			return $terms[0];
+		},
+	] );
+
+	endif;
+
+} );
