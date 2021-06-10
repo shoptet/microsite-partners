@@ -1033,11 +1033,11 @@ msgstr "Zobraziť dopyty"
 msgid "Vyhledat poptávku"
 msgstr "Vyhľadať dopyt"
 
-#: lib/cpt_posts.php:162 lib/cpt_taxonomies.php:118
+#: lib/cpt_posts.php:161 lib/cpt_taxonomies.php:118
 msgid "poptavky"
 msgstr "dopyty"
 
-#: lib/cpt_posts.php:169
+#: lib/cpt_posts.php:168
 msgid "poptavka"
 msgstr "dopyt"
 
@@ -1750,4 +1750,92 @@ msgstr "Načítavam ďalšie..."
 #: 
 msgid "Partners"
 msgstr ""
+
+#: lib/acf_settings.php:1989
+msgid "Hlavní město Praha"
+msgstr "Hlavné mesto Praha"
+
+#: lib/acf_settings.php:1990
+msgid "Jihočeský kraj"
+msgstr "Jihočeský kraj"
+
+#: lib/acf_settings.php:1991
+msgid "Jihomoravský kraj"
+msgstr "Jihomoravský kraj"
+
+#: lib/acf_settings.php:1992
+msgid "Karlovarský kraj"
+msgstr "Karlovarský kraj"
+
+#: lib/acf_settings.php:1993
+msgid "Kraj Vysočina"
+msgstr "Kraj Vysočina"
+
+#: lib/acf_settings.php:1994
+msgid "Královéhradecký kraj"
+msgstr "Královéhradecký kraj"
+
+#: lib/acf_settings.php:1995
+msgid "Liberecký kraj"
+msgstr "Liberecký kraj"
+
+#: lib/acf_settings.php:1996
+msgid "Moravskoslezský kraj"
+msgstr "Moravskoslezský kraj"
+
+#: lib/acf_settings.php:1997
+msgid "Olomoucký kraj"
+msgstr "Olomoucký kraj"
+
+#: lib/acf_settings.php:1998
+msgid "Pardubický kraj"
+msgstr "Pardubický kraj"
+
+#: lib/acf_settings.php:1999
+msgid "Plzeňský kraj"
+msgstr "Plzeňský kraj"
+
+#: lib/acf_settings.php:2000
+msgid "Středočeský kraj"
+msgstr "Stredočeský kraj"
+
+#: lib/acf_settings.php:2001
+msgid "Ústecký kraj"
+msgstr "Ústecký kraj"
+
+#: lib/acf_settings.php:2002
+msgid "Zlínský kraj"
+msgstr "Zlínský kraj"
+
+#: lib/acf_settings.php:2035
+msgid "Bratislavský kraj"
+msgstr "Bratislavský kraj"
+
+#: lib/acf_settings.php:2036
+msgid "Trnavský kraj"
+msgstr "Trnavský kraj"
+
+#: lib/acf_settings.php:2037
+msgid "Trenčínský kraj"
+msgstr "Trenčiansky kraj"
+
+#: lib/acf_settings.php:2038
+msgid "Nitranský kraj"
+msgstr "Nitriansky kraj"
+
+#: lib/acf_settings.php:2039
+msgid "Žilinský kraj"
+msgstr "Žilinský kraj"
+
+#: lib/acf_settings.php:2040
+msgid "Banskobystrický kraj"
+msgstr "Banskobystrický kraj"
+
+#: lib/acf_settings.php:2041
+msgid "Prešovský kraj"
+msgstr "Prešovský kraj"
+
+#: lib/acf_settings.php:2042
+msgid "Košický kraj"
+msgstr "Košický kraj"
 
