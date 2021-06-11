@@ -53,7 +53,7 @@ const onSuccess = function() {
 };
 
 const onError = function(xhr) {
-  formError(local.contactFormErrorMessage);
+  formError(xhr.responseText || local.contactFormErrorMessage);
   console.error(xhr);
 };
 

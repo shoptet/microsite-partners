@@ -215,7 +215,7 @@ class RequestService
     // Check correct post status
     if ( ! in_array( $post_status, [ 'future', 'publish' ] ) ) {
       wp_die(
-        'Not correct post',
+        __( 'Omlouváme se, ale na tuto poptávku již není možné reagovat. V mezičase ji autor označil jako vyřešenou. Zkuste se ale mrknout na další poptávky. Díky!', 'shp-partneri' ),
         'Not correct post',
         [ 'response' => 403 ]
       );
