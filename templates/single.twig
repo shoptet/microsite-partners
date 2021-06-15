@@ -26,9 +26,11 @@
 		<div class="row-profile row-profile-breadcrumb">
 			<div class="container">
 
-				<div class="d-lg-none">
-					{% include 'profile/verified.twig' %}
-				</div>
+				{% if not options.hideBadges %}
+					<div class="d-lg-none">
+						{% include 'profile/verified.twig' %}
+					</div>
+				{% endif %}
 
 				<div class="row">
 					<div class="col-lg-7 col-xl-8">
@@ -47,17 +49,19 @@
 
 					</div>
 					<div class="col-lg-5 col-xl-4">
+						{% if not options.hideBadges %}
 							{% if post.get_field('isVerified') is not empty %}
 								<div class="d-none d-lg-block">
 									{% include 'profile/verified.twig' %}
 								</div>
 							{% endif %}
+						{% endif %}
 
-											{% include 'profile/contact.twig' %}
+						{% include 'profile/contact.twig' %}
 
-											{% if post.get_field('recommendations') is not empty %}
-								{% include 'profile/recommendation.twig' %}
-							{% endif %}
+						{% if post.get_field('recommendations') is not empty %}
+							{% include 'profile/recommendation.twig' %}
+						{% endif %}
 					</div>
 
 					<hr>

@@ -6,17 +6,19 @@
   itemtype="http://schema.org/Organization"
 >
 
-  <div class="profile-thumbnail-badge">
-    <img
-        {% if post.verifiedLevel == 'zlatý' %}
-            src="{{ "medal-gold.png"|static_assets }}" alt="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" title="{{ __( 'Zlatý partner', 'shp-partneri' ) }}"
-        {% elseif post.verifiedLevel == 'stříbrný' %}
-            src="{{ "medal-silver.png"|static_assets }}" alt="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" title="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}"
-        {% else %}
-            src="{{ "medal-bronze.png"|static_assets }}" alt="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" title="{{ __( 'Bronzový partner', 'shp-partneri' ) }}"
-        {% endif %}
-    data-toggle="tooltip" height="30px" width="30px" itemprop="image">
-  </div>
+  {% if not options.hideBadges %}
+    <div class="profile-thumbnail-badge">
+      <img
+          {% if post.verifiedLevel == 'zlatý' %}
+              src="{{ "medal-gold.png"|static_assets }}" alt="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" title="{{ __( 'Zlatý partner', 'shp-partneri' ) }}"
+          {% elseif post.verifiedLevel == 'stříbrný' %}
+              src="{{ "medal-silver.png"|static_assets }}" alt="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" title="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}"
+          {% else %}
+              src="{{ "medal-bronze.png"|static_assets }}" alt="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" title="{{ __( 'Bronzový partner', 'shp-partneri' ) }}"
+          {% endif %}
+      data-toggle="tooltip" height="30px" width="30px" itemprop="image">
+    </div>
+  {% endif %}
 
 
   <div class="profile-thumbnail-wrapper">

@@ -478,6 +478,25 @@ acf_add_local_field_group(array (
 	'key' => 'group_5a006f0334694',
 	'title' => __( 'Nastavení', 'shp-partneri' ),
 	'fields' => array (
+		array(
+			'key' => 'field_60c869b084f48',
+			'label' => 'Hide badges',
+			'name' => 'hideBadges',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => 'Hide badges on the entire website',
+			'default_value' => 0,
+			'ui' => 0,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+		),
 		array (
 			'key' => 'field_5a006f06b51ca',
 			'label' => __( 'Google Tag Manager ID', 'shp-partneri' ),
