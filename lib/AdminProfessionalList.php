@@ -16,7 +16,7 @@ class AdminProfessionalList {
     
     if ( \ProfessionalPost::POST_TYPE != $post_type ) return;
 
-    $maneger_field = get_field_object('partnerManager');
+    $maneger_field = get_field_object('field_87asdc350933f');
     if ( !isset($maneger_field['choices']) || !is_array($maneger_field['choices']) ) return;
     $managers = $maneger_field['choices'];
 
