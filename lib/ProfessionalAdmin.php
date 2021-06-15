@@ -43,6 +43,10 @@ class ProfessionalAdmin
     $country = get_post_meta($post_id, 'country', true);
     $categories = wp_get_post_terms($post_id, 'category_professionals', ['fields' => 'names']);
     $categories = implode(',', $categories);
+    $price_per_hour = get_post_meta($post_id, 'price_per_hour_display', true);
+    $price_currency = get_post_meta($post_id, 'price_currency', true);
+    $price_vat_payer = get_post_meta($post_id, 'vat_payer', true);
+    $price_text = get_post_meta($post_id, 'price_text', true);
     $publish_date = get_the_date('c', $post_id);
 
     return [
@@ -53,6 +57,10 @@ class ProfessionalAdmin
       $partner_manager,
       $country,
       $categories,
+      $price_per_hour,
+      $price_currency,
+      $price_vat_payer,
+      $price_text,
       $publish_date,
     ];
   }
@@ -68,6 +76,10 @@ class ProfessionalAdmin
       'partner manager',
       'country',
       'categories',
+      'price_per_hour',
+      'price_currency',
+      'price_vat_payer',
+      'price_text',
       'publish date',
     ];
     fputcsv( $fp, $header );
