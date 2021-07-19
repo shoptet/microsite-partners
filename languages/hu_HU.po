@@ -15,24 +15,24 @@ msgstr "Az oldal nem található"
 #: archive-request.php:26 lib/cpt_posts.php:138 lib/cpt_posts.php:140
 #: lib/cpt_posts.php:152 new-request-page.php:13 single-request.php:17
 msgid "Poptávky"
-msgstr "Munkák"
+msgstr "Projektek"
 
 #: archive-request.php:32
 msgid "%s poptávky"
-msgstr ""
+msgstr "%s projektek"
 
-#: archive-request.php:34 archive-request.php:39 archive.php:38
+#: archive-request.php:34 archive-request.php:39 archive.php:39
 #: lib/taxonomy_slug_rewrite.php:45
 msgid "strana"
 msgstr "oldal"
 
 #: archive-request.php:38
 msgid "Přehled poptávek"
-msgstr "A munkák áttekintése"
+msgstr "A projektek áttekintése"
 
 #: archive-request.php:48
 msgid "Nejnovějších"
-msgstr "A legutolsó"
+msgstr "A legújabbak"
 
 #: archive-request.php:49
 msgid "Nejstarších"
@@ -52,23 +52,23 @@ msgstr "Üzenet elküldve"
 
 #: lib/ContactForm.php:75
 msgid "Děkujeme!"
-msgstr "Köszönöm!"
+msgstr "Köszönjük!"
 
 #: lib/ContactForm.php:76
 msgid "Vaše zpráva byla odeslána"
-msgstr "Üzenetét elküldtük"
+msgstr "Üzenetét megkaptuk!"
 
 #: lib/ContactForm.php:77
 msgid "My teď budeme netrpělivě čekat na vyplnění formuláře, který jsme vám právě poslali e-mailem. Tak na něj prosím nezapomeňte :)"
-msgstr "Most alig várjuk az űrlap kitöltését, amelyet e-mailben küldtünk Önnek. Szóval kérjük, ne felejtse el :)"
+msgstr "Várjuk vissza a kitöltött űrlapot, amelyet e-mailben küldtünk önnek. Kérjük, ne feledkezzen meg róla :)"
 
 #: lib/ContactForm.php:90 lib/setup.php:192
 msgid "Děkujeme"
-msgstr "Köszönöm"
+msgstr "Köszönjük"
 
 #: lib/ContactForm.php:91
 msgid "Za váš zájem stát se Shoptet partnerem."
-msgstr "Érdeklődése iránt, hogy Shoptet partnerré váljon."
+msgstr "Érdeklődését, hogy a Shoptet partnerévé váljon."
 
 #: lib/ContactForm.php:92
 msgid "Teď už zbývá jen poslední krok:"
@@ -80,11 +80,11 @@ msgstr "Töltse ki a kérdőívet"
 
 #: lib/ContactForm.php:102
 msgid "To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;mohli tak partnerství potvrdit.<br><br>Na konkrétní <a href=\"%s\" target=\"_blank\" style=\"%s\">podmínky partnerství</a> se můžete mrknout na našem webu."
-msgstr ""
+msgstr "Erre azért van szükség, hogy elegendő információval rendelkezünk önről és munkájáról, valamint hogy megerősítsük partneri kapcsolatunkat. <br> <br> Bővebben a <a href = \"% s\" target = \"_ blank\" style = \"% s \"> partnerségi feltételekről itt</a>."
 
 #: lib/ContactForm.php:104
 msgid "Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!"
-msgstr "Csak a Shoptet Partnerek körébe való felvétel előtt maradt az utolsó lépés. Fejezd be!"
+msgstr "Már csak egy lépés van hátra, hogy ön is a Shoptet Partnerek közé tartozzon!"
 
 #: lib/PostService.php:32 lib/ProfessionalService.php:44 lib/setup.php:373
 msgid "Vypadá to, že jste zadali neplatný odkaz. Zkuste to prosím znovu."
@@ -121,11 +121,11 @@ msgstr "Sikeresen leiratkozott"
 
 #: lib/ProfessionalService.php:140
 msgid "Zprávu se nepodařilo odeslat"
-msgstr "Az üzenetet nem küldték el"
+msgstr "Az üzenetet nem sikerült elküldeni."
 
 #: lib/RequestForm.php:29
 msgid "Nadpis poptávky"
-msgstr "Munka megnevezése"
+msgstr "A projekt címe"
 
 #: lib/RequestForm.php:30
 msgid "Srozumitelný a jednoduchý popis problému, který chcete vyřešit"
@@ -133,7 +133,7 @@ msgstr "A megoldani kívánt probléma világos és egyszerű leírása"
 
 #: lib/RequestForm.php:38
 msgid "Text poptávky"
-msgstr "Munka szerinti szöveg"
+msgstr "A projekt részletes leírása"
 
 #: lib/RequestForm.php:39
 msgid "Sepište co nejvíce informací o problému, s nímž potřebujete pomoct."
@@ -150,7 +150,7 @@ msgstr "Webáruház vagy prezentáció webcíme"
 
 #: lib/RequestForm.php:77
 msgid "Zvolte <a href=\"%s\" target=\"_blank\">obor</a>, do kterého byste chtěli zařadit"
-msgstr ""
+msgstr "Válassza ki az aktuális <a href=\"%s\" target=\"_blank\"> kategóriát </a>"
 
 #: lib/RequestService.php:32 lib/RequestService.php:183
 #: lib/RequestService.php:190 lib/setup.php:129 lib/setup.php:151
@@ -169,7 +169,7 @@ msgstr "A megkeresés már lejárt"
 
 #: lib/RequestService.php:87
 msgid "Poptávka již expirována"
-msgstr "A munka már nem elérhető"
+msgstr "A projekt már nem elérhető."
 
 #: lib/RequestService.php:98
 msgid "Poptávka byla úspěšně expirována"
@@ -177,7 +177,7 @@ msgstr "A kérelem sikeresen lejárt"
 
 #: lib/RequestService.php:99
 msgid "Poptávka expirována"
-msgstr "A munka nem elérhető"
+msgstr "A projekt már nem aktuális."
 
 #: lib/RequestService.php:186
 msgid "Publikováno"
@@ -207,31 +207,31 @@ msgstr "Elküldve!"
 msgid "Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později."
 msgstr "Sajnáljuk, hiba történt a beküldéskor. Kérjük, próbálja újra később."
 
-#: lib/StarterSite.php:163
+#: lib/StarterSite.php:166
 msgid "Aktivní"
 msgstr "Aktív"
 
-#: lib/StarterSite.php:166 templates/request/thumbnail.twig:40
+#: lib/StarterSite.php:169 templates/request/thumbnail.twig:40
 msgid "Poptávka již byla vyřízena"
 msgstr "A kérelmet már feldolgoztuk"
 
-#: lib/StarterSite.php:169
+#: lib/StarterSite.php:172
 msgid "Čeká na schválení"
 msgstr "Jóváhagyásra vár"
 
-#: lib/StarterSite.php:172
+#: lib/StarterSite.php:175
 msgid "Aktivní jen pro Shoptet partnery"
-msgstr "Csak a Shoptet partnerek számára aktív"
+msgstr "Csak a Shoptet Partnerek számára aktív"
 
-#: lib/StarterSite.php:204
+#: lib/StarterSite.php:207
 msgid "%s&nbsp;%s/hod"
 msgstr "%s&nbsp;%s/óra"
 
-#: lib/StarterSite.php:207
+#: lib/StarterSite.php:210
 msgid "bez DPH"
-msgstr "ÁFA nélkül"
+msgstr "+ ÁFA"
 
-#: lib/StarterSite.php:209
+#: lib/StarterSite.php:212
 msgid "(Neplátce DPH)"
 msgstr "(Nem ÁFA-fizető)"
 
@@ -268,7 +268,7 @@ msgstr "Levelezés"
 
 #: lib/acf_add_options_page.php:38 lib/acf_comment_mailing.php:7
 msgid "Nastavení mailingu komentářů"
-msgstr ""
+msgstr "A hozzászólás e-mailjének beállítása."
 
 #: lib/acf_add_options_page.php:46 lib/acf_request_archive.php:7
 msgid "Nastavení archivu poptávek"
@@ -304,7 +304,7 @@ msgstr "Sarok"
 
 #: lib/acf_comment_mailing.php:11
 msgid "E-mail s upozorněním o nově autorizovaném hodnocení"
-msgstr ""
+msgstr "Értesítő e-mail az újonnan engedélyezett értékelésről."
 
 #: lib/acf_comment_mailing.php:30
 msgid "Příjemce e-mailu s upozorněním o nově autorizovaném hodnocení"
@@ -316,7 +316,7 @@ msgstr "Leírás"
 
 #: lib/acf_request_mailing.php:3
 msgid "Proměnné poptávky"
-msgstr "Munkavariációk"
+msgstr "Projektvariációk"
 
 #: lib/acf_request_mailing.php:6
 msgid "Proměnné partnera"
@@ -356,11 +356,11 @@ msgstr "E-mail küldése az adminisztrátornak a jóváhagyási kérelem benyúj
 
 #: lib/acf_request_mailing.php:92
 msgid "Aktivováno"
-msgstr ""
+msgstr "Aktív"
 
 #: lib/acf_request_mailing.php:103
 msgid "E-mail aktivován"
-msgstr ""
+msgstr "E-mail aktiválva"
 
 #: lib/acf_request_mailing.php:151
 msgid "E-mail zadavateli po schválení poptávky"
@@ -387,8 +387,8 @@ msgid "Patička e-mailu zadavateli s expiračním odkazem"
 msgstr "Az ajánlatkérőnek küldött e-mail lábléce a lejárati linkkel"
 
 #: lib/acf_settings.php:7 lib/acf_settings.php:1843 lib/cpt_taxonomies.php:12
-#: lib/cpt_taxonomies.php:42 lib/cpt_taxonomies.php:71
-#: lib/cpt_taxonomies.php:100 templates/profile/filter.twig:18
+#: lib/cpt_taxonomies.php:41 lib/cpt_taxonomies.php:70
+#: lib/cpt_taxonomies.php:99 templates/profile/filter.twig:18
 #: templates/request/categories.twig:18
 msgid "Kategorie"
 msgstr "Kategória"
@@ -448,7 +448,7 @@ msgstr "A szöveget a kezdőlap hero mezőjében és metacímke leírásában ke
 
 #: lib/acf_settings.php:483
 msgid "Google Tag Manager ID"
-msgstr ""
+msgstr "Google Tag Manager ID"
 
 #: lib/acf_settings.php:486
 msgid "Ve tvaru GTM-XXXX"
@@ -456,7 +456,7 @@ msgstr "GTM-XXXX alakban"
 
 #: lib/acf_settings.php:564
 msgid "Open graph"
-msgstr ""
+msgstr "Grafikon megnyitása"
 
 #: lib/acf_settings.php:568
 msgid "Open graph obrázek"
@@ -489,7 +489,7 @@ msgstr "Web"
 
 #: lib/acf_settings.php:689 lib/acf_settings.php:2183
 msgid "Fotka"
-msgstr "Fénykép"
+msgstr "Képek, fotózás"
 
 #: lib/acf_settings.php:713 lib/acf_settings.php:775 lib/acf_settings.php:1044
 #: lib/acf_settings.php:1181
@@ -596,15 +596,15 @@ msgstr "E-mail küldő"
 
 #: lib/acf_settings.php:1462
 msgid "Ve tvaru \"Jméno &lt;email&gt;\""
-msgstr ""
+msgstr "Ebben a formában \"Jméno &lt;email&gt;\""
 
 #: lib/acf_settings.php:1478
 msgid "Logo v mailu"
-msgstr ""
+msgstr "Logo az e-mailben"
 
 #: lib/acf_settings.php:1481
 msgid "PNG, JPG nebo GIF"
-msgstr ""
+msgstr "PNG, JPG vagy GIF"
 
 #: lib/acf_settings.php:1522 lib/cpt_posts.php:139
 msgid "Poptávka"
@@ -613,7 +613,7 @@ msgstr "Vizsgálat"
 #: lib/acf_settings.php:1526 templates/profile/contact-form.twig:8
 #: templates/row-contact.twig:21
 msgid "Vaše jméno"
-msgstr "A neve"
+msgstr "Az ön neve"
 
 #: lib/acf_settings.php:1545 templates/profile/contact-form.twig:15
 #: templates/row-contact.twig:28
@@ -626,7 +626,7 @@ msgstr "Projekt URL"
 
 #: lib/acf_settings.php:1582
 msgid "Kategorie poptávky"
-msgstr "Munka kategóriák"
+msgstr "A projekt kategóriája"
 
 #: lib/acf_settings.php:1604
 msgid "E-shop na Shoptetu"
@@ -638,249 +638,249 @@ msgstr "Webáruházat működtetek a Shopteten"
 
 #: lib/acf_settings.php:1643 lib/setup.php:336 templates/reviews.twig:4
 msgid "Hodnocení"
-msgstr ""
+msgstr "Értékelés"
 
 #: lib/acf_settings.php:1647
 msgid "Autor ověřil své hodnocení"
-msgstr ""
+msgstr "A szerző ellenőrizte az értékelést"
 
 #: lib/acf_settings.php:1684
 msgid "Základní"
-msgstr ""
+msgstr "Alapvető"
 
 #: lib/acf_settings.php:1706
 msgid "Prověřen"
-msgstr ""
+msgstr "Jóváhagyott"
 
 #: lib/acf_settings.php:1717
 msgid "Zobrazit odznak prověření"
-msgstr ""
+msgstr "A minősítés jelvényének megjelenítése"
 
 #: lib/acf_settings.php:1725
 msgid "Úrověň prověření"
-msgstr ""
+msgstr "A minősítés szintje"
 
 #: lib/acf_settings.php:1737
 msgid "bronzový"
-msgstr ""
+msgstr "bronz"
 
 #: lib/acf_settings.php:1738
 msgid "stříbrný"
-msgstr ""
+msgstr "ezüst"
 
 #: lib/acf_settings.php:1739
 msgid "zlatý"
-msgstr ""
+msgstr "arany"
 
 #: lib/acf_settings.php:1752
 msgid "Partner manager"
-msgstr ""
+msgstr "Partner vezető"
 
 #: lib/acf_settings.php:1764 lib/acf_settings.php:1772
 msgid "Není"
-msgstr ""
+msgstr "Nincs"
 
 #: lib/acf_settings.php:1781
 msgid "Cena (zastaralé)"
-msgstr ""
+msgstr "Ár (elavult)"
 
 #: lib/acf_settings.php:1784
 msgid "Toto pole je zde pouze z historických důvodů. Vyplňte prosím pole s cenou níže v tomto formuláři."
-msgstr ""
+msgstr "Ez a mező csupán történelmi okok miatt található itt. Kérjük, töltse ki az árat jelölő mezőt az alábbi űrlapban."
 
 #: lib/acf_settings.php:1800
 msgid "Zpráva z kontaktního formuláře"
-msgstr ""
+msgstr "Üzenet a kapcsolati űrlap kitöltése által"
 
 #: lib/acf_settings.php:1839
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: lib/acf_settings.php:1865 templates/review-form.twig:25
 #: templates/review-form.twig:31
 msgid "URL vašeho webu"
-msgstr ""
+msgstr "Az ön weboldalának URL címe"
 
 #: lib/acf_settings.php:1884 templates/profile/main.twig:58
 msgid "Telefon"
-msgstr ""
+msgstr "Telefonszám"
 
 #: lib/acf_settings.php:1903
 msgid "IČO"
-msgstr ""
+msgstr "Céges azonosítószám"
 
 #: lib/acf_settings.php:1922
 msgid "DIČ"
-msgstr ""
+msgstr "Adószám"
 
 #: lib/acf_settings.php:1941
 msgid "Země"
-msgstr ""
+msgstr "Ország"
 
 #: lib/acf_settings.php:1953
 msgid "Česká republika"
-msgstr ""
+msgstr "Csehország"
 
 #: lib/acf_settings.php:1954 lib/helpers.php:326
 msgid "Slovensko"
-msgstr ""
+msgstr "Szlovákia"
 
 #: lib/acf_settings.php:1969 lib/acf_settings.php:2015
 #: lib/acf_settings.php:2055
 msgid "Kraj"
-msgstr ""
+msgstr "Régió"
 
 #: lib/acf_settings.php:2107
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: lib/acf_settings.php:2126
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: lib/acf_settings.php:2145
 msgid "Instagram"
-msgstr ""
+msgstr "Instagram"
 
 #: lib/acf_settings.php:2164
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: lib/acf_settings.php:2186
 msgid "Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB."
-msgstr ""
+msgstr "Kérjük, a feltöltött kép felbontása minimum 400 x 400 px legyen. A feltölthető fájl formátuma jpg, png vagy gif lehet. A fájl maximális mérete 5 MB."
 
 #: lib/acf_settings.php:2207
 msgid "Měna hodinové sazby"
-msgstr ""
+msgstr "Óradíj pénzneme"
 
 #: lib/acf_settings.php:2230
 msgid "Hodinová sazba"
-msgstr ""
+msgstr "Óradíj"
 
 #: lib/acf_settings.php:2233
 msgid "Uveďte svou hodinovou sazbu bez DPH ve vámi vybrané měně."
-msgstr ""
+msgstr "Kérjük megadni az áfa nélküli óradíjat a választott pénznemben. "
 
 #: lib/acf_settings.php:2251
 msgid "Plátcovství DPH"
-msgstr ""
+msgstr "Áfa-fizetés"
 
 #: lib/acf_settings.php:2262
 msgid "Jsem plátce DPH"
-msgstr ""
+msgstr "Áfafizető vagyok"
 
 #: lib/acf_settings.php:2270
 msgid "Další informace k ceně"
-msgstr ""
+msgstr "További információk az árról"
 
 #: lib/acf_settings.php:2289
 msgid "O mně"
-msgstr ""
+msgstr "Bemutatkozás"
 
 #: lib/acf_settings.php:2292
 msgid "Popište v pár větách sebe a svou práci."
-msgstr ""
+msgstr "Írjon néhány mondatot magáról és munkájáról bemutatkozásképpen. "
 
 #: lib/acf_settings.php:2308
 msgid "Co umím?"
-msgstr ""
+msgstr "Miben tudok segíteni?"
 
 #: lib/acf_settings.php:2311
 msgid "Popište ve dvou odstavcích, co klientům můžete nabídnout a v čem jste dobrý. Nebojte se pochválit."
-msgstr ""
+msgstr "Két bekezdésben írja le, mit tud az ügyfeleknek ajánlani, mi az, amiben igazán jó. Ne féljen dicsekedni kicsit."
 
 #: lib/acf_settings.php:2327 templates/profile/recommendation.twig:5
 msgid "Doporučení"
-msgstr ""
+msgstr "Ajánlás"
 
 #: lib/acf_settings.php:2330
 msgid "Vložte sem doporučení od některých vašich klientů (ideálně klientů fungujících na platformě Shoptet)."
-msgstr ""
+msgstr "Adjon meg ajánlást valamely ügyfelétől (ideális esetben Shoptet platformon működőtől)."
 
 #: lib/acf_settings.php:2342
 msgid "Přidat doporučení"
-msgstr ""
+msgstr "Ajánlás hozzáadása"
 
 #: lib/acf_settings.php:2346
 msgid "Text doporučení"
-msgstr ""
+msgstr "Az ajánlás szövege"
 
 #: lib/acf_settings.php:2349
 msgid "Vložte cca 2 věty doporučení"
-msgstr ""
+msgstr "Adjon meg kb. 2 mondatot az ajánlásból."
 
 #: lib/acf_settings.php:2365
 msgid "Jméno klienta"
-msgstr ""
+msgstr "Az ügyfél neve"
 
 #: lib/acf_settings.php:2368
 msgid "Klienta budeme odkazovat pod doporučením, proto potřebujeme jeho jméno a pozici ve firmě."
-msgstr ""
+msgstr "Az ügyfélre utalunk majd az ajánlás alatt, ezért szükségünk van a nevére és a cégben betöltött pozíciójára."
 
 #: lib/acf_settings.php:2384
 msgid "Pozice klienta"
-msgstr ""
+msgstr "Az ügyfél munkahelyi pozíciója"
 
 #: lib/acf_settings.php:2403
 msgid "Web klienta"
-msgstr ""
+msgstr "Az ügyfél weboldalának címe"
 
 #: lib/acf_settings.php:2406
 msgid "A také webovou adresu."
-msgstr ""
+msgstr "Esetleg e-mail címe"
 
 #: lib/acf_settings.php:2424
 msgid "Další reference"
-msgstr ""
+msgstr "További referenciák"
 
 #: lib/acf_settings.php:2427
 msgid "Vložte zde loga svých dalších referenčních klientů (odlišných od uvedených v Doporučení výše). Klienti by měli ideálně zase hlavně klienty fungující na platformě Shoptet. V medailonku vypadají loga moc pěkně, proto je, prosím, nevynechejte."
-msgstr ""
+msgstr "Ide illessze be a többi ügyfele logóját, amelyek referenciaként szolgálnak (a fenti ajánlásban felsoroltakon kívül). Ideális esetben az ügyfelek főként a Shoptet platformon működnek. A logók nagyon szépen néznek ki a medálban, ezért kérjük, ne hagyja ki őket."
 
 #: lib/acf_settings.php:2439
 msgid "Přidat logo"
-msgstr ""
+msgstr "Logo hozzáadása"
 
 #: lib/acf_settings.php:2443
 msgid "Název"
-msgstr ""
+msgstr "Név"
 
 #: lib/acf_settings.php:2462
 msgid "Logo"
-msgstr ""
+msgstr "Logó"
 
 #: lib/acf_settings.php:2465
 msgid "JPG, PNG nebo GIF. Max. 3 MB. Min. 200 x 200 px."
-msgstr ""
+msgstr "JPG, PNG vagy GIF. Max. 3 MB. Min. 200 x 200 px."
 
 #: lib/acf_settings.php:2486
 msgid "URL odkazu"
-msgstr ""
+msgstr "URL cím"
 
 #: lib/acf_settings.php:2527
 msgid "Mailing poptávek"
-msgstr ""
+msgstr "A projektek e-mail-es továbbküldése"
 
 #: lib/acf_settings.php:2531
 msgid "Stav mailingu"
-msgstr ""
+msgstr "Az e-mailes továbbítás állapota"
 
 #: lib/acf_settings.php:2534
 msgid "Pokud je mailing vypnutý, partner nebude dostávat žádné e-maily s poptávkami."
-msgstr ""
+msgstr "Amennyiben az e-mailes továbbítás kikapcsolt állapotot mutat, a partner semmilyen e-mailt nem kap majd a projektekről. "
 
 #: lib/acf_settings.php:2542
 msgid "Vypnout mailing"
-msgstr ""
+msgstr "Az e-mailes továbbítás kikapcsolása"
 
 #: lib/acf_settings.php:2550
 msgid "Odhlášené kategorie"
-msgstr ""
+msgstr "Törölt kategóriák"
 
 #: lib/acf_settings.php:2553
 msgid "Partnerovi budou chodit na e-mail poptávky dle kategorií, ke kterým je přiřazen. Zde je možné některou z kategorií odhlásit."
-msgstr ""
+msgstr "A partnernek azon projektekről megy majd értesítő, amelyek a megadott kategóriákba érkeztek. Ha valamely kategóriáról leiratkozna, itt megteheti."
 
 #: lib/cpt_posts.php:10 lib/cpt_posts.php:12 lib/cpt_posts.php:25
 #: templates/header.twig:74 templates/home.twig:20
@@ -890,7 +890,7 @@ msgstr "Szakértők"
 
 #: lib/cpt_posts.php:11
 msgid "Profesionál"
-msgstr ""
+msgstr "Szakértő"
 
 #: lib/cpt_posts.php:13 lib/cpt_posts.php:56 lib/cpt_posts.php:98
 msgid "Vše"
@@ -928,7 +928,8 @@ msgstr "Keressen szakembert"
 msgid "Nebyl nalezen žádný profesionál"
 msgstr "Nem található szakember"
 
-#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:27
+#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26 templates/header.twig:74
+#: templates/home.twig:20
 msgid "profesionalove"
 msgstr "szakertok"
 
@@ -1008,7 +1009,7 @@ msgstr "Adjon hozzá egy újat"
 
 #: lib/cpt_posts.php:143
 msgid "Přidat novou poptávku"
-msgstr "Új megkeresés hozzáadása"
+msgstr "Új projekt hozzáadása"
 
 #: lib/cpt_posts.php:144
 msgid "Upravit poptávku"
@@ -1016,7 +1017,7 @@ msgstr "Igény szerkesztése"
 
 #: lib/cpt_posts.php:145 templates/new-request-page.twig:34
 msgid "Nová poptávka"
-msgstr "Új megkeresés"
+msgstr "Új projekt"
 
 #: lib/cpt_posts.php:146
 msgid "Zobrazit poptávku"
@@ -1030,11 +1031,11 @@ msgstr "Mutasson megkereséseket"
 msgid "Vyhledat poptávku"
 msgstr "Megkeresés keresése"
 
-#: lib/cpt_posts.php:162 lib/cpt_taxonomies.php:119
+#: lib/cpt_posts.php:161 lib/cpt_taxonomies.php:118
 msgid "poptavky"
-msgstr ""
+msgstr "Projektek"
 
-#: lib/cpt_posts.php:169
+#: lib/cpt_posts.php:168
 msgid "poptavka"
 msgstr "vizsgálat"
 
@@ -1043,65 +1044,65 @@ msgstr "vizsgálat"
 msgid "Kategorie profesionálů"
 msgstr "Szakemberek kategóriái"
 
-#: lib/cpt_taxonomies.php:13 lib/cpt_taxonomies.php:43
-#: lib/cpt_taxonomies.php:72 lib/cpt_taxonomies.php:105
+#: lib/cpt_taxonomies.php:13 lib/cpt_taxonomies.php:42
+#: lib/cpt_taxonomies.php:71 lib/cpt_taxonomies.php:104
 msgid "Přidat novou kategorii"
-msgstr ""
+msgstr "Új kategória hozzáadása"
 
-#: lib/cpt_taxonomies.php:40 lib/cpt_taxonomies.php:41
-#: lib/cpt_taxonomies.php:47 templates/search.twig:46
+#: lib/cpt_taxonomies.php:39 lib/cpt_taxonomies.php:40
+#: lib/cpt_taxonomies.php:46 templates/search.twig:46
 msgid "Kategorie napojení"
-msgstr ""
+msgstr "Összefüggő kategóriák"
 
-#: lib/cpt_taxonomies.php:69 lib/cpt_taxonomies.php:70
-#: lib/cpt_taxonomies.php:76 templates/search.twig:51
+#: lib/cpt_taxonomies.php:68 lib/cpt_taxonomies.php:69
+#: lib/cpt_taxonomies.php:75 templates/search.twig:51
 msgid "Kategorie nástrojů"
-msgstr ""
+msgstr "Az eszközök kategóriái"
 
-#: lib/cpt_taxonomies.php:98 lib/cpt_taxonomies.php:99
-#: lib/cpt_taxonomies.php:110
+#: lib/cpt_taxonomies.php:97 lib/cpt_taxonomies.php:98
+#: lib/cpt_taxonomies.php:109
 msgid "Kategorie poptávek"
-msgstr ""
+msgstr "Projektek kategóriái"
+
+#: lib/cpt_taxonomies.php:100
+msgid "Všechny kategorie"
+msgstr "Az összes kategória"
 
 #: lib/cpt_taxonomies.php:101
-msgid "Všechny kategorie"
-msgstr ""
+msgid "Upravit kategorii"
+msgstr "Kategória módosítása"
 
 #: lib/cpt_taxonomies.php:102
-msgid "Upravit kategorii"
-msgstr ""
+msgid "Zobrazit kategorii"
+msgstr "Kategória megjelenítése"
 
 #: lib/cpt_taxonomies.php:103
-msgid "Zobrazit kategorii"
-msgstr ""
-
-#: lib/cpt_taxonomies.php:104
 msgid "Upravit název kategorie"
-msgstr ""
+msgstr "A kategória megnevezésének módosítása"
 
-#: lib/cpt_taxonomies.php:106
+#: lib/cpt_taxonomies.php:105
 msgid "Nové jméno kategorie"
-msgstr ""
+msgstr "A kategória új neve"
 
 #: lib/helpers.php:103 lib/helpers.php:240
 msgid "Pozor!"
-msgstr ""
+msgstr "Figyelem!"
 
 #: lib/helpers.php:104
 msgid "Ještě jste nepotvrdil hodnocení<br>:-("
-msgstr ""
+msgstr "Még nem erősítette meg az értékelést <br>:-("
 
 #: lib/helpers.php:105
 msgid "Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>. Asi se ztratil váš potvrzovací email. Bez potvrzení to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit."
-msgstr ""
+msgstr "Egy kis idő már eltelt, amióta megírta <strong> a véleményét </strong>. Előfordulhat, hogy elveszítette a visszaigazoló e-mailt. Sajnos a megerősítése nélkül nem fog működni. Próbáljuk meg újra, hogy közzétehessük az értékelését."
 
 #: lib/helpers.php:111
 msgid "Potvrdit hodnocení"
-msgstr ""
+msgstr "Az értékelés jóváhagyása"
 
 #: lib/helpers.php:115
 msgid "Připomenutí schválení vašeho hodnocení na partneri.shoptet.cz"
-msgstr ""
+msgstr "Emlékeztető az értékelés jóváhagyásáról a partnerek.shoptet.hu oldalon"
 
 #: lib/helpers.php:174
 msgid "Odeslání se nezdařilo"
@@ -1173,7 +1174,7 @@ msgstr "Értékelésére"
 
 #: lib/setup.php:194
 msgid "Teď už jen klikněte <strong style=\"%s\"><a href=\"%s\" target=\"_blank\" style=\"%s\">ZDE</a></strong> pro potvrzení a&nbsp;zveřejnění vašeho hodnocení.<br><br>Přejeme krásný den,<br>tým Shoptet"
-msgstr ""
+msgstr "Most már nincs más hátra, kattintson a <strong style = \"% s\"> <a href=\"%s\" target=\"_blank\" style=\"%s\"> ITT </a> </strong> gombra az értékelés megerősítéséhez és & nbsp; közzétételéhez . <br> <br> Kellemes napot kívánunk, a Shoptet csapata"
 
 #: lib/setup.php:201
 msgid "Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s"
@@ -1245,7 +1246,7 @@ msgstr "Olvassa el az értékeléseket"
 
 #: lib/setup.php:317
 msgid "Uživatel %s přidal na partneri.shoptet.cz hodnocení k Partnerovi %s"
-msgstr ""
+msgstr "%s értékelést adott a (z)%s Partnerekhez a partnerek.shohoptet.hu oldalon"
 
 #: lib/setup.php:338
 msgid "E-mailové ověření"
@@ -1289,7 +1290,7 @@ msgstr "Az űrlapot sikeresen elküldtük."
 
 #: lib/setup.php:440
 msgid "Teď už jen <strong>vyčkejte</strong>. Co nevidět se vám ozve náš Partner manažer a případnou spolupráci společně doladíte."
-msgstr ""
+msgstr "Most csak <strong> várjon </strong>. Partner menedzserünk felveszi önnel a kapcsolatot, és együtt átbeszélhetik az együttműködés feltételeit."
 
 #: lib/setup.php:449
 msgid "Vstupní formulář"
@@ -1310,7 +1311,7 @@ msgstr "- Dátum -"
 #. translators: 1: month name, 2: 4-digit year
 #: lib/setup.php:562
 msgid "%1$s %2$d"
-msgstr ""
+msgstr "%1$s %2$d"
 
 #: lib/setup.php:599
 msgid "Zadejte prosím URL ve správném formátu"
@@ -1334,7 +1335,7 @@ msgstr "Nem találunk partnereket ilyen követelményekkel"
 
 #: templates/archive.twig:82 templates/request/archive-list.twig:59
 msgid "Zkuste prosím snížit vaše požadavky pomocí filtrů."
-msgstr "Kérjük, próbálja csökkenteni a követelményeket"
+msgstr "Kérjük, próbálja módosítani a követelményeket."
 
 #: templates/category/thumbnail.twig:10
 msgid "Zobrazit profily v této kategorii"
@@ -1361,11 +1362,11 @@ msgstr "Írjon be egy keresési kifejezést ..."
 
 #: templates/header.twig:60 templates/request/archive-list.twig:20
 msgid "Přidat poptávku"
-msgstr "Munka hozzáadása"
+msgstr "Projekt hozzáadása"
 
 #: templates/home.twig:46
 msgid "Nové poptávky"
-msgstr "Új munkák"
+msgstr "Új projektek"
 
 #: templates/home.twig:49
 msgid "Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet Partnera? Zadejte si poptávku zdarma a jen čekejte na první nabídky."
@@ -1398,7 +1399,7 @@ msgstr "Gratulálunk!"
 
 #: templates/mailing/review-approved.twig:10
 msgid "Váš klient si udělal čas a dostali jste od něj nové hodnocení.<br>Přečíst a reagovat na něj můžete přímo v detailu <a href=\"%s\" target=\"_blank\" style=\"%s\">svého medailonku</a>."
-msgstr ""
+msgstr "Ügyfele időt szakított arra, hogy értékelést adjon. <br> Elolvashatja és válaszolhat rá közvetlenül a <a href=\"%s\" target=\"_blank\" style=\"%s\"> a medál </ a>."
 
 #: templates/mailing/review-approved.twig:18
 #: templates/mailing/shoptetrix.twig:410
@@ -1425,7 +1426,11 @@ msgid "Hej hola!\n"
 "Nové hodnocení Partnera <a href=\"%s\" target=\"_blank\">%s</a> čeká na schválení.\n"
 "<br><br>\n"
 "Mrkni na to :)"
-msgstr ""
+msgstr "Halihó!\n"
+"<br> <br>\n"
+"Az új partner-minősítés <a href=\"%s\" target=\"_blank\">% s </a> jóváhagyásra vár.\n"
+"<br> <br>\n"
+"Vessen rá egy pillantást! :)"
 
 #: templates/mailing/review.twig:29 templates/review-single.twig:42
 msgid "Shoptet partner"
@@ -1433,7 +1438,7 @@ msgstr "Shoptet partner"
 
 #: templates/mailing/shoptetrix-inline.twig:429
 msgid "Pokud nelze kliknout na odkaz, zkopírujte následující adresu do prohlížeče:"
-msgstr ""
+msgstr "Ha nem működik a link, másolja a következő címet a böngészőbe:"
 
 #: templates/mailing/shoptetrix-inline.twig:324
 #: templates/mailing/shoptetrix.twig:329
@@ -1442,26 +1447,26 @@ msgstr "partnerek.shoptet.hu"
 
 #: templates/message/message.twig:61
 msgid "Přejít zpět na partneri.shoptet.cz"
-msgstr "Menj vissza a partnerek.shoptet.hu oldalra"
+msgstr "Vissza a partnerek.shoptet.hu oldalra"
 
 #: templates/new-request-page.twig:29
 msgid "<strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její schválení."
-msgstr "<strong>A kérés sikeresen elküldve.</strong> Kérjük, várja meg, amíg jóváhagyják."
+msgstr "<strong>A kérés sikeresen elküldve.</strong> Kérjük, várja meg, amíg jóváhagyásra kerül."
 
 #: templates/new-request-page.twig:44
 msgid "Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.\n"
 "                  My vaši poptávku zkontrolujeme, pokud bude třeba, tak s vámi doladíme\n"
 "                  a po jejím schválení ji rozešleme všem partnerům z dané kategorie.\n"
 "                  Po 24 hodinách po tomto schválení se zobrazí i na tomto webu."
-msgstr "Írja le világosan, hogy a Shoptet Partnerek milyen szolgáltatásai érdekelnék Önt. Ellenőrizzük kérését, és ha szükséges, kiigazítjuk Önnel, jóváhagyása után pedig elküldjük az összes kategóriába tartozó partnernek. Ezen a webhelyen a jóváhagyás után 24 órával is megjelenik."
+msgstr "Írja le röviden, hogy a Shoptet Partnerek mely szolgáltatásai érdekelnék önt. Mi ellenőrizzük kérését, és ha szükséges egyeztetünk önnel, jóváhagyása után pedig elküldjük a meghatározott  kategóriába tartozó összes partnernek. 24 órával a jóváhagyás után ezen a weboldalon is megtalálható lesz a projekt."
 
 #: templates/new-request-page.twig:78
 msgid "Odeslat poptávku"
-msgstr "Küldjön érdeklődést"
+msgstr "Írjon nekünk"
 
 #: templates/onboarding.twig:31
 msgid "Vyplňte svůj medailonek"
-msgstr "Töltse ki a medált"
+msgstr "Készítsen saját Shoptet profilt"
 
 #: templates/onboarding.twig:38
 msgid "Vaše jméno:"
@@ -1506,11 +1511,11 @@ msgstr "Üzenet a partnernek"
 
 #: templates/profile/contact-form.twig:25 templates/row-contact.twig:38
 msgid "Vložením e-mailu souhlasíte s <a href=\"https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/\" target=\"_blank\">podmínkami ochrany osobních údajů</a>"
-msgstr ""
+msgstr "Az e-mail megadásával egyetért a <a href=\"https://www.shoptet.hu/adatvedelmi-iranyelvek/\" target=\"_blank\"> személyes adatokról szóló feltételekkel </a>"
 
 #: templates/profile/contact.twig:3
 msgid "Kontaktovat partnera"
-msgstr "Lépjen kapcsolatba egy partnerrel"
+msgstr "Vegye fel a kapcsolatot a partnerrel"
 
 #: templates/profile/filter.twig:11 templates/request/categories.twig:11
 msgid "Zobrazit filtry"
@@ -1522,7 +1527,7 @@ msgstr "Elhelyezkedés"
 
 #: templates/profile/main.twig:27 templates/reviews.twig:23
 msgid "%s hodnocení"
-msgstr ""
+msgstr "%s értékelés"
 
 #: templates/profile/main.twig:29
 msgid "žádné hodnocení"
@@ -1554,19 +1559,19 @@ msgstr "Árak"
 
 #: templates/profile/thumbnail.twig:4
 msgid "Zobrazit profil"
-msgstr ""
+msgstr "Profil bemutatása"
 
 #: templates/request/archive-list.twig:46
 msgid "Celkem %d z %d"
-msgstr ""
+msgstr "Az összes %d -ból %d"
 
 #: templates/request/archive-list.twig:56
 msgid "Nemůžeme najít žádné poptávky s těmito požadavky"
-msgstr ""
+msgstr "A megadott feltételekkel nem találtunk projektet."
 
 #: templates/request/contact-form.twig:1
 msgid "Reakce na poptávku"
-msgstr ""
+msgstr "Reakció a projektre"
 
 #: templates/request/contact-form.twig:31
 msgid "Text reakce"
@@ -1595,7 +1600,7 @@ msgstr "Közzététel"
 
 #: templates/request/content.twig:52
 msgid "Stav poptávky"
-msgstr "Munka állapota"
+msgstr "A projekt állapota"
 
 #: templates/request/filter.twig:4
 msgid "Seřadit podle:"
@@ -1607,7 +1612,7 @@ msgstr "Csak aktív"
 
 #: templates/review-form.twig:20
 msgid "Váš e-mail nebude zobrazen. Slouží pro zaslání odkazu pro potvrzení příspěvku."
-msgstr "Az Ön e-mail címe nem jelenik meg. Linket küld a bejegyzés megerősítésére."
+msgstr "Az Ön e-mail címe nem jelenik meg nyilvánosan. Erre az e-mailre küldjük a megerősítésről szóló linket. "
 
 #: templates/review-form.twig:25 templates/review-form.twig:31
 msgid "URL vašeho e-shopu"
@@ -1615,7 +1620,7 @@ msgstr "Az webáruház URL-je"
 
 #: templates/review-form.twig:47
 msgid "Jak jste byli se Shoptet partnerem spokojeni?"
-msgstr "Mennyire voltál elégedett a Shoptet partnerrel?"
+msgstr "Mennyire volt elégedett a Shoptet partnerrel?"
 
 #: templates/review-form.twig:47
 msgid "Napište vaši reakci na hodnocení"
@@ -1650,7 +1655,7 @@ msgstr "Ennek a partnernek még nincs értékelése"
 
 #: templates/reviews.twig:44
 msgid "Ohodnoťte svou zkušenost<br>s tímto partnerem"
-msgstr "Értékelje tapasztalatait<br>ezzel a partnerrel"
+msgstr "Értékelje a partnert<br>tapasztalatai alapján"
 
 #: templates/reviews.twig:53
 msgid "Hodnocení jsou uzavřena"
@@ -1662,7 +1667,7 @@ msgstr "Értékelés hozzáadása"
 
 #: templates/row-contact.twig:33 templates/row-contact.twig:35
 msgid "Vaše zpráva"
-msgstr ""
+msgstr "Az ön üzenete..."
 
 #: templates/search.twig:26
 msgid "Výsledky vyhledávání pro:"
@@ -1682,31 +1687,148 @@ msgstr "Kérjük, próbáljon meg egy másik kifejezést."
 
 #: templates/single.twig:84
 msgid "Nevybrali jste? Co zkusit jiné?"
-msgstr "Nem választott? Mit kell még kipróbálni?"
+msgstr "Még nem választott? Válogasson tovább!"
 
 #. Theme Name of the plugin/theme
 #: 
 msgid "Shoptet Partners"
-msgstr ""
+msgstr "Shoptet Partnerek"
 
 #. Template Name of the plugin/theme
 #: 
 msgid "New request page"
-msgstr ""
+msgstr "Új kérés "
 
 #: lib/acf_settings.php:502
 msgid "Stránka s certifikací"
-msgstr ""
+msgstr "A minősítés oldala"
 
 #: lib/acf_settings.php:523
 msgid "Stránka profesionálů"
-msgstr ""
+msgstr "A szakértők oldala"
 
 #: lib/acf_settings.php:1955 lib/helpers.php:330
 msgid "Maďarsko"
-msgstr ""
+msgstr "Magyarország"
 
 #: templates/new-request-page.twig:64
 msgid "Odesláním poptávky souhlasím se <a href=\"https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/\" target=\"_blank\">zpracováním osobních údajů</a>"
+msgstr "A projekt elküldésével egyetértek a  <a href=\"https://www.shoptet.hu/adatvedelmi-iranyelvek/\" target=\"_blank\">személyes adataim felhasználásával</a>"
+
+#: lib/ProfessionalAdmin.php:14
+msgid "Export profesionálů"
+msgstr "A szakértők exportja"
+
+#: lib/ProfessionalAdmin.php:15
+msgid "Export"
+msgstr "Export"
+
+#: lib/ProfessionalAdmin.php:26
+msgid "Exportovat profesionály"
+msgstr "A szakértők exportja"
+
+#: lib/StarterSite.php:102
+msgid "Vyberte"
+msgstr "Válasszon"
+
+#: lib/StarterSite.php:103
+msgid "Načítám..."
+msgstr "Betöltés folyamatban..."
+
+#: lib/StarterSite.php:104
+msgid "Načítám další..."
+msgstr "További betöltése..."
+
+#. Template Name of the plugin/theme
+#: 
+msgid "Partners"
+msgstr "Partnerek"
+
+#: lib/acf_settings.php:1989
+msgid "Hlavní město Praha"
+msgstr "Prága"
+
+#: lib/acf_settings.php:1990
+msgid "Jihočeský kraj"
 msgstr ""
+
+#: lib/acf_settings.php:1991
+msgid "Jihomoravský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1992
+msgid "Karlovarský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1993
+msgid "Kraj Vysočina"
+msgstr ""
+
+#: lib/acf_settings.php:1994
+msgid "Královéhradecký kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1995
+msgid "Liberecký kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1996
+msgid "Moravskoslezský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1997
+msgid "Olomoucký kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1998
+msgid "Pardubický kraj"
+msgstr ""
+
+#: lib/acf_settings.php:1999
+msgid "Plzeňský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2000
+msgid "Středočeský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2001
+msgid "Ústecký kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2002
+msgid "Zlínský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2035
+msgid "Bratislavský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2036
+msgid "Trnavský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2037
+msgid "Trenčínský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2038
+msgid "Nitranský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2039
+msgid "Žilinský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2040
+msgid "Banskobystrický kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2041
+msgid "Prešovský kraj"
+msgstr ""
+
+#: lib/acf_settings.php:2042
+msgid "Košický kraj"
+msgstr "Kassai kerület"
 
