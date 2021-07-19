@@ -250,15 +250,18 @@ function remind_onboarding () {
     ];
     $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
     $email_subject = __( 'Připomenutí vyplnění formuláře na partneri.shoptet.cz', 'shp-partneri' );
-    wp_mail(
-      $email,
-      $email_subject,
-      $email_html_body,
-      [
-        'From: ' . $options['email_from'],
-        'Content-Type: text/html; charset=UTF-8',
-      ]
-    );
+
+    if ( ! $options['onboarding_deactivate'] ) {
+      wp_mail(
+        $email,
+        $email_subject,
+        $email_html_body,
+        [
+          'From: ' . $options['email_from'],
+          'Content-Type: text/html; charset=UTF-8',
+        ]
+      );
+    }
 
     update_post_meta( $post->ID, 'onboarding_reminded', time() );    
   }

@@ -382,7 +382,7 @@
                     {% if text %}
                       <tr>
                         <td align="middle" class="lead" style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 14px;vertical-align: top;">
-                          <p style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: 23px;font-weight: 300;margin: 0;margin-bottom: 15px;color: #535353;">
+                          <p style="font-family: 'Segoe UI', Helvetica, Roboto, Arial, 'Noto Sans', sans-serif;font-size: {% if text_size == 'small' %}18px{% else %}23px{% endif %};font-weight: 300;margin: 0;margin-bottom: 15px;color: #535353;">
                             {{ text }}
                           </p>
                         </td>

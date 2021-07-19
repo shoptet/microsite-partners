@@ -31,7 +31,9 @@
                 {{ __( 'Vyplňte svůj medailonek', 'shp-partneri' ) }}
               </h1>
 
-              <div class="border-bottom pb-2">{{ options.onboarding_description }}</div>
+              <div class="border-bottom pb-2">
+                {{ options.onboarding_deactivate ? '<p>' ~ options.onboarding_deactivate_text ~ '<p>' : options.onboarding_description }}
+              </div>
 
               <ul class="list-unstyled mt-4 mb-3">
                 <li class="mb-2">

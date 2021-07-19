@@ -89,7 +89,12 @@ class ContactForm
     $options = get_fields('options');
     $context['title'] = __( 'Děkujeme', 'shp-partneri' );
     $context['subtitle'] = __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
-    $context['text'] = __( 'Teď už zbývá jen poslední krok:', 'shp-partneri' );
+    if ( $options['onboarding_deactivate'] ) {
+      $context['text'] = $options['onboarding_deactivate_text'];
+      $context['text_size'] = 'small';
+    } else {
+      $context['text'] = __( 'Teď už zbývá jen poslední krok:', 'shp-partneri' );
+    }
     $context['image'] = [
       'main' => 'shoptetrix-thumb-up-1.png',
       'complementary' => 'shoptetrix-thumb-up-2.png',
