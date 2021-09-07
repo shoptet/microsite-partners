@@ -60,7 +60,12 @@
           </li>
   			{% endif %}
 
-  			{% if post.get_field('cin') %}
+  			{% if 'hu_HU' == locale and post.get_field('cin') %}
+    			<li class="pl-0">
+            <span class="text-muted pr-2">{{ __('DIČ', 'shp-partneri') }}</span>
+            <span itemprop="identifier">{{ post.get_field('cin') }}</span>
+          </li>
+        {% elseif post.get_field('cin') %}
     			<li>
             <svg class="profile-contact-list-icon" data-src="{{ "icon-ic.svg"|static_assets }}" width="17" height="15" role="img" aria-label="{{ __('Identifikační číslo', 'shp-partneri') }}"></svg>
             <span itemprop="identifier">{{ post.get_field('cin') }}</span>

@@ -40,6 +40,7 @@ class StarterSite extends TimberSite {
     $context['read_only_enabled'] = apply_filters( 'read_only_enabled', false );
     $context['footer'] = Shoptet\ShoptetExternal::get_footer();
     $context['shoptet_url'] = Shoptet\ShoptetHelpers::get_shoptet_url();
+    $context['locale'] = get_locale();
     return $context;
   }
 
