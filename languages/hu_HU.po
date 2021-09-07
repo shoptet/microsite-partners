@@ -80,7 +80,7 @@ msgstr "Töltse ki a kérdőívet"
 
 #: lib/ContactForm.php:102
 msgid "To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;mohli tak partnerství potvrdit.<br><br>Na konkrétní <a href=\"%s\" target=\"_blank\" style=\"%s\">podmínky partnerství</a> se můžete mrknout na našem webu."
-msgstr "Erre azért van szükség, hogy elegendő információval rendelkezünk önről és munkájáról, valamint hogy megerősítsük partneri kapcsolatunkat. <br> <br> Bővebben a <a href = \"% s\" target = \"_ blank\" style = \"% s \"> partnerségi feltételekről itt</a>."
+msgstr "Erre azért van szükség, hogy elegendő információval rendelkezünk önről és munkájáról, valamint hogy megerősítsük partneri kapcsolatunkat. <br> <br> Bővebben a <a href = \"%s\" target = \"_ blank\" style = \"%s\"> partnerségi feltételekről itt</a>."
 
 #: lib/ContactForm.php:104
 msgid "Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!"
@@ -1132,11 +1132,11 @@ msgstr "partnerek@shoptet.hu"
 
 #: lib/helpers.php:241
 msgid "Ještě jste nevyplnili formulář<br>:-("
-msgstr "Még nem töltötte ki az űrlapot ř<br> :-("
+msgstr "Még nem töltötte ki az űrlapot <br> :-("
 
 #: lib/helpers.php:242
 msgid "Je to už týden, co jsme vám poslali e-mail s&nbsp;formulářem. Sloužil pro dokončení registrace mezi <strong>Shoptet Partnery</strong>.<br><br>Bez něj to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme registraci dokončit."
-msgstr "Egy hét telt el azóta, hogy e-mail küldtünk ezzel  az űrlappal. A <strong>Shoptet Partnery</strong>.<br><br> -nél történő regisztráció enélkül nem fog menni. Próbáljuk meg újra, hogy befejezhessük a regisztrációt."
+msgstr "Egy hét telt el azóta, hogy e-mailt küldtünk ezzel  az űrlappal. A <strong>Shoptet Partnereknél</strong><br><br> történő regisztráció enélkül nem fog menni. Próbáljuk meg újra, hogy a végére érjünk a regisztrációnak."
 
 #: lib/helpers.php:248
 msgid "Vyplnit formulář"
@@ -1174,7 +1174,7 @@ msgstr "Értékelésére"
 
 #: lib/setup.php:194
 msgid "Teď už jen klikněte <strong style=\"%s\"><a href=\"%s\" target=\"_blank\" style=\"%s\">ZDE</a></strong> pro potvrzení a&nbsp;zveřejnění vašeho hodnocení.<br><br>Přejeme krásný den,<br>tým Shoptet"
-msgstr "Most már nincs más hátra, kattintson a <strong style = \"% s\"> <a href=\"%s\" target=\"_blank\" style=\"%s\"> ITT </a> </strong> gombra az értékelés megerősítéséhez és & nbsp; közzétételéhez . <br> <br> Kellemes napot kívánunk, a Shoptet csapata"
+msgstr "Most már nincs más hátra, kattintson a <strong style = \"%s\"> <a href=\"%s\" target=\"_blank\" style=\"%s\"> ITT </a> </strong> gombra az értékelés megerősítéséhez és & nbsp; közzétételéhez . <br> <br> Kellemes napot kívánunk, a Shoptet csapata"
 
 #: lib/setup.php:201
 msgid "Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s"
@@ -1428,7 +1428,7 @@ msgid "Hej hola!\n"
 "Mrkni na to :)"
 msgstr "Halihó!\n"
 "<br> <br>\n"
-"Az új partner-minősítés <a href=\"%s\" target=\"_blank\">% s </a> jóváhagyásra vár.\n"
+"Az új partner-minősítés <a href=\"%s\" target=\"_blank\">%s</a> jóváhagyásra vár.\n"
 "<br> <br>\n"
 "Vessen rá egy pillantást! :)"
 
