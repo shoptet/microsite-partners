@@ -27,7 +27,8 @@
  $args = array(
     'posts_per_page' => 3,
     'order' => 'DESC',
-	'post_type' => 'profesionalove',
+    'post_type' => 'profesionalove',
+    'post_status' => 'publish',
  );
  $newestPosts = Timber::get_posts($args);
  $context['newest_posts'] = $newestPosts;
