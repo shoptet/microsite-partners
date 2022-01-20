@@ -30,7 +30,7 @@ class RequestService
   static function registerPostStatus() {
     $args = [
       'label' => __( 'Expirováno', 'shp-partneri' ),
-      'public' => false,
+      'public' => true,
       'show_in_admin_all_list' => true,
       'show_in_admin_status_list' => true,
       'post_type' => [ RequestPost::POST_TYPE ],
