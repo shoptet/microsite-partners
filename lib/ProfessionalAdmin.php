@@ -47,6 +47,7 @@ class ProfessionalAdmin
     $price_currency = get_post_meta($post_id, 'price_currency', true);
     $price_vat_payer = get_post_meta($post_id, 'vat_payer', true);
     $price_text = get_post_meta($post_id, 'price_text', true);
+    $post_status = get_post_status($post_id);
     $publish_date = get_the_date('c', $post_id);
 
     return [
@@ -61,6 +62,7 @@ class ProfessionalAdmin
       $price_currency,
       $price_vat_payer,
       $price_text,
+      $post_status,
       $publish_date,
     ];
   }
@@ -80,6 +82,7 @@ class ProfessionalAdmin
       'price_currency',
       'price_vat_payer',
       'price_text',
+      'post_status',
       'publish date',
     ];
     fputcsv( $fp, $header );
@@ -90,7 +93,7 @@ class ProfessionalAdmin
     $args = [
       'post_type' => 'profesionalove',
       'posts_per_page' => $posts_per_page,
-      'post_status' => 'publish',
+      'post_status' => 'any',
       'fields' => 'ids',
       'no_found_rows' => true,
       'update_post_meta_cache' => false,
