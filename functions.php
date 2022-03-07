@@ -12,6 +12,7 @@ $includes = [
 	'lib/ProfessionalPost.php',
 	'lib/ContactForm.php',
 	'lib/AdminProfessionalList.php',
+	'lib/AdminMetaSearch.php',
 	'lib/TermSyncer.php',
 	'lib/RequestPost.php',
 	'lib/RequestArchive.php',
