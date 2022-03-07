@@ -86,7 +86,7 @@
 
         		{% if post.get_field('facebook') %}
               <li class="profile-socials-facebook">
-          		  <a href="{{ post.get_field('facebook') }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Facebooku', 'shp-partneri') }}">
+          		  <a href="{{ post.get_field('facebook')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Facebooku', 'shp-partneri') }}">
                   <svg data-src="{{ "facebook-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Facebook"></svg>
                 </a>
               </li>
@@ -94,7 +94,7 @@
 
         		{% if post.get_field('twitter') %}
               <li class="profile-socials-twitter">
-          		  <a href="{{ post.get_field('twitter') }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Twitteru', 'shp-partneri') }}">
+          		  <a href="{{ post.get_field('twitter')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Twitteru', 'shp-partneri') }}">
                   <svg data-src="{{ "twitter-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Twitter"></svg>
                 </a>
               </li>
@@ -102,7 +102,7 @@
 
         		{% if post.get_field('linkedin') %}
               <li class="profile-socials-linkedin">
-          		  <a href="{{ post.get_field('linkedin') }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na LinkedIn', 'shp-partneri') }}">
+          		  <a href="{{ post.get_field('linkedin')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na LinkedIn', 'shp-partneri') }}">
                   <svg data-src="{{ "linkedin-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="LinkedIn"></svg>
                 </a>
               </li>
@@ -110,7 +110,7 @@
 
                 {% if post.get_field('instagram') %}
               <li class="profile-socials-instagram">
-          		  <a href="{{ post.get_field('instagram') }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Instagramu">
+          		  <a href="{{ post.get_field('instagram')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Instagramu">
                   <svg data-src="{{ "instagram.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Instagram"></svg>
                 </a>
               </li>
