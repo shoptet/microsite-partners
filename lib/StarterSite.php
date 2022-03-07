@@ -71,6 +71,9 @@ class StarterSite extends TimberSite {
   }
 
   function load_styles() {
+    // Remove the Gutenberg CSS
+    wp_dequeue_style( 'wp-block-library' );
+
     /* Load styles and add a cache-breaking URL parameter */
 
     $fileName = '/assets/main.css';
