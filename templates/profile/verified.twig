@@ -1,12 +1,9 @@
 <span class="badge-hoder">
     {% if post.verifiedLevel == 'zlatý' %}
-        <img src="{{ "medal-shoptetrix-gold.png"|static_assets }}" alt="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" title="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="74px" width="350px" class="badge-verif mx-auto mx-lg-0 mb-4">
-        <span class="badge-text badge-text-gold"><span>{{ __( 'Zlatý Shoptet <br>partner', 'shp-partneri' ) }}</span></span>
+        <img src="{{ options.themeBadgesGoldImage.url }}" alt="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" title="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="74px" width="350px" class="badge-verif mx-auto mx-lg-0 mb-4">
     {% elseif post.verifiedLevel == 'stříbrný' %}
-        <img src="{{ "medal-shoptetrix-silver.png"|static_assets }}" alt="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" title="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="74px" width="350px" class="badge-verif mx-auto mx-lg-0 mb-4">
-        <span class="badge-text badge-text-silver"><span>{{ __( 'Stříbrný Shoptet <br>partner', 'shp-partneri' ) }}</span></span>
+        <img src="{{ options.themeBadgesSilverImage.url }}" alt="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" title="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="74px" width="350px" class="badge-verif mx-auto mx-lg-0 mb-4">
     {% else %}
-        <img src="{{ "medal-shoptetrix-bronze.png"|static_assets }}" alt="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" title="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="74px" width="350px" class="badge-verif mx-auto mx-lg-0 mb-4">
-        <span class="badge-text badge-text-bronze"><span>{{ __( 'Bronzový Shoptet <br>partner', 'shp-partneri' ) }}</span></span>
+        <img src="{{ options.themeBadgesBronzeImage.url }}" alt="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" title="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="74px" width="350px" class="badge-verif mx-auto mx-lg-0 mb-4">
     {% endif %}
 </span>

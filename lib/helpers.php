@@ -329,6 +329,10 @@ function get_regions_by_country( $post_type, $term ): array
       'name' => __( 'Slovensko', 'shp-partneri' ),
       'field' => 'field_5d3ebb6bc804b',
     ],
+    'hu' => [
+      'name' => __( 'Maďarsko', 'shp-partneri' ),
+      'field' => 'field_609d261ccf063',
+    ],
   ];
   $regions_by_country = [];
   foreach ( $countries as $country_code => $country ) {
@@ -388,4 +392,27 @@ function stop_the_insanity () {
 			$wp_object_cache->__remoteset();
 		}
 	}
+}
+
+function get_currencies (): array
+{
+  $locale = get_locale(); // cs_CZ, sk_SK, hu_HU
+  $currencies = [
+    'EUR' => '€',
+  ];
+  switch( $locale ) {
+    case 'cs_CZ':
+      $currencies = [
+        'CZK' => 'Kč',
+        'EUR' => '€',
+      ];
+      break;
+    case 'hu_HU':
+      $currencies = [
+        'HUF' => 'Ft',
+        'EUR' => '€',
+      ];
+      break;
+  }
+  return $currencies;
 }

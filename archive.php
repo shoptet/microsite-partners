@@ -31,9 +31,10 @@ $context['term_title'] = $termTitle;
 $context['posts'] = $posts = new Timber\PostQuery();
 $context['wp_title'] = $termTitle;
 $context['breadcrumbs'] = array(
-  $termTitle => $term->link );
+  $termTitle => $term->link
+);
 
-  $context['pagination'] = Timber::get_pagination(['mid_size'=>1]);
+$context['pagination'] = Timber::get_pagination(['mid_size'=>1]);
 
 $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $term->link :  $term->link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'] . '/';
 

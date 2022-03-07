@@ -71,7 +71,7 @@
     <div class="container">
         <div id="shp_navigation_wrapper" class="responsive-nav">
            <ul id="shp_navigation" class="visible-links">
-               <li class="has-dropdown shp_menu-item"><a href="/profesionalove/" class="shp_menu-item-link">{{ __( 'Profesionálové', 'shp-partneri' ) }}</a><span class="caret dropdown-toggle" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+               <li class="has-dropdown shp_menu-item"><a href="/{{ __( 'profesionalove', 'shp-partneri' ) }}/" class="shp_menu-item-link">{{ __( 'Profesionálové', 'shp-partneri' ) }}</a><span class="caret dropdown-toggle" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
                     <ul class="shp_navigation-submenu dropdown-menu dropdown-menu-right" aria-labelledby="categoriesDropdown">
                       {% for term in all_categories %}
                         <li class="shp_menu-item"><a href="{{ term.link }}" class="shp_menu-item-link">

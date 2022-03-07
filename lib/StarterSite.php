@@ -39,6 +39,8 @@ class StarterSite extends TimberSite {
     $context['request_posts_count'] = wp_count_posts( 'request' );
     $context['read_only_enabled'] = apply_filters( 'read_only_enabled', false );
     $context['footer'] = Shoptet\ShoptetExternal::get_footer();
+    $context['shoptet_url'] = Shoptet\ShoptetHelpers::get_shoptet_url();
+    $context['locale'] = get_locale();
     return $context;
   }
 
@@ -98,6 +100,9 @@ class StarterSite extends TimberSite {
         'contactCorrectEmailMessage' => __( 'Vyplňte prosím správný e-mail', 'shp-partneri' ),
         'contactFormSent' => __( 'Odesláno!', 'shp-partneri' ),
         'contactFormErrorMessage' => __( 'Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později.', 'shp-partneri' ),
+        'select2_placeholder' => __( 'Vyberte', 'shp-partneri' ),
+        'select2_searching' => __( 'Načítám...', 'shp-partneri' ),
+        'select2_loading_more' => __( 'Načítám další...', 'shp-partneri' ),
       ]
     );
 
