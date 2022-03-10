@@ -89,12 +89,12 @@ class ContactForm
     $options = get_fields('options');
     $context['title'] = __( 'Děkujeme', 'shp-partneri' );
     $context['subtitle'] = __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
-    if ( $options['onboarding_deactivate'] ) {
-      $context['text'] = $options['onboarding_deactivate_text'];
-      $context['text_size'] = 'small';
-    } else {
-      $context['text'] = __( 'Teď už zbývá jen poslední krok:', 'shp-partneri' );
-    }
+    $replace_pairs = [
+      '%form_url%' => $onboarding_url,
+    ];
+    $text = $options['onboarding']['contact_mail_text'];
+    $context['text'] = strtr( $text, $replace_pairs );
+    $context['text_size'] = 'small';
     $context['image'] = [
       'main' => 'shoptetrix-thumb-up-1.png',
       'complementary' => 'shoptetrix-thumb-up-2.png',
@@ -104,9 +104,8 @@ class ContactForm
       'title' => __( 'Vyplnit dotazník', 'shp-partneri' ),
       'link' => $onboarding_url,
     ];
-    $context['text_footer'] = sprintf( __( 'To proto, abychom od vás měli dostatek informací o vás a vaší práci a&nbsp;mohli tak partnerství potvrdit.<br><br>Na konkrétní <a href="%s" target="_blank" style="%s">podmínky partnerství</a> se můžete mrknout na našem webu.', 'shp-partneri' ), $options['themeCertificationPageUrl'], 'color:#21AFE5;text-decoration:underline;' );
     $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
-    $email_subject = __( 'Už zbývá jen poslední krok před zařazením mezi Shoptet partnery. Dokončete ho!', 'shp-partneri' );
+    $email_subject = $options['onboarding']['contact_mail_subject'];
     wp_mail(
       $this->email,
       $email_subject,

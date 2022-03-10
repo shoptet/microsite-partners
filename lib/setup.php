@@ -437,11 +437,7 @@ add_action( 'init' , function () {
 		$context['message_type'] = 'success';
 		$context['title'] = __( 'Super!', 'shp-partneri' );
 		$context['subtitle'] = __( 'Váš formulář byl úspěšně odeslaný.', 'shp-partneri' );
-		if ( $options['onboarding_deactivate'] ) {
-      $context['text'] = '<p>' . $options['onboarding_deactivate_submitted'] . '</p>';
-    } else {
-			$context['text'] = '<p>' . __( 'Teď už jen <strong>vyčkejte</strong>. Co nevidět se vám ozve náš Partner manažer a případnou spolupráci společně doladíte.', 'shp-partneri' ) . '</p>';
-    }
+		$context['text'] = '<p>' . $options['onboarding']['submitted_text'] . '</p>';
 		$context['footer_image'] = 'envelope';
 		Timber::render( 'templates/message/message.twig', $context );
 		die();
