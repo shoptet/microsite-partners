@@ -6,14 +6,7 @@
 {% endblock %}
 
 {% block header %}
-  <div class="container text-center py-4">
-    <img
-      class="img-fluid"
-      src="{{ logo_url ?: "shoptet-logo.svg"|static_assets }}"
-      alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
-      width="280"
-    >
-  </div>
+  {% include 'header-blank.twig' %}
 {% endblock %}
 
 {% block content %}
