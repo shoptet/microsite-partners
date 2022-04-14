@@ -1,0 +1,14 @@
+<div class="py-5 {{ class }}">
+  <div class="container py-md-5">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-5 mb-5 mb-md-0 {% if reverse %}order-md-2{% endif %}">
+        <img class="img-fluid" src="{{ section.image.sizes.large }}" alt="{{ section.image.alt }}" />
+      </div>
+      <div class="col-12 col-md-6 {% if reverse %}order-md-1{% endif %}">
+        <div class="section-content">
+          {{ section.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

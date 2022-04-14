@@ -1,0 +1,29 @@
+<div class="py-5 border-bottom bg-blue-light">
+  <div class="container py-md-5">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-12 col-lg-6 mb-5 mb-lg-0">
+        <div class="mb-3">
+          {{ post.get_field('contact').content }}
+        </div>
+        {{ function('do_shortcode', post.get_field('contact').form) }}
+        <p class="mb-0 small">{{ __( 'Vložením e-mailu souhlasíte s <a href="https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/" target="_blank">podmínkami ochrany osobních údajů</a>', 'shp-partneri' ) }}</p>
+      </div>
+      <div class="col-12 col-lg-5">
+        {% for testimonial in post.get_field('testimonials') %}
+          <div class="text-center">
+            <p class="fs-130 fs-md-170 pb-2 mb-4">„{{ testimonial.text }}“</p>
+            <img
+              class="d-inline-block rounded-circle mb-2"
+              src="{{ testimonial.author.image.sizes.thumbnail }}"
+              alt="{{ testimonial.author.image.alt }}"
+              width="65"
+              height="65"
+            />
+            <div class="lh-125"><strong>{{ testimonial.author.name }}</strong></div>
+            <div class="lh-125">{{ testimonial.author.occupation }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

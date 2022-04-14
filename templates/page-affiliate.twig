@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+  {% for section in post.get_field('sections') %}
+
+		{% include 'section.twig' with {
+      'class': (not loop.last ? 'border-bottom' : ''),
+      'reverse': (loop.index is odd and not loop.last),
+    } %}
+    
+    {% if loop.index == 2 %}
+      {% include 'affiliate-contact.twig' %}
+    {% endif %}
+    
+  {% endfor %}
+
+{% endblock %}

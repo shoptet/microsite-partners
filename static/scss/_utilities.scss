@@ -56,6 +56,14 @@
 .fs-115 { font-size: 115% }
 .fs-120 { font-size: 120% }
 .fs-130 { font-size: 130% }
+.fs-150 { font-size: 150% }
+.fs-170 { font-size: 170% }
+
+.fs-md-170 {
+  @include media-breakpoint-up(md) {
+    font-size: 170%;
+  }
+}
 
 .lh-1 { line-height: 1 }
 .lh-125 { line-height: 1.25 }
