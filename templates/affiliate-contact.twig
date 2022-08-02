@@ -5,7 +5,12 @@
         <div class="mb-3">
           {{ post.get_field('contact').content }}
         </div>
-        {{ function('do_shortcode', post.get_field('contact').form) }}
+        <form class="affiliate-contact-form" action="https://shoptet.us8.list-manage.com/subscribe/post" method="POST" target="_blank">
+          <input type="hidden" name="u" value="ad257d2534203668a666d07ff">
+          <input type="hidden" name="id" value="ec96fd1ea6">
+          <input type="email" name="MERGE0" class="form-control form-control-lg" placeholder="{{ __( 'Váš e-mail', 'shp-partneri' ) }}">
+          <input type="submit" class="btn btn-lg btn-primary" value="Odeslat">
+        </form>
         <p class="mb-0 small">{{ __( 'Vložením e-mailu souhlasíte s <a href="https://www.shoptet.cz/podminky-ochrany-osobnich-udaju/" target="_blank">podmínkami ochrany osobních údajů</a>', 'shp-partneri' ) }}</p>
       </div>
       <div class="col-12 col-lg-5">

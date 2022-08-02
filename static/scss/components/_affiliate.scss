@@ -2,37 +2,14 @@
   display: flex;
   margin-bottom: 0.5rem;
 
-  .wpcf7-form-control-wrap {
-    flex: 1 1 auto;
-
-    input {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      border-right: 0;
-    }
+  .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
   }
 
   .btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-
-  .wpcf7-spinner {
-    display: none;
-  }
-
-  .wpcf7-not-valid-tip {
-    display: none;
-  }
-
-  + .wpcf7-response-output {
-    margin: 0 0 1rem 0 !important;
-  }
 }
-
-.wpcf7-form.submitting {
-  .affiliate-contact-form {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-} 

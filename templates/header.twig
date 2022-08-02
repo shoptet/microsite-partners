@@ -81,7 +81,17 @@
                     </ul>
                 </li>
                 {% for item in header_menu.items %}
-                  <li class="active shp_menu-item"><a href="{{ item.link }}" class="shp_menu-item-link">{{ item.title }}</a></li>
+									<li class="{% if item.get_children %}has-dropdown{% endif %} shp_menu-item"><a href="{{ item.link }}" class="shp_menu-item-link">{{ item.title }}</a>{% if item.get_children %}<span class="caret dropdown-toggle" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>{% endif %}
+											{% if item.get_children %}
+												<ul class="shp_navigation-submenu dropdown-menu dropdown-menu-right" aria-labelledby="categoriesDropdown">
+													{% for item in item.get_children %}
+														<li class="shp_menu-item"><a href="{{ item.link }}" class="shp_menu-item-link">
+															{{ item.title }}
+														</a></li>
+													{% endfor %}
+												</ul>
+											{% endif %}
+									</li>
                 {% endfor %}
             </ul>
         </div>
