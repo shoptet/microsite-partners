@@ -1,0 +1,22 @@
+<blockquote class="row-reference-blockquote">
+
+  <div>
+    {{ reference.text }}
+    <footer>
+      {{ reference.name }}{% if reference.position or reference.url %},{% endif %}
+      {% if reference.position %}
+        {{ reference.position }}{% if reference.url %},{% endif %}
+      {% endif %}
+      {% if reference.url %}
+        <a href="{{ reference.url }}" target="_blank">{{ reference.url|display_url }}</a>
+      {% endif %}
+    </footer>
+  </div>
+
+  <img
+    class="row-reference-blockquote-image"
+    src="{{ reference.image.sizes.thumbnail }}"
+    alt="{{ reference.name }}"
+  >
+
+</blockquote>

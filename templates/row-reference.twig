@@ -1,30 +1,22 @@
-{% if options.themeReferenceShowHomepage %}
+{% if options.themeReferenceShowHomepage and options.themeReferences|length > 0 %}
   <div class="row-reference">
     <div class="container">
 
-      <blockquote class="row-reference-blockquote">
-
-        {{ options.themeReferenceText }}
-
-        <footer>
-          {{ options.themeReferenceName }}{% if options.themeReferencePosition or options.themeReferenceUrl %},{% endif %}
-
-          {% if options.themeReferencePosition %}
-            {{ options.themeReferencePosition }}{% if options.themeReferenceUrl %},{% endif %}
-          {% endif %}
-
-          {% if options.themeReferenceUrl %}
-            <a href="{{ options.themeReferenceUrl }}" target="_blank">{{ options.themeReferenceUrl|display_url }}</a>
-          {% endif %}
-        </footer>
-
-        <img
-          class="row-reference-blockquote-image"
-          src="{{ options.themeReferenceImage.sizes.thumbnail }}"
-          alt="{{ options.themeReferenceName }}"
-        >
-
-      </blockquote>
+      {% if options.themeReferences|length > 1 %}
+        <div class="splide">
+          <div class="splide__track">
+            <div class="splide__list">
+              {% for reference in options.themeReferences %}
+                <div class="splide__slide">
+                  {% include 'reference.twig' %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        {% include 'reference.twig' with {reference:options.themeReferences.0 } %}
+      {% endif %}
 
     </div>
   </div>

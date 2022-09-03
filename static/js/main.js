@@ -56,11 +56,19 @@ import { initContactMessage } from './contact-message';
 import { initRecaptchaRequired } from './recaptcha-required';
 import { initArchiveFilter } from './archive-filter';
 
+import Splide from '@splidejs/splide';
+
 $(function () {
 
   initContactMessage();
   initRecaptchaRequired();
   initArchiveFilter();
+
+  var splideFull = new Splide('.splide', {
+    type: 'loop',
+    pagination: false,
+  });
+  splideFull.mount();
 
   $.fn.shpResponsiveNavigation = function() {
     return this.each(function() {
