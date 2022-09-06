@@ -64,11 +64,13 @@ $(function () {
   initRecaptchaRequired();
   initArchiveFilter();
 
-  var splideFull = new Splide('.splide', {
-    type: 'loop',
-    pagination: false,
-  });
-  splideFull.mount();
+  if (document.querySelector('.splide')) {
+    var splideFull = new Splide('.splide', {
+      type: 'loop',
+      pagination: false,
+    });
+    splideFull.mount();
+  }
 
   $.fn.shpResponsiveNavigation = function() {
     return this.each(function() {
