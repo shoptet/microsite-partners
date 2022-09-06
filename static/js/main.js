@@ -68,6 +68,8 @@ $(function () {
     var splideFull = new Splide('.splide', {
       type: 'loop',
       pagination: false,
+      autoplay: true,
+      interval: 5000,
     });
     splideFull.mount();
   }
