@@ -35,6 +35,7 @@ import '../images/shoptet-partneri-logo.svg';
 import '../images/shoptet-logo.svg';
 import '../images/badge.svg';
 import '../images/profile-cards.svg';
+import '../images/badge-premium.svg';
 
 // Icons
 import '../images/icon-ic.svg';

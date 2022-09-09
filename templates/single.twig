@@ -57,6 +57,10 @@
 							{% endif %}
 						{% endif %}
 
+						<div class="text-center">
+      				<img class="mb-4" src="{{ "badge-premium.svg"|static_assets }}" alt="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" title="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="150px" width="150px">
+						</div>
+
 						{% include 'profile/contact.twig' %}
 
 						{% if post.get_field('recommendations') is not empty %}

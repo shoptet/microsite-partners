@@ -8,6 +8,7 @@
 
   {% if not options.hideBadges %}
     <div class="profile-thumbnail-badge">
+      <img src="{{ "badge-premium.svg"|static_assets }}" alt="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" title="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="30px" width="30px">
       <img
           {% if post.verifiedLevel == 'zlatý' %}
               src="{{ "medal-gold.png"|static_assets }}" alt="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" title="{{ __( 'Zlatý partner', 'shp-partneri' ) }}"
@@ -16,7 +17,7 @@
           {% else %}
               src="{{ "medal-bronze.png"|static_assets }}" alt="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" title="{{ __( 'Bronzový partner', 'shp-partneri' ) }}"
           {% endif %}
-      data-toggle="tooltip" height="30px" width="30px" itemprop="image">
+      data-toggle="tooltip" height="30px" width="30px">
     </div>
   {% endif %}
 
