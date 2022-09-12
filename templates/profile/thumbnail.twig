@@ -6,20 +6,28 @@
   itemtype="http://schema.org/Organization"
 >
 
-  {% if not options.hideBadges %}
-    <div class="profile-thumbnail-badge">
-      <img src="{{ "badge-premium.svg"|static_assets }}" alt="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" title="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="30px" width="30px">
-      <img
-          {% if post.verifiedLevel == 'zlatý' %}
+  <div class="profile-thumbnail-badge">
+    <ul class="list-inline">
+      {% if post.get_field('isPremiumPartner') is not empty %}
+        <li class="list-inline-item">
+          <img src="{{ "badge-premium.svg"|static_assets }}" alt="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" title="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="30px" width="30px">
+        </li>
+      {% endif %}
+      {% if not options.hideBadges %}
+        <li class="list-inline-item">
+          <img
+            {% if post.verifiedLevel == 'zlatý' %}
               src="{{ "medal-gold.png"|static_assets }}" alt="{{ __( 'Zlatý partner', 'shp-partneri' ) }}" title="{{ __( 'Zlatý partner', 'shp-partneri' ) }}"
-          {% elseif post.verifiedLevel == 'stříbrný' %}
+            {% elseif post.verifiedLevel == 'stříbrný' %}
               src="{{ "medal-silver.png"|static_assets }}" alt="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}" title="{{ __( 'Stříbrný partner', 'shp-partneri' ) }}"
-          {% else %}
+            {% else %}
               src="{{ "medal-bronze.png"|static_assets }}" alt="{{ __( 'Bronzový partner', 'shp-partneri' ) }}" title="{{ __( 'Bronzový partner', 'shp-partneri' ) }}"
-          {% endif %}
-      data-toggle="tooltip" height="30px" width="30px">
-    </div>
-  {% endif %}
+            {% endif %}
+          data-toggle="tooltip" height="30px" width="30px">
+        </li>
+      {% endif %}
+    </ul>
+  </div>
 
 
   <div class="profile-thumbnail-wrapper">

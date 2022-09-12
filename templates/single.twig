@@ -32,6 +32,12 @@
 					</div>
 				{% endif %}
 
+				{% if post.get_field('isPremiumPartner') is not empty %}
+					<div class="d-lg-none">
+						{% include 'profile/badge-premium.twig' %}
+					</div>
+				{% endif %}
+
 				<div class="row">
 					<div class="col-lg-7 col-xl-8">
 
@@ -57,9 +63,11 @@
 							{% endif %}
 						{% endif %}
 
-						<div class="text-center">
-      				<img class="mb-4" src="{{ "badge-premium.svg"|static_assets }}" alt="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" title="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}" data-toggle="tooltip" height="150px" width="150px">
-						</div>
+						{% if post.get_field('isPremiumPartner') is not empty %}
+							<div class="d-none d-lg-block">
+								{% include 'profile/badge-premium.twig' %}
+							</div>
+						{% endif %}
 
 						{% include 'profile/contact.twig' %}
 
