@@ -8,14 +8,18 @@
             <div class="splide__list">
               {% for reference in options.themeReferences %}
                 <div class="splide__slide">
-                  {% include 'reference.twig' %}
+                  <div class="row-reference-slide">
+                    {% include 'reference.twig' %}
+                  </div>
                 </div>
               {% endfor %}
             </div>
           </div>
         </div>
       {% else %}
-        {% include 'reference.twig' with {reference:options.themeReferences.0 } %}
+        <div class="row-reference-slide">
+          {% include 'reference.twig' with {reference:options.themeReferences.0 } %}
+        </div>
       {% endif %}
 
     </div>
