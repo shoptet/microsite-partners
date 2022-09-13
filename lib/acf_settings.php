@@ -787,6 +787,22 @@ acf_add_local_field_group(array (
 			'append' => '',
 			'maxlength' => '',
 		),
+		array (
+			'key' => 'field_59f00330a221a',
+			'label' => __( 'Shoptet Premium URL', 'shp-partneri' ),
+			'name' => 'shoptetPremiumUrl',
+			'type' => 'url',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+		),
 		array(
 			'key' => 'field_609d3a81981de',
 			'label' => __( 'Stránka s certifikací', 'shp-partneri' ),

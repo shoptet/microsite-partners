@@ -1,4 +1,4 @@
-<div class="mb-4 text-center">
+{% set image %}
   <img
     src="{{ "badge-premium-text.svg"|static_assets }}"
     alt="{{ __( 'Shoptet Premium partner', 'shp-partneri' ) }}"
@@ -7,4 +7,14 @@
     height="150px"
     width="150px"
   >
+{% endset %}
+
+<div class="mb-4 text-center">
+  {% if options.shoptetPremiumUrl %}
+    <a href="{{ options.shoptetPremiumUrl }}" target="_blank">
+      {{ image }}
+    </a>
+  {% else %}
+    {{ image }}
+  {% endif %}
 </div>
