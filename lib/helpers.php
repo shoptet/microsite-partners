@@ -350,6 +350,28 @@ function get_regions_by_country( $post_type, $term ): array
   return $regions_by_country;
 }
 
+function get_region_name_by_id ($region_id): string
+{
+  $country_fields = [
+    'field_5d3ebb18c804a',
+    'field_5d3ebb6bc804b',
+    'field_609d261ccf063',
+  ];
+  $regions = [];
+  foreach ( $country_fields as $field ) {
+    $regions_in_country = get_field_object( $field )[ 'choices' ];
+    $regions = array_merge($regions, $regions_in_country);
+  }
+  $region_name = '';
+  foreach ( $regions as $id => $name ) {
+    if ($id == $region_id) {
+      $region_name = $name;
+      break;
+    }
+  }
+  return $region_name;
+}
+
 function get_custom_logo_url (): string
 {
   if ( ! has_custom_logo() ) return '';

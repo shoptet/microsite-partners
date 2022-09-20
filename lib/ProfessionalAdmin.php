@@ -38,9 +38,21 @@ class ProfessionalAdmin
     $name = get_the_title($post_id);
     $email = get_post_meta($post_id, 'emailAddress', true);
     $url = get_post_meta($post_id, 'url', true);
+    $phone = get_post_meta($post_id, 'phoneNumber', true);
+    $cin = get_post_meta($post_id, 'cin', true);
+    $tin = get_post_meta($post_id, 'tin', true);
+    $premium_partner = get_post_meta($post_id, 'isPremiumPartner', true);
+    $verified = get_post_meta($post_id, 'isVerified', true);
     $badge = get_post_meta($post_id, 'verifiedLevel', true);
     $partner_manager = get_post_meta($post_id, 'partnerManager', true);
     $country = get_post_meta($post_id, 'country', true);
+    $region = get_region_name_by_id(get_post_meta($post_id, 'region', true));
+    $facebook = get_post_meta($post_id, 'facebook', true);
+    $twitter = get_post_meta($post_id, 'twitter', true);
+    $instagram = get_post_meta($post_id, 'instagram', true);
+    $linkedin = get_post_meta($post_id, 'linkedin', true);
+    $description = get_post_meta($post_id, 'description', true);
+    $benefit = get_post_meta($post_id, 'benefit', true);
     $categories = wp_get_post_terms($post_id, 'category_professionals', ['fields' => 'names']);
     $categories = implode(',', $categories);
     $price_per_hour = get_post_meta($post_id, 'price_per_hour_display', true);
@@ -54,9 +66,21 @@ class ProfessionalAdmin
       $name,
       $email,
       $url,
+      $phone,
+      $cin,
+      $tin,
+      $premium_partner,
+      $verified,
       $badge,
       $partner_manager,
       $country,
+      $region,
+      $facebook,
+      $twitter,
+      $instagram,
+      $linkedin,
+      $description,
+      $benefit,
       $categories,
       $price_per_hour,
       $price_currency,
@@ -74,9 +98,21 @@ class ProfessionalAdmin
       'partner name',
       'e-mail',
       'url',
+      'phone',
+      'cin',
+      'tin',
+      'premium_partner',
+      'verified',
       'badge',
       'partner manager',
       'country',
+      'region',
+      'facebook',
+      'twitter',
+      'instagram',
+      'linkedin',
+      'description',
+      'benefit',
       'categories',
       'price_per_hour',
       'price_currency',
