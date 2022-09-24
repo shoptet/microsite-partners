@@ -777,11 +777,11 @@ msgstr "Telefonszám"
 
 #: lib/acf_settings.php:2235
 msgid "IČO"
-msgstr "Céges azonosítószám"
+msgstr "Adószám"
 
 #: lib/acf_settings.php:2254 templates/profile/main.twig:65
 msgid "DIČ"
-msgstr "Adószám"
+msgstr "Céges azonosítószám"
 
 #: lib/acf_settings.php:2273
 msgid "Země"
