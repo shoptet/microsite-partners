@@ -650,6 +650,30 @@ add_filter( 'shoptet_post_count_query_args', function($query_args) {
 	];
 } );
 
+add_action( 'rest_api_init', function() {
+	register_rest_route( 'post-count-api/v2', '/count', [
+		'methods' => 'GET',
+		'permission_callback' => '__return_true',
+		'callback' => function() {
+			$country = get_country_code();
+			$items = [];
+			$query_args = [];
+			$query_args['partneriRequestsCount'.$country] = [
+				'post_type' => 'request',
+				'post_status' => [ 'publish', 'expired' ],
+			];
+			$query_args['partneriPartnersCount'.$country] = [
+				'post_type' => 'profesionalove',
+				'post_status' => 'publish',
+			];
+			foreach( $query_args as $export_key_name => $args ) {
+				$items[ $export_key_name ] = Shoptet\ShoptetPostCount::get_posts_count( $args );
+			}
+			return $items;
+		},
+	] );
+} );
+
 /**
  * Handle filtering and ordering wholesaler archive and category
  */

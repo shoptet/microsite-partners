@@ -430,3 +430,10 @@ function get_currencies (): array
   }
   return $currencies;
 }
+
+function get_country_code (): string
+{
+  $locale = explode('_', get_locale());
+  $country_code = ucfirst(strtolower(array_pop($locale)));
+  return $country_code;
+}
