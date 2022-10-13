@@ -1523,7 +1523,7 @@ msgstr "Jelentkezési lap"
 
 #: lib/setup.php:456
 msgid "Odeslat medailonek"
-msgstr "Küldj egy medált"
+msgstr "Küldés"
 
 #: lib/setup.php:547
 msgid "Filtrovat podle data"
