@@ -2,15 +2,60 @@
 
 {% block content %}
 
-	<div class="hero">
-		<div class="container">
-			<div class="hero-bg-img">
-				<p class="hero-lead h2 mb-0">
-					{{ hero_text }}
-				</p>
+	{% if locale == 'hu_HU' %}
+		<div class="hero-alt">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-7 align-self-center">
+						<div class="hero-alt-body">
+							<h1>Potřebujete pomoct s e‑shopom?</h1>
+							<p>Lorem ipsum dolor sit amet, <strong>32 consectetuer</strong> adipiscing elit. Sed ac dolor sit amet purus malesuada congue. Vestibulum fermentum tortor id mi.</p>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-5">
+						<div class="hero-alt-img">
+							<img src="https://images.unsplash.com/photo-1668741229182-cf33eaad5798?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80" alt="">
+							<div class="hero-alt-img-desc"><a href="#">Daniel Špaček, <em>Fotograf</em></a></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+		<div class="bg-blue-light py-5">
+			<div class="container">
+				<div class="text-center text-md-left">
+					<div class="row align-items-center justify-content-between">
+						<div class="col-12 col-md-8 mb-4 mb-md-0">
+							<p class="fs-170 fs-md-250 mb-0">Naši partneři se o vás vždy profesionálně postarají.</p>
+						</div>
+						<div class="col-12 col-md-4">
+							<div class="text-center">
+								<img
+									class="d-inline-block rounded-circle mb-3"
+									src="https://partneri.shoptet.sk/wp-content/uploads/2022/04/polgari_stefan-300x300.jpg"
+									alt=""
+									width="100"
+									height="100"
+								/>
+								<div class="lh-125"><strong>Štefan Polgári</strong></div>
+								<div class="lh-125">Co-founder, <a href="https://www.dognet.sk/" target="_blank">dognet.sk</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div class="hero">
+			<div class="container">
+				<div class="hero-bg-img">
+					<p class="hero-lead h2 mb-0">
+						{{ hero_text }}
+					</p>
+				</div>
+			</div>
+		</div>
+	{% endif %}
 
 	{% if show_category_professionals %}
 		<div class="row-profile-type row-profile-type-professionals">

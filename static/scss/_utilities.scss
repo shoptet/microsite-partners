@@ -65,6 +65,18 @@
   }
 }
 
+.fs-md-200 {
+  @include media-breakpoint-up(md) {
+    font-size: 200%;
+  }
+}
+
+.fs-md-250 {
+  @include media-breakpoint-up(md) {
+    font-size: 250%;
+  }
+}
+
 .lh-1 { line-height: 1 }
 .lh-125 { line-height: 1.25 }
 

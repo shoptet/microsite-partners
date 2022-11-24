@@ -79,6 +79,9 @@
 		}(document, 'script', 'facebook-jssdk'));</script>
 
 		{% block header %}
+			{% if locale == 'hu_HU' %}
+				{% include 'go-to-shoptet.twig' %}
+			{% endif %}
 			{% include 'header.twig' %}
 		{% endblock %}
 

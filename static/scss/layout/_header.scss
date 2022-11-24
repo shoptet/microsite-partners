@@ -9,8 +9,33 @@
   }
 }
 
+.header-logo-group {
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+  }
+}
+
+.header-logo-group-desc {
+  max-width: 20rem;
+  margin-top: 0.75em;
+  margin-bottom: 0;
+  font-size: 80%;
+  line-height: 1.2;
+  color: $gray-700;
+
+  @include media-breakpoint-down(sm) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include media-breakpoint-up(sm) {
+    font-size: 85%;
+  }
+}
+
 .header-logo {
-  height: rem-calc(37px);
+  display: block;
+  height: rem-calc(40px);
 
   @include media-breakpoint-up(sm) {
     height: rem-calc(55px);
