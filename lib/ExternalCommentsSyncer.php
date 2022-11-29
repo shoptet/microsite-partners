@@ -21,8 +21,17 @@ class ExternalCommentsSyncer
     ] );
   }
 
+  static function is_enable() {
+    return (
+      !empty(EXTERNAL_COMMENTS_SYNCER_ENABLE) &&
+      !empty(EXTERNAL_COMMENTS_SYNCER_URL_BASE) &&
+      !empty(EXTERNAL_COMMENTS_SYNCER_TOKEN) &&
+      EXTERNAL_COMMENTS_SYNCER_ENABLE
+    );
+  }
+
   static function rest_endpoint_callback($data) {
-    if (!EXTERNAL_COMMENTS_SYNCER_ENABLE) {
+    if (!self::is_enable()) {
       wp_send_json_error(null, 404);
     }
     if ($data['token'] != EXTERNAL_COMMENTS_SYNCER_TOKEN) {
@@ -75,7 +84,7 @@ class ExternalCommentsSyncer
   }
 
   static function sync_all() {
-    if (!EXTERNAL_COMMENTS_SYNCER_ENABLE) {
+    if (!self::is_enable()) {
       return;
     }
     $query = new WP_Query([
