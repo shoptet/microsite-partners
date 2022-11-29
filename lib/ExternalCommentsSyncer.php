@@ -23,9 +23,9 @@ class ExternalCommentsSyncer
 
   static function is_enable() {
     return (
-      !empty(EXTERNAL_COMMENTS_SYNCER_ENABLE) &&
-      !empty(EXTERNAL_COMMENTS_SYNCER_URL_BASE) &&
-      !empty(EXTERNAL_COMMENTS_SYNCER_TOKEN) &&
+      defined('EXTERNAL_COMMENTS_SYNCER_ENABLE') &&
+      defined('EXTERNAL_COMMENTS_SYNCER_URL_BASE') &&
+      defined('EXTERNAL_COMMENTS_SYNCER_TOKEN') &&
       EXTERNAL_COMMENTS_SYNCER_ENABLE
     );
   }
