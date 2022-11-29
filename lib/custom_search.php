@@ -70,6 +70,7 @@ function search_filter($query) {
 	if (!is_admin() && is_search() && $query->is_main_query()) {
 		// Enlarge number of post in search results
 		$query->set('posts_per_page', 12);
+		$query->set('post_status', 'publish');
 		// Include only custom posts
 		$query->set('post_type', array(
 			'profesionalove',
