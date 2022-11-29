@@ -9,7 +9,7 @@ class ExternalCommentsSyncer
     add_action('external_comments_syncer/sync_all', [ get_called_class(), 'sync_all']);
 
     if (!wp_next_scheduled('external_comments_syncer/sync_all')) {
-      wp_schedule_event(time(), 'hourly', 'external_comments_syncer/sync_all');
+      wp_schedule_event(time(), 'daily', 'external_comments_syncer/sync_all');
     }
   }
 
@@ -22,6 +22,9 @@ class ExternalCommentsSyncer
   }
 
   static function rest_endpoint_callback($data) {
+    if (!EXTERNAL_COMMENTS_SYNCER_ENABLE) {
+      wp_send_json_error(null, 404);
+    }
     if ($data['token'] != EXTERNAL_COMMENTS_SYNCER_TOKEN) {
       wp_send_json_error(null, 401);
     }
@@ -72,6 +75,9 @@ class ExternalCommentsSyncer
   }
 
   static function sync_all() {
+    if (!EXTERNAL_COMMENTS_SYNCER_ENABLE) {
+      return;
+    }
     $query = new WP_Query([
       'post_type' => ProfessionalPost::POST_TYPE,
       'posts_per_page' => -1,
@@ -87,24 +93,24 @@ class ExternalCommentsSyncer
       if (!is_array($external_comments)) {
         continue;
       }
-      $comments = get_comments([
-        'post_id' => $post_id,
-        'status' => 'approve',
-        'meta_key' => 'external_comment_id',
-        'meta_compare' => 'EXISTS',
-      ]);
-      if (!is_array($comments)) {
-        continue;
-      }
       foreach ($external_comments as $comment) {
         self::create_comment($post_id, $comment);
       }
-      stop_the_insanity();
-      foreach ($comments as $comment) {
-        if (!self::find_comment($comment, $external_comments)) {
-          wp_delete_comment($comment, false);
-        }
-      }
+      // stop_the_insanity();
+      // $comments = get_comments([
+      //   'post_id' => $post_id,
+      //   'status' => 'approve',
+      //   'meta_key' => 'external_comment_id',
+      //   'meta_compare' => 'EXISTS',
+      // ]);
+      // if (!is_array($comments)) {
+      //   continue;
+      // }
+      // foreach ($comments as $comment) {
+      //   if (!self::find_comment($comment, $external_comments)) {
+      //     wp_delete_comment($comment, false);
+      //   }
+      // }
     }
   }
 
