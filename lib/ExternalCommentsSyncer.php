@@ -105,6 +105,8 @@ class ExternalCommentsSyncer
       foreach ($external_comments as $comment) {
         self::create_comment($post_id, $comment);
       }
+      // Deleting comments
+      // TODO: Test it
       // stop_the_insanity();
       // $comments = get_comments([
       //   'post_id' => $post_id,
