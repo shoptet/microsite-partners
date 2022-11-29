@@ -65,6 +65,7 @@
   },
   "scripts": {
     "build-assets": "node ./node_modules/webpack/bin/webpack.js -p",
+    "clean": "rm -rf ./assets/*",
     "start": "node ./node_modules/webpack/bin/webpack.js -d --watch"
   }
 }
