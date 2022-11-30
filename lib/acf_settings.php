@@ -864,6 +864,27 @@ acf_add_local_field_group(array (
 			'allow_archives' => 0,
 			'multiple' => 0,
 		),
+		array(
+			'key' => 'field_609a3eb73d5c4',
+			'label' => __( 'Stránka kontaktu', 'shp-partneri' ),
+			'name' => 'themeContactPageUrl',
+			'type' => 'page_link',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'post_type' => array(
+				0 => 'page',
+			),
+			'taxonomy' => '',
+			'allow_null' => 0,
+			'allow_archives' => 0,
+			'multiple' => 0,
+		),
 	),
 	'location' => array (
 		array (
