@@ -747,3 +747,10 @@ add_action( 'rest_api_init', function () {
 	endif;
 
 } );
+
+// Purge all cache after post is saved
+add_action( 'save_post', function () {
+	if (function_exists('w3tc_flush_all')) {
+		w3tc_flush_all();
+	}
+});
