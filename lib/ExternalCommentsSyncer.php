@@ -94,7 +94,7 @@ class ExternalCommentsSyncer
       'fields' => 'ids',
     ]);
     foreach ($query->posts as $post_id) {
-      $email = get_post_meta($post_id, 'emailAddress', true);
+      $email = get_post_meta($post_id, 'emailForSync', true) ?: get_post_meta($post_id, 'emailAddress', true);
       if (empty($email)) {
         continue;
       }
