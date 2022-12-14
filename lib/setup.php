@@ -354,6 +354,8 @@ add_filter( 'manage_comments_custom_column', function ( $column, $comment_id ) {
 		if ( $authenticated = get_comment_meta( $comment_id, 'authenticated', true ) ) {
 			echo '<strong style="color:#006505">✔ ' . __( 'Ověřeno', 'shp-partneri' ) . '</strong><br>';
 			echo '<small>' . date( 'j. n. Y (G:i)', $authenticated ) . '</small>';
+		} else if (get_comment_meta( $comment_id, 'external_comment_id', true )) {
+			echo '<span style="color:#888">Synced with external site</span>';
 		} else {
 			echo '<span style="color:#a00">' . __( 'Neověřeno', 'shp-partneri' ) . '</span>';
 		}
@@ -608,6 +610,8 @@ new StarterSite();
 
 TermSyncer::init();
 
+ExternalCommentsSyncer::init();
+
 RequestNotifier::init();
 
 RequestForm::init();
@@ -743,3 +747,10 @@ add_action( 'rest_api_init', function () {
 	endif;
 
 } );
+
+// Purge all cache after post is saved
+add_action( 'save_post', function () {
+	if (function_exists('w3tc_flush_all')) {
+		w3tc_flush_all();
+	}
+});

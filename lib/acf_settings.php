@@ -864,6 +864,27 @@ acf_add_local_field_group(array (
 			'allow_archives' => 0,
 			'multiple' => 0,
 		),
+		array(
+			'key' => 'field_609a3eb73d5c4',
+			'label' => __( 'Stránka kontaktu', 'shp-partneri' ),
+			'name' => 'themeContactPageUrl',
+			'type' => 'page_link',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'post_type' => array(
+				0 => 'page',
+			),
+			'taxonomy' => '',
+			'allow_null' => 0,
+			'allow_archives' => 0,
+			'multiple' => 0,
+		),
 	),
 	'location' => array (
 		array (
@@ -2036,6 +2057,24 @@ acf_add_local_field_group(array(
 			'type' => 'email',
 			'instructions' => '',
 			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '@',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_59ca22157537a',
+			'label' => 'E-mail to sync comments',
+			'name' => 'emailForSync',
+			'type' => 'email',
+			'instructions' => 'Enter the email address of the partner that is used on the website with which the comments are to be synchronized. If not entered, the partner\'s default email address will be used.',
+			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
 				'width' => '',
