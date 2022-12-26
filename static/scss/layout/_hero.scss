@@ -43,36 +43,34 @@
 }
 
 .hero-alt {
-  padding: 3rem 0;
+  padding: 4rem 0;
 
   @include media-breakpoint-up(md) {
-    padding: 3rem 0;
+    padding: 4rem 0;
   }
 }
 
 .hero-alt-body {
-
-  @include media-breakpoint-up(lg) {
-    padding-right: 4rem;
-  }
-
   h1 {
     margin-bottom: 2rem;
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-size: 3rem;
+    font-weight: 300;
+    color: $blue;
 
     @include media-breakpoint-up(md) {
-      font-size: 3.3rem;
+      font-size: 4rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 4rem;
     }
   }
 
   p {
-    line-height: 1.4;
-    font-size: 120%;
-    font-weight: 100;
+    font-size: 130%;
 
     @include media-breakpoint-up(md) {
-      font-size: 130%;
+      font-size: 150%;
     }
   }
 
@@ -82,32 +80,12 @@
 }
 
 .hero-alt-img {
-  position: relative;
-  padding-bottom: 100%;
-
   @include media-breakpoint-down(sm) {
-    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
   
   img {
-    position: absolute;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-.hero-alt-img-desc {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 1rem;
-
-  @include media-breakpoint-up(md) {
-    padding: 1.5rem;
-  }
-
-  a {
-    color: $white;
+    height: auto;
   }
 }

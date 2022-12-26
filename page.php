@@ -34,6 +34,12 @@
  $context['newest_posts'] = $newestPosts;
  /* newest proffesionals - end */
 
+ $context['proffesionls'] = Timber::get_posts(array(
+  'posts_per_page' => -1,
+  'post_type' => 'profesionalove',
+  'post_status' => 'publish',
+));
+
  $post = new TimberPost();
  $context['post'] = $post;
  $templates =  array( 'page-' . $post->post_name . '.twig', 'page.twig' );

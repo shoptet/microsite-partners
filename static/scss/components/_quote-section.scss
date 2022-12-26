@@ -1,0 +1,77 @@
+.quote-section {
+  background-color: #e1f5fd;
+  
+  @include media-breakpoint-up(xl) {
+    margin-top: 2rem;
+  }
+}
+
+.quote-section-container {
+  position: relative;
+  padding-bottom: 4rem;
+
+  @include media-breakpoint-up(lg) {
+    padding: 4rem 0;
+  }
+}
+
+.quote-section-icon {
+  display: block;
+  width: 5rem;
+  height: auto;
+  margin-bottom: 2rem;
+
+  @include media-breakpoint-up(md) {
+    width: 7rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 10rem;
+  }
+}
+
+.quote-section-body {
+  @include media-breakpoint-up(lg) {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+  @include media-breakpoint-up(xl) {
+    max-width: 42rem;
+    padding-right: 5rem;
+  }
+}
+
+.quote-section-title {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: $blue;
+
+  @include media-breakpoint-up(md) {
+    font-size: 2.5rem;
+  }
+}
+
+.quote-section-image {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: auto;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+    width: 15em;
+  }
+
+  @include media-breakpoint-up(xl) {
+    display: block;
+    width: 20em;
+  }
+}

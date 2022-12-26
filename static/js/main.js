@@ -26,6 +26,8 @@ import '../images/shoptetrix-warning.png';
 import '../images/shoptetrix-warning-mail.png';
 import '../images/shoptetrix-grimacing-1.png';
 import '../images/shoptetrix-grimacing-2.png';
+import '../images/shoptetrix-grimacing-2.png';
+import '../images/eva.png';
 
 // static jpg
 import '../images/placeholder.jpg';
@@ -37,6 +39,8 @@ import '../images/badge.svg';
 import '../images/profile-cards.svg';
 import '../images/badge-premium.svg';
 import '../images/badge-premium-text.svg';
+import '../images/partners-hero.svg';
+import '../images/quote.svg';
 
 // Icons
 import '../images/icon-ic.svg';

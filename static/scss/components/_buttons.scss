@@ -1,3 +1,9 @@
+.btn {
+  font-family: "Neue Haas Grotesk", sans-serif;
+  font-weight: 400;
+  letter-spacing: $headings-letter-spacing;
+}
+
 .btn-xl {
   @include button-size($input-btn-padding-y-xlg, $input-btn-padding-x-xlg, $font-size-lg, $line-height-lg, $btn-border-radius-lg);
 }

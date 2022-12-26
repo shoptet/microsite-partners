@@ -1,13 +1,19 @@
 .wf-active {
-
   body {
     font-family: $font-family-wf-active;
   }
+}
 
-  h1, h2, h3, h4, h5, h6,
-  .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: $headings-font-family-wf-active;
-  }
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  letter-spacing: $headings-letter-spacing;
+}
+
+.display {
+  font-weight: 300;
+  font-family: "Neue Haas Grotesk", sans-serif;
+  letter-spacing: $headings-letter-spacing;
+  line-height: 1.3;
 }
 
 b, strong {
