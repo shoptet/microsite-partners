@@ -13,33 +13,20 @@
 			<meta itemprop="url" content="{{ site.url }}">
 			<meta itemprop="text" content="{{ meta_description|striptags }}">
 
-			{% if locale == 'hu_HU' %}
-				<div class="header-logo-group">
-					<a
-						class="header-logo"
-						href="{{ site.url }}"
-						title="{{ __( 'Zpět na domovskou stránku', 'shp-partneri' ) }}"
-					>
-						<img
-							class="header-logo-group-img"
-							src="{{ logo_url ?: "shoptet-logo.svg"|static_assets }}"
-							alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
-						>
-					</a>
-					<p class="header-logo-group-desc">Ezen az oldalon találsz bővebb infót a partnerprogramunkról. Visszatérhetsz a <a href="https://www.shoptet.hu/" target="_blank">Shoptet.hu</a> oldalra</p>
-				</div>
-			{% else %}
+			<div class="header-logo-group">
 				<a
 					class="header-logo"
 					href="{{ site.url }}"
 					title="{{ __( 'Zpět na domovskou stránku', 'shp-partneri' ) }}"
 				>
 					<img
+						class="header-logo-group-img"
 						src="{{ logo_url ?: "shoptet-logo.svg"|static_assets }}"
 						alt="{{ __( 'Shoptet Partneři', 'shp-partneri' ) }}"
 					>
 				</a>
-			{% endif %}
+				<p class="header-logo-group-desc">{{ options.header_description }}</p>
+			</div>
 
 			<form
 				class="header-search"

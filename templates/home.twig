@@ -2,71 +2,42 @@
 
 {% block content %}
 
-	{% if locale == 'hu_HU' %}
-		<div class="hero-alt">
-			<div class="container">
-				<div class="row">
-					<div class="col-12 col-md-5 col-lg-7 order-md-2">
-						<div class="hero-alt-img">
-							<img src="{{ "partners-hero.svg"|static_assets }}" alt="">
-						</div>
+	<div class="hero-alt">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-5 col-lg-7 order-md-2">
+					<div class="hero-alt-img">
+						<img src="{{ "partners-hero.svg"|static_assets }}" alt="">
 					</div>
-					<div class="col-12 col-md-7 col-lg-5 align-self-center">
-						<div class="hero-alt-body">
-							<h1 class="mb-5">Segítségre van szükséged a webáruházaddal kapcsolatban?</h1>
-							<p class="display mb-4"><strong>{{proffesionls|length}}</strong> szakmai szakértő közül választhatsz, akik hivatalos partnereink. Ne habozz felvenni velük a kapcsolatot.</p>
-							<a href="/{{ __( 'profesionalove', 'shp-partneri' ) }}/" class="btn btn-primary btn-lg mt-3">Partnerek megjelenítése</a>
-						</div>
+				</div>
+				<div class="col-12 col-md-7 col-lg-5 align-self-center">
+					<div class="hero-alt-body">
+						{{ hero_text|apply_shortcodes }}
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="quote-section">
-			<div class="container">
-				<div class="quote-section-container">
-					<img class="quote-section-icon" src="{{ "quote.svg"|static_assets }}" alt="">
-					<div class="quote-section-body">
-						<p class="quote-section-title display">Partnereink mindig professzionális módon gondoskodnak majd rólad.</p>
-						<p class="mb-0 lh-125"><em><strong class="fs-120">Eva Šlezáková</strong><br>Partnership Teamleader</em></p>
-					</div>
-					<img class="quote-section-image" src="{{ "eva.png"|static_assets }}" alt="Eva Šlezáková">
+	</div>
+	<div class="quote-section">
+		<div class="container">
+			<div class="quote-section-container">
+				<img class="quote-section-icon" src="{{ "quote.svg"|static_assets }}" alt="">
+				<div class="quote-section-body">
+					<p class="quote-section-title display">{{ options.quoteSectionTitle }}</p>
+					<p class="mb-0 lh-125"><em><strong class="fs-120">Eva Šlezáková</strong><br>Partnership Teamleader</em></p>
 				</div>
+				<img class="quote-section-image" src="{{ "eva.png"|static_assets }}" alt="Eva Šlezáková">
 			</div>
 		</div>
-	{% else %}
-		<div class="hero">
-			<div class="container">
-				<div class="hero-bg-img">
-					<p class="hero-lead h2 mb-0">
-						{{ hero_text }}
-					</p>
-				</div>
-			</div>
-		</div>
-	{% endif %}
+	</div>
 
 	{% if show_category_professionals %}
 		<div class="row-profile-type row-profile-type-professionals">
 			<div class="container">
-
-				{% if locale == 'hu_HU' %}
-					<div class="mb-5 text-center">
-						<h2 class="text-primary">Válassz szakértőt a webáruházadhoz</h2>
-						<p class="mb-0">Szabadúszó szakemberek és cégek listája, akik segíthetnek neked bármilyen internetes üzleti kihívásban.</p>
-					</div>
-				{% else %}
-					<div class="row-profile-type-header">
-						<h2 class="row-profile-type-title"><a href="/{{ __( 'profesionalove', 'shp-partneri' ) }}/">{{ __( 'Profesionálové', 'shp-partneri' ) }}</a></h2>
-						{% if options.perexProfessional %}
-							<div class="row-profile-type-perex">
-								{{ options.perexProfessional }}
-							</div>
-						{% endif %}
-					</div>
-				{% endif %}
-
+				<div class="mb-5 text-center">
+					{{ options.professionalsSectionBody }}
+				</div>
 				{% include 'category/list.twig' with {'terms': category_professionals} %}
-
 			</div>
 		</div>
 	{% endif %}

@@ -59,6 +59,7 @@ class StarterSite extends TimberSite {
     $twig->addFilter( new Timber\Twig_Filter('posts_in_term', array($this, 'posts_in_term')));
     $twig->addFilter( new Timber\Twig_Filter('keep_query_string', array($this, 'keep_query_string')));
     $twig->addFilter( new Timber\Twig_Filter('average_rating', array($this, 'average_rating')));
+    $twig->addFilter( new \Timber\Twig_Filter('apply_shortcodes', 'apply_shortcodes'));
     return $twig;
   }
 

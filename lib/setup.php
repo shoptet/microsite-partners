@@ -754,3 +754,7 @@ add_action( 'save_post', function () {
 		w3tc_flush_all();
 	}
 });
+
+add_shortcode('professionals_count', function () {
+	return wp_count_posts('profesionalove')->publish;
+} );

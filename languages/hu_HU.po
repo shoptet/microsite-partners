@@ -1983,6 +1983,10 @@ msgstr "Kérjük, próbáljon meg egy másik kifejezést."
 msgid "Nevybrali jste? Co zkusit jiné?"
 msgstr "Még nem választott? Válogasson tovább!"
 
+#: templates/go-to-shoptet.twig:3
+msgid "Přejít na <strong>Shoptet.cz</strong>"
+msgstr "Tovább a <strong>Shoptet.hu</strong> oldalra"
+
 #. Theme Name of the plugin/theme
 msgid "Shoptet Partners"
 msgstr "Shoptet Partnerek"

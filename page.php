@@ -63,7 +63,7 @@
 
    $options = get_fields('options');
 
-   $hero_text = str_replace('%count%', $count_profiles, $options['themeHomepageHeroText']);
+   $hero_text = $options['themeHomepageHeroText'];
    $context['hero_text'] = $hero_text;
 
    $context['meta_description'] = strip_tags($hero_text);
