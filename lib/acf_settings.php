@@ -2245,6 +2245,7 @@ acf_add_local_field_group(array(
 				'Jakub Rarbovsky' => 'Jakub Rarbovsky',
 				'Eva Šlezáková' => 'Eva Šlezáková',
 				'Annamária Skládalová' => 'Annamária Skládalová',
+				'Viktória Faragó' => 'Viktória Faragó',
 			),
 			'allow_null' => 0,
 			'other_choice' => 0,
