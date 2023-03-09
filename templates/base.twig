@@ -27,17 +27,13 @@
 			<meta property="og:type" content="website">
 		{% endblock %}
 
-
-
-{% if post.thumbnail.src is not empty %}
+		{% if og_image %}
+			<meta property="og:image" content="{{ og_image }}">
+		{% elseif post.thumbnail.src is not empty %}
 			<meta property="og:image" content="{{ post.thumbnail.src }}">
-{% else %}
-	 {% if options.themeOpenGraphImage %}
+		{% elseif options.themeOpenGraphImage %}
 			<meta property="og:image" content="{{ options.themeOpenGraphImage.url }}">
-	 {% endif %}
-{% endif %}
-
-
+		{% endif %}
 
 		<meta property="og:title" content="{% if wp_title %}{{ wp_title }} – {{ site.name }}{% else %}{{ site.name }} – {{ site.description }}{% endif %}">
 		<meta property="og:description" content="{{ meta_description|striptags }}">

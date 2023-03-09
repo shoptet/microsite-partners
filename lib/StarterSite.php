@@ -48,7 +48,7 @@ class StarterSite extends TimberSite {
     /* this is where you can add your own functions to twig */
     $twig->addExtension( new Twig_Extension_StringLoader() );
     $twig->addFilter( new Timber\Twig_Filter('static_assets', array($this, 'static_assets')));
-    $twig->addFilter( new Timber\Twig_Filter('truncate', array($this, 'truncate')));
+    $twig->addFilter( new Timber\Twig_Filter('truncate', 'truncate'));
     $twig->addFilter( new Timber\Twig_Filter('display_url', array($this, 'display_url')));
     $twig->addFilter( new Timber\Twig_Filter('currency_i18n', array($this, 'currency_i18n')));
     $twig->addFilter( new Timber\Twig_Filter('display_price', array($this, 'display_price')));
@@ -118,15 +118,6 @@ class StarterSite extends TimberSite {
 
   function static_assets( $filePath ) {
     return $this->theme->link . '/assets/' . $filePath;
-  }
-
-  function truncate( $string, $limit, $separator = '...' ) {
-    if (strlen($string) > $limit) {
-      $newlimit = $limit - strlen($separator);
-      $s = substr($string, 0, $newlimit + 1);
-      return substr($s, 0, strrpos($s, ' ')) . $separator;
-    }
-    return $string;
   }
 
   function ensure_protocol( $url ) {

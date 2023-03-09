@@ -437,3 +437,20 @@ function get_country_code (): string
   $country_code = ucfirst(strtolower(array_pop($locale)));
   return $country_code;
 }
+
+function truncate( $string, $limit, $separator = '...' ) {
+  if (strlen($string) > $limit) {
+    $newlimit = $limit - strlen($separator);
+    $s = substr($string, 0, $newlimit + 1);
+    return substr($s, 0, strrpos($s, ' ')) . $separator;
+  }
+  return $string;
+}
+
+function urls_to_links($text) {
+  return preg_replace('/https?:\/\/[\w\-\.!~#?&=+\*\'"(),\/]+/', '<a href="$0" target="_blank" rel="nofollow">$0</a>', $text);
+}
+
+function get_youtube_thumbnail_url($video_id, $quality = 'maxresdefault') {
+  return "https://img.youtube.com/vi/$video_id/$quality.jpg";
+}

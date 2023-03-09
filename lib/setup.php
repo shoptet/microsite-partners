@@ -624,6 +624,8 @@ ProfessionalAdmin::init();
 
 RequestService::init();
 
+WebinarService::init();
+
 PostService::init();
 
 new RequestArchive();
