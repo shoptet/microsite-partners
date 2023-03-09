@@ -42,7 +42,7 @@
             <li class="list-inline-item"><strong><span itemprop="author">{{ comment.comment_author }}</span>{% if post.get_field('emailAddress') == comment.comment_author_email %} ({{ __('Shoptet partner', 'shp-partneri') }}){% endif %}</strong></li>
             {% if comment.comment_author_url %}
               <li class="list-inline-item">
-                <a href="{{ comment.comment_author_url }}" target="_blank" rel="nofollow">{{ comment.comment_author_url|display_url }}</a>
+                <a href="{{ comment.comment_author_url }}" target="_blank">{{ comment.comment_author_url|display_url }}</a>
               </li>
             {% endif %}
             <li class="list-inline-item">
