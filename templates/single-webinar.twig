@@ -23,7 +23,13 @@
 
 				<div class="list-group-profile">
 
-					<div class="list-group-profile-item">
+					<div class="list-group-profile-item p-0" style="overflow:hidden">
+						<div class="embed-responsive embed-responsive-16by9 bg-light">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ post.meta('external_id') }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						</div>
+					</div>
+
+					<div class="list-group-profile-item mt-0">
 						<h1 class="h2 mb-0">{{ post.title }}</h1>
 						{% if post.terms is not empty %}
 							<div class="mt-3 text-muted">
@@ -32,13 +38,7 @@
 						{% endif %}
 					</div>
 
-					<div class="list-group-profile-item p-0 mt-0">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ post.meta('external_id') }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-						</div>
-					</div>
-
-					<div class="list-group-profile-item mt-0">
+					<div class="list-group-profile-item">
 						<h2 class="h4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
 						{{ post.content }}
 					</div>
