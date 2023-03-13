@@ -45,9 +45,9 @@
 
         {% if post.content %}
           <p class="request-thumbnail-content mb-0">
-            {{ post.content|striptags|truncate(300, '&hellip;') }}
+            {{ post.content|striptags|escape|truncate(300, '&hellip;') }}
           </p>
-          <meta itemprop="description" content="{{ post.content|striptags }}">
+          <meta itemprop="description" content="{{ post.content|striptags|escape }}">
         {% endif %}
 
       </div>

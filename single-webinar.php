@@ -19,8 +19,10 @@ if ($terms = $post->terms()) {
 }
 
 $context['related_partners'] = [];
-foreach ($post->get_field('related_partners') as $partner_id) {
-  $context['related_partners'][] = new Timber\Post($partner_id);
+if ($related_partners = $post->get_field('related_partners')) {
+  foreach ($related_partners as $partner_id) {
+    $context['related_partners'][] = new Timber\Post($partner_id);
+  }
 }
 
 $context['breadcrumbs'][ truncate($post->title, 70) ] = $post->link;

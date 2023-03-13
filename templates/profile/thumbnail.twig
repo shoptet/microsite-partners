@@ -85,7 +85,7 @@
   {% if type != 'small' %}
     {% if post.get_field('description') %}
       <p class="profile-thumbnail-description mb-0" itemprop="description">
-        {{ post.get_field('description')|striptags|truncate(200, '') }}
+        {{ post.get_field('description')|striptags|escape|truncate(200, '') }}
       </p>
     {% endif %}
   {% endif %}

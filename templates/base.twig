@@ -9,7 +9,7 @@
 	      {{ site.name }} – {{ site.description }}
 	    {% endif %}
 	  </title>
-	  <meta name="description" content="{{ meta_description|striptags|truncate(1000, '&hellip;') }}">
+	  <meta name="description" content="{{ meta_description|striptags|escape|truncate(1000, '&hellip;') }}">
 	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,7 +36,7 @@
 		{% endif %}
 
 		<meta property="og:title" content="{% if wp_title %}{{ wp_title }} – {{ site.name }}{% else %}{{ site.name }} – {{ site.description }}{% endif %}">
-		<meta property="og:description" content="{{ meta_description|striptags }}">
+		<meta property="og:description" content="{{ meta_description|striptags|escape }}">
 		<meta property="og:locale" content="cs_CZ">
 
 	  {{ function('wp_head') }}

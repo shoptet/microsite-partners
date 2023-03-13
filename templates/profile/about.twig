@@ -8,7 +8,7 @@
 
       {{ post.get_field('description') }}
 
-      <meta itemprop="description" content="{{ post.get_field('description')|striptags }}">
+      <meta itemprop="description" content="{{ post.get_field('description')|striptags|escape }}">
 
   {% endif %}
 

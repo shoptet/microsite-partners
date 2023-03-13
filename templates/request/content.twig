@@ -1,6 +1,6 @@
 <div class="list-group-profile-item">
 
-  <meta itemprop="description" content="{{ post.content|striptags }}">
+  <meta itemprop="description" content="{{ post.content|striptags|escape }}">
 
   {{ post.content }}
 
