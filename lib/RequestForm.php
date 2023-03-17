@@ -5,19 +5,19 @@ class RequestForm
   const AUTHOR_NAME_FIELD_KEY = 'field_5d9f2ebf8e646';
   const URL_FIELD_KEY = 'field_5d9f2efc8e647';
   const CATEGORY_FIELD_KEY = 'field_5d10a24f0b5e7';
-  const IS_SHOPTET_FIELD_KEY = 'field_5d9f2fbd8e64a';
+  const ESHOP_ID_FIELD_KEY = 'field_64147ee851759';
   const REQUEST_FORM_TEMPLATE = 'new-request-page.php';
 
   public static function init()
   {
     add_filter( 'acf/load_field/name=_post_title', [ get_called_class(), 'loadPostTitleField' ] );
     add_filter( 'acf/load_field/name=_post_content', [ get_called_class(), 'loadPostContentField' ] );
-    add_filter( 'acf/load_field/key=' . self::IS_SHOPTET_FIELD_KEY , [ get_called_class(), 'loadIsShoptetField' ] );
 
     // Placeholder and instructions cannot be translated in acf_add_local_field_group
     add_filter( 'acf/load_field/key=' . self::AUTHOR_NAME_FIELD_KEY, [ get_called_class(), 'loadAuthorNameField' ] );
     add_filter( 'acf/load_field/key=' . self::URL_FIELD_KEY, [ get_called_class(), 'loadUrlField' ] );
     add_filter( 'acf/load_field/key=' . self::CATEGORY_FIELD_KEY, [ get_called_class(), 'loadCategoryField' ] );
+    add_filter( 'acf/load_field/key=' . self::ESHOP_ID_FIELD_KEY, [ get_called_class(), 'loadEshopIdField' ] );
 
     add_action( 'acf/save_post', [ get_called_class(), 'verifyForm' ], 5 ); // before acf post data saved
     add_action( 'acf/save_post', [ get_called_class(), 'saveForm' ], 20 ); // after acf post data saved
@@ -45,15 +45,6 @@ class RequestForm
     return $field;
   }
 
-  public static function loadIsShoptetField( $field )
-  {
-    // Do not show input label in frontend form
-    if( ! is_admin() ) {
-      $field['label'] = '';
-    }
-    return $field;
-  }
-
   public static function loadAuthorNameField( $field )
   {
     if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
@@ -75,6 +66,14 @@ class RequestForm
     if( is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
       $options = get_fields('options');
       $field['instructions'] = sprintf( __( 'Zvolte <a href="%s" target="_blank">obor</a>, do kterého byste chtěli zařadit', 'shp-partneri' ), $options['themeProfessionalPageUrl'] );
+    }
+    return $field;
+  }
+
+  public static function loadEshopIdField( $field )
+  {
+    if( ! is_page_template( self::REQUEST_FORM_TEMPLATE ) ) {
+      $field['required'] = 0;
     }
     return $field;
   }

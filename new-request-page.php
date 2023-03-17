@@ -35,16 +35,15 @@ $acf_form_args = [
       'field_5d9f2f4a8e648', // category
       '_post_title',
       '_post_content',
-    ],
-  ],
-  'bottom' => [
-    'fields' => [
       'field_5d9f2fbd8e64a', // is_shoptet
     ],
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
   ],
 ];
+
+if (in_array(get_locale(), ['cs_CZ', 'sk_SK'])) {
+  $acf_form_args['top']['fields'][] = 'field_64147ee851759'; // shoptet_id
+}
+
 array_walk( $acf_form_args, function ( &$value ) use( &$acf_form_args_base ) {
   $value = array_merge( $acf_form_args_base, $value );
 } );
