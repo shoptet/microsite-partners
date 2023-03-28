@@ -49,15 +49,15 @@
   height: auto !important;
 }
 
-.fs-70 { font-size: 70% }
-.fs-80 { font-size: 80% }
-.fs-90 { font-size: 90% }
-.fs-110 { font-size: 110% }
-.fs-115 { font-size: 115% }
-.fs-120 { font-size: 120% }
-.fs-130 { font-size: 130% }
-.fs-150 { font-size: 150% }
-.fs-170 { font-size: 170% }
+.fs-70 { font-size: 70% !important }
+.fs-80 { font-size: 80% !important }
+.fs-90 { font-size: 90% !important }
+.fs-110 { font-size: 110% !important }
+.fs-115 { font-size: 115% !important }
+.fs-120 { font-size: 120% !important }
+.fs-130 { font-size: 130% !important }
+.fs-150 { font-size: 150% !important }
+.fs-170 { font-size: 170% !important }
 
 .fs-md-170 {
   @include media-breakpoint-up(md) {

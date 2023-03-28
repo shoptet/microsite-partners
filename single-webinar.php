@@ -25,6 +25,20 @@ if ($related_partners = $post->get_field('related_partners')) {
   }
 }
 
+if ($related_blog_posts = $post->get_field('related_blog_posts')) {
+  $blog_posts_array = Shoptet\ShoptetExternal::get_blog_posts(['_embed' => 1, 'include' => $related_blog_posts]);
+  $related_blog_posts = [];
+  foreach($blog_posts_array as $post_array) {
+    $related_blog_posts[] = [
+      'title' => $post_array['title']['rendered'],
+      'text' => $post_array['excerpt']['rendered'],
+      'image_url' => isset($post_array['_embedded']['wp:featuredmedia'][0]['media_details']) ? $post_array['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url'] : null,
+      'url' => $post_array['link'],
+    ];
+  }
+  $context['related_blog_posts'] = $related_blog_posts;
+}
+
 $context['breadcrumbs'][ truncate($post->title, 70) ] = $post->link;
 
 $context['meta_description'] = $post->content;

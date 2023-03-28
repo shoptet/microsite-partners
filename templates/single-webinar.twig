@@ -47,12 +47,26 @@
 
 			</div>
 			<div class="col-lg-4">
-				{% if related_partners %}
-					<div class="mt-5 mt-lg-0 sticky">
-						<h2 class="h4 mb-3">{{ __('Související partner', 'shp-partneri') }}</h2>
-						{% for post in related_partners %}
-							{% include 'profile/thumbnail.twig' %}
-						{% endfor %}
+				{% if related_partners or post.meta('related_addons') or related_blog_posts %}
+					<div class="mt-5 mt-lg-0">
+						{% if related_partners %}
+							<h2 class="h4 mb-3">{{ __('Související partner', 'shp-partneri') }}</h2>
+							{% for post in related_partners %}
+								{% include 'profile/thumbnail.twig' %}
+							{% endfor %}
+						{% endif %}
+						{% if post.meta('related_addons') %}
+							<h2 class="h4 mb-3">{{ __('Související doplňky', 'shp-partneri') }}</h2>
+							{% for item in post.meta('related_addons') %}
+								{% include 'thumbnail.twig' %}
+							{% endfor %}
+						{% endif %}
+						{% if related_blog_posts %}
+							<h2 class="h4 mb-3">{{ __('Související články na blogu', 'shp-partneri') }}</h2>
+							{% for item in related_blog_posts %}
+								{% include 'thumbnail.twig' with {long_title: true} %}
+							{% endfor %}
+						{% endif %}
 					</div>
 				{% endif %}
 			</div>
