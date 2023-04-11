@@ -451,6 +451,21 @@ function urls_to_links($text) {
   return preg_replace('/https?:\/\/[\w\-\.!~#?&=+\*\'"(),\/]+/', '<a href="$0" target="_blank" rel="nofollow">$0</a>', $text);
 }
 
-function get_youtube_thumbnail_url($video_id, $quality = 'maxresdefault') {
+function get_youtube_thumbnail_url($video_id, $quality = 'mqdefault') {
   return "https://img.youtube.com/vi/$video_id/$quality.jpg";
+}
+
+function get_time_interval($duration) {
+  $duration = intval($duration);
+  $hour_in_sec = 1 * 60 * 60;
+  $format = 'i:s';
+  if ($duration >= $hour_in_sec) {
+    $format = 'H:i:s';
+  }
+  $time = date($format, $duration);
+  // Remove leading O
+  if (substr($time, 0, 1) == '0') {
+    $time = substr($time, 1);
+  }
+  return $time;
 }

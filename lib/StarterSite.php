@@ -36,7 +36,9 @@ class StarterSite extends TimberSite {
     $context['config'] = [];
     $context['config']['G_RECAPTCHA_SITE_KEY'] = G_RECAPTCHA_SITE_KEY;
     $context['link']['request']['archive'] = get_post_type_archive_link( 'request' );
+    $context['link']['webinar']['archive'] = get_post_type_archive_link( 'webinar' );
     $context['request_posts_count'] = wp_count_posts( 'request' );
+    $context['webinar_posts_count'] = wp_count_posts( 'webinar' );
     $context['read_only_enabled'] = apply_filters( 'read_only_enabled', false );
     $context['footer'] = Shoptet\ShoptetExternal::get_footer();
     $context['shoptet_url'] = Shoptet\ShoptetHelpers::get_shoptet_url();
@@ -60,6 +62,8 @@ class StarterSite extends TimberSite {
     $twig->addFilter( new Timber\Twig_Filter('keep_query_string', array($this, 'keep_query_string')));
     $twig->addFilter( new Timber\Twig_Filter('average_rating', array($this, 'average_rating')));
     $twig->addFilter( new \Timber\Twig_Filter('apply_shortcodes', 'apply_shortcodes'));
+    $twig->addFilter( new \Timber\Twig_Filter('youtube_thumbnail', 'get_youtube_thumbnail_url'));
+    $twig->addFilter( new \Timber\Twig_Filter('time_interval', 'get_time_interval'));
     return $twig;
   }
 

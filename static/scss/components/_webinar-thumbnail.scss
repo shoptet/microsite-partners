@@ -1,0 +1,38 @@
+.webinar-thumbnail {
+  display: block;
+  position: relative;
+  margin-bottom: 2.5rem;
+  color: $body-color;
+  text-decoration: none;
+
+  @include hover-focus {
+    color: $body-color;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+}
+
+.webinar-thumbnail-image {
+  border-radius: $border-radius-lg;
+  box-shadow: 0 0 1.25rem rgba($black, .075);
+}
+
+.webinar-thumbnail-title {
+  margin-top: 0.7rem;
+  display: block; // Fallback for non-webkit
+  display: -webkit-box;
+  font-size: 1rem;
+  height: (2 * 1.2 * 1rem); // 2 lines
+  -webkit-line-clamp: 2; // 2 lines
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.webinar-thumbnail-duration {
+  margin-top: 0.2rem;
+  font-size: 80%;
+  color: $text-muted;
+}

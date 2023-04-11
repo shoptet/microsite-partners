@@ -700,6 +700,21 @@ add_action('pre_get_posts', function( $wp_query ) {
   $fs->order();
 } );
 
+/**
+ * Handle webinar archive and category
+ */
+add_action('pre_get_posts', function( $wp_query ) {
+  if (
+    is_admin() ||
+    ! $wp_query->is_main_query() ||
+    (
+      $wp_query->get( 'post_type' ) !== 'webinar' &&
+      ! $wp_query->is_tax('category_webinars')
+    )
+  ) return;
+	$wp_query->set( 'posts_per_page', 12 );
+} );
+
 add_filter('acf/format_value/type=text', 'do_shortcode');
 
 add_action( 'wp_footer', function() {

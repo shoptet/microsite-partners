@@ -75,4 +75,19 @@
 	</div>
 </div>
 
+{% if related_posts|length > 0 %}
+	<div class="row-profile-list">
+		<div class="container">
+			<h2 class="row-profile-list-title">{{ __( 'Podobné webináře', 'shp-partneri' ) }}</h2>
+			<div class="row small-gutters">
+				{% for post in related_posts[:4] %}
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3">
+						{% include 'webinar/thumbnail.twig' %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
 {% endblock %}

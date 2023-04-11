@@ -50,6 +50,14 @@ if( function_exists('acf_add_options_page') ) {
 		'parent_slug' => 'edit.php?post_type=request',
 	));
 
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Webinar archive settings',
+		'menu_title'	=> 'Archive',
+		'menu_slug' 	=> 'webinars-archive',
+		'capability'	=> 'edit_posts',
+		'parent_slug' => 'edit.php?post_type=webinar',
+	));
+
 	acf_add_options_page(array(
 		'menu_title' 	=> __( 'Šablona', 'shp-partneri' ),
 		'menu_slug' 	=> 'theme-settings',

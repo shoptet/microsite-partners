@@ -125,6 +125,9 @@ function cptui_register_my_taxes() {
 
 	$args = array(
 		'label' => 'Categories',
+		'labels' => [
+			'name' => __( 'Kategorie webinářů', 'custom-post-type-ui' ),
+		],
 		'public' => true,
 		'publicly_queryable' => true,
 		'hierarchical' => true,

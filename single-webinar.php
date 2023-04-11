@@ -1,5 +1,9 @@
 <?php
 
+if (!is_user_logged_in()) {
+  auth_redirect();
+}
+
 $context = Timber::get_context();
 $post = Timber::query_post();
 
@@ -42,5 +46,36 @@ if ($related_blog_posts = $post->get_field('related_blog_posts')) {
 $context['breadcrumbs'][ truncate($post->title, 70) ] = $post->link;
 
 $context['meta_description'] = $post->content;
+
+$terms = wp_get_post_terms($post->ID, 'category_webinars', ['fields' => 'ids']);
+
+$related_posts_query = new WP_Query([
+  'post_type' => 'webinar',
+  'posts_per_page' => 4,
+  'post_status' => 'publish',
+  'post__not_in' => [$post->ID],
+  'orderby' => 'rand',
+  'tax_query' => [
+    [
+      'taxonomy' => 'category_webinars',
+      'terms' => $terms,
+    ],
+  ],
+]);
+
+$all_posts_query = new WP_Query([
+  'post_type' => 'webinar',
+  'posts_per_page' => 4,
+  'post_status' => 'publish',
+  'post__not_in' => [$post->ID],
+  'orderby' => 'rand',
+]);
+
+$related_posts = array_merge($related_posts_query->posts, $all_posts_query->posts);
+
+$context['related_posts'] = [];
+foreach ($related_posts as $p) {
+  $context['related_posts'][] = new Timber\Post($p);
+}
 
 Timber::render( 'single-webinar.twig', $context );

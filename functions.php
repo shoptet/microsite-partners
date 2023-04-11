@@ -28,6 +28,7 @@ $includes = [
 	'lib/acf_comment_mailing.php',
 	'lib/acf_request_mailing.php',
 	'lib/acf_request_archive.php',
+	'lib/acf_webinar_archive.php',
 	'lib/taxonomy_slug_rewrite.php',
 	'lib/remove_default_user_roles.php',
 	'lib/custom_search.php',

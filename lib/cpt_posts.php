@@ -179,6 +179,9 @@ function cptui_register_my_cpts() {
 
 	$args = array(
 		'label' => 'Webinars',
+		'labels' => [
+			'name' => __( 'Webináře', 'shp-partneri' ),
+		],
 		'description' => '',
 		'public' => true,
 		'publicly_queryable' => true,
