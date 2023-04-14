@@ -68,6 +68,7 @@ class ProfessionalAdmin
 
 
   static function get_professional_row ($post_id) {
+    $link = get_permalink($post_id);
     $name = get_the_title($post_id);
     $email = get_post_meta($post_id, 'emailAddress', true);
     $url = get_post_meta($post_id, 'url', true);
@@ -96,6 +97,8 @@ class ProfessionalAdmin
     $publish_date = get_the_date('c', $post_id);
 
     return [
+      $post_id,
+      $link,
       $name,
       $email,
       $url,
@@ -128,6 +131,8 @@ class ProfessionalAdmin
     $file_path = get_temp_dir() . 'export.csv';
     $fp = fopen( $file_path, 'w' );
     $header = [
+      'id',
+      'link',
       'partner name',
       'e-mail',
       'url',
