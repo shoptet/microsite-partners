@@ -22,12 +22,14 @@ class WebinarService
   static function syncYoutubeData ($post_id, $external_id) {
     $video = self::fetchYoutubeVideo($external_id);
     if ($video) {
+      $timestamp = strtotime($video['snippet']['publishedAt']);
       $interval = new DateInterval($video['contentDetails']['duration']);
       $duration = ($interval->h * 3600 + $interval->i * 60 + $interval->s);
       wp_update_post([
         'ID' => $post_id,
         'post_title' => $video['snippet']['title'],
         'post_content' => $video['snippet']['description'],
+        'post_date' => wp_date('Y-m-d H:i:s', $timestamp),
         'meta_input' => [
           'duration' => $duration,
         ],
