@@ -1,5 +1,7 @@
 {% extends "base.twig" %}
 
+{% set show_sidebar = related_partners or post.meta('related_addons') or related_blog_posts %}
+
 {% block head %}
 	<link rel="canonical" href="{{ post.link }}">
 	<meta property="og:url" content="{{ post.link }}">
@@ -19,6 +21,9 @@
 	<div class="container">
 
 		<div class="row">
+			{% if not show_sidebar %}
+				<div class="col-lg-2"></div>
+			{% endif %}
 			<div class="col-lg-8">
 
 				<div class="list-group-profile">
@@ -46,8 +51,8 @@
 				</div>
 
 			</div>
-			<div class="col-lg-4">
-				{% if related_partners or post.meta('related_addons') or related_blog_posts %}
+			{% if show_sidebar %}
+				<div class="col-lg-4">
 					<div class="mt-5 mt-lg-0">
 						{% if related_partners %}
 							<h2 class="h4 mb-3">{{ __('Související partner', 'shp-partneri') }}</h2>
@@ -68,8 +73,8 @@
 							{% endfor %}
 						{% endif %}
 					</div>
-				{% endif %}
-			</div>
+				</div>
+			{% endif %}
 		</div>
 
 	</div>

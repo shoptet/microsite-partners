@@ -1,0 +1,19 @@
+<div class="row-profile-type border-top-0">
+  <div class="container">
+    <h2 class="mb-4">{{ __( 'Nejnovější webináře', 'shp-partneri' ) }}</h2>
+    <div class="row small-gutters">
+      {% for post in webinar_posts %}
+        <div class="col-12 col-md-6 col-xl-3">
+          {% include 'webinar/thumbnail.twig' %}
+        </div>
+      {% endfor %}
+    </div>
+    <ul class="list-inline text-center text-sm-right mb-0">
+      <li class="list-inline-item">
+        <a href="{{ link.webinar.archive }}" class="btn btn-link">
+          {{ __( 'Všechny webináře', 'shp-partneri' ) }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

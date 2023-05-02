@@ -2,10 +2,6 @@
 
 global $wp_query;
 
-if (!is_user_logged_in()) {
-  auth_redirect();
-}
-
 $context = Timber::get_context();
 $options = get_fields('options');
 

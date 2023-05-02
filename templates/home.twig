@@ -134,6 +134,10 @@
 
 	{% include 'row-reference.twig' %}
 
+	{% if locale == 'cs_CZ' %}
+		{% include 'row-webinars.twig' %}
+	{% endif %}
+
 	{% include 'row-contact.twig' %} 
 
 {% endblock %}
