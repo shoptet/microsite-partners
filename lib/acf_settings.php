@@ -2112,6 +2112,107 @@ acf_add_local_field_group(array(
 ));
 
 acf_add_local_field_group(array(
+	'key' => 'group_646b6d5e3ee61',
+	'title' => 'Responses',
+	'fields' => array(
+		array(
+			'key' => 'field_646b6d6556abb',
+			'label' => 'Responses',
+			'name' => 'responses',
+			'type' => 'repeater',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'collapsed' => '',
+			'min' => 0,
+			'max' => 0,
+			'layout' => 'table',
+			'button_label' => '',
+			'sub_fields' => array(
+				array(
+					'key' => 'field_646b6d7856abc',
+					'label' => 'Name',
+					'name' => 'name',
+					'type' => 'text',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'maxlength' => '',
+				),
+				array(
+					'key' => 'field_646b6d7d56abd',
+					'label' => 'Email',
+					'name' => 'email',
+					'type' => 'email',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+				),
+				array(
+					'key' => 'field_646b6d8756abe',
+					'label' => 'Message',
+					'name' => 'message',
+					'type' => 'textarea',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'placeholder' => '',
+					'maxlength' => '',
+					'rows' => '',
+					'new_lines' => '',
+				),
+			),
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'request',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+
+acf_add_local_field_group(array(
 	'key' => 'group_5ca1ee8b9e2c5',
 	'title' => __( 'Hodnocení', 'shp-partneri' ),
 	'fields' => array(

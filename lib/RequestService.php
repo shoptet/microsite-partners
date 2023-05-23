@@ -233,6 +233,8 @@ class RequestService
       'message' => $message,
     ];
 
+    add_row( 'field_646b6d6556abb', $message_arr, $post_id );
+
     do_action( 'shp/request_message/validate', $post_id, $message_arr );
   }
 
