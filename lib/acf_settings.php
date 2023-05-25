@@ -3543,6 +3543,13 @@ acf_add_local_field_group(array(
 				'value' => 'webinar',
 			),
 		),
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'webinar_private',
+			),
+		),
 	),
 	'menu_order' => 0,
 	'position' => 'normal',

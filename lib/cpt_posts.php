@@ -201,6 +201,35 @@ function cptui_register_my_cpts() {
 	);
 
 	register_post_type( 'webinar', $args );
+
+	/**
+	 * Post Type: Webináře private
+	 */
+
+	$args = array(
+		'label' => 'Webinars',
+		'labels' => [
+			'name' => __( 'Webináře', 'shp-partneri' ),
+		],
+		'description' => '',
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_rest' => false,
+		'rest_base' => '',
+		'has_archive' => 'courses',
+		'show_in_menu' => true,
+		'exclude_from_search' => true,
+		'capability_type' => 'post',
+		'map_meta_cap' => true,
+		'hierarchical' => false,
+		'rewrite' => array( 'slug' => 'course' ),
+		'query_var' => true,
+		'menu_icon' => 'dashicons-lock',
+		'supports' => array( 'title', 'editor' ),
+	);
+
+	register_post_type( 'webinar_private', $args );
 }
 
 add_action( 'init', 'cptui_register_my_cpts' );
