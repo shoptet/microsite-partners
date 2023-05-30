@@ -202,7 +202,6 @@ class RequestNotifier
     $author_email = $request_post->getMeta( 'author_email' );
     $headers = self::getDefaultEmailHeaders();
     $headers[] = 'Reply-To: ' . $message_arr['email'];
-    $headers[] = 'Cc: ' . $message_arr['email'];
 
     $compile_args = [
       'request_id' => $post_id,
