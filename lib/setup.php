@@ -189,15 +189,9 @@ add_action( 'comment_post', function ( $comment_id ) {
 
 	// Compile and send e-mail
 	$context = Timber::get_context();
-	$context['title'] = __( 'Děkujeme', 'shp-partneri' );
-	$context['subtitle'] = __( 'Za vaše hodnocení', 'shp-partneri' );
-	$context['text'] = sprintf( __( 'Teď už jen klikněte <strong style="%s"><a href="%s" target="_blank" style="%s">ZDE</a></strong> pro potvrzení a&nbsp;zveřejnění vašeho hodnocení.<br><br>Přejeme krásný den,<br>tým Shoptet', 'shp-partneri' ), 'font-weight: 600;', $auth_url, 'color:#21AFE5;text-decoration:underline;' );
-	$context['image'] = [
-		'main' => 'shoptetrix-action-1.png',
-		'complementary' => 'shoptetrix-action-2.png',
-		'width' => 250,
-	];
-	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+	$context['title'] = __( 'Děkujeme', 'shp-partneri' ) . '<br>' . __( 'Za vaše hodnocení', 'shp-partneri' );
+	$context['content'] = sprintf( __( 'Teď už jen klikněte <strong style="%s"><a href="%s" target="_blank" style="%s">ZDE</a></strong> pro potvrzení a&nbsp;zveřejnění vašeho hodnocení.<br><br>Přejeme krásný den,<br>tým Shoptet', 'shp-partneri' ), '', $auth_url, '' );
+	$email_html_body = Timber::compile( 'templates/mailing/message.twig', $context );
 	$email_subject = sprintf ( __( 'Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
 	wp_mail(
 		$comment->comment_author_email,
@@ -212,11 +206,9 @@ add_action( 'comment_post', function ( $comment_id ) {
 	// Render message
 	$context = Timber::get_context();
 	$context['wp_title'] = __( 'Hodnocení odesláno', 'shp-partneri' );
-	$context['message_type'] = 'success';
 	$context['title'] = __( 'Super!', 'shp-partneri' );
 	$context['subtitle'] = __( 'Hodnocení odesláno', 'shp-partneri' );
 	$context['text'] = '<p>' . __( 'A teď už zbývá jen kliknout na potvrzující odkaz v <strong>e-mailu, který jsme vám právě poslali</strong>. Je to jen pro ověření, že opravdu existujete :-)', 'shp-partneri' ) . '</p>';
-	$context['footer_image'] = 'envelope';
 	Timber::render( 'templates/message/message.twig', $context );
 	
 	die();
@@ -247,7 +239,6 @@ add_action( 'init' , function () {
 	if ( $authenticated ) {
 		$context = Timber::get_context();
 		$context['wp_title'] = __( 'Hodnocení bylo již ověřeno', 'shp-partneri' );
-		$context['message_type'] = 'warning';
 		$context['title'] = __( 'Ouha!', 'shp-partneri' );
 		$context['subtitle'] = __( 'Toto hodnocení bylo již ověřeno!', 'shp-partneri' );
 		$context['text'] = '<p>' . __( 'Pokud jej na stránce partnera nevidíte, tak probíhá jeho schvalování.', 'shp-partneri' ) . '</p>';
@@ -278,7 +269,6 @@ add_action( 'init' , function () {
 
 	$context = Timber::get_context();
 	$context['wp_title'] = __( 'Hodnocení ověřeno', 'shp-partneri' );
-	$context['message_type'] = 'thumb-up';
 	$context['title'] = __( 'Super!', 'shp-partneri' );
 	$context['subtitle'] = __( 'Vaše<br>hodnocení bylo ověřeno!', 'shp-partneri' );
 	$context['text'] = '<p>' . __( 'Nyní proběhne schvalování vašeho hodnocení.', 'shp-partneri' ) . '</p>';
@@ -299,21 +289,13 @@ add_action( 'transition_comment_status',  function( $new_status, $old_status, $c
 
 	// Compile and send e-mail
 	$context = Timber::get_context();
-	$context['title'] = __( 'Bingo!', 'shp-partneri' );
-	$context['subtitle'] = __( 'Máte nové hodnocení', 'shp-partneri' );
-	$context['lead'] = __( 'Přečíst a reagovat na něj můžete v detailu svého medailonku', 'shp-partneri' );
-	$context['image'] = [
-		'main' => 'shoptetrix-grimacing-1.png',
-		'complementary' => 'shoptetrix-grimacing-2.png',
-		'width' => 220,
-	];
-	$context['comment'] = $comment;
-	$context['post'] = $post;
+	$context['title'] = __( 'Bingo!', 'shp-partneri' ) . ' ' . __( 'Máte nové hodnocení', 'shp-partneri' );
+	$context['content'] = __( 'Přečíst a reagovat na něj můžete v detailu svého medailonku', 'shp-partneri' );
 	$context['cta'] = [
 		'title' => __( 'Přečíst hodnocení', 'shp-partneri' ),
 		'link' => $post->link . '#comment-' . $comment->ID,
 	];
-	$email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+	$email_html_body = Timber::compile( 'templates/mailing/message.twig', $context );
 	$email_subject = sprintf ( __( 'Uživatel %s přidal na partneri.shoptet.cz hodnocení k Partnerovi %s', 'shp-partneri' ), $comment->comment_author, $post->post_title );
 
 	if ( $email = $post->get_field('emailAddress') ) {
@@ -387,7 +369,6 @@ add_action( 'init' , function () {
 		// Render expired message
 		$context = Timber::get_context();
 		$context['wp_title'] = __( 'Odkaz už není platný', 'shp-partneri' );
-		$context['message_type'] = 'error';
 		$context['title'] = __( 'Ouha!', 'shp-partneri' );
 		$context['subtitle'] = __( 'Odkaz už<br>není platný :(', 'shp-partneri' );
 		$context['text'] = '
@@ -398,7 +379,6 @@ add_action( 'init' , function () {
 				' . sprintf( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ) ) . '
 			</p>
 		';
-		$context['footer_image'] = 'envelope-x';
 		Timber::render( 'templates/message/message.twig', $context );
 		die();
 		return;
@@ -436,11 +416,9 @@ add_action( 'init' , function () {
 		// Render success message
 		$context = Timber::get_context();
 		$context['wp_title'] = __( 'Úspěšně odesláno', 'shp-partneri' );
-		$context['message_type'] = 'success';
 		$context['title'] = __( 'Super!', 'shp-partneri' );
 		$context['subtitle'] = __( 'Váš formulář byl úspěšně odeslaný.', 'shp-partneri' );
 		$context['text'] = '<p>' . $options['onboarding']['submitted_text'] . '</p>';
-		$context['footer_image'] = 'envelope';
 		Timber::render( 'templates/message/message.twig', $context );
 		die();
 		return;

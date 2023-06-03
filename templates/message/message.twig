@@ -10,50 +10,19 @@
     <div class="message">
 
       <div class="message-container">
-        <div class="row no-gutters">
 
-          <div class="col-md-5 message-body">
+        <h1 class="h2 mb-4 message-title">
+          {{ title }}<br>
+          <span class="message-subtitle">
+            {{ subtitle }}
+          </span>
+        </h1>
 
-            <h1 class="h2 mb-4 message-title">
-              {{ title }}<br>
-              <span class="message-subtitle">
-                {{ subtitle }}
-              </span>
-            </h1>
-
-            <div>
-              {{ text }}
-            </div>
-
-          </div>
-          <div class="col-md-7 align-self-end">
-
-            <div class="message-shoptetrix message-shoptetrix-{{ message_type }}">
-              <div class="message-shoptetrix-container">
-                <img
-                  src="{{ ("shoptetrix-" ~ message_type ~ ".png")|static_assets }}"
-                  alt="{{ __( 'Shoptetrix', 'shp-partneri' ) }}"
-                >
-              </div>
-            </div>
-
-          </div>            
+        <div>
+          {{ text }}
         </div>
-      </div>
 
-      <div class="message-footer py-4">
-        {% if footer_image %}
-          <img
-            src="{{ (footer_image ~ '.png')|static_assets }}"
-            {% if footer_image == 'envelope-x' %}
-              height="75px"
-            {% else %}
-              height="65px"
-            {% endif %}
-          >
-        {% endif %}
       </div>
-
     </div>
 
     <div class="text-center mt-3">

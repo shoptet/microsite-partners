@@ -100,18 +100,13 @@ function remind_authentication () {
       $auth_token = only_alphanumeric( $auth_token_hash );
     }
     $auth_url = get_site_url( null, '?auth_token=' . $auth_token );
-    $context['title'] = __( 'Pozor!', 'shp-partneri' );
-    $context['subtitle'] = __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
-    $context['text'] = __( 'Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>. Asi se ztratil váš potvrzovací email. Bez potvrzení to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.', 'shp-partneri' );
-    $context['image'] = [
-      'main' => 'shoptetrix-warning-mail.png',
-      'width' => 250,
-    ];
+    $context['title'] = __( 'Pozor!', 'shp-partneri' ) . ' ' . __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
+    $context['content'] = __( 'Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>. Asi se ztratil váš potvrzovací email. Bez potvrzení to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.', 'shp-partneri' );
     $context['cta'] = [
       'title' => __( 'Potvrdit hodnocení', 'shp-partneri' ),
       'link' => $auth_url,
     ];
-    $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+    $email_html_body = Timber::compile( 'templates/mailing/message.twig', $context );
     $email_subject = __( 'Připomenutí schválení vašeho hodnocení na partneri.shoptet.cz', 'shp-partneri' );
     wp_mail(
       $comment->comment_author_email,
@@ -172,7 +167,6 @@ function get_post_by_onboarding_token( $onboarding_token ) {
 function render_onboarding_form_error_message() {
   $context = Timber::get_context();
   $context['wp_title'] = __( 'Odeslání se nezdařilo', 'shp-partneri' );
-  $context['message_type'] = 'error';
   $context['title'] = __( 'Ouha!', 'shp-partneri' );
   $context['subtitle'] = __( 'Odeslání formuláře se&nbsp;nezdařilo :(', 'shp-partneri' );
   $context['text'] = '
@@ -183,7 +177,6 @@ function render_onboarding_form_error_message() {
       ' . sprintf ( __( 'Ozvěte se nám na <a href="mailto:%s" target="_blank">%s</a>, koukneme na to.', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ), __( 'partneri@shoptet.cz', 'shp-partneri' ) ) . '
     </p>
   ';
-  $context['footer_image'] = 'envelope-x';
   Timber::render( 'templates/message/message.twig', $context );
   die();
 }

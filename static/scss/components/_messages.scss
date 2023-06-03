@@ -7,56 +7,13 @@
 
 .message-container {
   padding: 2rem;
-  padding-bottom: 0;
-}
-
-.message-body {
-  padding-bottom: 2rem;
 }
 
 .message-title {
-  text-transform: uppercase;
   font-size: 1.8rem;
 }
 
 .message-subtitle {
   font-weight: 600; 
   color: #A4CA17;
-}
-
-.message-footer {
-  min-height: 5rem;
-  padding: 2rem;
-  background-color: #E2E2E2;
-}
-
-.message-shoptetrix {
-  text-align: center;
-}
-
-.message-shoptetrix-container {
-  display: inline-block;
-  max-height: 20rem;
-}
-
-.message-shoptetrix img {
-  max-width: 100%;
-  height: auto;
-  max-height: 20rem;
-}
-
-.message-shoptetrix-success img {
-  margin-bottom: -18%;
-}
-
-.message-shoptetrix-error img {
-  margin-bottom: -24%;
-}
-
-.message-shoptetrix-warning img {
-  margin-bottom: -16%;
-}
-
-.message-shoptetrix-thumb-up img {
-  margin-bottom: -15.3%;
 }

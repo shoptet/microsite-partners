@@ -71,11 +71,9 @@ class ContactForm
   {
     $context = Timber::get_context();
     $context['wp_title'] = __( 'Zpráva odeslána', 'shp-partneri' );
-    $context['message_type'] = 'success';
     $context['title'] = __( 'Děkujeme!', 'shp-partneri' );
     $context['subtitle'] = __( 'Vaše zpráva byla odeslána', 'shp-partneri' );
     $context['text'] = '<p>' . __( 'My teď budeme netrpělivě čekat na vyplnění formuláře, který jsme vám právě poslali e-mailem. Tak na něj prosím nezapomeňte :)', 'shp-partneri' ) . '</p>';
-    $context['footer_image'] = 'envelope';
     Timber::render( 'templates/message/message.twig', $context );
     die();
   }
@@ -87,24 +85,17 @@ class ContactForm
     // Compile and send e-mail
     $context = Timber::get_context();
     $options = get_fields('options');
-    $context['title'] = __( 'Děkujeme', 'shp-partneri' );
-    $context['subtitle'] = __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
+    $context['title'] = __( 'Děkujeme', 'shp-partneri' ) . '<br>' . __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
     $replace_pairs = [
       '%form_url%' => $onboarding_url,
     ];
     $text = $options['onboarding']['contact_mail_text'];
-    $context['text'] = strtr( $text, $replace_pairs );
-    $context['text_size'] = 'small';
-    $context['image'] = [
-      'main' => 'shoptetrix-thumb-up-1.png',
-      'complementary' => 'shoptetrix-thumb-up-2.png',
-      'width' => 250,
-    ];
+    $context['content'] = strtr( $text, $replace_pairs );
     $context['cta'] = [
       'title' => __( 'Vyplnit dotazník', 'shp-partneri' ),
       'link' => $onboarding_url,
     ];
-    $email_html_body = Timber::compile( 'templates/mailing/shoptetrix-inline.twig', $context );
+    $email_html_body = Timber::compile( 'templates/mailing/message.twig', $context );
     $email_subject = $options['onboarding']['contact_mail_subject'];
     wp_mail(
       $this->email,
