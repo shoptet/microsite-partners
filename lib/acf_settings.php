@@ -3561,4 +3561,51 @@ acf_add_local_field_group(array(
 	'description' => '',
 ));
 
+if (ExternalRequestsSyncer::is_pull_enable()):
+acf_add_local_field_group(array(
+	'key' => 'group_647c44b0d769c',
+	'title' => 'Synchronization',
+	'fields' => array(
+		array(
+			'key' => 'field_647c44ce484b6',
+			'label' => 'External category ID',
+			'name' => 'external_category_id',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'min' => '',
+			'max' => '',
+			'step' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'taxonomy',
+				'operator' => '==',
+				'value' => 'category_requests',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+endif;
+
 } );

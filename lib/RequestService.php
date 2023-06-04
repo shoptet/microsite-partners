@@ -5,7 +5,9 @@ class RequestService
 
   const PUBLISH_AFTER = '+24 hours';
   const EXPIRATION_TIME = '-90 days';
+  const REMINDER_TIME = '-14 days';
   const EXPIRATION_CHECK_RECURRENCE = 'twicedaily';
+  const REMINDER_CHECK_RECURRENCE = 'daily';
 
   static function init () {
     add_action( 'init', [ get_called_class(), 'registerPostStatus' ] );
@@ -18,12 +20,16 @@ class RequestService
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
+    // TODO uncomment add_action( 'shp/request_service/reminder_check', [ get_called_class(), 'reminderCheck' ] );
     add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
 
     if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
       wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
+    }
+    if ( ! wp_next_scheduled( 'shp/request_service/reminder_check' ) ) {
+      wp_schedule_event( time(), self::REMINDER_CHECK_RECURRENCE, 'shp/request_service/reminder_check' );
     }
   }
 
@@ -121,6 +127,36 @@ class RequestService
       $request_post = new RequestPost( $post->ID );
       $request_post->setStatus( 'expired' );
       $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
+    }
+  }
+
+  static function reminderCheck() {
+    // Get all requests to remind
+    $query = new WP_Query( [
+      'post_type' => 'request',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      'date_query' => [
+        'before' => self::REMINDER_TIME,
+      ],
+      'meta_query' => [
+        'relation' => 'AND',
+        [
+          'key' => 'external_post_id',
+          'compare' => 'NOT EXISTS',
+        ],
+        [
+          'key' => '_reminded',
+          'compare' => 'NOT EXISTS',
+        ],
+      ],
+    ] );
+
+    // Remind
+    foreach( $query->posts as $post ) {
+      $request_post = new RequestPost( $post->ID );
+      do_action( 'shp/request_service/remind', $post->ID );
+      $request_post->setMeta( '_reminded', true );
     }
   }
 

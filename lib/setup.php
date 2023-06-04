@@ -612,6 +612,8 @@ TermSyncer::init();
 
 ExternalCommentsSyncer::init();
 
+ExternalRequestsSyncer::init();
+
 RequestNotifier::init();
 
 RequestForm::init();
