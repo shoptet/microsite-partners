@@ -15,6 +15,7 @@ class RequestNotifier
     add_action( 'shp/request_form/save', [ get_called_class(), 'newRequestAuthor' ] );
     add_action( 'shp/request_service/approve', [ get_called_class(), 'approvedRequestAuthor' ] );
     add_action( 'shp/request_service/approve', [ get_called_class(), 'approvedRequestProfessionals' ] );
+    add_action( 'shp/request_service/remind', [ get_called_class(), 'remindRequestAuthor' ] );
     add_action( 'shp/request_message/validate', [ get_called_class(), 'messageRequestAuthor' ], 10, 2 );
     add_action( 'shp/request_service/expire', [ get_called_class(), 'expiredRequestAuthor' ] );
     add_action( 'shp/professional_service/unsubscribe', [ get_called_class(), 'unsubscribeRequestPartner' ] );
@@ -148,7 +149,11 @@ class RequestNotifier
 
   static function approvedRequestAuthor( $post_id )
   {
-    $field_name = 'request_approve_author';
+    if (get_post_meta($post_id, 'external_post_id', true)) {
+      $field_name = 'request_approve_author_external';
+    } else {
+      $field_name = 'request_approve_author';
+    }
     $request_post = new RequestPost( $post_id );
     $author_email = $request_post->getMeta( 'author_email' );
     $headers = self::getDefaultEmailHeaders();
@@ -193,6 +198,20 @@ class RequestNotifier
       $compiled_mail = self::compileMail( $field_name, $compile_args );
       wp_mail( $professional_email, $compiled_mail['subject'], $compiled_mail['message'], $headers );
     }
+  }
+
+  static function remindRequestAuthor( $post_id )
+  {
+    $field_name = 'request_remind_author';
+    $request_post = new RequestPost( $post_id );
+    $author_email = $request_post->getMeta( 'author_email' );
+    $headers = self::getDefaultEmailHeaders();
+    
+    $compile_args = [
+      'request_id' => $post_id,
+    ];
+    $compiled_mail = self::compileMail( $field_name, $compile_args );
+    wp_mail( $author_email, $compiled_mail['subject'], $compiled_mail['message'], $headers );
   }
 
   static function messageRequestAuthor( $post_id, $message_arr )

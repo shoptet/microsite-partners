@@ -15,6 +15,7 @@ $includes = [
 	'lib/AdminMetaSearch.php',
 	'lib/TermSyncer.php',
 	'lib/ExternalCommentsSyncer.php',
+	'lib/ExternalRequestsSyncer.php',
 	'lib/RequestPost.php',
 	'lib/RequestArchive.php',
 	'lib/RequestService.php',
