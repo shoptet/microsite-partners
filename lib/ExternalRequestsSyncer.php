@@ -6,7 +6,7 @@ class ExternalRequestsSyncer
   public static function init()
   {
     add_action('rest_api_init', [ get_called_class(), 'register_rest_route']);
-    // TODO add_action('external_requests_syncer/sync_all', [ get_called_class(), 'sync_all']);
+    add_action('external_requests_syncer/sync_all', [ get_called_class(), 'sync_all']);
     add_action('shp/request_service/expire', [ get_called_class(), 'expire_synced' ]);
 
     if (!wp_next_scheduled('external_requests_syncer/sync_all')) {

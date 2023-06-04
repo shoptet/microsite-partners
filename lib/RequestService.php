@@ -5,7 +5,8 @@ class RequestService
 
   const PUBLISH_AFTER = '+24 hours';
   const EXPIRATION_TIME = '-90 days';
-  const REMINDER_TIME = '-14 days';
+  const REMINDER_TIME = '-7 days';
+  const REMINDER_BEFORE_SYNC_TIME = '-14 days';
   const EXPIRATION_CHECK_RECURRENCE = 'twicedaily';
   const REMINDER_CHECK_RECURRENCE = 'daily';
 
@@ -21,6 +22,7 @@ class RequestService
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
     // TODO uncomment add_action( 'shp/request_service/reminder_check', [ get_called_class(), 'reminderCheck' ] );
+    // TODO uncomment add_action( 'shp/request_service/reminder_before_sync_check', [ get_called_class(), 'reminderBeforeSyncCheck' ] );
     add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
@@ -30,6 +32,9 @@ class RequestService
     }
     if ( ! wp_next_scheduled( 'shp/request_service/reminder_check' ) ) {
       wp_schedule_event( time(), self::REMINDER_CHECK_RECURRENCE, 'shp/request_service/reminder_check' );
+    }
+    if ( ! wp_next_scheduled( 'shp/request_service/reminder_before_sync_check' ) ) {
+      wp_schedule_event( time(), self::REMINDER_CHECK_RECURRENCE, 'shp/request_service/reminder_before_sync_check' );
     }
   }
 
@@ -142,10 +147,6 @@ class RequestService
       'meta_query' => [
         'relation' => 'AND',
         [
-          'key' => 'external_post_id',
-          'compare' => 'NOT EXISTS',
-        ],
-        [
           'key' => '_reminded',
           'compare' => 'NOT EXISTS',
         ],
@@ -157,6 +158,36 @@ class RequestService
       $request_post = new RequestPost( $post->ID );
       do_action( 'shp/request_service/remind', $post->ID );
       $request_post->setMeta( '_reminded', true );
+    }
+  }
+
+  static function reminderBeforeSyncCheck() {
+    // Get all requests to remind
+    $query = new WP_Query( [
+      'post_type' => 'request',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      'date_query' => [
+        'before' => self::REMINDER_BEFORE_SYNC_TIME,
+      ],
+      'meta_query' => [
+        'relation' => 'AND',
+        [
+          'key' => 'external_post_id',
+          'compare' => 'NOT EXISTS',
+        ],
+        [
+          'key' => '_reminded_before_sync',
+          'compare' => 'NOT EXISTS',
+        ],
+      ],
+    ] );
+
+    // Remind
+    foreach( $query->posts as $post ) {
+      $request_post = new RequestPost( $post->ID );
+      do_action( 'shp/request_service/remind_before_sync', $post->ID );
+      $request_post->setMeta( '_reminded_before_sync', true );
     }
   }
 
