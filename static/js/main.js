@@ -30,7 +30,7 @@ import '../images/shoptetrix-grimacing-2.png';
 import '../images/eva.png';
 
 // static jpg
-import '../images/placeholder.jpg';
+import '../images/placeholder-user.jpg';
 
 // static svg
 import '../images/shoptet-partneri-logo.svg';
