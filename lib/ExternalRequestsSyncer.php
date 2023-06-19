@@ -68,7 +68,7 @@ class ExternalRequestsSyncer
       'posts_per_page' => -1,
       'date_query' => [
         'before' => date('Y-m-d', strtotime('-16 days')),
-        'after' => '2023-01-01', // TODO remove after init
+        'after' => '2023-01-01',
       ],
     ]);
     $posts = array_map(function($post) {
@@ -154,7 +154,6 @@ class ExternalRequestsSyncer
       // This site is the original source of this post
     } else {
       // Sync this post
-      return;  // TODO remove
       $term_id = self::map_external_term($post['category']);
       if ($term_id === false) {
         throw new Exception( 'No related term to external term id ' . $post['category'] );
@@ -163,8 +162,7 @@ class ExternalRequestsSyncer
         'post_title' => $post['post_title'],
         'post_content' => $post['post_content'],
         'post_type' => RequestPost::POST_TYPE,
-        // 'post_status' => 'publish',  TODO: uncomment
-        'post_status' => 'draft', //  TODO: remove
+        'post_status' => 'publish',
         'meta_input' => [
           'author_name' => $post['author_name'],
           'author_email' => $post['author_email'],
@@ -177,11 +175,10 @@ class ExternalRequestsSyncer
       ];
       $new_post_id = wp_insert_post($args);
       wp_set_post_terms($new_post_id, [$term_id], RequestPost::TAXONOMY);
-      // TODO: uncomment
-      // $new_post = get_post($new_post_id);
-      // update_post_meta($new_post_id, '_previous_status', 'publish');
-      // RequestService::schedulePost($new_post);
-      // RequestService::notify($new_post_id);
+      $new_post = get_post($new_post_id);
+      update_post_meta($new_post_id, '_previous_status', 'publish');
+      RequestService::schedulePost($new_post);
+      RequestService::notify($new_post_id);
     }
   }
 

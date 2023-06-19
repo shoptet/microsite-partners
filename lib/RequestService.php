@@ -21,8 +21,8 @@ class RequestService
     add_action( 'wp_ajax_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'wp_ajax_nopriv_request_message', [ get_called_class(), 'handleMessage' ] );
     add_action( 'shp/request_service/expiration_check', [ get_called_class(), 'expirationCheck' ] );
-    // TODO uncomment add_action( 'shp/request_service/reminder_check', [ get_called_class(), 'reminderCheck' ] );
-    // TODO uncomment add_action( 'shp/request_service/reminder_before_sync_check', [ get_called_class(), 'reminderBeforeSyncCheck' ] );
+    add_action( 'shp/request_service/reminder_check', [ get_called_class(), 'reminderCheck' ] );
+    add_action( 'shp/request_service/reminder_before_sync_check', [ get_called_class(), 'reminderBeforeSyncCheck' ] );
     add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
