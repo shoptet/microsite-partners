@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html class="no-js" {{ site.language_attributes }}>
 	<head>
+		<script data-cookieconsent="ignore">
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'loaded_starting',
+				'timestampStart': new Date().getTime(),
+			});
+		</script>
+		<script data-cookieconsent="ignore">
+			var load_gtm = (function (e) {
+				var loaded = false;
+				return function () {
+					if (!loaded) {
+						loaded = true;
+						(function(w,d,s,l,i){ w[l]=w[l]||[];w[l].push({ 'gtm.start': new Date().getTime(),event:'gtm.js' }); var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','GTM-P8ZPQCR');
+						dataLayer.push({
+							'event': 'loaded_gtm',
+							'timestampGtm': new Date().getTime(),
+						});
+					}
+				};
+			})();
+			window.addEventListener('CookiebotOnDialogDisplay', load_gtm, false);
+			window.addEventListener('CookiebotOnConsentReady', load_gtm, false);
+			window.addEventListener('DOMContentLoaded', () => setTimeout(() => load_gtm(), 5000), false);
+		</script>
+		<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-consentmode="disabled" data-cbid="dc568ef6-5766-4ffe-a935-9b9386044f37" type="text/javascript" async></script>
+		<script data-cookieconsent="ignore">
+			dataLayer.push({
+				'event': 'loaded_cookiebot',
+				'timestampCookiebot': new Date().getTime(),
+			});
+		</script>
 	  <meta charset="{{ site.charset }}">
 	  <title>
 	    {% if wp_title %}
@@ -49,6 +82,10 @@
 	</head>
 
 	<body class="{{ body_class }}">
+
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8ZPQCR" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
 
 		{# Web Font Loader #}
 		{#

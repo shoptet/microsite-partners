@@ -62,10 +62,17 @@ import 'font-awesome-svg-png/black/svg/arrow-left.svg';
 import { initContactMessage } from './contact-message';
 import { initRecaptchaRequired } from './recaptcha-required';
 import { initArchiveFilter } from './archive-filter';
+import * as dl from './datalayer';
 
 import Splide from '@splidejs/splide';
 
+dl.pushPageView();
+
 $(function () {
+
+  dl.initButtonClick();
+  dl.initFormSubmit();
+  dl.initSearch();
 
   initContactMessage();
   initRecaptchaRequired();

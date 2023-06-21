@@ -462,3 +462,46 @@ function get_time_interval($duration) {
   }
   return $time;
 }
+
+function get_language() {
+  return explode('_', get_locale())[0];
+}
+
+function get_currency() {
+  $currency = false;
+  $lang = get_language();
+  $currencies = [
+    'cs' => 'CZK',
+    'sk' => 'EUR',
+    'hu' => 'HUF',
+  ];
+  if (isset($currencies[$lang])) {
+    $currency = $currencies[$lang];
+  }
+  return $currency;
+}
+
+function get_datalayer_type() {
+  $type = 'other';
+  $types_by_templates = [
+    'page-profesionalove.php' => 'partners',
+  ];
+  $template = get_page_template_slug();
+  if (isset($types_by_templates[$template])) {
+    $type = $types_by_templates[$template];
+  }
+  if (is_front_page()) {
+    $type = 'home';
+  } else if (is_post_type_archive('request') || is_singular('request') || is_tax('category_requests')) {
+    $type = 'requests';
+  } else if (is_post_type_archive('webinar') || is_singular('webinar') || is_tax('category_webinars')) {
+    $type = 'webinars';
+  } else if (is_tax('category_professionals')) {
+    $type = 'partner-list';
+  } else if (is_singular('profesionalove')) {
+    $type = 'partner-detail';
+  } else if (get_field('datalayer_type')) {
+    $type = get_field('datalayer_type');
+  }
+  return $type;
+}

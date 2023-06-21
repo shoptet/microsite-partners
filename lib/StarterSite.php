@@ -117,6 +117,30 @@ class StarterSite extends TimberSite {
     wp_enqueue_script( 'recaptcha', '//www.google.com/recaptcha/api.js' );
 
     wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js' );
+
+    wp_localize_script('main', 'dl', [
+      'page' => [
+        'currency' => get_currency(),
+        'category' => 'not_available_DL',
+        'subCategory' => 'not_available_DL',
+        'subSubCategory' => 'not_available_DL',
+        'environment' => defined('WP_DEBUG') && WP_DEBUG ? 'dev' : 'live',
+        'language' => get_language(),
+        'hostname' => $_SERVER['SERVER_NAME'],
+        'title' => get_the_title(),
+        'path' => 'not_available_DL',
+        'url' => 'not_available_DL',
+        'params' => '# / ?',
+        'type' => get_datalayer_type(),
+      ],
+      'user' => [
+        'accountHash' => 'not_available_DL',
+        'email' => 'not_available_DL',
+        'accountId' => 'not_available_DL',
+        'name' => 'not_available_DL',
+        'surname' => 'not_available_DL',
+      ],
+    ]);
     
   }
 

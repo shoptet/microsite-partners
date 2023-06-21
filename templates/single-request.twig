@@ -36,7 +36,7 @@
 				</div>
 
 				<div class="list-group-profile">
-					<div class="list-group-profile-item">
+					<div class="list-group-profile-item" data-form data-form-type="request" {% if post.terms is not empty %}id="general_request~{{ post.terms.0.slug }}"{% endif %}>
 
 						{% include 'request/contact-form.twig' %}
 

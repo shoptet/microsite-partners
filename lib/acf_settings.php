@@ -3561,6 +3561,54 @@ acf_add_local_field_group(array(
 	'description' => '',
 ));
 
+acf_add_local_field_group(array(
+	'key' => 'group_64917fcebed47',
+	'title' => 'Page',
+	'fields' => array(
+		array(
+			'key' => 'field_64917fd961321',
+			'label' => 'Datalayer type',
+			'name' => 'datalayer_type',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+			'show_column' => 0,
+			'show_column_sortable' => 0,
+			'show_column_weight' => 1000,
+			'allow_quickedit' => 0,
+			'allow_bulkedit' => 0,
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'page',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+	
 if (ExternalRequestsSyncer::is_pull_enable()):
 acf_add_local_field_group(array(
 	'key' => 'group_647c44b0d769c',

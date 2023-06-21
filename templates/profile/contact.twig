@@ -2,7 +2,7 @@
     <div class="list-group-profile-item list-group-profile-item-title">
         <h2 class="h4 mb-0">{{ __( 'Kontaktovat partnera', 'shp-partneri' ) }}</h2>
     </div>
-    <div class="list-group-profile-item">
+    <div class="list-group-profile-item" data-form data-form-type="partner_request" id="partner_request~{{ post.ID }}">
         {% include 'profile/contact-form.twig' %}
     </div>
 </div>

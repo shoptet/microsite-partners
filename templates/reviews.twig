@@ -48,12 +48,14 @@
   </div>
 
   <div class="collapse" id="commentForm">
-    <div class="py-5 border-top ">
+    <div class="py-5 border-top">
       {% if post.comment_status == 'closed' %}
         <p class="mb-0">{{ __('Hodnocení jsou uzavřena', 'shp-partneri') }}</p>
       {% else %}
         <h2 class="h3 mb-4">{{ __('Přidat hodnocení', 'shp-partneri') }}</h2>
-        {% include 'review-form.twig' %}
+        <div data-form data-form-type="review" id="review~{{ post.ID }}">
+          {% include 'review-form.twig' %}
+        </div>
       {% endif %}
     </div>
   </div>

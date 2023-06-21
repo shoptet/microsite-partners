@@ -38,7 +38,7 @@
   			{% if post.get_field('url') %}
     			<li>
             <svg class="profile-contact-list-icon" data-src="{{ "external-link.svg"|static_assets }}" width="17" height="17" role="img" aria-label="{{ __('Web', 'shp-partneri') }}"></svg>
-            <a href="{{ post.get_field('url')|ensure_protocol }}" target="_blank" itemprop="url">
+            <a href="{{ post.get_field('url')|ensure_protocol }}" target="_blank" itemprop="url" id="partner_link~{{ post.ID }}">
               {{ post.get_field('url')|display_url }}
             </a>
           </li>
