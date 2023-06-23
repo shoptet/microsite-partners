@@ -140,6 +140,7 @@ class StarterSite extends TimberSite {
         'name' => 'not_available_DL',
         'surname' => 'not_available_DL',
       ],
+      'partner' => get_datalayer_partners(),
     ]);
     
   }

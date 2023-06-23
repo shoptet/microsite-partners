@@ -131,9 +131,11 @@
 
 		{{ function('wp_footer') }}
 
-		{% block footer %}
-			{{ footer }}
-		{% endblock %}
+		<div id="footer">
+			{% block footer %}
+				{{ footer }}
+			{% endblock %}
+		</div>
 
 		{% block footer_script %}
 		{% endblock %}

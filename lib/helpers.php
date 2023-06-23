@@ -505,3 +505,36 @@ function get_datalayer_type() {
   }
   return $type;
 }
+
+function get_datalayer_partner_object($id) {
+  $states = [
+    'zlatý' => 'gold',
+    'stříbrný' => 'silver',
+    'bronzový' => 'bronze',
+  ];
+  $professional_post = new ProfessionalPost($id);
+  $status = 'not_available_DL';
+  if (isset($states[get_post_meta($id, 'verifiedLevel', true)])) {
+    $status = $states[get_post_meta($id, 'verifiedLevel', true)];
+  }
+  return [
+    'id' => $id,
+    'name' => get_the_title(),
+    'status' => $status,
+    'review' => $professional_post->getAverageRating(),
+    'reviewCount' => get_comments(['post_id' => $id, 'count' => true]),
+  ];
+}
+
+function get_datalayer_partners() {
+  $partners = [];
+  if (is_singular('profesionalove')) {
+    $partners[] = get_datalayer_partner_object(get_the_ID());
+  } else if (is_tax('category_professionals')) {
+    global $wp_query;
+    foreach($wp_query->posts as $p) {
+      $partners[] = get_datalayer_partner_object($p->ID);
+    }
+  }
+  return $partners;
+}

@@ -5,6 +5,7 @@ export const pushPageView = () => {
     event: 'pageView',
     page: preparePage(window.dl.page),
     user: window.dl.user,
+    partner: window.dl.partner,
   };
   console.log(pageView); // remove
   dataLayer.push(pageView);
@@ -52,6 +53,10 @@ export const handleFormSubmit = (el) => {
     id: (formContainer && formContainer.id) || el.id || 'not_available_DL',
     type: (formContainer && formContainer.dataset && formContainer.dataset.formType) || el.dataset.formType || 'not_available_DL',
   };
+
+  if (el.id == 'general_request') {
+    form.id =  el.id + '~' + document.getElementById('acf-field_5d9f2f4a8e648').value; // category id
+  }
 
   const user = window.dl.user;
 
@@ -122,15 +127,20 @@ const preparePage = (page) => {
 
 const createElementID = (el) => {
   const parentWithID = el.closest('[id]');
+  let parentID = parentWithID ? parentWithID.id : false;
   const slug = slugify(el.textContent) || slugify(el.ariaLabel);
+
+  if (parentID == 'shp_navigation') {
+    parentID = 'menu';
+  }
   
   let id;
   if (el.id) {
     id = el.id;
-  } else if (parentWithID && slug) {
-    id = parentWithID.id + '_' + slug;
-  } else if (parentWithID) {
-    id = parentWithID.id;
+  } else if (parentID && slug) {
+    id = parentID + '~' + slug;
+  } else if (parentID) {
+    id = parentID;
   } else if (slug) {
     id = slug;
   } else {
