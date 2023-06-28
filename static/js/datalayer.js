@@ -14,10 +14,11 @@ export const pushPageView = () => {
 export const initButtonClick = () => {
   document.querySelectorAll('a[href],button[type=button]').forEach((el) => {
     el.addEventListener('click', function (e) {
+      const text = this.dataset.text || this.textContent.trim() || 'not_available_DL'
       const element = {
         color: 'not_available_DL',
         target: (this.href && this.href.trim()) || 'not_available_DL',
-        text: this.textContent.trim() || 'not_available_DL',
+        text: text,
         id: createElementID(this),
       };
       const buttonClick = {
@@ -56,6 +57,10 @@ export const handleFormSubmit = (el) => {
 
   if (el.id == 'general_request') {
     form.id =  el.id + '~' + document.getElementById('acf-field_5d9f2f4a8e648').value; // category id
+  }
+
+  if (el.name == 'shp_footer-try-us-form') {
+    form.type = 'trial';
   }
 
   const user = window.dl.user;

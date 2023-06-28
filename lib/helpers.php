@@ -517,9 +517,15 @@ function get_datalayer_partner_object($id) {
   if (isset($states[get_post_meta($id, 'verifiedLevel', true)])) {
     $status = $states[get_post_meta($id, 'verifiedLevel', true)];
   }
+  $terms = wp_get_post_terms($id, 'category_professionals', ['fields' => 'names']);
+  $category = 'not_available_DL';
+  if (count($terms)) {
+    $category = $terms[0];
+  }
   return [
     'id' => $id,
     'name' => get_the_title(),
+    'category' => $category,
     'status' => $status,
     'review' => $professional_post->getAverageRating(),
     'reviewCount' => get_comments(['post_id' => $id, 'count' => true]),
