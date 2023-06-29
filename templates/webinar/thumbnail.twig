@@ -3,6 +3,7 @@
   class="webinar-thumbnail"
   title="{{ post.title }}"
   id="webinars~{{ post.ID }}"
+  data-text="{{ post.title }}"
 >
   <div class="embed-responsive embed-responsive-16by9 bg-light webinar-thumbnail-image">
     <img class="embed-responsive-item" src="{{ post.meta('external_id')|youtube_thumbnail }}" alt="{{ post.title }}" loading="lazy" />

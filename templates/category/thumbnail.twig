@@ -9,6 +9,7 @@
   href="{{ term.link }}"
   title="{{ __( 'Zobrazit profily v této kategorii', 'shp-partneri' ) }}"
   id="{{ term.name }}"
+  data-text="{{ term.name }}"
 >
   {% if term.get_field('image') %}
     <div class="category-thumbnail-icon">
