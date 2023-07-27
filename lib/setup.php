@@ -189,7 +189,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 
 	// Compile and send e-mail
 	$context = Timber::get_context();
-	$context['title'] = __( 'Děkujeme', 'shp-partneri' ) . '<br>' . __( 'Za vaše hodnocení', 'shp-partneri' );
+	$context['title'] = __( 'Děkujeme za vaše hodnocení', 'shp-partneri' );
 	$context['content'] = sprintf( __( 'Teď už jen klikněte <strong style="%s"><a href="%s" target="_blank" style="%s">ZDE</a></strong> pro potvrzení a&nbsp;zveřejnění vašeho hodnocení.<br><br>Přejeme krásný den,<br>tým Shoptet', 'shp-partneri' ), '', $auth_url, '' );
 	$email_html_body = Timber::compile( 'templates/mailing/message.twig', $context );
 	$email_subject = sprintf ( __( 'Schválení vašeho hodnocení na partneri.shoptet.cz k Partnerovi %s', 'shp-partneri' ), $post->post_title );
@@ -289,7 +289,7 @@ add_action( 'transition_comment_status',  function( $new_status, $old_status, $c
 
 	// Compile and send e-mail
 	$context = Timber::get_context();
-	$context['title'] = __( 'Bingo!', 'shp-partneri' ) . ' ' . __( 'Máte nové hodnocení', 'shp-partneri' );
+	$context['title'] = __( 'Bingo! Máte nové hodnocení', 'shp-partneri' );
 	$context['content'] = __( 'Přečíst a reagovat na něj můžete v detailu svého medailonku', 'shp-partneri' );
 	$context['cta'] = [
 		'title' => __( 'Přečíst hodnocení', 'shp-partneri' ),

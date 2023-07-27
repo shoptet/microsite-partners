@@ -100,7 +100,7 @@ function remind_authentication () {
       $auth_token = only_alphanumeric( $auth_token_hash );
     }
     $auth_url = get_site_url( null, '?auth_token=' . $auth_token );
-    $context['title'] = __( 'Pozor!', 'shp-partneri' ) . ' ' . __( 'Ještě jste nepotvrdil hodnocení<br>:-(', 'shp-partneri' );
+    $context['title'] = __( 'Pozor! Ještě jste nepotvrdil hodnocení :-(', 'shp-partneri' );
     $context['content'] = __( 'Je to už nějaký čas, co jste napsal <strong>své hodnocení</strong>. Asi se ztratil váš potvrzovací email. Bez potvrzení to ale nepůjde. Tak to pojďme zkusit znovu, ať můžeme hodnocení zveřejnit.', 'shp-partneri' );
     $context['cta'] = [
       'title' => __( 'Potvrdit hodnocení', 'shp-partneri' ),

@@ -85,7 +85,7 @@ class ContactForm
     // Compile and send e-mail
     $context = Timber::get_context();
     $options = get_fields('options');
-    $context['title'] = __( 'Děkujeme', 'shp-partneri' ) . '<br>' . __( 'Za váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
+    $context['title'] = __( 'Děkujeme za Váš zájem stát se Shoptet partnerem.', 'shp-partneri' );
     $replace_pairs = [
       '%form_url%' => $onboarding_url,
     ];
