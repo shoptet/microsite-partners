@@ -807,6 +807,25 @@ acf_add_local_field_group(array (
 	'title' => __( 'Nastavení', 'shp-partneri' ),
 	'fields' => array (
 		array (
+			'key' => 'field_5af20aacc2217',
+			'label' => 'GTM ID',
+			'name' => 'gtm_id',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
+		array (
 			'key' => 'field_59f20aa7c2217',
 			'label' => 'Header description',
 			'name' => 'header_description',

@@ -1,6 +1,5 @@
 var BundleTracker = require('webpack-bundle-tracker');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
@@ -40,12 +39,6 @@ var providePlugin = new webpack.ProvidePlugin({
   'window.jQuery': 'jquery',
   Popper: ['popper.js', 'default'],
   SVGInjector: 'svg-injector-2',
-});
-
-var faviconsWebpackPlugin = new FaviconsWebpackPlugin({
-  logo: './static/images/favicon.svg',
-  prefix: 'favicons/',
-  title: "Partneři Shoptet",
 });
 
 var config = {
@@ -119,7 +112,6 @@ var config = {
     extractTextPlugin,
     occurenceOrderPlugin,
     providePlugin,
-    faviconsWebpackPlugin,
   ],
   resolve: {
     alias: {
