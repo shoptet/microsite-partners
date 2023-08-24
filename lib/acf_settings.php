@@ -3357,11 +3357,11 @@ acf_add_local_field_group(array(
 ));
 
 acf_add_local_field_group(array(
-	'key' => 'group_6409a5d4210b0',
-	'title' => 'Webinar',
+	'key' => 'group_6409a5d42c0b0',
+	'title' => 'Webinar (Public)',
 	'fields' => array(
 		array(
-			'key' => 'field_6409a5da4f2e9',
+			'key' => 'field_6409c5da4f2e9',
 			'label' => 'External ID',
 			'name' => 'external_id',
 			'type' => 'text',
@@ -3384,6 +3384,94 @@ acf_add_local_field_group(array(
 			'allow_quickedit' => 0,
 			'allow_bulkedit' => 0,
 		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'webinar',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'seamless',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+
+acf_add_local_field_group(array(
+	'key' => 'group_6409a5a42c0b1',
+	'title' => 'Webinar (Private)',
+	'fields' => array(
+		array(
+			'key' => 'field_6409c5da4f2ea',
+			'label' => 'External ID',
+			'name' => 'external_id',
+			'type' => 'text',
+			'instructions' => 'Insert Vimeo Video ID. E.g. video with URL <code>https://vimeo.com/abcdef</code> has following ID: <code>abcdef</code>.',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+			'show_column' => 0,
+			'show_column_sortable' => 0,
+			'show_column_weight' => 1000,
+			'allow_quickedit' => 0,
+			'allow_bulkedit' => 0,
+		),
+		array(
+			'key' => 'field_642ab68877fb5',
+			'label' => 'Image URL',
+			'name' => 'image_url',
+			'type' => 'url',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'course',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'seamless',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+
+acf_add_local_field_group(array(
+	'key' => 'group_6409a5d4210b0',
+	'title' => 'Webinar',
+	'fields' => array(
 		array(
 			'key' => 'field_6409dcf9a8c0e',
 			'label' => 'Related partners',
@@ -3566,7 +3654,7 @@ acf_add_local_field_group(array(
 			array(
 				'param' => 'post_type',
 				'operator' => '==',
-				'value' => 'webinar_private',
+				'value' => 'course',
 			),
 		),
 	),

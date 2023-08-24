@@ -606,6 +606,8 @@ RequestService::init();
 
 WebinarService::init();
 
+CourseService::init();
+
 PostService::init();
 
 new RequestArchive();
@@ -690,6 +692,10 @@ add_action('pre_get_posts', function( $wp_query ) {
     (
       $wp_query->get( 'post_type' ) !== 'webinar' &&
       ! $wp_query->is_tax('category_webinars')
+    ) ||
+    (
+      $wp_query->get( 'post_type' ) !== 'course' &&
+      ! $wp_query->is_tax('category_courses')
     )
   ) return;
 	$wp_query->set( 'posts_per_page', 12 );

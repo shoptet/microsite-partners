@@ -3,7 +3,7 @@
 class WebinarService
 {
 
-  const POST_TYPES = ['webinar', 'webinar_private'];
+  const POST_TYPE = 'webinar';
 
   static function init () {
     add_action( 'acf/save_post', [ get_called_class(), 'registerPostStatus' ] );
@@ -12,7 +12,7 @@ class WebinarService
   }
 
   static function registerPostStatus ($post_id) {
-    if (!in_array(get_post_type($post_id), self::POST_TYPES)) {
+    if (get_post_type($post_id) != self::POST_TYPE) {
       return;
     }
     $external_id = get_field('external_id', $post_id);
@@ -59,7 +59,7 @@ class WebinarService
   }
 
   static function displayVideo ($post) {
-    if (!in_array($post->post_type, self::POST_TYPES)) {
+    if ($post->post_type != self::POST_TYPE) {
       return;
     }
     $external_id = get_post_meta($post->ID, 'external_id', true);
@@ -70,7 +70,7 @@ class WebinarService
   }
 
   static function addLinksInContent ($content) {
-    if (!in_array(get_post_type(), self::POST_TYPES)) {
+    if (get_post_type() != self::POST_TYPE) {
       return $content;
     }
     return urls_to_links($content);

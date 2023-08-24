@@ -37,8 +37,10 @@ class StarterSite extends TimberSite {
     $context['config']['G_RECAPTCHA_SITE_KEY'] = G_RECAPTCHA_SITE_KEY;
     $context['link']['request']['archive'] = get_post_type_archive_link( 'request' );
     $context['link']['webinar']['archive'] = get_post_type_archive_link( 'webinar' );
+    $context['link']['course']['archive'] = get_post_type_archive_link( 'course' );
     $context['request_posts_count'] = wp_count_posts( 'request' );
     $context['webinar_posts_count'] = wp_count_posts( 'webinar' );
+    $context['course_posts_count'] = wp_count_posts( 'course' );
     $context['read_only_enabled'] = apply_filters( 'read_only_enabled', false );
     $context['footer'] = Shoptet\ShoptetExternal::get_footer();
     $context['shoptet_url'] = Shoptet\ShoptetHelpers::get_shoptet_url();

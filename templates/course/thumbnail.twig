@@ -1,0 +1,17 @@
+<a
+  href="{{ post.link }}"
+  class="webinar-thumbnail"
+  title="{{ post.title }}"
+  id="webinars~{{ post.ID }}"
+  data-text="{{ post.title }}"
+>
+  <div class="embed-responsive embed-responsive-16by9 bg-light webinar-thumbnail-image">
+    <img class="embed-responsive-item" src="{{ post.meta('image_url') }}_960x540?r=pad" alt="{{ post.title }}" loading="lazy" />
+  </div>
+  <div class="webinar-thumbnail-body">
+    <div class="webinar-thumbnail-title">{{ post.title }}</div>
+    {% if post.meta('duration') %}
+      <div class="webinar-thumbnail-duration">{{ post.meta('duration')|time_interval }}</div>
+    {% endif %}
+  </div>
+</a>

@@ -43,10 +43,12 @@
 						{% endif %}
 					</div>
 
-					<div class="list-group-profile-item">
-						<h2 class="h4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
-						{{ post.content }}
-					</div>
+					{% if post.content %}
+						<div class="list-group-profile-item">
+							<h2 class="h4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
+							{{ post.content }}
+						</div>
+					{% endif %}
 
 				</div>
 

@@ -21,6 +21,7 @@ $includes = [
 	'lib/RequestService.php',
 	'lib/RequestNotifier.php',
 	'lib/WebinarService.php',
+	'lib/CourseService.php',
 	'lib/RequestForm.php',
 	'lib/setup.php',
 	'lib/helpers.php',

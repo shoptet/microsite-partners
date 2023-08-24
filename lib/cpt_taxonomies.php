@@ -161,7 +161,7 @@ function cptui_register_my_taxes() {
 		'rest_base' => '',
 		'show_in_quick_edit' => false,
 	);
-	register_taxonomy( 'category_webinars_private', array( 'webinar_private' ), $args );
+	register_taxonomy( 'category_courses', array( 'course' ), $args );
 }
 
 add_action( 'init', 'cptui_register_my_taxes' );

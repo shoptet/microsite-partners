@@ -30,7 +30,7 @@
 
 					<div class="list-group-profile-item p-0" style="overflow:hidden">
 						<div class="embed-responsive embed-responsive-16by9 bg-light">
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ post.meta('external_id') }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<iframe width="560" height="315" src="https://player.vimeo.com/video/{{ post.meta('external_id') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 						</div>
 					</div>
 
@@ -43,10 +43,12 @@
 						{% endif %}
 					</div>
 
-					<div class="list-group-profile-item">
-						<h2 class="h4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
-						{{ post.content }}
-					</div>
+					{% if post.content %}
+						<div class="list-group-profile-item">
+							<h2 class="h4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
+							{{ post.content }}
+						</div>
+					{% endif %}
 
 				</div>
 
@@ -87,7 +89,7 @@
 			<div class="row small-gutters">
 				{% for post in related_posts[:4] %}
 					<div class="col-12 col-md-6 col-lg-4 col-xl-3">
-						{% include 'webinar/thumbnail.twig' %}
+						{% include 'course/thumbnail.twig' %}
 					</div>
 				{% endfor %}
 			</div>

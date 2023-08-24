@@ -9,6 +9,7 @@
   ],
   "require": {
     "google/recaptcha": "^1.2",
-    "shoptet/shoptet-wp-common": "^1"
+    "shoptet/shoptet-wp-common": "^1",
+    "vimeo/vimeo-api": "^3.0"
   }
 }
