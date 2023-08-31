@@ -1,28 +1,29 @@
 <div class="container py-5 mb-4">
 
   <div class="row">
-    {% if terms is not empty %}
-      <div class="col-12 col-md-4 col-lg-3">
-        {% include 'course/categories.twig' %}
-      </div>
-    {% endif %}
+    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+      {% include 'user/sidebar.twig' with {class: 'user-sidebar-border'} %}
+    </div>
     <div class="col-12 col-md-8 col-lg-9">
 
       <div class="mb-4">
 
         <div class="mb-3">
-          <h1 class="h2 mb-3 mb-md-0">
+          <h1 class="h2 mb-0">
             {{ title }}
           </h1>
         </div>
-
-        <div class="mb-3">
-          {% include 'breadcrumb.twig' %}
-        </div>
-
+        {# 
         {% if description %}
-          <div class="mb-3">
+          <div>
             {{ description }}
+          </div>
+        {% endif %}
+        #}
+
+        {% if terms is not empty %}
+          <div class="mt-4">
+            {% include 'course/categories.twig' %}
           </div>
         {% endif %}
 
@@ -49,7 +50,7 @@
         <div class="border-top pt-5">
 
           <p class="h3 mb-2">
-            {{ __( 'Nemůžeme najít žádné poptávky s těmito požadavky', 'shp-partneri' ) }}
+            {{ __( 'Nemůžeme najít žádné webináře s těmito požadavky', 'shp-partneri' ) }}
           </p>
           <p>
             {{ __( 'Zkuste prosím snížit vaše požadavky pomocí filtrů.', 'shp-partneri' ) }}

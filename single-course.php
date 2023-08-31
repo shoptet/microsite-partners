@@ -19,7 +19,7 @@ if ($image_url) {
   $context['og_image'] = $image_url . '_960x540?r=pad';
 }
 
-$context['breadcrumbs'][ __( 'Webináře', 'shp-partneri' ) ] = get_post_type_archive_link( 'course' );
+$context['breadcrumbs'][ __( 'Webináře pro partnery', 'shp-partneri' ) ] = get_post_type_archive_link( 'course' );
 
 if ($terms = $post->terms()) {
   $term = new Timber\Term( $terms[0] );

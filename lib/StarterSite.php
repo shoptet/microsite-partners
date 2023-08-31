@@ -45,6 +45,13 @@ class StarterSite extends TimberSite {
     $context['footer'] = Shoptet\ShoptetExternal::get_footer();
     $context['shoptet_url'] = Shoptet\ShoptetHelpers::get_shoptet_url();
     $context['locale'] = get_locale();
+    if (is_user_logged_in()) {
+      $context['current_user'] = new Timber\User();
+      // TODO
+      if (2936) {
+        $context['current_user_post'] = new Timber\Post(2936);
+      }
+    }
     return $context;
   }
 
@@ -63,6 +70,7 @@ class StarterSite extends TimberSite {
     $twig->addFilter( new Timber\Twig_Filter('posts_in_term', array($this, 'posts_in_term')));
     $twig->addFilter( new Timber\Twig_Filter('keep_query_string', array($this, 'keep_query_string')));
     $twig->addFilter( new Timber\Twig_Filter('average_rating', array($this, 'average_rating')));
+    $twig->addFilter( new Timber\Twig_Filter('verified_level', array($this, 'verified_level')));
     $twig->addFilter( new \Timber\Twig_Filter('apply_shortcodes', 'apply_shortcodes'));
     $twig->addFilter( new \Timber\Twig_Filter('youtube_thumbnail', 'get_youtube_thumbnail_url'));
     $twig->addFilter( new \Timber\Twig_Filter('time_interval', 'get_time_interval'));
@@ -284,5 +292,20 @@ class StarterSite extends TimberSite {
   function average_rating( $post ) {
     $professional_post = new ProfessionalPost( $post->ID );
     return $professional_post->getAverageRating();
+  }
+
+  function verified_level( $post ) {
+    $verified_level = get_field( 'verifiedLevel', $post->ID );
+    switch($verified_level) {
+      case 'zlatý':
+        $verified_level = __( 'Zlatý partner', 'shp-partneri' );
+        break;
+      case 'stříbrný:':
+        $verified_level = __( 'Stříbrný partner', 'shp-partneri' );
+        break;
+      default:
+        $verified_level = __( 'Bronzový partner', 'shp-partneri' );
+    }
+    return $verified_level;
   }
 }

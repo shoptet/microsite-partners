@@ -32,7 +32,7 @@ if( is_tax() ) {
   $context['meta_description'] = $term->description;
   $context['description'] = $term->description;
 } else {
-  $context['title'] = __( 'Webináře', 'shp-partneri' );
+  $context['title'] = __( 'Webináře pro partnery', 'shp-partneri' );
   $context['canonical']['link'] = ($context['pagination']['current'] == 1) ? $archive_link : $archive_link . __( 'strana', 'shp-partneri' ) . '/' . $context['pagination']['current'] . '/';
   $context['description'] = isset($options['webinar_archive_description']) ? $options['webinar_archive_description'] : '' ;
   $context['meta_description'] = $context['description'];

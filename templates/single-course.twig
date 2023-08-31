@@ -7,24 +7,15 @@
 	<meta property="og:url" content="{{ post.link }}">
 {% endblock %}
 
-{% block breadcrumb %}
-	<div class="row-breadcrumb row-breadcrumb-bg">
-		<div class="container">
-			{% include 'breadcrumb.twig' %}
-		</div>
-	</div>
-{% endblock %}
-
 {% block content %}
-
-<div class="row-profile row-profile-breadcrumb" >
+<div class="row-profile">
 	<div class="container">
 
 		<div class="row">
-			{% if not show_sidebar %}
-				<div class="col-lg-2"></div>
-			{% endif %}
-			<div class="col-lg-8">
+			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0" style="justify-content: center">
+				{% include 'user/sidebar.twig' %}
+			</div>
+			<div class="col-12 col-md-8">
 
 				<div class="list-group-profile">
 
@@ -36,56 +27,30 @@
 
 					<div class="list-group-profile-item mt-0">
 						<h1 class="h2 mb-0">{{ post.title }}</h1>
+
 						{% if post.terms is not empty %}
 							<div class="mt-3 text-muted">
-								{{ __('Webinář v kategorii <a href="%s">%s</a>', 'shp-partneri')|format(post.terms.0.link, post.terms.0.name) }}
+								{{ __('Webinář pro partnery v kategorii <a href="%s">%s</a>', 'shp-partneri')|format(post.terms.0.link, post.terms.0.name) }}
 							</div>
 						{% endif %}
 					</div>
 
 					{% if post.content %}
 						<div class="list-group-profile-item">
-							<h2 class="h4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
+							<h2 class="h4 mt-4">{{ __('Popis webináře', 'shp-partneri') }}</h2>
 							{{ post.content }}
 						</div>
 					{% endif %}
 
 				</div>
-
-			</div>
-			{% if show_sidebar %}
-				<div class="col-lg-4">
-					<div class="mt-5 mt-lg-0">
-						{% if related_partners %}
-							<h2 class="h4 mb-3">{{ __('Související partner', 'shp-partneri') }}</h2>
-							{% for post in related_partners %}
-								{% include 'profile/thumbnail.twig' %}
-							{% endfor %}
-						{% endif %}
-						{% if post.meta('related_addons') %}
-							<h2 class="h4 mb-3">{{ __('Související doplňky', 'shp-partneri') }}</h2>
-							{% for item in post.meta('related_addons') %}
-								{% include 'thumbnail.twig' %}
-							{% endfor %}
-						{% endif %}
-						{% if related_blog_posts %}
-							<h2 class="h4 mb-3">{{ __('Související články na blogu', 'shp-partneri') }}</h2>
-							{% for item in related_blog_posts %}
-								{% include 'thumbnail.twig' with {long_title: true} %}
-							{% endfor %}
-						{% endif %}
-					</div>
-				</div>
-			{% endif %}
 		</div>
-
 	</div>
 </div>
 
 {% if related_posts|length > 0 %}
 	<div class="row-profile-list">
 		<div class="container">
-			<h2 class="row-profile-list-title">{{ __( 'Podobné webináře', 'shp-partneri' ) }}</h2>
+			<h2 class="row-profile-list-title">{{ __( 'Podobné webináře pro partnery', 'shp-partneri' ) }}</h2>
 			<div class="row small-gutters">
 				{% for post in related_posts[:4] %}
 					<div class="col-12 col-md-6 col-lg-4 col-xl-3">

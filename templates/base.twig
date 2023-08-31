@@ -114,7 +114,9 @@
 		}(document, 'script', 'facebook-jssdk'));</script>
 
 		{% block header %}
-			{% include 'go-to-shoptet.twig' %}
+			{% if not current_user_post %}
+				{% include 'go-to-shoptet.twig' %}
+			{% endif %}
 			{% include 'header.twig' %}
 		{% endblock %}
 

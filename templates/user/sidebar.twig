@@ -1,0 +1,26 @@
+<div class="user-sidebar {{ class }}">
+  <img class="user-sidebar-background" src="{{'user-background.jpg'|static_assets }}">
+  <div class="user-sidebar-profile">
+    <img class="user-sidebar-image" src="{{ current_user_post.thumbnail.src|resize(150, 150) }}" alt="{{ current_user_post.title }}">
+    <div class="h5 font-weight-bold mb-0">{{ current_user_post.title }}</div>
+    <div>{{ current_user_post|verified_level }}</div>
+    <div class="mt-3">
+      {% include 'review-rating-stars.twig' with {rating: current_user_post|average_rating} %}
+    </div>
+    <a href="{{ current_user_post.link }}#comments" class="fs-80 text-muted">
+      {% if current_user_post.comments|length > 0 %}
+        {{ __('%s hodnocení', 'shp-partneri')|format(current_user_post.comments|length) }}
+      {% else %}
+        {{ __('Žádné hodnocení', 'shp-partneri') }}
+      {% endif %}
+    </a>
+  </div>
+  <ul class="user-sidebar-menu">
+    <li><a href="{{ link.course.archive }}">{{ __('Webináře pro partnery', 'shp-partneri') }}</a></li>
+    <li><a href="#">Affiliate</a></li>
+  </ul>
+  <ul class="user-sidebar-controls">
+    <li><a href="{{ current_user_post.link }}">{{ __('Zobrazit můj profil', 'shp-partneri') }}</a></li>
+    <li><a class="text-danger" href="{{ function('wp_logout_url') }}">{{ __('Odhlásit', 'shp-partneri') }}</a></li>
+  </ul>
+</div>

@@ -28,6 +28,7 @@ import '../images/shoptetrix-grimacing-1.png';
 import '../images/shoptetrix-grimacing-2.png';
 import '../images/shoptetrix-grimacing-2.png';
 import '../images/eva.png';
+import '../images/user-background.jpg';
 
 // static jpg
 import '../images/placeholder-user.jpg';
