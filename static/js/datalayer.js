@@ -61,6 +61,7 @@ export const handleFormSubmit = (el) => {
 
   if (el.name == 'shp_footer-try-us-form') {
     form.type = 'trial';
+    form.id = 'footer';
   }
 
   const user = window.dl.user;
