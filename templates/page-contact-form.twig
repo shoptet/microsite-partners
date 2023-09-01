@@ -13,10 +13,20 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6 offset-md-3">
 				<div class="mb-4">
-					<h1 class="h2">{{ __( 'Kontakt', 'shp-partneri' ) }}</h1>
-					{{ post.content }}
+					{% if locale == 'cs_CZ' %}
+						<div class="text-center">
+								<h2>{{ __( 'Kontakt', 'shp-partneri' ) }}</h2>
+								<p>Omlouváme se, ale aktuálně nepřijímáme nové žádosti o partnerství a to až do 15. 9. 2023.</p>
+								<p>Prosíme, zaregistrujte se až po tomto datu. Děkujeme za pochopení.</p>
+						</div>
+					{% else %}
+						<h1 class="h2">{{ __( 'Kontakt', 'shp-partneri' ) }}</h1>
+						{{ post.content }}
+					{% endif %}
 				</div>
-				{% include 'contact-form.twig' %} 				
+				{% if locale != 'cs_CZ' %}
+					{% include 'contact-form.twig' %} 				
+				{% endif %}
 			</div>
 		</div>
 	</div>
