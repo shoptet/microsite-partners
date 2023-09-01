@@ -686,19 +686,18 @@ add_action('pre_get_posts', function( $wp_query ) {
  * Handle webinar archive and category
  */
 add_action('pre_get_posts', function( $wp_query ) {
-  if (
-    is_admin() ||
-    ! $wp_query->is_main_query() ||
-    (
-      $wp_query->get( 'post_type' ) !== 'webinar' &&
-      ! $wp_query->is_tax('category_webinars')
-    ) ||
-    (
-      $wp_query->get( 'post_type' ) !== 'course' &&
-      ! $wp_query->is_tax('category_courses')
-    )
-  ) return;
-	$wp_query->set( 'posts_per_page', 12 );
+	if (
+		!is_admin() &&
+		$wp_query->is_main_query() &&
+		( 
+			$wp_query->get( 'post_type' ) == 'webinar' ||
+			$wp_query->is_tax('category_webinars') ||
+			$wp_query->get( 'post_type' ) == 'course' ||
+			$wp_query->is_tax('category_courses')
+		)
+	) {
+		$wp_query->set( 'posts_per_page', 12 );
+	}
 } );
 
 add_filter('acf/format_value/type=text', 'do_shortcode');
