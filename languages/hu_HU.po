@@ -695,12 +695,12 @@ msgstr "Vizsgálat"
 #: lib/acf_settings.php:1966 templates/contact-form.twig:9
 #: templates/profile/contact-form.twig:8
 msgid "Vaše jméno"
-msgstr "Az ön neve"
+msgstr "Neved"
 
 #: lib/acf_settings.php:1985 templates/contact-form.twig:16
 #: templates/profile/contact-form.twig:15
 msgid "Váš e-mail"
-msgstr "Az email címe"
+msgstr "E-mail címed"
 
 #: lib/acf_settings.php:2003 templates/request/content.twig:25
 msgid "URL projektu"
@@ -1600,7 +1600,7 @@ msgstr "Profilok száma ebben a kategóriában"
 
 #: templates/contact-form.twig:21 templates/contact-form.twig:23
 msgid "Vaše zpráva"
-msgstr "Az ön üzenete..."
+msgstr "Üzenet"
 
 #: templates/contact-form.twig:26 templates/profile/contact-form.twig:25
 msgid ""
@@ -1608,7 +1608,7 @@ msgid ""
 "ochrany-osobnich-udaju/\" target=\"_blank\">podmínkami ochrany osobních "
 "údajů</a>"
 msgstr ""
-"Az e-mail megadásával egyetért a <a href=\"https://www.shoptet.hu/"
+"Az e-mail megadásával egyetértek a <a href=\"https://www.shoptet.hu/"
 "adatvedelmi-iranyelvek/\" target=\"_blank\"> személyes adatokról szóló "
 "feltételekkel </a>"
 
@@ -1632,7 +1632,7 @@ msgstr "Profilok száma ebben a kategóriában"
 
 #: templates/header.twig:49
 msgid "Zadejte hledaný výraz..."
-msgstr "Írjon be egy keresési kifejezést ..."
+msgstr "Írj be egy keresési kifejezést..."
 
 #: templates/header.twig:67 templates/request/archive-list.twig:20
 msgid "Přidat poptávku"
@@ -1706,10 +1706,7 @@ msgid ""
 "                  Po 24 hodinách po tomto schválení se zobrazí i na tomto "
 "webu."
 msgstr ""
-"Írja le röviden, hogy a Shoptet Partnerek mely szolgáltatásai érdekelnék "
-"önt. Mi ellenőrizzük kérését, és ha szükséges egyeztetünk önnel, jóváhagyása "
-"után pedig elküldjük a meghatározott  kategóriába tartozó összes partnernek. "
-"24 órával a jóváhagyás után ezen a weboldalon is megtalálható lesz a projekt."
+"Írd le röviden, hogy a Shoptet Partnerek mely szolgáltatásai érdekelnének. Mi ellenőrizzük kérésedet, és ha szükséges egyeztetünk veled, jóváhagyásod után pedig elküldjük a meghatározott kategóriába tartozó összes partnernek. 24 órával a jóváhagyás után ezen a weboldalon is megtalálható lesz a projekt."
 
 #: templates/new-request-page.twig:62
 msgid ""
@@ -1722,7 +1719,7 @@ msgstr ""
 
 #: templates/new-request-page.twig:76
 msgid "Odeslat poptávku"
-msgstr "Írjon nekünk"
+msgstr "Küldés"
 
 #: templates/onboarding.twig:24
 msgid "Vyplňte svůj medailonek"
