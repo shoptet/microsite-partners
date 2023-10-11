@@ -108,6 +108,13 @@ class ProfessionalService
       return;
     }
 
+    add_row( 'field_646a6d655eacb', [
+      'date' => current_time('mysql'),
+      'name' => $name,
+      'email' => $email,
+      'message' => $message,
+    ], $post_id );
+
     $professional_post = new ProfessionalPost($post_id);
 
     $professional_mail = $professional_post->getMeta('emailAddress');
