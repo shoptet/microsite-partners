@@ -1,0 +1,8 @@
+/* Remove Cookiebit logo */
+a#CybotCookiebotDialogPoweredbyCybot,
+div#CybotCookiebotDialogPoweredByText {
+  display: none;
+}
+#CookiebotWidget .CookiebotWidget-body .CookiebotWidget-main-logo {
+  display: none;
+}
