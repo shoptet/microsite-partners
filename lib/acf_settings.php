@@ -2396,6 +2396,7 @@ acf_add_local_field_group(array(
 				'Ondřej Mikoláš' => 'Ondřej Mikoláš',
 				'Eva Šlezáková' => 'Eva Šlezáková',
 				'Annamária Skládalová' => 'Annamária Skládalová',
+				'Kristýna Pecková' => 'Kristýna Pecková',
 			),
 			'allow_null' => 0,
 			'other_choice' => 0,
