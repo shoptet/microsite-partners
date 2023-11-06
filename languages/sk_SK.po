@@ -49,10 +49,8 @@ msgid "Webináře"
 msgstr "Webináre"
 
 #: archive-webinar.php:32
-#, fuzzy, php-format
-#| msgid "Webináře"
 msgid "%s webináře"
-msgstr "Webináre"
+msgstr "%s webináre"
 
 #: lib/AdminProfessionalList.php:29
 msgid "— Manager —"
@@ -1931,11 +1929,11 @@ msgstr "Pridať hodnotenie"
 
 #: templates/row-webinars.twig:3
 msgid "Nejnovější webináře"
-msgstr ""
+msgstr "Najnovšie webináre"
 
 #: templates/row-webinars.twig:14 templates/webinar/categories.twig:24
 msgid "Všechny webináře"
-msgstr ""
+msgstr "Všetky webináre"
 
 #: templates/search.twig:26
 msgid "Výsledky vyhledávání pro:"
@@ -1956,27 +1954,27 @@ msgstr "Skúste prosím vyhľadať inú frázu."
 #: templates/single-webinar.twig:41
 #, php-format
 msgid "Webinář v kategorii <a href=\"%s\">%s</a>"
-msgstr ""
+msgstr "Webinár v kategórii <a href=\"%s\">%s</a>"
 
 #: templates/single-webinar.twig:47
 msgid "Popis webináře"
-msgstr ""
+msgstr "Popis webinára"
 
 #: templates/single-webinar.twig:58
 msgid "Související partner"
-msgstr ""
+msgstr "Súvisiaci partner"
 
 #: templates/single-webinar.twig:64
 msgid "Související doplňky"
-msgstr ""
+msgstr "Súvisiace doplnky"
 
 #: templates/single-webinar.twig:70
 msgid "Související články na blogu"
-msgstr ""
+msgstr "Súvisiace články na blogu"
 
 #: templates/single-webinar.twig:86
 msgid "Podobné webináře"
-msgstr ""
+msgstr "Podobné webináre"
 
 #: templates/single.twig:100
 msgid "Nevybrali jste? Co zkusit jiné?"
@@ -1984,7 +1982,7 @@ msgstr "Nevybrali ste? Čo skúsiť iné?"
 
 #: templates/webinar/categories.twig:18
 msgid "Kategorie webinářů"
-msgstr ""
+msgstr "Kategórie webinárov"
 
 #. Theme Name of the plugin/theme
 msgid "Shoptet Partners"
