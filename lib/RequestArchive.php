@@ -32,8 +32,7 @@ class RequestArchive
   function initOrdering()
   {
     // Set default ordering
-    $this->wp_query->set( 'meta_key', 'is_shoptet' );
-    $this->wp_query->set( 'orderby', [ 'meta_value_num' => 'desc', 'post_date' => 'desc' ] );
+    $this->wp_query->set( 'orderby', [ 'post_date' => 'desc' ] );
 
     // Get query
     $query = false;
@@ -43,7 +42,7 @@ class RequestArchive
 
     // Sort by date ascending
     if( $query == [ 'date', 'asc' ] ) {
-      $this->wp_query->set( 'orderby', [ 'meta_value_num' => 'desc', 'post_date' => $query[1] ] );
+      $this->wp_query->set( 'orderby', [ 'post_date' => $query[1] ] );
     }
 
     // Filter by publish posts
