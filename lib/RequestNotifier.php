@@ -70,9 +70,12 @@ class RequestNotifier
     $term = null;
     $replace_pairs = [];
 
+    if (isset( $args['term_id'] )) {
+      $term = get_term( $args['term_id'] );
+    }
+
     if( isset( $args['request_id'] ) ) {
       $request_post = new RequestPost( $args['request_id'] );
-      $term = $request_post->getTerm();
       $request_replace_pairs = [
         '%request_name%' => $request_post->getTitle(),
         '%request_text%' => $request_post->getContent(),
@@ -171,10 +174,10 @@ class RequestNotifier
     $field_name = 'request_approve_professional';
     $request_post = new RequestPost( $post_id );
     $headers = self::getDefaultEmailHeaders();
-    $term =  $request_post->getTerm();
+    $terms =  $request_post->getTerms();
 
-    if( ! $term ) {
-      throw new Exception( 'No term related to a request post with ID ' . $post_id );
+    if( ! $terms ) {
+      throw new Exception( 'No terms related to a request post with ID ' . $post_id );
     }
 
     $related_term = get_term_by( 'slug', $term->slug, ProfessionalPost::TAXONOMY );
@@ -194,6 +197,7 @@ class RequestNotifier
       
       $compile_args = [
         'request_id' => $post_id,
+        'term_id' => $term_id,
         'professional_id' => $professional_post->getID(),
       ];
       $compiled_mail = self::compileMail( $field_name, $compile_args );

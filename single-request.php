@@ -17,8 +17,8 @@ $context['post'] = $post;
 $context['breadcrumbs'][ __( 'Poptávky', 'shp-partneri' ) ] = get_post_type_archive_link( 'request' );
 
 $request_post = new RequestPost( $post->ID );
-if ( $term = $request_post->getTerm() ) {
-  $term = new Timber\Term( $term );
+if ( $term = $request_post->getTerms() ) {
+  $term = new Timber\Term( $term[0] );
   $context['term'] = $term;
   $context['breadcrumbs'][ $term->name ] = $term->link;
 }

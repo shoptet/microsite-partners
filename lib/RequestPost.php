@@ -9,13 +9,9 @@ class RequestPost extends Post
     parent::__construct( $post_id );
   }
 
-  public function getTerm()
+  public function getTerms()
   {
-    $term = false;
-    if ( $terms = wp_get_post_terms( $this->post_id, self::TAXONOMY ) ) {
-      $term = $terms[0];
-    }
-    return $term;
+    return wp_get_post_terms( $this->post_id, self::TAXONOMY );
   }
 
   public function getFuturePreviewLink()
