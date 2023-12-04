@@ -138,6 +138,8 @@
 		{% include 'row-webinars.twig' %}
 	{% endif %}
 
-	{% include 'row-contact.twig' %} 
+	{% if locale != 'hu_HU' %}
+		{% include 'row-contact.twig' %}
+	{% endif %}
 
 {% endblock %}
