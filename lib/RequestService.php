@@ -39,15 +39,22 @@ class RequestService
   }
 
   static function registerPostStatus() {
-    $args = [
+    register_post_status( 'expired', [
       'label' => __( 'Expirováno', 'shp-partneri' ),
       'public' => true,
       'show_in_admin_all_list' => true,
       'show_in_admin_status_list' => true,
       'post_type' => [ RequestPost::POST_TYPE ],
       'label_count' => _n_noop( 'Expirováno <span class="count">(%s)</span>', 'Expirováno <span class="count">(%s)</span>', 'shp-partneri' ),
-    ];
-    register_post_status( 'expired', $args );
+    ] );
+    register_post_status( 'premium', [
+      'label' => __( 'Premium', 'shp-partneri' ),
+      'public' => false,
+      'show_in_admin_all_list' => true,
+      'show_in_admin_status_list' => true,
+      'post_type' => [ RequestPost::POST_TYPE ],
+      'label_count' => _n_noop( 'Premium <span class="count">(%s)</span>', 'Premium <span class="count">(%s)</span>', 'shp-partneri' ),
+    ] );
   }
 
   static function addFuturePreviewRewriteRules() {
@@ -249,14 +256,29 @@ class RequestService
           <option value="expired" <?php echo ('expired' == $post->post_status) ? 'selected' : ''; ?>>
             <?php _e( 'Expirováno', 'shp-partneri' ); ?>
           </option>
+          <option value="premium" <?php echo ('premium' == $post->post_status) ? 'selected' : ''; ?>>
+            <?php _e( 'Premium', 'shp-partneri' ); ?>
+          </option>
           <option value="publish" <?php echo ('publish' == $post->post_status) ? 'selected' : ''; ?>>
             <?php _e( 'Publikováno', 'shp-partneri' ); ?>
           </option>
         `);
-        <?php if ( 'expired' == $post->post_status ): ?>
-          jQuery('#post-status-display').text('<?php _e( 'Expirováno', 'shp-partneri' ); ?>');
+        <?php if ( 'expired' == $post->post_status || 'premium' == $post->post_status ): ?>
+          jQuery('input#save-post').val('<?php _e( 'Uložit', 'shp-partneri' ); ?>');
           jQuery('input#publish').removeAttr('name').val('<?php _e( 'Aktualizovat', 'shp-partneri' ); ?>');
         <?php endif; ?>
+        <?php if ( 'expired' == $post->post_status ): ?>
+          jQuery('#post-status-display').text('<?php _e( 'Expirováno', 'shp-partneri' ); ?>');
+        <?php elseif ( 'premium' == $post->post_status ): ?>
+          jQuery('#post-status-display').text('<?php _e( 'Premium', 'shp-partneri' ); ?>');
+        <?php endif; ?>
+        jQuery('a.save-post-status').click(function () {
+          var newStatus = jQuery('select#post_status').val();
+          if (newStatus == 'expired' || newStatus == 'premium') {
+            jQuery('input#save-post').val('<?php _e( 'Uložit', 'shp-partneri' ); ?>');
+            jQuery('input#publish').removeAttr('name').val('<?php _e( 'Aktualizovat', 'shp-partneri' ); ?>');
+          }
+        });
       });
     </script>
     <?php
