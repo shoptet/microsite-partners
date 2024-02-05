@@ -16,7 +16,11 @@
       <h1 class="request-title mb-1" itemprop="name">{{ post.title }}</h1>
 
       {% if post.terms is not empty %}
-        <a href="{{ post.terms.0.link }}">{{ post.terms.0.name }}</a>
+        <ul class="list-inline mb-0">
+          {% for term in post.terms %}
+            <li class="list-inline-item"><a href="{{ term.link }}">{{ term.name }}</a></li>
+          {% endfor %}
+        </ul>
       {% endif %}
 
     </div>

@@ -24,7 +24,11 @@
 
         <ul class="request-thumbnail-meta list-inline list-inline-bullet text-muted">
           {% if post.terms is not empty %}
-            <li class="list-inline-item font-weight-bold">{{ post.terms.0.name }}</li>
+            <li class="list-inline-item font-weight-bold">
+              {% for term in post.terms %}
+                {{ term.name }}{% if not loop.last %},{% endif %}
+              {% endfor %}
+            </li>
           {% endif %}
 
           {% if post.author_name %}
