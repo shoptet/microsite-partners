@@ -76,6 +76,11 @@ class RequestNotifier
 
     if( isset( $args['request_id'] ) ) {
       $request_post = new RequestPost( $args['request_id'] );
+      if (isset( $args['term_id'] )) {
+        $term = get_term( $args['term_id'] );
+      } else if ($terms = $request_post->getTerms()) {
+        $term = $terms[0];
+      }
       $request_replace_pairs = [
         '%request_name%' => $request_post->getTitle(),
         '%request_text%' => $request_post->getContent(),
@@ -180,28 +185,30 @@ class RequestNotifier
       throw new Exception( 'No terms related to a request post with ID ' . $post_id );
     }
 
-    $related_term = get_term_by( 'slug', $term->slug, ProfessionalPost::TAXONOMY );
-    $professionals = ProfessionalPost::getAllToNotify( $related_term );
-
-    foreach( $professionals as $professional_post ) {
-      $professional_email = $professional_post->getMeta( 'emailAddress' );
-
-      if( ! $professional_email ) {
-        try {
-          throw new Exception( 'Professional ( ' . $professional_post->getID() . ' ) has no e-mail.' );
-        } catch ( Exception $e ) {
-          error_log( $e->getMessage() );
+    foreach($terms as $term) {
+      $related_term = get_term_by( 'slug', $term->slug, ProfessionalPost::TAXONOMY );
+      $professionals = ProfessionalPost::getAllToNotify( $related_term );
+  
+      foreach( $professionals as $professional_post ) {
+        $professional_email = $professional_post->getMeta( 'emailAddress' );
+  
+        if( ! $professional_email ) {
+          try {
+            throw new Exception( 'Professional ( ' . $professional_post->getID() . ' ) has no e-mail.' );
+          } catch ( Exception $e ) {
+            error_log( $e->getMessage() );
+          }
+          continue;
         }
-        continue;
+        
+        $compile_args = [
+          'request_id' => $post_id,
+          'term_id' => $term->term_id,
+          'professional_id' => $professional_post->getID(),
+        ];
+        $compiled_mail = self::compileMail( $field_name, $compile_args );
+        wp_mail( $professional_email, $compiled_mail['subject'], $compiled_mail['message'], $headers );
       }
-      
-      $compile_args = [
-        'request_id' => $post_id,
-        'term_id' => $term_id,
-        'professional_id' => $professional_post->getID(),
-      ];
-      $compiled_mail = self::compileMail( $field_name, $compile_args );
-      wp_mail( $professional_email, $compiled_mail['subject'], $compiled_mail['message'], $headers );
     }
   }
 
