@@ -26,6 +26,7 @@ class RequestService
     add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
+    add_filter( 'acf/validate_value/key=field_5d9f2f4a8e648', [ get_called_class(), 'handleCategoryValidation' ], 10, 2 );
 
     if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
       wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
@@ -331,6 +332,20 @@ class RequestService
     return $robot_text . "
 Disallow: /future-request/*
 ";
+  }
+
+  static function handleCategoryValidation($valid, $value) {
+    if (!$valid) {
+      return $valid;
+    }
+  
+    if (count($value) > 3) {
+      $valid = __( 'Zvolte maximálně 3 kategorie', 'shp-partneri' );
+    } else {
+      $valid = true;
+    }
+  
+    return $valid;
   }
 
 }
