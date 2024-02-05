@@ -70,10 +70,6 @@ class RequestNotifier
     $term = null;
     $replace_pairs = [];
 
-    if (isset( $args['term_id'] )) {
-      $term = get_term( $args['term_id'] );
-    }
-
     if( isset( $args['request_id'] ) ) {
       $request_post = new RequestPost( $args['request_id'] );
       if (isset( $args['term_id'] )) {
