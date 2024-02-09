@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="py-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-7">
+				<h1 class="h2 mb-3">{{post.title}}</h1>
+				{{ post.content }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
