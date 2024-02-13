@@ -66,7 +66,7 @@
    $hero_text = $options['themeHomepageHeroText'];
    $context['hero_text'] = $hero_text;
 
-   $context['meta_description'] = strip_tags($hero_text);
+   $context['meta_description'] = strip_tags(apply_shortcodes($hero_text));
 
    $context['show_breadcrumb'] = false;
 
