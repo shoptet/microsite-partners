@@ -76,7 +76,6 @@ class ProfessionalAdmin
     $cin = get_post_meta($post_id, 'cin', true);
     $tin = get_post_meta($post_id, 'tin', true);
     $premium_partner = get_post_meta($post_id, 'isPremiumPartner', true);
-    $verified = get_post_meta($post_id, 'isVerified', true);
     $badge = get_post_meta($post_id, 'verifiedLevel', true);
     $partner_manager = get_post_meta($post_id, 'partnerManager', true);
     $country = get_post_meta($post_id, 'country', true);
@@ -106,7 +105,6 @@ class ProfessionalAdmin
       $cin,
       $tin,
       $premium_partner,
-      $verified,
       $badge,
       $partner_manager,
       $country,
@@ -140,7 +138,6 @@ class ProfessionalAdmin
       'cin',
       'tin',
       'premium_partner',
-      'verified',
       'badge',
       'partner manager',
       'country',

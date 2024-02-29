@@ -56,11 +56,9 @@
 					</div>
 					<div class="col-lg-5 col-xl-4">
 						{% if not options.hideBadges %}
-							{% if post.get_field('isVerified') is not empty %}
-								<div class="d-none d-lg-block">
-									{% include 'profile/verified.twig' %}
-								</div>
-							{% endif %}
+							<div class="d-none d-lg-block">
+								{% include 'profile/verified.twig' %}
+							</div>
 						{% endif %}
 
 						{% if post.get_field('isPremiumPartner') is not empty %}
