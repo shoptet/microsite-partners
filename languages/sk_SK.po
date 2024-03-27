@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Shoptet Partners\n"
-"POT-Creation-Date: 2024-02-05 18:07+0100\n"
+"POT-Creation-Date: 2024-03-08 10:39+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -182,12 +182,12 @@ msgstr ""
 "Zvoľte <a href=\"%s\" target=\"_blank\">odbor</a>, do ktorého by ste chceli "
 "zaradiť"
 
-#: lib/RequestService.php:44 lib/RequestService.php:258
-#: lib/RequestService.php:272 lib/setup.php:141 lib/setup.php:163
+#: lib/RequestService.php:45 lib/RequestService.php:271
+#: lib/RequestService.php:285 lib/setup.php:141 lib/setup.php:163
 msgid "Expirováno"
 msgstr "Expirované"
 
-#: lib/RequestService.php:49 lib/setup.php:147
+#: lib/RequestService.php:50 lib/setup.php:147
 #, php-format
 msgid "Expirováno <span class=\"count\">(%s)</span>"
 msgid_plural "Expirováno <span class=\"count\">(%s)</span>"
@@ -195,12 +195,12 @@ msgstr[0] "Expirované <span class=\"count\">(%s)</span>"
 msgstr[1] "Expirované <span class=\"count\">(%s)</span>"
 msgstr[2] "Expirované <span class=\"count\">(%s)</span>"
 
-#: lib/RequestService.php:52 lib/RequestService.php:261
-#: lib/RequestService.php:274
+#: lib/RequestService.php:53 lib/RequestService.php:274
+#: lib/RequestService.php:287
 msgid "Premium"
 msgstr ""
 
-#: lib/RequestService.php:57
+#: lib/RequestService.php:58
 #, php-format
 msgid "Premium <span class=\"count\">(%s)</span>"
 msgid_plural "Premium <span class=\"count\">(%s)</span>"
@@ -208,119 +208,119 @@ msgstr[0] "Premium <span class=\"count\">(%s)</span>"
 msgstr[1] "Premium <span class=\"count\">(%s)</span>"
 msgstr[2] "Premium <span class=\"count\">(%s)</span>"
 
-#: lib/RequestService.php:105
+#: lib/RequestService.php:108
 msgid "Poptávka již byla expirována"
 msgstr "Dopyt už bol expirovaný"
 
-#: lib/RequestService.php:106
-msgid "Poptávka již expirována"
-msgstr "Dopyt už expiroval"
+#: lib/RequestService.php:110
+msgid "Gratulujeme k nalezení ideálního partnera pro spolupráci!"
+msgstr "Gratulujeme k nájdeniu ideálneho partnera na spoluprácu!"
 
-#: lib/RequestService.php:117
-msgid "Poptávka byla úspěšně expirována"
-msgstr "Dopyt úspešne expiroval"
-
-#: lib/RequestService.php:118
-msgid "Poptávka expirována"
-msgstr "Dopyt expiroval"
-
-#: lib/RequestService.php:264
+#: lib/RequestService.php:277
 msgid "Publikováno"
 msgstr "Publikované"
 
-#: lib/RequestService.php:268 lib/RequestService.php:279
+#: lib/RequestService.php:281 lib/RequestService.php:292
 msgid "Uložit"
 msgstr ""
 
-#: lib/RequestService.php:269 lib/RequestService.php:280
+#: lib/RequestService.php:282 lib/RequestService.php:293
 msgid "Aktualizovat"
 msgstr ""
 
-#: lib/RequestService.php:308
+#: lib/RequestService.php:321
 msgid ""
 "Omlouváme se, ale na tuto poptávku již není možné reagovat. V mezičase ji "
 "autor označil jako vyřešenou. Zkuste se ale mrknout na další poptávky. Díky!"
 msgstr ""
 
-#: lib/RequestService.php:343 lib/acf_settings.php:2020
+#: lib/RequestService.php:356 lib/acf_settings.php:2020
 msgid "Zvolte maximálně 3 kategorie"
 msgstr "Vyberte maximálne 3 kategórie"
 
-#: lib/StarterSite.php:116
+#: lib/RequestService.php:373
+msgid "Děkujeme za zpětnou vazbu!"
+msgstr "Ďakujeme za vašu spätnú väzbu!"
+
+#: lib/RequestService.php:374
+msgid "Děkujeme"
+msgstr "Ďakujeme"
+
+#: lib/StarterSite.php:117
 msgid "Zaškrtněte prosím, že nejste robot"
 msgstr "Zaškrtnite prosím, že nie ste robot"
 
-#: lib/StarterSite.php:117
+#: lib/StarterSite.php:118
 msgid "Vyplňte prosím všechna pole"
 msgstr "Vyplňte prosím všetky polia"
 
-#: lib/StarterSite.php:118
+#: lib/StarterSite.php:119
 msgid "Vyplňte prosím správný e-mail"
 msgstr "Vyplňte prosím správny e-mail"
 
-#: lib/StarterSite.php:119
+#: lib/StarterSite.php:120
 msgid "Odesláno!"
 msgstr "Odoslané!"
 
-#: lib/StarterSite.php:120
+#: lib/StarterSite.php:121
 msgid "Omlouvám se, ale při odeslání došlo k chybě. Zkuste to prosím později."
 msgstr ""
 "Ospravedlňujem sa, ale pri odoslaní došlo ku chybe. Skúste to prosím neskôr."
 
-#: lib/StarterSite.php:121
+#: lib/StarterSite.php:122
 msgid "Vyberte"
 msgstr "Vyberte"
 
-#: lib/StarterSite.php:122
+#: lib/StarterSite.php:123
 msgid "Načítám..."
 msgstr "Načítavam..."
 
-#: lib/StarterSite.php:123
+#: lib/StarterSite.php:124
 msgid "Načítám další..."
 msgstr "Načítavam ďalšie..."
 
-#: lib/StarterSite.php:201
+#: lib/StarterSite.php:202
 msgid "Aktivní"
 msgstr "Aktívne"
 
-#: lib/StarterSite.php:204 templates/request/thumbnail.twig:46
+#: lib/StarterSite.php:205 templates/request/thumbnail.twig:46
 msgid "Poptávka již byla vyřízena"
 msgstr "Dopyt už bol vyriešený"
 
-#: lib/StarterSite.php:207
+#: lib/StarterSite.php:208
 msgid "Čeká na schválení"
 msgstr "Čaká na schválenie"
 
-#: lib/StarterSite.php:210
+#: lib/StarterSite.php:211
 msgid "Aktivní jen pro Shoptet partnery"
 msgstr "Aktívne iba pre Shoptet partnerov"
 
-#: lib/StarterSite.php:242
+#: lib/StarterSite.php:243
 #, php-format
 msgid "%s&nbsp;%s/hod"
 msgstr "%s&nbsp;%s/hod"
 
-#: lib/StarterSite.php:245
+#: lib/StarterSite.php:246
 msgid "bez DPH"
 msgstr "bez DPH"
 
-#: lib/StarterSite.php:247
+#: lib/StarterSite.php:248
 msgid "(Neplátce DPH)"
 msgstr "(Neplatca DPH)"
 
-#: lib/StarterSite.php:301 lib/acf_settings.php:1721
+#: lib/StarterSite.php:302 lib/acf_settings.php:1721
 #: templates/profile/thumbnail.twig:22 templates/profile/verified.twig:3
 #: templates/row-badges.twig:10
 msgid "Zlatý partner"
 msgstr "Zlatý partner"
 
-#: lib/StarterSite.php:304 lib/acf_settings.php:1740
+#: lib/StarterSite.php:305 lib/acf_settings.php:1740
 #: templates/profile/thumbnail.twig:24 templates/profile/verified.twig:5
 #: templates/row-badges.twig:21
 msgid "Stříbrný partner"
 msgstr "Strieborný partner"
 
-#: lib/StarterSite.php:307 lib/acf_settings.php:1759
+#: lib/StarterSite.php:308 lib/acf_settings.php:1759
 #: templates/profile/thumbnail.twig:26 templates/profile/verified.twig:7
 #: templates/row-badges.twig:32
 msgid "Bronzový partner"
@@ -496,7 +496,7 @@ msgstr "E-mail partnerovi po odhlásení z mailingu"
 msgid "Patička e-mailu zadavateli s expiračním odkazem"
 msgstr "Pätička e-mailu zadávateľovi s expiračným odkazom"
 
-#: lib/acf_settings.php:297 lib/acf_settings.php:2468 lib/cpt_taxonomies.php:12
+#: lib/acf_settings.php:297 lib/acf_settings.php:2490 lib/cpt_taxonomies.php:12
 #: lib/cpt_taxonomies.php:41 lib/cpt_taxonomies.php:70
 #: lib/cpt_taxonomies.php:99 lib/cpt_taxonomies.php:129
 #: lib/cpt_taxonomies.php:149 templates/profile/filter.twig:18
@@ -610,7 +610,7 @@ msgstr "Pozícia"
 msgid "Web"
 msgstr "Web"
 
-#: lib/acf_settings.php:1146 lib/acf_settings.php:2808
+#: lib/acf_settings.php:1146 lib/acf_settings.php:2830
 msgid "Fotka"
 msgstr "Fotka"
 
@@ -631,7 +631,7 @@ msgstr "Ilustračný obrázok"
 msgid "Email pro žádost o zařazení mezi Shoptet partnery"
 msgstr "Email pre žiadosť o zaradenie medzi Shoptet partnerov"
 
-#: lib/acf_settings.php:1321 lib/acf_settings.php:2257
+#: lib/acf_settings.php:1321 lib/acf_settings.php:2298
 #: templates/contact-form.twig:14 templates/profile/contact-form.twig:13
 #: templates/request/contact-form.twig:21 templates/review-form.twig:17
 #: templates/review-form.twig:18
@@ -745,64 +745,56 @@ msgstr "Nie"
 msgid "ID e-shopu"
 msgstr "ID e-shopu"
 
-#: lib/acf_settings.php:2212 lib/setup.php:330 templates/reviews.twig:4
+#: lib/acf_settings.php:2253 lib/setup.php:330 templates/reviews.twig:4
 msgid "Hodnocení"
 msgstr "Hodnotenie"
 
-#: lib/acf_settings.php:2216
+#: lib/acf_settings.php:2257
 msgid "Autor ověřil své hodnocení"
 msgstr "Autor overil svoje hodnotenie"
 
-#: lib/acf_settings.php:2253
+#: lib/acf_settings.php:2294
 msgid "Základní"
 msgstr "Základné"
 
-#: lib/acf_settings.php:2311 templates/profile/badge-premium.twig:4
+#: lib/acf_settings.php:2352 templates/profile/badge-premium.twig:4
 #: templates/profile/badge-premium.twig:5 templates/profile/thumbnail.twig:15
 msgid "Shoptet Premium partner"
 msgstr "Shoptet Premium partner"
 
-#: lib/acf_settings.php:2322
+#: lib/acf_settings.php:2363
 msgid "Zobrazit odznak Shoptet Premium"
 msgstr "Zobraziť odznak Shoptet Premium"
 
-#: lib/acf_settings.php:2330
-msgid "Prověřen"
-msgstr "Preverený"
-
-#: lib/acf_settings.php:2341
-msgid "Zobrazit odznak prověření"
-msgstr "Zobraziť odznak preverený"
-
-#: lib/acf_settings.php:2349
+#: lib/acf_settings.php:2371
 msgid "Úrověň prověření"
 msgstr "Úroveň preverený"
 
-#: lib/acf_settings.php:2361
+#: lib/acf_settings.php:2383
 msgid "bronzový"
 msgstr "bronzový"
 
-#: lib/acf_settings.php:2362
+#: lib/acf_settings.php:2384
 msgid "stříbrný"
 msgstr "strieborný"
 
-#: lib/acf_settings.php:2363
+#: lib/acf_settings.php:2385
 msgid "zlatý"
 msgstr "zlatý"
 
-#: lib/acf_settings.php:2376
+#: lib/acf_settings.php:2398
 msgid "Partner manager"
 msgstr "Partner manager"
 
-#: lib/acf_settings.php:2388 lib/acf_settings.php:2397
+#: lib/acf_settings.php:2410 lib/acf_settings.php:2419
 msgid "Není"
 msgstr "Nie je"
 
-#: lib/acf_settings.php:2406
+#: lib/acf_settings.php:2428
 msgid "Cena (zastaralé)"
 msgstr "Cena (zastarané)"
 
-#: lib/acf_settings.php:2409
+#: lib/acf_settings.php:2431
 msgid ""
 "Toto pole je zde pouze z historických důvodů. Vyplňte prosím pole s cenou "
 "níže v tomto formuláři."
@@ -810,157 +802,157 @@ msgstr ""
 "Toto pole je tu iba z historických dôvodov. Vyplňte prosím polia s cenou "
 "nižšie v tomto formulári."
 
-#: lib/acf_settings.php:2425
+#: lib/acf_settings.php:2447
 msgid "Zpráva z kontaktního formuláře"
 msgstr "Správa z kontaktného formulára"
 
-#: lib/acf_settings.php:2464
+#: lib/acf_settings.php:2486
 msgid "Partner"
 msgstr "Partner"
 
-#: lib/acf_settings.php:2490 templates/review-form.twig:25
+#: lib/acf_settings.php:2512 templates/review-form.twig:25
 #: templates/review-form.twig:31
 msgid "URL vašeho webu"
 msgstr "URL vášho webu"
 
-#: lib/acf_settings.php:2509 templates/profile/main.twig:58
+#: lib/acf_settings.php:2531 templates/profile/main.twig:58
 msgid "Telefon"
 msgstr "Telefón"
 
-#: lib/acf_settings.php:2528 templates/profile/main.twig:65
+#: lib/acf_settings.php:2550 templates/profile/main.twig:65
 msgid "IČO"
 msgstr "IČO"
 
-#: lib/acf_settings.php:2547 templates/profile/main.twig:72
+#: lib/acf_settings.php:2569 templates/profile/main.twig:72
 msgid "DIČ"
 msgstr "DIČ"
 
-#: lib/acf_settings.php:2566
+#: lib/acf_settings.php:2588
 msgid "Země"
 msgstr "Zem"
 
-#: lib/acf_settings.php:2578
+#: lib/acf_settings.php:2600
 msgid "Česká republika"
 msgstr "Česká republika"
 
-#: lib/acf_settings.php:2579 lib/helpers.php:314
+#: lib/acf_settings.php:2601 lib/helpers.php:314
 msgid "Slovensko"
 msgstr "Slovensko"
 
-#: lib/acf_settings.php:2580 lib/helpers.php:318
+#: lib/acf_settings.php:2602 lib/helpers.php:318
 msgid "Maďarsko"
 msgstr "Maďarsko"
 
-#: lib/acf_settings.php:2594 lib/acf_settings.php:2640
-#: lib/acf_settings.php:2680
+#: lib/acf_settings.php:2616 lib/acf_settings.php:2662
+#: lib/acf_settings.php:2702
 msgid "Kraj"
 msgstr "Kraj"
 
-#: lib/acf_settings.php:2614
+#: lib/acf_settings.php:2636
 msgid "Hlavní město Praha"
 msgstr "Hlavné mesto Praha"
 
-#: lib/acf_settings.php:2615
+#: lib/acf_settings.php:2637
 msgid "Jihočeský kraj"
 msgstr "Jihočeský kraj"
 
-#: lib/acf_settings.php:2616
+#: lib/acf_settings.php:2638
 msgid "Jihomoravský kraj"
 msgstr "Jihomoravský kraj"
 
-#: lib/acf_settings.php:2617
+#: lib/acf_settings.php:2639
 msgid "Karlovarský kraj"
 msgstr "Karlovarský kraj"
 
-#: lib/acf_settings.php:2618
+#: lib/acf_settings.php:2640
 msgid "Kraj Vysočina"
 msgstr "Kraj Vysočina"
 
-#: lib/acf_settings.php:2619
+#: lib/acf_settings.php:2641
 msgid "Královéhradecký kraj"
 msgstr "Královéhradecký kraj"
 
-#: lib/acf_settings.php:2620
+#: lib/acf_settings.php:2642
 msgid "Liberecký kraj"
 msgstr "Liberecký kraj"
 
-#: lib/acf_settings.php:2621
+#: lib/acf_settings.php:2643
 msgid "Moravskoslezský kraj"
 msgstr "Moravskoslezský kraj"
 
-#: lib/acf_settings.php:2622
+#: lib/acf_settings.php:2644
 msgid "Olomoucký kraj"
 msgstr "Olomoucký kraj"
 
-#: lib/acf_settings.php:2623
+#: lib/acf_settings.php:2645
 msgid "Pardubický kraj"
 msgstr "Pardubický kraj"
 
-#: lib/acf_settings.php:2624
+#: lib/acf_settings.php:2646
 msgid "Plzeňský kraj"
 msgstr "Plzeňský kraj"
 
-#: lib/acf_settings.php:2625
+#: lib/acf_settings.php:2647
 msgid "Středočeský kraj"
 msgstr "Stredočeský kraj"
 
-#: lib/acf_settings.php:2626
+#: lib/acf_settings.php:2648
 msgid "Ústecký kraj"
 msgstr "Ústecký kraj"
 
-#: lib/acf_settings.php:2627
+#: lib/acf_settings.php:2649
 msgid "Zlínský kraj"
 msgstr "Zlínský kraj"
 
-#: lib/acf_settings.php:2660
+#: lib/acf_settings.php:2682
 msgid "Bratislavský kraj"
 msgstr "Bratislavský kraj"
 
-#: lib/acf_settings.php:2661
+#: lib/acf_settings.php:2683
 msgid "Trnavský kraj"
 msgstr "Trnavský kraj"
 
-#: lib/acf_settings.php:2662
+#: lib/acf_settings.php:2684
 msgid "Trenčínský kraj"
 msgstr "Trenčiansky kraj"
 
-#: lib/acf_settings.php:2663
+#: lib/acf_settings.php:2685
 msgid "Nitranský kraj"
 msgstr "Nitriansky kraj"
 
-#: lib/acf_settings.php:2664
+#: lib/acf_settings.php:2686
 msgid "Žilinský kraj"
 msgstr "Žilinský kraj"
 
-#: lib/acf_settings.php:2665
+#: lib/acf_settings.php:2687
 msgid "Banskobystrický kraj"
 msgstr "Banskobystrický kraj"
 
-#: lib/acf_settings.php:2666
+#: lib/acf_settings.php:2688
 msgid "Prešovský kraj"
 msgstr "Prešovský kraj"
 
-#: lib/acf_settings.php:2667
+#: lib/acf_settings.php:2689
 msgid "Košický kraj"
 msgstr "Košický kraj"
 
-#: lib/acf_settings.php:2732
+#: lib/acf_settings.php:2754
 msgid "Facebook"
 msgstr "Facebook"
 
-#: lib/acf_settings.php:2751
+#: lib/acf_settings.php:2773
 msgid "Twitter"
 msgstr "Twitter"
 
-#: lib/acf_settings.php:2770
+#: lib/acf_settings.php:2792
 msgid "Instagram"
 msgstr "Instagram"
 
-#: lib/acf_settings.php:2789
+#: lib/acf_settings.php:2811
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: lib/acf_settings.php:2811
+#: lib/acf_settings.php:2833
 msgid ""
 "Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve "
 "formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB."
@@ -968,43 +960,43 @@ msgstr ""
 "Prosím vložte fotku v minimálnom rozlíšení 400 x 400 px. Súbor nahrajte vo "
 "formáte jpg, png alebo gif. Maximálna veľkosť súboru je 5 MB."
 
-#: lib/acf_settings.php:2832
+#: lib/acf_settings.php:2854
 msgid "Měna hodinové sazby"
 msgstr "Mena hodinovej sadzby"
 
-#: lib/acf_settings.php:2855
+#: lib/acf_settings.php:2877
 msgid "Hodinová sazba"
 msgstr "Hodinová sadzba"
 
-#: lib/acf_settings.php:2858
+#: lib/acf_settings.php:2880
 msgid "Uveďte svou hodinovou sazbu bez DPH ve vámi vybrané měně."
 msgstr "Uveďte svoju hodinovú sadzbu bez DPH vo vami vybranej mene."
 
-#: lib/acf_settings.php:2876
+#: lib/acf_settings.php:2898
 msgid "Plátcovství DPH"
 msgstr "Platca DPH"
 
-#: lib/acf_settings.php:2887
+#: lib/acf_settings.php:2909
 msgid "Jsem plátce DPH"
 msgstr "Som platcom DPH"
 
-#: lib/acf_settings.php:2895
+#: lib/acf_settings.php:2917
 msgid "Další informace k ceně"
 msgstr "Ďalšie informácie k cene"
 
-#: lib/acf_settings.php:2914
+#: lib/acf_settings.php:2936
 msgid "O mně"
 msgstr "O mne"
 
-#: lib/acf_settings.php:2917
+#: lib/acf_settings.php:2939
 msgid "Popište v pár větách sebe a svou práci."
 msgstr "Popíšte v pár vetách seba a svoju prácu."
 
-#: lib/acf_settings.php:2933
+#: lib/acf_settings.php:2955
 msgid "Co umím?"
 msgstr "Čo viem?"
 
-#: lib/acf_settings.php:2936
+#: lib/acf_settings.php:2958
 msgid ""
 "Popište ve dvou odstavcích, co klientům můžete nabídnout a v čem jste dobrý. "
 "Nebojte se pochválit. Do tohoto odstavce můžete text naformátovat, přidat "
@@ -1013,11 +1005,11 @@ msgstr ""
 "Popíšte v dvoch odsekoch, čo klientom môžete ponúknuť a v čom ste dobrý. "
 "Nebojte sa pochváliť."
 
-#: lib/acf_settings.php:2952 templates/profile/recommendation.twig:5
+#: lib/acf_settings.php:2974 templates/profile/recommendation.twig:5
 msgid "Doporučení"
 msgstr "Odporúčania"
 
-#: lib/acf_settings.php:2955
+#: lib/acf_settings.php:2977
 msgid ""
 "Vložte sem doporučení od některého vašeho klienta fungujícího na platformě "
 "Shoptet."
@@ -1025,23 +1017,23 @@ msgstr ""
 "Vložte sem odporúčanie od niektorých vašich klientov (ideálne klientov "
 "fungujúcich na platforme Shoptet)."
 
-#: lib/acf_settings.php:2967
+#: lib/acf_settings.php:2989
 msgid "Přidat doporučení"
 msgstr "Pridať odporúčanie"
 
-#: lib/acf_settings.php:2971
+#: lib/acf_settings.php:2993
 msgid "Text doporučení"
 msgstr "Text odporúčania"
 
-#: lib/acf_settings.php:2974
+#: lib/acf_settings.php:2996
 msgid "Vložte cca 2 věty doporučení"
 msgstr "Vložte cca 2 vety odporúčaní"
 
-#: lib/acf_settings.php:2990
+#: lib/acf_settings.php:3012
 msgid "Jméno klienta"
 msgstr "Meno klienta"
 
-#: lib/acf_settings.php:2993
+#: lib/acf_settings.php:3015
 msgid ""
 "Klienta budeme odkazovat pod doporučením, proto potřebujeme jeho jméno a "
 "pozici ve firmě."
@@ -1049,23 +1041,23 @@ msgstr ""
 "Klienta budeme odkazovať pod odporúčaním, preto potrebujeme jeho meno a "
 "pozíciu vo firme."
 
-#: lib/acf_settings.php:3009
+#: lib/acf_settings.php:3031
 msgid "Pozice klienta"
 msgstr "Pozícia klienta"
 
-#: lib/acf_settings.php:3028
+#: lib/acf_settings.php:3050
 msgid "Web klienta"
 msgstr "Web klienta"
 
-#: lib/acf_settings.php:3031
+#: lib/acf_settings.php:3053
 msgid "A také webovou adresu."
 msgstr "A webovú adresu."
 
-#: lib/acf_settings.php:3049
+#: lib/acf_settings.php:3071
 msgid "Další reference"
 msgstr "Ďalšie referencie"
 
-#: lib/acf_settings.php:3052
+#: lib/acf_settings.php:3074
 msgid ""
 "Vložte sem loga svých dalších referenčních klientů. Nahrajte minimálně 3, "
 "maximálně 9. Loga musí být odlišná od uvedených v Doporučení výše. Tito "
@@ -1077,49 +1069,49 @@ msgstr ""
 "fungujúcimi na platforme Shoptet. V medailóniku vyzerajú logá moc pekne, "
 "preto ich, prosím, nevynechajte."
 
-#: lib/acf_settings.php:3064
+#: lib/acf_settings.php:3086
 msgid "Přidat logo"
 msgstr "Pridať logo"
 
-#: lib/acf_settings.php:3068
+#: lib/acf_settings.php:3090
 msgid "Název"
 msgstr "Názov"
 
-#: lib/acf_settings.php:3087
+#: lib/acf_settings.php:3109
 msgid "Logo"
 msgstr "Logo"
 
-#: lib/acf_settings.php:3090
+#: lib/acf_settings.php:3112
 msgid "JPG, PNG nebo GIF. Max. 3 MB. Min. 200 x 200 px."
 msgstr "JPG, PNG alebo GIF. Max. 3 MB. Min. 200 x 200 px."
 
-#: lib/acf_settings.php:3111
+#: lib/acf_settings.php:3133
 msgid "URL odkazu"
 msgstr "URL odkazu"
 
-#: lib/acf_settings.php:3270
+#: lib/acf_settings.php:3292
 msgid "Mailing poptávek"
 msgstr "Mailing dopytov"
 
-#: lib/acf_settings.php:3274
+#: lib/acf_settings.php:3296
 msgid "Stav mailingu"
 msgstr "Stav mailingu"
 
-#: lib/acf_settings.php:3277
+#: lib/acf_settings.php:3299
 msgid ""
 "Pokud je mailing vypnutý, partner nebude dostávat žádné e-maily s poptávkami."
 msgstr ""
 "Ak je mailing vypnutý, partner nebude dostávať žiadne e-maily s dopytmi."
 
-#: lib/acf_settings.php:3285
+#: lib/acf_settings.php:3307
 msgid "Vypnout mailing"
 msgstr "Vypnúť mailing"
 
-#: lib/acf_settings.php:3293
+#: lib/acf_settings.php:3315
 msgid "Odhlášené kategorie"
 msgstr "Odhlásené kategórie"
 
-#: lib/acf_settings.php:3296
+#: lib/acf_settings.php:3318
 msgid ""
 "Partnerovi budou chodit na e-mail poptávky dle kategorií, ke kterým je "
 "přiřazen. Zde je možné některou z kategorií odhlásit."
@@ -1127,7 +1119,7 @@ msgstr ""
 "Partnerovi budú chodiť na e-mail dopytu podľa kategórií, ku ktorým je "
 "priradený. Tu je možné niektorú z kategórií odhlásiť."
 
-#: lib/acf_settings.php:3335
+#: lib/acf_settings.php:3357
 msgid "Onboarding"
 msgstr ""
 
@@ -1630,7 +1622,8 @@ msgstr ""
 "ochrany-osobnych-udajov/\" target=\"_blank\">podmienkami ochrany osobných "
 "údajov</a>"
 
-#: templates/contact-form.twig:35 templates/profile/contact-form.twig:36
+#: templates/contact-form.twig:35 templates/message/request-expire.twig:66
+#: templates/profile/contact-form.twig:36
 #: templates/request/contact-form.twig:45
 msgid "Odeslat"
 msgstr "Odoslať"
@@ -1672,7 +1665,7 @@ msgstr "Môj profil"
 
 #: templates/header.twig:74 templates/user/sidebar.twig:24
 msgid "Odhlásit"
-msgstr "Odhlásiť "
+msgstr "Odhlásiť"
 
 #: templates/header.twig:83 templates/request/archive-list.twig:20
 msgid "Přidat poptávku"
@@ -1723,9 +1716,37 @@ msgstr ""
 "<br><br>\n"
 "Mrkni na to :)"
 
-#: templates/message/message.twig:30
+#: templates/message/message.twig:30 templates/message/request-expire.twig:79
 msgid "Přejít zpět na partneri.shoptet.cz"
 msgstr "Prejsť späť na partneri.shoptet.sk"
+
+#: templates/message/request-expire.twig:19
+msgid "Není vybrán žádný Shoptet partner"
+msgstr "Nebol vybraný žiadny Shoptet partner"
+
+#: templates/message/request-expire.twig:46
+msgid ""
+"Vybrali jste si partnera z naší sítě? Dejte nám vědět koho jste si vybrali."
+msgstr ""
+"Vybrali ste si partnera z našej siete? Dajte nám vedieť koho ste si vybrali."
+
+#: templates/message/request-expire.twig:53
+msgid "Název poptávky:"
+msgstr "Názov dopytu:"
+
+#: templates/message/request-expire.twig:58
+msgid "Vyhledejte Shoptet partnera:"
+msgstr "Vyhľadajte Shoptet partnera:"
+
+#: templates/message/request-expire.twig:71
+msgid ""
+"Vaše zpětná vazba nám pomáhá udržovat vysokou kvalitu služeb partnerů. "
+"Nezapomeňte dát partnerovi hodnocení pod medailonek a pomoci tak s výběrem i "
+"jiným klientům 🙂"
+msgstr ""
+"Vaša spätná väzba nám pomáha udržiavať vysokú kvalitu služieb partnerov. "
+"Nezabudnite dať partnerovi hodnotenie pod medailónik a pomôcť tak s výberom "
+"aj iným klientom 🙂"
 
 #: templates/new-request-page.twig:29
 msgid ""
@@ -1899,7 +1920,7 @@ msgstr "Stav dopytu"
 
 #: templates/request/filter.twig:4
 msgid "Seřadit podle:"
-msgstr "Zoradiť podľa"
+msgstr "Zoradiť podľa:"
 
 #: templates/request/filter.twig:22
 msgid "Jen aktivní"
@@ -2026,7 +2047,7 @@ msgstr "Súvisiace články na blogu"
 msgid "Podobné webináře"
 msgstr "Podobné webináre"
 
-#: templates/single.twig:100
+#: templates/single.twig:98
 msgid "Nevybrali jste? Co zkusit jiné?"
 msgstr "Nevybrali ste? Čo skúsiť iné?"
 
@@ -2063,17 +2084,33 @@ msgid "Contact Form"
 msgstr ""
 
 #. Template Name of the plugin/theme
+msgid "Narrow with header"
+msgstr ""
+
+#. Template Name of the plugin/theme
 msgid "Partners"
 msgstr ""
+
+#~ msgid "Poptávka již expirována"
+#~ msgstr "Dopyt už expiroval"
+
+#~ msgid "Poptávka byla úspěšně expirována"
+#~ msgstr "Dopyt úspešne expiroval"
+
+#~ msgid "Poptávka expirována"
+#~ msgstr "Dopyt expiroval"
+
+#~ msgid "Prověřen"
+#~ msgstr "Preverený"
+
+#~ msgid "Zobrazit odznak prověření"
+#~ msgstr "Zobraziť odznak preverený"
 
 #~ msgid "Logo v mailu"
 #~ msgstr "Logo v e-maily"
 
 #~ msgid "PNG, JPG nebo GIF"
 #~ msgstr "PNG, JPG alebo GIF"
-
-#~ msgid "Děkujeme"
-#~ msgstr "Ďakujeme"
 
 #~ msgid "Pozor!"
 #~ msgstr "Pozor!"

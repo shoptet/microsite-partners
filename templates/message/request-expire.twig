@@ -1,0 +1,84 @@
+{% extends "base.twig" %}
+
+{% block head %}
+  {{ parent() }}
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    var template = function (partner) {
+      if (!partner?.element?.dataset?.thumbnail) {
+        return partner.text;
+      }
+      return $('<span style="display: flex;align-items: center;gap: 0.5rem;"><img src="' + partner.element.dataset.thumbnail + '" style="width: 16px; height: 16px; margin: 0;" loading="lazy" /> ' + partner.text + '</span>');
+    };
+    $(document).ready(function() {
+      $('select').select2({
+        templateResult: template,
+        templateSelection: template,
+        placeholder: '{{ __( 'Není vybrán žádný Shoptet partner', 'shp-partneri' ) }}',
+        allowClear: true
+      });
+    });
+  </script>
+  <style>
+    .select2 {
+      max-width: 100%;
+    }
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+
+    <div class="message">
+
+      <div class="message-container">
+
+        <h1 class="h2 mb-3 message-title">
+          {{ title }}
+        </h1>
+
+        <p class="lead mb-0">
+          {{ __( 'Vybrali jste si partnera z naší sítě? Dejte nám vědět koho jste si vybrali.', 'shp-partneri' ) }}
+        </p>
+
+        <form action="{{ admin_post_url }}" method="post" class="border bg-white p-3 my-3">
+          <input type="hidden" name="action" value="request_select_partner">
+          <input type="hidden" name="token" value="{{ token }}">
+          <div>
+            <strong>{{ __( 'Název poptávky:', 'shp-partneri' ) }}</strong>
+          </div>
+          <div class="mb-3">
+            {{ request.title }}
+          </div>
+          <div class="mb-2"><strong>{{ __( 'Vyhledejte Shoptet partnera:', 'shp-partneri' ) }}</strong></div>
+          <select name="partner_id">
+            <option></option>
+            {% for p in partners %}
+              <option value="{{ p.ID }}" data-thumbnail="{{ p.thumbnail.src('thumbnail') }}" {% if request.solving_partner_id == p.ID %}selected{% endif %}>{{ p.title }}</option>
+            {% endfor %}
+          </select>
+          <div class="mt-3">
+            <button type="submit" class="btn btn-primary">{{ __( 'Odeslat', 'shp-partneri' ) }}</button>
+          </div>
+        </form>
+
+        <div class="mt-4">
+          {{ __( 'Vaše zpětná vazba nám pomáhá udržovat vysokou kvalitu služeb partnerů. Nezapomeňte dát partnerovi hodnocení pod medailonek a pomoci tak s výběrem i jiným klientům 🙂', 'shp-partneri' ) }}
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <a href="{{ site.url }}">
+        {{ __( 'Přejít zpět na partneri.shoptet.cz', 'shp-partneri' ) }}
+      </a>
+    </div>
+
+  </div>
+{% endblock %}

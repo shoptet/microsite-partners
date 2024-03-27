@@ -24,6 +24,7 @@ class RequestService
     add_action( 'shp/request_service/reminder_check', [ get_called_class(), 'reminderCheck' ] );
     add_action( 'shp/request_service/reminder_before_sync_check', [ get_called_class(), 'reminderBeforeSyncCheck' ] );
     add_action( 'admin_footer-post.php', [ get_called_class(), 'addPostStatusControlsToAdmin' ] );
+    add_action( 'admin_post_request_select_partner', [ get_called_class(), 'handle_request_select_partner' ] );
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
     add_filter( 'acf/validate_value/key=field_5d9f2f4a8e648', [ get_called_class(), 'handleCategoryValidation' ], 10, 2 );
@@ -98,25 +99,37 @@ class RequestService
   }
 
   static function expire( $post_id ) {
+    add_filter('disable_uk_plugin', '__return_true');
+    
+    $context = Timber::get_context();
     $request_post = new RequestPost( $post_id );
     $post_status = get_post_status( $request_post->getID() );
     if( ! in_array( $post_status, [ 'pending', 'future', 'publish' ] ) ) {
-      wp_die(
-        __( 'Poptávka již byla expirována', 'shp-partneri' ),
-        __( 'Poptávka již expirována', 'shp-partneri' )
-      );
-      return;
+      $context['title'] = __( 'Poptávka již byla expirována', 'shp-partneri' );
+    } else {
+      $context['title'] = __( 'Gratulujeme k nalezení ideálního partnera pro spolupráci!', 'shp-partneri' );
+      $request_post->setStatus( 'expired' );
+      $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
+      do_action( 'shp/request_service/expire', $request_post->getID() );
     }
 
-    $request_post->setStatus( 'expired' );
-    $request_post->setMeta( '_expired_at', current_time( 'mysql' ) );
+    $context['request'] = new Timber\Post($post_id);
+    $context['token'] = $request_post->getMeta( '_auth_token' );
 
-    do_action( 'shp/request_service/expire', $request_post->getID() );    
+    $partners = new WP_Query([
+      'post_type' => ProfessionalPost::POST_TYPE,
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      'orderby' => 'title',
+      'order' => 'ASC',
+    ]);
+    $context['partners'] = [];
+    foreach ($partners->posts as $p) {
+      $context['partners'][] = new Timber\Post($p);
+    }
 
-    wp_die(
-			__( 'Poptávka byla úspěšně expirována', 'shp-partneri' ),
-			__( 'Poptávka expirována', 'shp-partneri' )
-    );
+    Timber::render( 'message/request-expire.twig', $context );
+	  die();
   }
 
   static function disableGutenberg( $current_status, $post_type ) {
@@ -346,6 +359,20 @@ Disallow: /future-request/*
     }
   
     return $valid;
+  }
+
+  static function handle_request_select_partner () {
+    $partner_id = null;
+    if (isset($_POST['partner_id'])) {
+      $partner_id = $_POST['partner_id'];
+    }
+    $token = $_POST['token'];
+    $request_post = Post::getByAuthToken( $token, 'request' );
+    $request_post->setMeta( 'solving_partner_id', $partner_id );
+    wp_die(
+			__( 'Děkujeme za zpětnou vazbu!', 'shp-partneri' ),
+			__( 'Děkujeme', 'shp-partneri' )
+    );
   }
 
 }

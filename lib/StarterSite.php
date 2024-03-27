@@ -44,6 +44,7 @@ class StarterSite extends TimberSite {
     $context['read_only_enabled'] = apply_filters( 'read_only_enabled', false );
     $context['footer'] = Shoptet\ShoptetExternal::get_footer();
     $context['shoptet_url'] = Shoptet\ShoptetHelpers::get_shoptet_url();
+    $context['admin_post_url'] = admin_url( 'admin-post.php' );
     $context['locale'] = get_locale();
     if (is_user_logged_in()) {
       $context['current_user'] = new Timber\User();
