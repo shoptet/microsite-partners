@@ -1753,7 +1753,7 @@ msgid ""
 "<strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její "
 "schválení."
 msgstr ""
-"<strong>Dopyt úspešne odoslaný.</strong> Počkajte prosím na jej schválenie."
+"<strong>Dopyt úspešne odoslaný.</strong> Počkajte prosím na jeho schválenie."
 
 #: templates/new-request-page.twig:44
 msgid ""
