@@ -50,7 +50,7 @@ class StarterSite extends TimberSite {
       $context['current_user'] = new Timber\User();
       // TODO
       if (2936) {
-        $context['current_user_post'] = new Timber\Post(2936);
+        $context['current_user_post'] = get_current_user_post();
       }
     }
     return $context;

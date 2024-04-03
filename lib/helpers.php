@@ -544,3 +544,14 @@ function get_datalayer_partners() {
   }
   return $partners;
 }
+
+function get_current_user_post() {
+  if (is_user_logged_in()) {
+    $user = new Timber\User();
+    // TODO
+    if (2936) {
+      return new Timber\Post(2936);
+    }
+  }
+  return false;
+}

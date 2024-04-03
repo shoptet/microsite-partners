@@ -2831,7 +2831,7 @@ acf_add_local_field_group(array(
 			'name' => 'image',
 			'type' => 'image',
 			'instructions' => __( 'Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB.', 'shp-partneri' ),
-			'required' => 1,
+			'required' => 0, // TODO: enable
 			'conditional_logic' => 0,
 			'wrapper' => array(
 				'width' => '',
