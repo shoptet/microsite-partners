@@ -68,9 +68,9 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<h6 class="dropdown-header">{{ function('mb_strimwidth', current_user_post.title, 0, 25, '...') }}</h6>
 						<a class="dropdown-item" href="{{ link.course.archive }}">{{ __('Webináře', 'shp-partneri') }}</a>
-						<a class="dropdown-item" href="#">Affiliate</a>
+				    <a class="dropdown-item" href="/edit-profile/">{{ __('Upravit profil', 'shp-partneri') }}</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{ current_user_post.link }}">{{ __('Můj profil', 'shp-partneri') }}</a>
+						<a class="dropdown-item" href="{{ current_user_post.link }}">{{ __('Zobrazit profil', 'shp-partneri') }}</a>
 						<a class="dropdown-item text-danger" href="{{ function('wp_logout_url') }}">{{ __('Odhlásit', 'shp-partneri') }}</a>
 					</div>
 				</div>

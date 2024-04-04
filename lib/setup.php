@@ -773,63 +773,72 @@ add_shortcode('professionals_count', function () {
 	return wp_count_posts('profesionalove')->publish;
 } );
 
-add_filter('acf/pre_save_post', function ($post_id) {
-	if (isset($GLOBALS['acf_form']['id']) && $GLOBALS['acf_form']['id'] == 'acf_edit_profile_form') {
+add_filter('acf/pre_save_post', function ($post_id, $acf_form) {
+	if (isset($acf_form['id']) && $acf_form['id'] == 'acf_edit_profile_form') {
 		require_once(ABSPATH . 'wp-admin/includes/media.php');
 		require_once(ABSPATH . 'wp-admin/includes/file.php');
 		require_once(ABSPATH . 'wp-admin/includes/image.php');
 
 		$changes = [];
-		var_dump($_POST['acf']);
-		var_dump($_FILES['acf']);
 
 		foreach ($_POST['acf'] as $field_key => $submitted_value) {
 			if ($field_key == '_post_title') {
-					$original_value = get_the_title($post_id);
-					if ($original_value != $submitted_value) {
-							$changes[] = "Jméno: '" . $original_value . "' -> '" . $submitted_value . "'";
-					}
-			} elseif ($field_key == 'field_5d10c3f29b87b' && isset($_FILES['acf']['name'][$field_key])) {
-				$files = $_FILES['acf'];
-				$file_array = [
+				$original_value = get_the_title($post_id);
+				if ($original_value != $submitted_value) {
+					$changes[] = "Jméno: '" . $original_value . "' -> '" . $submitted_value . "'";
+				}
+			} elseif ($field_key == 'field_5d10c3f29b87b') {
+				if ($submitted_value) {
+					$files = $_FILES['acf'];
+					$file_array = [
 						'name' => $files['name'][$field_key],
 						'type' => $files['type'][$field_key],
 						'tmp_name' => $files['tmp_name'][$field_key],
 						'error' => $files['error'][$field_key],
 						'size' => $files['size'][$field_key]
-				];
+					];
 
-				// Kontrola typu souboru
-				$check_file_type = wp_check_filetype(basename($file_array['name']));
-				if (!in_array($check_file_type['type'], ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'])) {
-					$changes[] = "Nepovolený typ souboru: " . $check_file_type['type'];
-				} else {
-					// Nahrávání souboru
-					$file_id = media_handle_sideload($file_array, $post_id);
-
-					if (is_wp_error($file_id)) {
-						// Zpracování chyby při nahrávání
-						$changes[] = "Chyba při nahrávání souboru: " . $file_id->get_error_message();
+					// Kontrola typu souboru
+					$check_file_type = wp_check_filetype(basename($file_array['name']));
+					if (!in_array($check_file_type['type'], ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'])) {
+						$changes[] = "Nepovolený typ souboru: " . $check_file_type['type'];
 					} else {
-						// Soubor byl úspěšně nahrán
-						$file_url = wp_get_attachment_url($file_id);
-						$changes[] = "Soubor byl úspěšně nahrán: " . $file_url;
+						// Nahrávání souboru
+						$file_id = media_handle_sideload($file_array, $post_id);
+
+						if (is_wp_error($file_id)) {
+							// Zpracování chyby při nahrávání
+							$changes[] = "Chyba při nahrávání souboru: " . $file_id->get_error_message();
+						} else {
+							// Soubor byl úspěšně nahrán
+							$file_url = wp_get_attachment_url($file_id);
+							$changes[] = "Soubor byl úspěšně nahrán: " . get_edit_post_link($file_id);
+						}
 					}
 				}
 			} else {
 				$original_value = get_field($field_key, $post_id, false);
-				if ($original_value != $submitted_value) {
+				if (stripcslashes($original_value) != stripcslashes($submitted_value)) {
 					$field_object = get_field_object($field_key, $post_id);
-					$field_name = $field_object['label'];
-					$changes[] = $field_name . ": '" . $original_value . "' -> '" . $submitted_value . "'";
+					if ($field_object) {
+						$field_name = $field_object['label'];
+						$changes[] = $field_name . ": '" . $original_value . "' -> '" . $submitted_value . "'";
+					}
 				}
 			}
 		}
 
 		var_dump($changes);
-		exit; // Pouze pro debugování, odstraňte ve finálním kódu
+		exit;
 		return false;
 	}
 
 	return $post_id;
-}, 10, 1);
+}, 0, 2);
+
+add_filter('acf/load_field/name=_post_title', function ($field) {
+	if (is_page_template('page-edit-profile.php')) {
+		$field['label'] = __( 'Vaše jméno', 'shp-partneri' );
+	}
+	return $field;
+});
