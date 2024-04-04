@@ -211,6 +211,13 @@ $(function () {
     dataLayer.push({'event': 'hodnoceniPartnera'});
   });
 
+  $('#navigation').on('click', 'a', function(event) {
+    if (this.hostname !== window.location.hostname) {
+      event.preventDefault();
+      window.open(this.href, '_blank', 'noopener,noreferrer');
+    }
+  });
+
 });
 
 if (typeof acf !== 'undefined') {
