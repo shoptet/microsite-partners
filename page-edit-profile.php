@@ -40,6 +40,7 @@ $acf_form_args = [
   ],
   'uploader' => 'basic',
   'kses' => false,
+  'updated_message' => __('Úspěšně odesláno! Vaše žádost o úpravu profilu byla odeslána. Čekejte prosím na potvrzení.', 'shp-partneri'),
   'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Požádat o aktualizaci profilu', 'shp-partneri' ) . '</button></div>',
 ];
 

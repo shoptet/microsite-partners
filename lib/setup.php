@@ -785,7 +785,7 @@ add_filter('acf/pre_save_post', function ($post_id, $acf_form) {
 			if ($field_key == '_post_title') {
 				$original_value = get_the_title($post_id);
 				if ($original_value != $submitted_value) {
-					$changes[] = "Jméno: '" . $original_value . "' -> '" . $submitted_value . "'";
+					$changes[] = "<br><br><b>" . __( 'Jméno partnera:', 'shp-partneri' ) . "</b><br><br>Original:<br>$original_value<br><br>New:<br>$submitted_value";
 				}
 			} elseif ($field_key == 'field_5d10c3f29b87b') {
 				if ($submitted_value) {
@@ -798,38 +798,54 @@ add_filter('acf/pre_save_post', function ($post_id, $acf_form) {
 						'size' => $files['size'][$field_key]
 					];
 
-					// Kontrola typu souboru
+					$field_object = get_field_object($field_key, $post_id);
+					$field_name = $field_object['label'];
+
 					$check_file_type = wp_check_filetype(basename($file_array['name']));
 					if (!in_array($check_file_type['type'], ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'])) {
-						$changes[] = "Nepovolený typ souboru: " . $check_file_type['type'];
+						$changes[] = "<br><br><b>$field_name:</b><br><br>Unauthorized file type: " . $check_file_type['type'];
 					} else {
-						// Nahrávání souboru
 						$file_id = media_handle_sideload($file_array, $post_id);
-
 						if (is_wp_error($file_id)) {
-							// Zpracování chyby při nahrávání
-							$changes[] = "Chyba při nahrávání souboru: " . $file_id->get_error_message();
+							$changes[] = "<br><br><b>$field_name:</b><br><br>Error uploading file: " . $file_id->get_error_message();
 						} else {
-							// Soubor byl úspěšně nahrán
 							$file_url = wp_get_attachment_url($file_id);
-							$changes[] = "Soubor byl úspěšně nahrán: " . get_edit_post_link($file_id);
+							$changes[] = "<br><br><b>$field_name:</b><br><br>Uploaded file: <a href='" . get_edit_post_link($file_id) . "'>" . get_edit_post_link($file_id) . "</a>";
 						}
 					}
 				}
 			} else {
 				$original_value = get_field($field_key, $post_id, false);
-				if (stripcslashes($original_value) != stripcslashes($submitted_value)) {
+				$original_value = stripcslashes($original_value);
+				$submitted_value = stripcslashes($submitted_value);
+				if ($original_value != $submitted_value) {
 					$field_object = get_field_object($field_key, $post_id);
 					if ($field_object) {
 						$field_name = $field_object['label'];
-						$changes[] = $field_name . ": '" . $original_value . "' -> '" . $submitted_value . "'";
+						$original_value = htmlspecialchars($original_value);
+						$submitted_value = htmlspecialchars($submitted_value);
+						$diff = get_decorated_diff($original_value, $submitted_value);
+						$changes[] = "<br><br><b>$field_name:</b><br><br>Old:<br>".$diff['old']."<br><br>New:<br>".$diff['new'];
 					}
 				}
 			}
 		}
 
-		var_dump($changes);
-		exit;
+		if (!empty($changes)) {
+			$options = get_fields('options');
+			$partner_name = get_the_title($post_id);
+			$to = $options['authorized_review_email_recipient'];
+			$from = $options['email_from'];
+			$subject = sprintf( __( 'Změny v profilu %s', 'shp-partneri' ), $partner_name );
+			$body = sprintf( __( '%s žádá o změny ve svém profilu:', 'shp-partneri' ), $partner_name ) . PHP_EOL . PHP_EOL;
+			$body .= implode(PHP_EOL, $changes);
+			$headers = [
+				'From: ' . $from,
+				'Content-Type: text/html; charset=UTF-8',
+			];
+			wp_mail($to, $subject, $body, $headers);
+		}
+
 		return false;
 	}
 
