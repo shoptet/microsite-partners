@@ -10,8 +10,6 @@ add_filter( 'wp_mail', function ( $args ) {
 	return $args;
 } );
 
-ini_set('display_errors', 1);
-
 /**
  * Setup DKIM
  */
