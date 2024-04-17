@@ -69,6 +69,10 @@ import Splide from '@splidejs/splide';
 
 dl.pushPageView();
 
+window.showOnboardingModal = () => {
+  $('#onboardingModal').modal('show');
+};
+
 $(function () {
 
   dl.initButtonClick();

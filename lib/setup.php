@@ -375,6 +375,8 @@ add_action( 'init' , function () {
 		return;
 	}
 
+	$options = get_fields('options');
+
 	if ( $post->post_status === 'expired' ) {
 		// Render expired message
 		$context = Timber::get_context();
@@ -400,7 +402,6 @@ add_action( 'init' , function () {
 	$updated = ( isset( $_GET['updated'] ) && 'true' === $_GET['updated'] );
 
 	if ( $updated ) {
-		$options = get_fields('options');
 		wp_update_post([
 			'ID' => $post->ID,
 			'post_status' => 'pending',
@@ -446,6 +447,7 @@ add_action( 'init' , function () {
 		'html_submit_button'	=> '<div class="text-center pt-4 onboarding-submit"><button type="submit" class="btn btn-primary btn-lg">' . __( 'Odeslat medailonek', 'shp-partneri' ) . '</button></div>',
 	];
 	$context['acf_form_args'] = $acf_form_args;
+	$context['closed_categories'] = json_encode($options['closed_categories']);
 	Timber::render( 'templates/onboarding.twig', $context );
 	die();
 	
@@ -770,3 +772,25 @@ add_action( 'save_post', function () {
 add_shortcode('professionals_count', function () {
 	return wp_count_posts('profesionalove')->publish;
 } );
+
+add_filter( 'acf/validate_value/key=field_5d10a24f0b5e7', function ( $valid, $value ) {
+	// bail early if value is already invalid
+	if( ! $valid ) return $valid;
+	
+	$options = get_fields('options');
+	if( in_array(intval($value), $options['closed_categories']) ) {
+    $valid = __( 'Tato kategorie je dočasně uzavřena a nelze do ni přidávat partnery', 'shp-partneri' );
+	}
+  
+  return $valid;
+}, 10, 2 );
+
+add_filter('acf/fields/taxonomy/result', function ($text, $term, $field) {
+	if ($field['key'] == 'field_5d10a24f0b5e7') {
+		$options = get_fields('options');
+		if( in_array($term->term_id, $options['closed_categories']) ) {
+			$text = $text . ' ' . __( '(Uzavřená kategorie)', 'shp-partneri' );
+		}
+	}
+	return $text;
+}, 10, 3);
