@@ -70,6 +70,28 @@
   </div>
 {% endblock %}
 
+{% block modal %}
+  <div class="modal" id="onboardingModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tato kategorie je uzavřena</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="">Omlouváme se, ale v tuto chvíli registrace do vámi vybrané kategorie nepřijímáme. Otevření registrací proběhne v průběhu července 2024. V případě zájmu o bližší informace nás kontaktujte na <a href="mailto:partneri@shoptet.cz">partneri@shoptet.cz</a>.</p>
+          <p class="mb-0">Děkujeme za pochopení</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
 {% block footer_script %}
   <script>
     (function(d) {
@@ -165,6 +187,14 @@
       observer.observe( form, { childList: true, subtree: true } );
 
       initValidation();
+      
+      const closedCategories = JSON.parse('{{ closed_categories|raw }}');
+      jQuery('#acf-field_5d10a24f0b5e7').on('change', function() {
+        const value = parseInt(jQuery(this).val());
+        if (closedCategories.includes(value)) {
+          showOnboardingModal();
+        }
+      });
 
     }(document));
   </script>

@@ -546,6 +546,28 @@ acf_add_local_field_group(array (
 	'key' => 'group_59e8b36e766a4',
 	'title' => __( 'Nastavení profesionálů', 'shp-partneri' ),
 	'fields' => array (
+		array(
+			'key' => 'field_5da08c4a1ab02',
+			'label' => 'Closed categories',
+			'name' => 'closed_categories',
+			'type' => 'taxonomy',
+			'instructions' => 'Categories in which the new partner cannot currently register',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'taxonomy' => 'category_professionals',
+			'field_type' => 'multi_select',
+			'allow_null' => 1,
+			'add_term' => 0,
+			'save_terms' => 0,
+			'load_terms' => 0,
+			'return_format' => 'id',
+			'multiple' => 0,
+		),
 		array (
 			'key' => 'field_59f20a6f1b99c',
 			'label' => __( 'Perex na domovské stránce', 'shp-partneri' ),

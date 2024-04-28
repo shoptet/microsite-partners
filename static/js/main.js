@@ -69,6 +69,10 @@ import Splide from '@splidejs/splide';
 
 dl.pushPageView();
 
+window.showOnboardingModal = () => {
+  $('#onboardingModal').modal('show');
+};
+
 $(function () {
 
   dl.initButtonClick();
@@ -209,6 +213,13 @@ $(function () {
 
   $('form.review-form').submit(function(){
     dataLayer.push({'event': 'hodnoceniPartnera'});
+  });
+
+  $('#navigation').on('click', 'a', function(event) {
+    if (this.hostname !== window.location.hostname) {
+      event.preventDefault();
+      window.open(this.href, '_blank', 'noopener,noreferrer');
+    }
   });
 
 });
