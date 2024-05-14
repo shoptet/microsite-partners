@@ -785,7 +785,8 @@ add_filter('acf/pre_save_post', function ($post_id, $acf_form) {
 			if ($field_key == '_post_title') {
 				$original_value = get_the_title($post_id);
 				if ($original_value != $submitted_value) {
-					$changes[] = "<br><br><b>" . __( 'Jméno partnera:', 'shp-partneri' ) . "</b><br><br>Original:<br>$original_value<br><br>New:<br>$submitted_value";
+					$diff = get_decorated_diff($original_value, $submitted_value);
+					$changes[] = "<br><br><b>" . __( 'Jméno partnera:', 'shp-partneri' ) . "</b><br><br>Old:<br>".$diff['old']."<br><br>New:<br>".$diff['new'];
 				}
 			} elseif ($field_key == 'field_5d10c3f29b87b') {
 				if ($submitted_value) {
@@ -815,17 +816,27 @@ add_filter('acf/pre_save_post', function ($post_id, $acf_form) {
 					}
 				}
 			} else {
+				$show_html_preview = in_array($field_key, ['field_59ca425ee9a9e', 'field_59e8ac0d91d4b']);
 				$original_value = get_field($field_key, $post_id, false);
-				$original_value = stripcslashes($original_value);
-				$submitted_value = stripcslashes($submitted_value);
+				if ($show_html_preview) {
+					$submitted_value = stripcslashes(wpautop($submitted_value));
+					$original_value = stripcslashes(wpautop($original_value));
+				} else {
+					$original_value = stripcslashes($original_value);
+					$submitted_value = stripcslashes($submitted_value);
+				}
 				if ($original_value != $submitted_value) {
 					$field_object = get_field_object($field_key, $post_id);
 					if ($field_object) {
 						$field_name = $field_object['label'];
-						$original_value = htmlspecialchars($original_value);
-						$submitted_value = htmlspecialchars($submitted_value);
+						$original_value_raw = htmlspecialchars($original_value);
+						$submitted_value_raw = htmlspecialchars($submitted_value);
 						$diff = get_decorated_diff($original_value, $submitted_value);
-						$changes[] = "<br><br><b>$field_name:</b><br><br>Old:<br>".$diff['old']."<br><br>New:<br>".$diff['new'];
+						$diff_raw = get_decorated_diff($original_value_raw, $submitted_value_raw);
+						if ($show_html_preview) {
+							$changes[] = "<br><br><b>$field_name (HTML preview):</b><br><br>Old:<br>".apply_filters('the_content', $diff['old'])."<br><br>New:<br>".apply_filters('the_content', $diff['new']);
+						}
+						$changes[] = "<br><br><b>$field_name:</b><br><br>Old:<br>".($diff_raw['old'] ? $diff_raw['old'] : '[Empty]')."<br><br>New:<br>". ($diff_raw['new'] ? $diff_raw['new'] : '[Empty]');
 					}
 				}
 			}
@@ -879,3 +890,97 @@ add_filter('acf/fields/taxonomy/result', function ($text, $term, $field) {
 	}
 	return $text;
 }, 10, 3);
+
+add_filter('acf/load_field/key=field_5db0834a1cb02', function ($field) {
+	if (is_page_template('page-settings.php')) {
+		$field['field_type'] = 'checkbox';
+	}
+	return $field;
+});
+
+add_filter('acf/fields/taxonomy/wp_list_categories/key=field_5db0834a1cb02', function ($args, $field) {
+	if (is_page_template('page-settings.php')) {
+		$post = get_current_user_post();
+		$terms = wp_get_post_terms($post->ID, 'category_professionals', array('fields' => 'ids'));
+		$args['include'] = $terms;
+	}
+	return $args;
+}, 10, 2);
+
+add_action('admin_post_change_password', function () {
+	if (!isset($_POST['_wpnonce_change_password']) || !wp_verify_nonce($_POST['_wpnonce_change_password'], 'change_password_nonce')) {
+		wp_die('Security check failed');
+	}
+
+	$user = wp_get_current_user();
+	$current_password = $_POST['current_password'];
+	$new_password = $_POST['new_password'];
+	$new_password_confirm = $_POST['new_password_confirm'];
+	$redirect_url = isset($_POST['redirect_url']) ? $_POST['redirect_url'] : home_url();
+
+	if (!wp_check_password($current_password, $user->data->user_pass, $user->ID)) {
+		wp_redirect(add_query_arg(['password_change' => 'invalid'], $redirect_url));
+		exit;
+	}
+
+	if (strlen($new_password) < 8) {
+		wp_redirect(add_query_arg(['password_change' => 'short_password'], $redirect_url));
+		exit;
+	}
+
+	if ($new_password !== $new_password_confirm) {
+		wp_redirect(add_query_arg(['password_change' => 'nomatch'], $redirect_url));
+		exit;
+	}
+
+	wp_set_password($new_password, $user->ID);
+	wp_clear_auth_cookie();
+	wp_set_current_user($user->ID);
+	wp_set_auth_cookie($user->ID);
+
+	wp_redirect(add_query_arg(['password_change' => 'success'], $redirect_url));
+	exit;
+});
+
+
+add_action('login_enqueue_scripts', function () {
+	echo '<style>
+		body.login {
+			background-color: #fff;
+		}
+		body.login div#login h1 a {
+			background-image: url(' . esc_url(get_custom_logo_url()) . ');
+			padding-bottom: 20px;
+			background-size: contain;
+			height: 40px;
+			width: auto;
+		}
+		body.login .language-switcher {
+			display: none;
+		}
+		body.login .button {
+			background-color: transparent;
+			border-color: #14b1ef;
+		}
+		body.login .button.button-primary {
+			background-color: #14b1ef;
+			border-color: #14b1ef;
+		}
+		body.login a:hover {
+			color: #14b1ef !important;
+		}
+		body.login form {
+			border: 0;
+			box-shadow: none;
+			padding: 0;
+		}
+	</style>';
+});
+
+add_action('login_headerurl', function () {
+	return home_url();
+});
+
+add_filter('login_headertext', function () {
+	return get_bloginfo('name');
+});

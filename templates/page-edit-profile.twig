@@ -19,21 +19,24 @@
 
 				<div class="mb-4">
 
-					<div class="mb-3">
-						<h1 class="h2 mb-0">
+					<div class="mb-4">
+						<h1 class="h2">
 							{{ title }}
 						</h1>
+						<p>Zde máte možnost upravit svůj veřejný profil. Vaše změny budou před zveřejněním schváleny partner managerem, který vás má na starosti.</p>
 					</div>
 
-					{# <ul class="nav nav-tabs mt-3">
+					<ul class="nav nav-tabs mb-4">
 						{% for name, title in tabs %}
 							<li class="nav-item">
 								<a href="?tab={{ name }}" class="nav-link {% if current_tab == name %}active{% endif %}">{{ title }}</a>
 							</li>
 						{% endfor %}
-					</ul> #}
+					</ul>
 
-					{{ function('acf_form', acf_form_args) }}
+					<div class="user-acf">
+						{{ function('acf_form', acf_form_args) }}
+					</div>
 
 				</div>
 

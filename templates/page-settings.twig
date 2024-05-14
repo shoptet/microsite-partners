@@ -1,0 +1,70 @@
+{% extends "base.twig" %}
+
+{% block head %}
+  {{ parent() }}
+  {{ function('acf_form_head') }}
+{% endblock %}
+
+{% set hide_header_action = true %}
+
+{% block content %}
+
+	<div class="container py-5 mb-4">
+
+		<div class="row">
+			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+				{% include 'user/sidebar.twig' with {class: 'user-sidebar-border'} %}
+			</div>
+			<div class="col-12 col-md-8 col-lg-9">
+
+				<div>
+
+					<div class="mb-4">
+						<h1 class="h2 mb-0">
+							{{ title }}
+						</h1>
+					</div>
+
+					<ul class="nav nav-tabs mb-4">
+						{% for name, title in tabs %}
+							<li class="nav-item">
+								<a href="?tab={{ name }}" class="nav-link {% if current_tab == name %}active{% endif %}">{{ title }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+
+					{% if current_tab == 'change-password' %}
+						<form method="post" action="{{ function('admin_url', 'admin-post.php') }}">
+							{{ function('wp_nonce_field', 'change_password_nonce', '_wpnonce_change_password') }}
+							<input type="hidden" name="action" value="change_password">
+							<input type="hidden" name="redirect_url" value="{{ current_url }}">
+							<div class="form-group">
+								<label for="current_password">{{ __( 'Současné heslo:', 'shp-partneri' ) }}</label>
+								<input type="password" class="form-control" name="current_password" id="current_password" placeholder="{{ __( 'Zadejte vaše současné heslo', 'shp-partneri' ) }}" required autocomplete="current-password">
+							</div>
+							<div class="form-group">
+								<label for="new_password">{{ __( 'Nové heslo (minimálně 8 znaků):', 'shp-partneri' ) }}</label>
+								<input type="password" class="form-control" name="new_password" id="new_password" required placeholder="{{ __( 'Zadejte vaše nové heslo', 'shp-partneri' ) }}" autocomplete="new-password" pattern=".{8,}">
+							</div>
+							<div class="form-group">
+							<label for="new_password_confirm">{{ __( 'Potvrzení nového hesla:', 'shp-partneri' ) }}</label>
+							<input type="password" class="form-control" name="new_password_confirm" id="new_password_confirm" required placeholder="{{ __( 'Zopakujte vaše nové heslo', 'shp-partneri' ) }}" autocomplete="new-password" pattern=".{8,}">
+							</div>
+							<div class="text-center pt-4">
+								<button class="btn btn-primary btn-lg" type="submit">{{ __( 'Změnit heslo', 'shp-partneri' ) }}</button>
+							</div>
+						</form>
+					{% else %}
+						<div class="user-acf">
+							{{ function('acf_form', acf_form_args) }}
+						</div>
+					{% endif %}
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}

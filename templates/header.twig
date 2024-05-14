@@ -62,15 +62,24 @@
 			{% if current_user_post %}
 
 				<div class="user-header">
+					<a href="#" class="user-header-icon">
+						<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
+					</a>
+					<a href="/messages/" class="user-header-icon">
+						<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/></svg>
+					</a>
 					<button type="button" data-toggle="dropdown" aria-expanded="false">
 						<img src="{{ current_user_post.thumbnail.src|resize(50, 50) }}" alt="{{ current_user_post.title }}">
 					</button>
 					<div class="dropdown-menu dropdown-menu-right">
-						<h6 class="dropdown-header">{{ function('mb_strimwidth', current_user_post.title, 0, 25, '...') }}</h6>
+						<h6 class="dropdown-header pb-0">{{ function('mb_strimwidth', current_user_post.title, 0, 25, '...') }}</h6>
+						<p class="small pl-4 pr-4 mb-0"><a class="text-muted" href="{{ current_user_post.link }}">{{ __('Zobrazit můj profil', 'shp-partneri') }}</a></p>
+						<div class="dropdown-divider"></div>
+				    <a class="dropdown-item" href="/messages/">{{ __('Zprávy', 'shp-partneri') }}</a>
 						<a class="dropdown-item" href="{{ link.course.archive }}">{{ __('Webináře', 'shp-partneri') }}</a>
 				    <a class="dropdown-item" href="/edit-profile/">{{ __('Upravit profil', 'shp-partneri') }}</a>
+    				<a class="dropdown-item" href="/settings/">{{ __('Nastavení', 'shp-partneri') }}</a></li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{ current_user_post.link }}">{{ __('Zobrazit profil', 'shp-partneri') }}</a>
 						<a class="dropdown-item text-danger" href="{{ function('wp_logout_url') }}">{{ __('Odhlásit', 'shp-partneri') }}</a>
 					</div>
 				</div>

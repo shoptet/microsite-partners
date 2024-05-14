@@ -10,6 +10,7 @@
   "require": {
     "google/recaptcha": "^1.2",
     "shoptet/shoptet-wp-common": "^1",
-    "vimeo/vimeo-api": "^3.0"
+    "vimeo/vimeo-api": "^3.0",
+    "caxy/php-htmldiff": "^0.1.15"
   }
 }

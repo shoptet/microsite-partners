@@ -3318,7 +3318,7 @@ acf_add_local_field_group(array(
 			'label' => __( 'Stav mailingu', 'shp-partneri' ),
 			'name' => 'disable_mailing',
 			'type' => 'true_false',
-			'instructions' => __( 'Pokud je mailing vypnutý, partner nebude dostávat žádné e-maily s poptávkami.', 'shp-partneri' ),
+			'instructions' => __( 'Pokud je mailing vypnutý, nebudete dostávat žádné e-maily s poptávkami.', 'shp-partneri' ),
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -3337,7 +3337,7 @@ acf_add_local_field_group(array(
 			'label' => __( 'Odhlášené kategorie', 'shp-partneri' ),
 			'name' => 'unsubscribed_categories',
 			'type' => 'taxonomy',
-			'instructions' => __( 'Partnerovi budou chodit na e-mail poptávky dle kategorií, ke kterým je přiřazen. Zde je možné některou z kategorií odhlásit.', 'shp-partneri' ),
+			'instructions' => __( 'Na e-mail vám chodí poptávky dle kategorií, ke kterým je přiřazen. Zde je možné některou z kategorií odhlásit.', 'shp-partneri' ),
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -3562,6 +3562,25 @@ acf_add_local_field_group(array(
 	'key' => 'group_6409a5a42c0b1',
 	'title' => 'Webinar (Private)',
 	'fields' => array(
+		array (
+			'key' => 'field_5a00ac06b51ca',
+			'label' => 'Highlight',
+			'name' => 'highlight',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
 		array(
 			'key' => 'field_6409c5da4f2ea',
 			'label' => 'External ID',

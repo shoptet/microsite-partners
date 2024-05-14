@@ -1,4 +1,7 @@
 .user-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   line-height: 1;
   
   button {
@@ -22,6 +25,15 @@
   }
   .dropdown-menu {
     line-height: $line-height-base;
+  }
+}
+
+.user-header-icon {
+  svg {
+    fill: #aaa;
+  }
+  &:hover {
+    opacity: 0.8;
   }
 }
 
@@ -64,7 +76,7 @@
 }
 
 .user-sidebar-menu {
-  padding: 0 1rem 1.5rem 1rem;
+  padding: 0 2rem 1.5rem 2rem;
   margin: 0;
   
   &::before {
@@ -97,7 +109,7 @@
   li {
     display: block;
     border-top: 1px solid $border-color;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
   }
 
   a {
@@ -109,5 +121,41 @@
   
   a:hover, a:focus {
     text-decoration: none;
+  }
+}
+
+.user-acf {
+  .acf-fields > .acf-field {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .acf-fields > .acf-field:first-child {
+    padding-top: 0 !important;
+  }
+
+  .acf-field {
+    border: 0 !important;
+  }
+
+  .acf-field input,
+  .acf-field select {
+    padding: $input-btn-padding-y $input-btn-padding-x !important;
+    font-size: 1rem !important;
+    line-height: $input-btn-line-height !important;
+    color: $input-color;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid $input-border-color;
+    border-radius: $input-border-radius;
+  }
+
+  .acf-input .message {
+    background-color: transparent;
+  }
+
+  .acf-form-submit {
+    text-align: center;
   }
 }

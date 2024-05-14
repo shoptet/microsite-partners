@@ -26,6 +26,7 @@ class StarterSite extends TimberSite {
   }
 
   function add_to_context( $context ) {
+    $context['current_url'] = Timber\URLHelper::get_current_url();
     $context['header_menu'] = new Timber\Menu( 'header-menu' );
     $context['archive_link'] =  get_post_type_archive_link( 'profesionalove' );
     $context['logo_url'] =  get_custom_logo_url();
@@ -66,6 +67,8 @@ class StarterSite extends TimberSite {
     $twig->addFilter( new Timber\Twig_Filter('display_price', array($this, 'display_price')));
     $twig->addFilter( new Timber\Twig_Filter('ensure_protocol', array($this, 'ensure_protocol')));
     $twig->addFilter( new Timber\Twig_Filter('date_i18n', array($this, 'date_i18n')));
+    $twig->addFilter( new Timber\Twig_Filter('date_time_i18n', array($this, 'date_time_i18n')));
+    $twig->addFilter( new Timber\Twig_Filter('human_date_time_i18n', array($this, 'human_date_time_i18n')));
     $twig->addFilter( new Timber\Twig_Filter('request_state', array($this, 'request_state')));
     $twig->addFilter( new Timber\Twig_Filter('remove_lastname', array($this, 'remove_lastname')));
     $twig->addFilter( new Timber\Twig_Filter('posts_in_term', array($this, 'posts_in_term')));
@@ -193,6 +196,55 @@ class StarterSite extends TimberSite {
     $date_format = get_option( 'date_format' );
     $timestamp = strtotime( $date );
     return date_i18n( $date_format, $timestamp );
+  }
+
+  function date_time_i18n( $date ) {
+    $input_format = 'd/m/Y g:i a';
+    $time_format = get_option('time_format');
+    $date_format = get_option('date_format');
+
+    $datetime_format = $date_format . ' ' . $time_format;
+
+    $input_date = DateTime::createFromFormat($input_format, $date);
+    if (!$input_date) {
+      return "Invalid date format";
+    }
+
+    return date_i18n($datetime_format, $input_date->getTimestamp());
+  }
+
+  function human_date_time_i18n($date) {
+    $input_format = 'd/m/Y g:i a';
+    $time_format = get_option('time_format');
+    $date_format = get_option('date_format');
+
+    $input_date = DateTime::createFromFormat($input_format, $date);
+    if (!$input_date) {
+      return "Invalid date format";
+    }
+
+    $current_year = date('Y');
+    $input_year = $input_date->format('Y');
+
+    if ($input_year == $current_year) {
+        $date_format = str_replace('Y', '', $date_format);
+        $date_format = trim(str_replace('  ', ' ', $date_format));
+    }
+    $datetime_format = $date_format;
+
+    $today = new DateTime();
+    $yesterday = new DateTime('-1 day');
+    $day_before_yesterday = new DateTime('-2 days');
+
+    if ($input_date->format('Y-m-d') === $today->format('Y-m-d')) {
+      return sprintf(__("Dnes %s", 'shp-partneri'), $input_date->format($time_format));
+    } elseif ($input_date->format('Y-m-d') === $yesterday->format('Y-m-d')) {
+      return __("Včera", 'shp-partneri');
+    } elseif ($input_date->format('Y-m-d') === $day_before_yesterday->format('Y-m-d')) {
+      return __("Předevčírem", 'shp-partneri');
+    } else {
+      return date_i18n($datetime_format, $input_date->getTimestamp());
+    }
   }
 
   function request_state( $post_status ) {

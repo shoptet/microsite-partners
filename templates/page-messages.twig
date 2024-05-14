@@ -1,0 +1,79 @@
+{% extends "base.twig" %}
+
+{% set hide_header_action = true %}
+
+{% block content %}
+
+	<div class="container py-5 mb-4">
+
+		<div class="row">
+			<div class="col-12 col-md-4 col-xl-3 mb-5 mb-md-0">
+				{% include 'user/sidebar.twig' with {class: 'user-sidebar-border'} %}
+			</div>
+			<div class="col-12 col-md-8 col-xxl-7 mx-auto">
+
+				<div class="mb-0">
+
+					{% if responses %}
+						<div class="mb-3">
+							<h1 class="h2 mb-0">
+								{{ title }}
+							</h1>
+							<p class="text-muted">{{ __('Celkem zpráv: %s', 'shp-partneri')|format(responses|length) }}</p>
+						</div>
+					{% else %}
+						<h1 class="h2 mb-3">
+							{{ __( 'Zatím žádné zprávy', 'shp-partneri' ) }}
+						</h1>
+					{% endif %}
+
+					<div class="list-group">
+						{% for response in responses %}
+							<a href="#messageModal{{ loop.index }}" class="list-group-item list-group-item-action py-3" data-toggle="modal">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-0">{{ response.name }}</h5>
+									<small class="text-muted">{{ response.date|human_date_time_i18n }}</small>
+								</div>
+								<small class="text-muted">{{ response.email }}</small>
+								<p class="mb-0">{{ response.message|truncate(200) }}</p>
+							</a>
+						{% endfor %}
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+
+{% block modal %}
+	{% for response in responses %}
+		<div class="modal" id="messageModal{{ loop.index }}" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">{{ __( 'Přijatá zpráva', 'shp-partneri' ) }}</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3 text-muted">{{ response.date|date_time_i18n }}</div>
+						<div class="mb-3">
+							<h5 class="mb-0">{{ response.name }}</h5>
+							<div>{{ response.email }}</div>
+						</div>
+						<p class="mb-0">{{ response.message }}</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __( 'Zavřít', 'shp-partneri' ) }}</button>
+						<a href="mailto:{{ response.email }}" class="btn btn-primary">{{ __( 'Odpovědět', 'shp-partneri' ) }}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

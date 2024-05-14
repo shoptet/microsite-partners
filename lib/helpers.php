@@ -557,18 +557,11 @@ function get_current_user_post() {
 }
 
 function get_decorated_diff($old, $new){
-  $from_start = strspn($old ^ $new, "\0");        
-  $from_end = strspn(strrev($old) ^ strrev($new), "\0");
-
-  $old_end = strlen($old) - $from_end;
-  $new_end = strlen($new) - $from_end;
-
-  $start = substr($new, 0, $from_start);
-  $end = substr($new, $new_end);
-  $new_diff = substr($new, $from_start, $new_end - $from_start);  
-  $old_diff = substr($old, $from_start, $old_end - $from_start);
-
-  $new = "$start<ins style='background-color:#00ff00'>$new_diff</ins>$end";
-  $old = "$start<del style='background-color:#ff0000'>$old_diff</del>$end";
-  return array("old"=>$old, "new"=>$new);
+  $htmlDiff = new Caxy\HtmlDiff\HtmlDiff($old, $new);
+	$content = $htmlDiff->build();
+	$contentOld = preg_replace('/<ins class="(diffmod|diffins)">.*?<\/ins>/s', '', $content);
+	$contentOld = preg_replace('/<del class="(diffmod|diffdel)">/s', '<del style="background-color:#ff0000">', $contentOld);
+	$contentNew = preg_replace('/<del class="(diffmod|diffdel)">.*?<\/del>/s', '', $content);
+	$contentNew = preg_replace('/<ins class="(diffmod|diffins)">/s', '<ins style="background-color:#00ff00">', $contentNew);
+  return array("old"=>$contentOld, "new"=>$contentNew);
 }

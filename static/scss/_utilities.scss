@@ -149,6 +149,19 @@
   color: $gray-500;
 }
 
+.text-body {
+  color: $body-color;
+
+  a {
+    color: $body-color;
+  }
+
+  a:hover {
+    color: $body-color;
+    text-decoration: underline;
+  }
+}
+
 .sticky {
   top: 1.5rem;
   position: sticky;

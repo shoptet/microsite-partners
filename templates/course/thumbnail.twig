@@ -1,10 +1,13 @@
 <a
   href="{{ post.link }}"
-  class="webinar-thumbnail"
+  class="webinar-thumbnail {% if post.meta('highlight') %}webinar-thumbnail-highlight{% endif %}"
   title="{{ post.title }}"
   id="webinars~{{ post.ID }}"
   data-text="{{ post.title }}"
 >
+  {% if post.meta('highlight') %}
+    <div class="webinar-thumbnail-badge">{{ post.meta('highlight') }}</div>
+  {% endif %}
   <div class="embed-responsive embed-responsive-16by9 bg-light webinar-thumbnail-image">
     <img class="embed-responsive-item" src="{{ post.meta('image_url') }}_960x540?r=pad" alt="{{ post.title }}" loading="lazy" />
   </div>
