@@ -25,6 +25,10 @@ $context['breadcrumbs'] = array(
 
 $context['meta_description'] = $post->description;
 
+if ($post->meta_description) {
+	$context['meta_description'] = $post->meta_description;
+}
+
 $comments_count = count($post->comments);
 $comments_per_page = intval(get_option('comments_per_page'));
 $comments_total_pages = ceil( $comments_count / $comments_per_page );

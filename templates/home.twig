@@ -18,18 +18,21 @@
 			</div>
 		</div>
 	</div>
-	<div class="quote-section">
-		<div class="container">
-			<div class="quote-section-container">
-				<img class="quote-section-icon" src="{{ "quote.svg"|static_assets }}" alt="">
-				<div class="quote-section-body">
-					<p class="quote-section-title display">{{ options.quoteSectionTitle }}</p>
-					<p class="mb-0 lh-125"><em><strong class="fs-120">Eva Šlezáková</strong><br>Partnership Teamleader</em></p>
+
+	{% if locale != 'hu_HU' %}
+		<div class="quote-section">
+			<div class="container">
+				<div class="quote-section-container">
+					<img class="quote-section-icon" src="{{ "quote.svg"|static_assets }}" alt="">
+					<div class="quote-section-body">
+						<p class="quote-section-title display">{{ options.quoteSectionTitle }}</p>
+						<p class="mb-0 lh-125"><em><strong class="fs-120">{{ options.quoteSectionName }}</strong><br>{{ options.quoteSectionInfo }}</em></p>
+					</div>
+					<img class="quote-section-image" src="{{ "shoptetpartners-managers.png"|static_assets }}" alt="{{ options.quoteSectionName }}">
 				</div>
-				<img class="quote-section-image" src="{{ "eva.png"|static_assets }}" alt="Eva Šlezáková">
 			</div>
 		</div>
-	</div>
+	{% endif %}
 
 	{% if show_category_professionals %}
 		<div class="row-profile-type row-profile-type-professionals">

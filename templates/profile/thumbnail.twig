@@ -2,8 +2,6 @@
   href="{{ post.link }}"
   class="profile-thumbnail mb-4"
   title="{{ __( 'Zobrazit profil', 'shp-partneri' ) }}"
-  itemscope
-  itemtype="http://schema.org/Organization"
   data-text="{{ post.title }}"
   id="{{ post.title }}"
 >
@@ -40,28 +38,13 @@
 
     <div class="profile-thumbnail-body text-truncate">
 
-      <div class="profile-thumbnail-title text-truncate" itemprop="name">
+      <div class="profile-thumbnail-title text-truncate">
         {{ post.title }}
       </div>
 
       {% if show_rating and post.comments|length > 0 %}
         {% with { average_rating: post|average_rating } %}
-          <div
-            itemprop="aggregateRating"
-            itemscope
-            itemtype="http://schema.org/AggregateRating"
-          >
-            <meta itemprop="bestRating" content="5">
-            <meta itemprop="worstRating" content="0">
-            <meta itemprop="ratingValue" content="{{ average_rating }}">
-            <meta itemprop="reviewCount" content="{{ post.comments|length }}">
-            <span
-              itemprop="itemReviewed"
-              itemscope
-              itemtype="http://schema.org/Organization"
-            >
-              <meta itemprop="name" content="{{ post.title }}">
-            </span>
+          <div>
             {% include 'review-rating-stars.twig' with { rating: average_rating, size: 'small' } %}
           </div>
         {% endwith %}
@@ -74,7 +57,6 @@
       {% endif %}
 
       {% if post.post_type == 'profesionalove' and post.get_field('url') %}
-        <meta itemprop="url" content="{{ post.get_field('url')|ensure_protocol }}">
         <div class="text-muted text-truncate">
           {{ post.get_field('url')|display_url }}
         </div>
@@ -86,7 +68,7 @@
 
   {% if type != 'small' %}
     {% if post.get_field('description') %}
-      <p class="profile-thumbnail-description mb-0" itemprop="description">
+      <p class="profile-thumbnail-description mb-0">
         {{ post.get_field('description')|striptags|truncate(200, '') }}
       </p>
     {% endif %}
