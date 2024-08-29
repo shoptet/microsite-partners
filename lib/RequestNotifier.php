@@ -18,6 +18,7 @@ class RequestNotifier
     add_action( 'shp/request_service/remind', [ get_called_class(), 'remindRequestAuthor' ] );
     add_action( 'shp/request_service/remind_before_sync', [ get_called_class(), 'remindBeforeSyncRequestAuthor' ] );
     add_action( 'shp/request_message/validate', [ get_called_class(), 'messageRequestAuthor' ], 10, 2 );
+    add_action( 'shp/request_message/validate', [ get_called_class(), 'messageRequestPartner' ], 10, 2 );
     add_action( 'shp/request_service/expire', [ get_called_class(), 'expiredRequestAuthor' ] );
     add_action( 'shp/professional_service/unsubscribe', [ get_called_class(), 'unsubscribeRequestPartner' ] );
   }
@@ -250,6 +251,20 @@ class RequestNotifier
     ];
     $compiled_mail = self::compileMail( $field_name, $compile_args );
     wp_mail( $author_email, $compiled_mail['subject'], $compiled_mail['message'], $headers );
+  }
+
+  static function messageRequestPartner( $post_id, $message_arr )
+  {
+    $field_name = 'request_message_partner';
+    $partner_email = $message_arr['email'];
+    $headers = self::getDefaultEmailHeaders();
+
+    $compile_args = [
+      'request_id' => $post_id,
+      'message_arr' => $message_arr,
+    ];
+    $compiled_mail = self::compileMail( $field_name, $compile_args );
+    wp_mail( $partner_email, $compiled_mail['subject'], $compiled_mail['message'], $headers );
   }
 
   static function expiredRequestAuthor( $post_id )
