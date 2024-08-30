@@ -594,6 +594,20 @@ function handle_url_validation( $valid, $value ) {
   return $valid;
 }
 
+add_filter( 'acf/validate_value/name=phoneNumber', function ($valid, $value, $field, $input_name) {
+	// bail early if value is already invalid
+	if( ! $valid ) return $valid;
+
+	// do not validate empty value
+	if ( empty( $value ) ) return $valid;
+
+	if ( ! preg_match('/^\+(420|421|36)\d{6,9}$/', $value ) ) {
+    $valid = __( 'Zadejte číslo s předvolbou +420, +421 nebo +36 a bez mezer', 'shp-partneri' );
+  }
+
+	return $valid;
+}, 10, 4 );
+
 Timber::$dirname = array('templates', 'views');
 
 new StarterSite();
