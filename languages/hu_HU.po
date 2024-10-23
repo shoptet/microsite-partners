@@ -1587,7 +1587,7 @@ msgstr "Kérjük, írja be a megfelelő formátumú URL-t"
 
 #: lib/setup.php:605
 msgid "Zadejte číslo s předvolbou +420, +421 nebo +36 a bez mezer"
-msgstr ""
+msgstr "Kérjük, a telefonszámot a +36, +421 vagy +420 előhívószámmal és szóközök nélkül add meg"
 
 #: lib/setup.php:796
 msgid "Tato kategorie je dočasně uzavřena a nelze do ni přidávat partnery"
