@@ -13,14 +13,14 @@ add_filter( 'wp_mail', function ( $args ) {
 /**
  * Setup DKIM
  */
-add_action( 'phpmailer_init', function ($phpmailer) {
-	$domain = $_SERVER['SERVER_NAME']; // partneri.shoptet.cz/partneri.shoptet.sk/...
-	$phpmailer->DKIM_domain = $domain;
-	$phpmailer->DKIM_private = "/var/www/vhosts/{$domain}/domainkeys/default";
-	$phpmailer->DKIM_selector = 'default';
-	$phpmailer->Host = 'localhost';
-	$phpmailer->Port = 25;
-} );
+// add_action( 'phpmailer_init', function ($phpmailer) {
+// 	$domain = $_SERVER['SERVER_NAME']; // partneri.shoptet.cz/partneri.shoptet.sk/...
+// 	$phpmailer->DKIM_domain = $domain;
+// 	$phpmailer->DKIM_private = "/var/www/vhosts/{$domain}/domainkeys/default";
+// 	$phpmailer->DKIM_selector = 'default';
+// 	$phpmailer->Host = 'localhost';
+// 	$phpmailer->Port = 25;
+// } );
 
 /**
  * Load translations
