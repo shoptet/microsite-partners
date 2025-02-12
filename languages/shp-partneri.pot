@@ -1,16 +1,15 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Shoptet Partners\n"
-"POT-Creation-Date: 2024-08-29 15:52+0200\n"
-"PO-Revision-Date: 2020-09-07 13:53+0200\n"
+"POT-Creation-Date: 2025-02-12 14:40+0100\n"
+"PO-Revision-Date: 2025-02-12 14:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 1.7.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -29,7 +28,6 @@ msgstr ""
 
 #: archive-course.php:23 archive-webinar.php:26 archive-webinar.php:38
 #: lib/cpt_posts.php:183 lib/cpt_posts.php:212 single-webinar.php:14
-#: templates/header.twig:70
 msgid "Webináře"
 msgstr ""
 
@@ -44,7 +42,7 @@ msgstr ""
 msgid "strana"
 msgstr ""
 
-#: archive-course.php:35 single-course.php:22 templates/user/sidebar.twig:19
+#: archive-course.php:35 single-course.php:22
 msgid "Webináře pro partnery"
 msgstr ""
 
@@ -173,8 +171,7 @@ msgstr ""
 msgid "Sepište co nejvíce informací o problému, s nímž potřebujete pomoct."
 msgstr ""
 
-#: lib/RequestForm.php:51 templates/contact-form.twig:7
-#: templates/profile/contact-form.twig:6 templates/request/contact-form.twig:12
+#: lib/RequestForm.php:51
 msgid "Jméno a příjmení"
 msgstr ""
 
@@ -189,66 +186,74 @@ msgid ""
 "zařadit"
 msgstr ""
 
-#: lib/RequestService.php:45 lib/RequestService.php:271
-#: lib/RequestService.php:285 lib/setup.php:139 lib/setup.php:161
+#: lib/RequestService.php:47 lib/RequestService.php:277
+#: lib/RequestService.php:291 lib/setup.php:139 lib/setup.php:161
 msgid "Expirováno"
 msgstr ""
 
-#: lib/RequestService.php:50 lib/setup.php:145
+#: lib/RequestService.php:52 lib/setup.php:145
 #, php-format
 msgid "Expirováno <span class=\"count\">(%s)</span>"
 msgid_plural "Expirováno <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/RequestService.php:53 lib/RequestService.php:274
-#: lib/RequestService.php:287
+#: lib/RequestService.php:55 lib/RequestService.php:280
+#: lib/RequestService.php:293
 msgid "Premium"
 msgstr ""
 
-#: lib/RequestService.php:58
+#: lib/RequestService.php:60
 #, php-format
 msgid "Premium <span class=\"count\">(%s)</span>"
 msgid_plural "Premium <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/RequestService.php:108
+#: lib/RequestService.php:110
 msgid "Poptávka již byla expirována"
 msgstr ""
 
-#: lib/RequestService.php:110
+#: lib/RequestService.php:112
 msgid "Gratulujeme k nalezení ideálního partnera pro spolupráci!"
 msgstr ""
 
-#: lib/RequestService.php:277
+#: lib/RequestService.php:283
 msgid "Publikováno"
 msgstr ""
 
-#: lib/RequestService.php:281 lib/RequestService.php:292
+#: lib/RequestService.php:287 lib/RequestService.php:298
 msgid "Uložit"
 msgstr ""
 
-#: lib/RequestService.php:282 lib/RequestService.php:293
+#: lib/RequestService.php:288 lib/RequestService.php:299
 msgid "Aktualizovat"
 msgstr ""
 
-#: lib/RequestService.php:321
+#: lib/RequestService.php:327
 msgid ""
 "Omlouváme se, ale na tuto poptávku již není možné reagovat. V mezičase ji "
 "autor označil jako vyřešenou. Zkuste se ale mrknout na další poptávky. Díky!"
 msgstr ""
 
-#: lib/RequestService.php:356 lib/acf_settings.php:2080
+#: lib/RequestService.php:362 lib/acf_settings.php:2099
 msgid "Zvolte maximálně 3 kategorie"
 msgstr ""
 
-#: lib/RequestService.php:373
+#: lib/RequestService.php:379
 msgid "Děkujeme za zpětnou vazbu!"
 msgstr ""
 
-#: lib/RequestService.php:374
+#: lib/RequestService.php:380
 msgid "Děkujeme"
+msgstr ""
+
+#: lib/RequestService.php:394
+msgid "Odeslat partnerům"
+msgstr ""
+
+#: lib/RequestService.php:408
+msgid "Poptávka již byla odeslána partnerům v souvisejících kategoriích"
 msgstr ""
 
 #: lib/StarterSite.php:117
@@ -287,7 +292,7 @@ msgstr ""
 msgid "Aktivní"
 msgstr ""
 
-#: lib/StarterSite.php:205 templates/request/thumbnail.twig:46
+#: lib/StarterSite.php:205
 msgid "Poptávka již byla vyřízena"
 msgstr ""
 
@@ -312,21 +317,15 @@ msgstr ""
 msgid "(Neplátce DPH)"
 msgstr ""
 
-#: lib/StarterSite.php:302 lib/acf_settings.php:1781
-#: templates/profile/thumbnail.twig:20 templates/profile/verified.twig:3
-#: templates/row-badges.twig:10
+#: lib/StarterSite.php:302 lib/acf_settings.php:1800
 msgid "Zlatý partner"
 msgstr ""
 
-#: lib/StarterSite.php:305 lib/acf_settings.php:1800
-#: templates/profile/thumbnail.twig:22 templates/profile/verified.twig:5
-#: templates/row-badges.twig:21
+#: lib/StarterSite.php:305 lib/acf_settings.php:1819
 msgid "Stříbrný partner"
 msgstr ""
 
-#: lib/StarterSite.php:308 lib/acf_settings.php:1819
-#: templates/profile/thumbnail.twig:24 templates/profile/verified.twig:7
-#: templates/row-badges.twig:32
+#: lib/StarterSite.php:308 lib/acf_settings.php:1838
 msgid "Bronzový partner"
 msgstr ""
 
@@ -359,7 +358,7 @@ msgid "Nastavení mailingu poptávek"
 msgstr ""
 
 #: lib/acf_add_options_page.php:31 lib/acf_add_options_page.php:39
-#: lib/acf_settings.php:1974
+#: lib/acf_settings.php:1993
 msgid "Mailing"
 msgstr ""
 
@@ -436,7 +435,7 @@ msgstr ""
 #: lib/acf_request_mailing.php:276 lib/acf_request_mailing.php:331
 #: lib/acf_request_mailing.php:386 lib/acf_request_mailing.php:441
 #: lib/acf_request_mailing.php:551 lib/acf_request_mailing.php:606
-#: lib/acf_settings.php:645 lib/acf_settings.php:1399
+#: lib/acf_settings.php:645 lib/acf_settings.php:1418
 msgid "Předmět"
 msgstr ""
 
@@ -445,7 +444,7 @@ msgstr ""
 #: lib/acf_request_mailing.php:295 lib/acf_request_mailing.php:350
 #: lib/acf_request_mailing.php:405 lib/acf_request_mailing.php:460
 #: lib/acf_request_mailing.php:570 lib/acf_request_mailing.php:625
-#: lib/acf_settings.php:664 templates/review-form.twig:41
+#: lib/acf_settings.php:664
 msgid "Zpráva"
 msgstr ""
 
@@ -497,16 +496,16 @@ msgstr ""
 msgid "Patička e-mailu zadavateli s expiračním odkazem"
 msgstr ""
 
-#: lib/acf_settings.php:297 lib/acf_settings.php:2569 lib/cpt_taxonomies.php:12
-#: lib/cpt_taxonomies.php:41 lib/cpt_taxonomies.php:70
-#: lib/cpt_taxonomies.php:99 lib/cpt_taxonomies.php:129
-#: lib/cpt_taxonomies.php:149 templates/profile/filter.twig:18
-#: templates/request/categories.twig:18
+#: lib/acf_settings.php:297 lib/acf_settings.php:2590
+#: lib/cpt_taxonomies.php:12 lib/cpt_taxonomies.php:41
+#: lib/cpt_taxonomies.php:70 lib/cpt_taxonomies.php:99
+#: lib/cpt_taxonomies.php:129 lib/cpt_taxonomies.php:149
 msgid "Kategorie"
 msgstr ""
 
-#: lib/acf_settings.php:301 lib/acf_settings.php:1275 lib/acf_settings.php:1480
-#: lib/acf_settings.php:1544 lib/acf_settings.php:1743
+#: lib/acf_settings.php:301 lib/acf_settings.php:1294
+#: lib/acf_settings.php:1499 lib/acf_settings.php:1563
+#: lib/acf_settings.php:1762
 msgid "Titulek"
 msgstr ""
 
@@ -550,505 +549,496 @@ msgstr ""
 msgid "Domovská stránka"
 msgstr ""
 
-#: lib/acf_settings.php:928
+#: lib/acf_settings.php:947
 msgid "Google Tag Manager ID"
 msgstr ""
 
-#: lib/acf_settings.php:931
+#: lib/acf_settings.php:950
 msgid "Ve tvaru GTM-XXXX"
 msgstr ""
 
-#: lib/acf_settings.php:947
+#: lib/acf_settings.php:966
 msgid "Shoptet URL"
 msgstr ""
 
-#: lib/acf_settings.php:963
+#: lib/acf_settings.php:982
 msgid "Shoptet Premium URL"
 msgstr ""
 
-#: lib/acf_settings.php:979
+#: lib/acf_settings.php:998
 msgid "Stránka s certifikací"
 msgstr ""
 
-#: lib/acf_settings.php:1000
+#: lib/acf_settings.php:1019
 msgid "Stránka profesionálů"
 msgstr ""
 
-#: lib/acf_settings.php:1021
+#: lib/acf_settings.php:1040
 msgid "Stránka kontaktu"
 msgstr ""
 
-#: lib/acf_settings.php:1062
+#: lib/acf_settings.php:1081
 msgid "Open graph"
 msgstr ""
 
-#: lib/acf_settings.php:1066
+#: lib/acf_settings.php:1085
 msgid "Open graph obrázek"
 msgstr ""
 
-#: lib/acf_settings.php:1110 templates/profile/references.twig:3
+#: lib/acf_settings.php:1129
 msgid "Reference"
 msgstr ""
 
-#: lib/acf_settings.php:1114
+#: lib/acf_settings.php:1133
 msgid "Zobrazit na domovské stránce"
 msgstr ""
 
-#: lib/acf_settings.php:1125 lib/acf_settings.php:1472
+#: lib/acf_settings.php:1144 lib/acf_settings.php:1491
 msgid "Zobrazit"
 msgstr ""
 
-#: lib/acf_settings.php:1152 templates/review-form.twig:12
-#: templates/review-form.twig:13
+#: lib/acf_settings.php:1171
 msgid "Jméno"
 msgstr ""
 
-#: lib/acf_settings.php:1171
+#: lib/acf_settings.php:1190
 msgid "Pozice"
 msgstr ""
 
-#: lib/acf_settings.php:1190 templates/profile/main.twig:40
+#: lib/acf_settings.php:1209
 msgid "Web"
 msgstr ""
 
-#: lib/acf_settings.php:1206 lib/acf_settings.php:2909
+#: lib/acf_settings.php:1225 lib/acf_settings.php:2930
 msgid "Fotka"
 msgstr ""
 
-#: lib/acf_settings.php:1230 lib/acf_settings.php:1294
-#: lib/acf_settings.php:1563 lib/acf_settings.php:1700
+#: lib/acf_settings.php:1249 lib/acf_settings.php:1313
+#: lib/acf_settings.php:1582 lib/acf_settings.php:1719
 msgid "Text"
 msgstr ""
 
-#: lib/acf_settings.php:1271
+#: lib/acf_settings.php:1290
 msgid "Staň se partnerem"
 msgstr ""
 
-#: lib/acf_settings.php:1313
+#: lib/acf_settings.php:1332
 msgid "Ilustrační obrázek"
 msgstr ""
 
-#: lib/acf_settings.php:1377
+#: lib/acf_settings.php:1396
 msgid "Email pro žádost o zařazení mezi Shoptet partnery"
 msgstr ""
 
-#: lib/acf_settings.php:1381 lib/acf_settings.php:2358
-#: templates/contact-form.twig:14 templates/profile/contact-form.twig:13
-#: templates/request/contact-form.twig:21 templates/review-form.twig:17
-#: templates/review-form.twig:18
+#: lib/acf_settings.php:1400 lib/acf_settings.php:2377
 msgid "E-mail"
 msgstr ""
 
-#: lib/acf_settings.php:1384
+#: lib/acf_settings.php:1403
 msgid "Adresa příjemce e-mailu"
 msgstr ""
 
-#: lib/acf_settings.php:1402
+#: lib/acf_settings.php:1421
 msgid "Předvyplněný předmět e-mailu"
 msgstr ""
 
-#: lib/acf_settings.php:1418
+#: lib/acf_settings.php:1437
 msgid "Text zprávy"
 msgstr ""
 
-#: lib/acf_settings.php:1421
+#: lib/acf_settings.php:1440
 msgid "Předvyplněný text e-mailu"
 msgstr ""
 
-#: lib/acf_settings.php:1457
+#: lib/acf_settings.php:1476
 msgid "Výzva k akci v seznamu"
 msgstr ""
 
-#: lib/acf_settings.php:1461
+#: lib/acf_settings.php:1480
 msgid "Zobrazit v seznamu profilů"
 msgstr ""
 
-#: lib/acf_settings.php:1499
+#: lib/acf_settings.php:1518
 msgid "Text na tlačítku"
 msgstr ""
 
-#: lib/acf_settings.php:1540
+#: lib/acf_settings.php:1559
 msgid "Stížnost na partnera"
 msgstr ""
 
-#: lib/acf_settings.php:1582
+#: lib/acf_settings.php:1601
 msgid "Text u kontaktního formuláře"
 msgstr ""
 
-#: lib/acf_settings.php:1696
+#: lib/acf_settings.php:1715
 msgid "Stránka 404"
 msgstr ""
 
-#: lib/acf_settings.php:1703
+#: lib/acf_settings.php:1722
 msgid "Tento text se zobrazí větším písmem pod nadpisem"
 msgstr ""
 
-#: lib/acf_settings.php:1739
+#: lib/acf_settings.php:1758
 msgid "Shoptet partneři - odznaky"
 msgstr ""
 
-#: lib/acf_settings.php:1762
+#: lib/acf_settings.php:1781
 msgid "Text (nyní zakomentováno, nebude vidět)"
 msgstr ""
 
-#: lib/acf_settings.php:1931 templates/page-contact-form.twig:16
-#: templates/row-contact.twig:5
+#: lib/acf_settings.php:1950
 msgid "Kontakt"
 msgstr ""
 
-#: lib/acf_settings.php:1935
+#: lib/acf_settings.php:1954
 msgid "Popis u vstupního formuláře"
 msgstr ""
 
-#: lib/acf_settings.php:1978
+#: lib/acf_settings.php:1997
 msgid "Odesílatel e-mailů"
 msgstr ""
 
-#: lib/acf_settings.php:1981
+#: lib/acf_settings.php:2000
 msgid "Ve tvaru \"Jméno &lt;email&gt;\""
 msgstr ""
 
-#: lib/acf_settings.php:2017 lib/cpt_posts.php:139
+#: lib/acf_settings.php:2036 lib/cpt_posts.php:139
 msgid "Poptávka"
 msgstr ""
 
-#: lib/acf_settings.php:2021 templates/contact-form.twig:9
-#: templates/profile/contact-form.twig:8
+#: lib/acf_settings.php:2040
 msgid "Vaše jméno"
 msgstr ""
 
-#: lib/acf_settings.php:2040 templates/contact-form.twig:16
-#: templates/profile/contact-form.twig:15
+#: lib/acf_settings.php:2059
 msgid "Váš e-mail"
 msgstr ""
 
-#: lib/acf_settings.php:2058 templates/request/content.twig:25
+#: lib/acf_settings.php:2077
 msgid "URL projektu"
 msgstr ""
 
-#: lib/acf_settings.php:2077
+#: lib/acf_settings.php:2096
 msgid "Kategorie poptávky"
 msgstr ""
 
-#: lib/acf_settings.php:2099
+#: lib/acf_settings.php:2118
 msgid "Provozuji e-shop na Shoptetu"
 msgstr ""
 
-#: lib/acf_settings.php:2111
+#: lib/acf_settings.php:2130
 msgid "Ano"
 msgstr ""
 
-#: lib/acf_settings.php:2112
+#: lib/acf_settings.php:2131
 msgid "Ne"
 msgstr ""
 
-#: lib/acf_settings.php:2124
+#: lib/acf_settings.php:2143
 msgid "ID e-shopu"
 msgstr ""
 
-#: lib/acf_settings.php:2313 lib/setup.php:328 templates/reviews.twig:4
+#: lib/acf_settings.php:2332 lib/setup.php:328
 msgid "Hodnocení"
 msgstr ""
 
-#: lib/acf_settings.php:2317
+#: lib/acf_settings.php:2336
 msgid "Autor ověřil své hodnocení"
 msgstr ""
 
-#: lib/acf_settings.php:2354
+#: lib/acf_settings.php:2373
 msgid "Základní"
 msgstr ""
 
-#: lib/acf_settings.php:2412 templates/profile/badge-premium.twig:4
-#: templates/profile/badge-premium.twig:5 templates/profile/thumbnail.twig:13
+#: lib/acf_settings.php:2431
 msgid "Shoptet Premium partner"
 msgstr ""
 
-#: lib/acf_settings.php:2423
+#: lib/acf_settings.php:2442
 msgid "Zobrazit odznak Shoptet Premium"
 msgstr ""
 
-#: lib/acf_settings.php:2431
+#: lib/acf_settings.php:2450
 msgid "Úrověň prověření"
 msgstr ""
 
-#: lib/acf_settings.php:2443
+#: lib/acf_settings.php:2462
 msgid "bronzový"
 msgstr ""
 
-#: lib/acf_settings.php:2444
+#: lib/acf_settings.php:2463
 msgid "stříbrný"
 msgstr ""
 
-#: lib/acf_settings.php:2445
+#: lib/acf_settings.php:2464
 msgid "zlatý"
 msgstr ""
 
-#: lib/acf_settings.php:2458
+#: lib/acf_settings.php:2477
 msgid "Partner manager"
 msgstr ""
 
-#: lib/acf_settings.php:2470 lib/acf_settings.php:2479
+#: lib/acf_settings.php:2489 lib/acf_settings.php:2500
 msgid "Není"
 msgstr ""
 
-#: lib/acf_settings.php:2488
+#: lib/acf_settings.php:2509
 msgid "Cena (zastaralé)"
 msgstr ""
 
-#: lib/acf_settings.php:2491
+#: lib/acf_settings.php:2512
 msgid ""
 "Toto pole je zde pouze z historických důvodů. Vyplňte prosím pole s cenou "
 "níže v tomto formuláři."
 msgstr ""
 
-#: lib/acf_settings.php:2507
+#: lib/acf_settings.php:2528
 msgid "Zpráva z kontaktního formuláře"
 msgstr ""
 
-#: lib/acf_settings.php:2565
+#: lib/acf_settings.php:2586
 msgid "Partner"
 msgstr ""
 
-#: lib/acf_settings.php:2591 templates/review-form.twig:25
-#: templates/review-form.twig:31
+#: lib/acf_settings.php:2612
 msgid "URL vašeho webu"
 msgstr ""
 
-#: lib/acf_settings.php:2610 templates/profile/main.twig:58
+#: lib/acf_settings.php:2631
 msgid "Telefon"
 msgstr ""
 
-#: lib/acf_settings.php:2629 templates/profile/main.twig:65
+#: lib/acf_settings.php:2650
 msgid "IČO"
 msgstr ""
 
-#: lib/acf_settings.php:2648 templates/profile/main.twig:72
+#: lib/acf_settings.php:2669
 msgid "DIČ"
 msgstr ""
 
-#: lib/acf_settings.php:2667
+#: lib/acf_settings.php:2688
 msgid "Země"
 msgstr ""
 
-#: lib/acf_settings.php:2679
+#: lib/acf_settings.php:2700
 msgid "Česká republika"
 msgstr ""
 
-#: lib/acf_settings.php:2680 lib/helpers.php:314
+#: lib/acf_settings.php:2701 lib/helpers.php:314
 msgid "Slovensko"
 msgstr ""
 
-#: lib/acf_settings.php:2681 lib/helpers.php:318
+#: lib/acf_settings.php:2702 lib/helpers.php:318
 msgid "Maďarsko"
 msgstr ""
 
-#: lib/acf_settings.php:2695 lib/acf_settings.php:2741
-#: lib/acf_settings.php:2781
+#: lib/acf_settings.php:2716 lib/acf_settings.php:2762
+#: lib/acf_settings.php:2802
 msgid "Kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2715
+#: lib/acf_settings.php:2736
 msgid "Hlavní město Praha"
 msgstr ""
 
-#: lib/acf_settings.php:2716
+#: lib/acf_settings.php:2737
 msgid "Jihočeský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2717
+#: lib/acf_settings.php:2738
 msgid "Jihomoravský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2718
+#: lib/acf_settings.php:2739
 msgid "Karlovarský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2719
+#: lib/acf_settings.php:2740
 msgid "Kraj Vysočina"
 msgstr ""
 
-#: lib/acf_settings.php:2720
+#: lib/acf_settings.php:2741
 msgid "Královéhradecký kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2721
+#: lib/acf_settings.php:2742
 msgid "Liberecký kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2722
+#: lib/acf_settings.php:2743
 msgid "Moravskoslezský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2723
+#: lib/acf_settings.php:2744
 msgid "Olomoucký kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2724
+#: lib/acf_settings.php:2745
 msgid "Pardubický kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2725
+#: lib/acf_settings.php:2746
 msgid "Plzeňský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2726
+#: lib/acf_settings.php:2747
 msgid "Středočeský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2727
+#: lib/acf_settings.php:2748
 msgid "Ústecký kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2728
+#: lib/acf_settings.php:2749
 msgid "Zlínský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2761
+#: lib/acf_settings.php:2782
 msgid "Bratislavský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2762
+#: lib/acf_settings.php:2783
 msgid "Trnavský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2763
+#: lib/acf_settings.php:2784
 msgid "Trenčínský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2764
+#: lib/acf_settings.php:2785
 msgid "Nitranský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2765
+#: lib/acf_settings.php:2786
 msgid "Žilinský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2766
+#: lib/acf_settings.php:2787
 msgid "Banskobystrický kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2767
+#: lib/acf_settings.php:2788
 msgid "Prešovský kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2768
+#: lib/acf_settings.php:2789
 msgid "Košický kraj"
 msgstr ""
 
-#: lib/acf_settings.php:2833
+#: lib/acf_settings.php:2854
 msgid "Facebook"
 msgstr ""
 
-#: lib/acf_settings.php:2852
+#: lib/acf_settings.php:2873
 msgid "Twitter"
 msgstr ""
 
-#: lib/acf_settings.php:2871
+#: lib/acf_settings.php:2892
 msgid "Instagram"
 msgstr ""
 
-#: lib/acf_settings.php:2890
+#: lib/acf_settings.php:2911
 msgid "LinkedIn"
 msgstr ""
 
-#: lib/acf_settings.php:2912
+#: lib/acf_settings.php:2933
 msgid ""
 "Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve "
 "formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB."
 msgstr ""
 
-#: lib/acf_settings.php:2933
+#: lib/acf_settings.php:2954
 msgid "Měna hodinové sazby"
 msgstr ""
 
-#: lib/acf_settings.php:2956
+#: lib/acf_settings.php:2977
 msgid "Hodinová sazba"
 msgstr ""
 
-#: lib/acf_settings.php:2959
+#: lib/acf_settings.php:2980
 msgid "Uveďte svou hodinovou sazbu bez DPH ve vámi vybrané měně."
 msgstr ""
 
-#: lib/acf_settings.php:2977
+#: lib/acf_settings.php:2998
 msgid "Plátcovství DPH"
 msgstr ""
 
-#: lib/acf_settings.php:2988
+#: lib/acf_settings.php:3009
 msgid "Jsem plátce DPH"
 msgstr ""
 
-#: lib/acf_settings.php:2996
+#: lib/acf_settings.php:3017
 msgid "Další informace k ceně"
 msgstr ""
 
-#: lib/acf_settings.php:3015
+#: lib/acf_settings.php:3036
 msgid "O mně"
 msgstr ""
 
-#: lib/acf_settings.php:3018
+#: lib/acf_settings.php:3039
 msgid "Popište v pár větách sebe a svou práci."
 msgstr ""
 
-#: lib/acf_settings.php:3034
+#: lib/acf_settings.php:3055
 msgid "Co umím?"
 msgstr ""
 
-#: lib/acf_settings.php:3037
+#: lib/acf_settings.php:3058
 msgid ""
 "Popište ve dvou odstavcích, co klientům můžete nabídnout a v čem jste dobrý. "
 "Nebojte se pochválit. Do tohoto odstavce můžete text naformátovat, přidat "
 "odkazy, obrázky či videa. Využijte toho!"
 msgstr ""
 
-#: lib/acf_settings.php:3053 templates/profile/recommendation.twig:5
+#: lib/acf_settings.php:3074
 msgid "Doporučení"
 msgstr ""
 
-#: lib/acf_settings.php:3056
+#: lib/acf_settings.php:3077
 msgid ""
 "Vložte sem doporučení od některého vašeho klienta fungujícího na platformě "
 "Shoptet."
 msgstr ""
 
-#: lib/acf_settings.php:3068
+#: lib/acf_settings.php:3089
 msgid "Přidat doporučení"
 msgstr ""
 
-#: lib/acf_settings.php:3072
+#: lib/acf_settings.php:3093
 msgid "Text doporučení"
 msgstr ""
 
-#: lib/acf_settings.php:3075
+#: lib/acf_settings.php:3096
 msgid "Vložte cca 2 věty doporučení"
 msgstr ""
 
-#: lib/acf_settings.php:3091
+#: lib/acf_settings.php:3112
 msgid "Jméno klienta"
 msgstr ""
 
-#: lib/acf_settings.php:3094
+#: lib/acf_settings.php:3115
 msgid ""
 "Klienta budeme odkazovat pod doporučením, proto potřebujeme jeho jméno a "
 "pozici ve firmě."
 msgstr ""
 
-#: lib/acf_settings.php:3110
+#: lib/acf_settings.php:3131
 msgid "Pozice klienta"
 msgstr ""
 
-#: lib/acf_settings.php:3129
+#: lib/acf_settings.php:3150
 msgid "Web klienta"
 msgstr ""
 
-#: lib/acf_settings.php:3132
+#: lib/acf_settings.php:3153
 msgid "A také webovou adresu."
 msgstr ""
 
-#: lib/acf_settings.php:3150
+#: lib/acf_settings.php:3171
 msgid "Další reference"
 msgstr ""
 
-#: lib/acf_settings.php:3153
+#: lib/acf_settings.php:3174
 msgid ""
 "Vložte sem loga svých dalších referenčních klientů. Nahrajte minimálně 3, "
 "maximálně 9. Loga musí být odlišná od uvedených v Doporučení výše. Tito "
@@ -1056,59 +1046,58 @@ msgid ""
 "vypadají loga moc pěkně, proto je, prosím, nevynechejte."
 msgstr ""
 
-#: lib/acf_settings.php:3165
+#: lib/acf_settings.php:3186
 msgid "Přidat logo"
 msgstr ""
 
-#: lib/acf_settings.php:3169
+#: lib/acf_settings.php:3190
 msgid "Název"
 msgstr ""
 
-#: lib/acf_settings.php:3188
+#: lib/acf_settings.php:3209
 msgid "Logo"
 msgstr ""
 
-#: lib/acf_settings.php:3191
+#: lib/acf_settings.php:3212
 msgid "JPG, PNG nebo GIF. Max. 3 MB. Min. 200 x 200 px."
 msgstr ""
 
-#: lib/acf_settings.php:3212
+#: lib/acf_settings.php:3233
 msgid "URL odkazu"
 msgstr ""
 
-#: lib/acf_settings.php:3371
+#: lib/acf_settings.php:3392
 msgid "Mailing poptávek"
 msgstr ""
 
-#: lib/acf_settings.php:3375
+#: lib/acf_settings.php:3396
 msgid "Stav mailingu"
 msgstr ""
 
-#: lib/acf_settings.php:3378
+#: lib/acf_settings.php:3399
 msgid ""
 "Pokud je mailing vypnutý, partner nebude dostávat žádné e-maily s poptávkami."
 msgstr ""
 
-#: lib/acf_settings.php:3386
+#: lib/acf_settings.php:3407
 msgid "Vypnout mailing"
 msgstr ""
 
-#: lib/acf_settings.php:3394
+#: lib/acf_settings.php:3415
 msgid "Odhlášené kategorie"
 msgstr ""
 
-#: lib/acf_settings.php:3397
+#: lib/acf_settings.php:3418
 msgid ""
 "Partnerovi budou chodit na e-mail poptávky dle kategorií, ke kterým je "
 "přiřazen. Zde je možné některou z kategorií odhlásit."
 msgstr ""
 
-#: lib/acf_settings.php:3436
+#: lib/acf_settings.php:3457
 msgid "Onboarding"
 msgstr ""
 
 #: lib/cpt_posts.php:10 lib/cpt_posts.php:12 lib/cpt_posts.php:25
-#: templates/header.twig:97 templates/page-profesionalove.twig:18
 msgid "Profesionálové"
 msgstr ""
 
@@ -1152,12 +1141,12 @@ msgstr ""
 msgid "Nebyl nalezen žádný profesionál"
 msgstr ""
 
-#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26 templates/header.twig:97
+#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26
 msgid "profesionalove"
 msgstr ""
 
 #: lib/cpt_posts.php:53 lib/cpt_posts.php:54 lib/cpt_posts.php:55
-#: lib/cpt_posts.php:68 templates/page-napojeni.twig:18
+#: lib/cpt_posts.php:68
 msgid "Napojení"
 msgstr ""
 
@@ -1186,7 +1175,6 @@ msgid "Nebylo nazelezno žádné napojení"
 msgstr ""
 
 #: lib/cpt_posts.php:95 lib/cpt_posts.php:97 lib/cpt_posts.php:110
-#: templates/page-nastroje.twig:18
 msgid "Nástroje"
 msgstr ""
 
@@ -1222,7 +1210,7 @@ msgstr ""
 msgid "Nebyl nalezen žádný nástroj"
 msgstr ""
 
-#: lib/cpt_posts.php:141 templates/request/categories.twig:24
+#: lib/cpt_posts.php:141
 msgid "Všechny poptávky"
 msgstr ""
 
@@ -1238,7 +1226,7 @@ msgstr ""
 msgid "Upravit poptávku"
 msgstr ""
 
-#: lib/cpt_posts.php:145 templates/new-request-page.twig:34
+#: lib/cpt_posts.php:145
 msgid "Nová poptávka"
 msgstr ""
 
@@ -1271,7 +1259,7 @@ msgid "webinar"
 msgstr ""
 
 #: lib/cpt_taxonomies.php:10 lib/cpt_taxonomies.php:11
-#: lib/cpt_taxonomies.php:17 templates/search.twig:41
+#: lib/cpt_taxonomies.php:17
 msgid "Kategorie profesionálů"
 msgstr ""
 
@@ -1281,12 +1269,12 @@ msgid "Přidat novou kategorii"
 msgstr ""
 
 #: lib/cpt_taxonomies.php:39 lib/cpt_taxonomies.php:40
-#: lib/cpt_taxonomies.php:46 templates/search.twig:46
+#: lib/cpt_taxonomies.php:46
 msgid "Kategorie napojení"
 msgstr ""
 
 #: lib/cpt_taxonomies.php:68 lib/cpt_taxonomies.php:69
-#: lib/cpt_taxonomies.php:75 templates/search.twig:51
+#: lib/cpt_taxonomies.php:75
 msgid "Kategorie nástrojů"
 msgstr ""
 
@@ -1534,7 +1522,6 @@ msgstr ""
 msgid "— Datum —"
 msgstr ""
 
-#. translators: 1: month name, 2: 4-digit year
 #: lib/setup.php:554
 #, php-format
 msgid "%1$s %2$d"
@@ -1563,472 +1550,4 @@ msgstr ""
 
 #: search.php:55
 msgid "Výsledky vyhledávání"
-msgstr ""
-
-#: templates/archive.twig:79
-msgid "Nemůžeme najít žádné partnery s těmito požadavky"
-msgstr ""
-
-#: templates/archive.twig:82 templates/course/archive-list.twig:56
-#: templates/request/archive-list.twig:59
-#: templates/webinar/archive-list.twig:55
-msgid "Zkuste prosím snížit vaše požadavky pomocí filtrů."
-msgstr ""
-
-#: templates/category/thumbnail.twig:10
-msgid "Zobrazit profily v této kategorii"
-msgstr ""
-
-#: templates/category/thumbnail.twig:25
-msgid "Počet profilů v této kategorii"
-msgstr ""
-
-#: templates/contact-form.twig:21 templates/contact-form.twig:23
-msgid "Vaše zpráva"
-msgstr ""
-
-#: templates/contact-form.twig:26 templates/profile/contact-form.twig:25
-msgid ""
-"Vložením e-mailu souhlasíte s <a href=\"https://www.shoptet.cz/podminky-"
-"ochrany-osobnich-udaju/\" target=\"_blank\">podmínkami ochrany osobních "
-"údajů</a>"
-msgstr ""
-
-#: templates/contact-form.twig:35 templates/message/request-expire.twig:66
-#: templates/profile/contact-form.twig:36
-#: templates/request/contact-form.twig:45
-msgid "Odeslat"
-msgstr ""
-
-#: templates/course/archive-list.twig:43 templates/request/archive-list.twig:46
-#: templates/webinar/archive-list.twig:42
-#, php-format
-msgid "Celkem %d z %d"
-msgstr ""
-
-#: templates/course/archive-list.twig:53
-msgid "Nemůžeme najít žádné webináře s těmito požadavky"
-msgstr ""
-
-#: templates/course/categories.twig:12
-msgid "Zrušit filtr"
-msgstr ""
-
-#: templates/go-to-shoptet.twig:3
-msgid "Přejít na <strong>Shoptet.cz</strong>"
-msgstr ""
-
-#: templates/header-blank.twig:5 templates/header.twig:25
-#: templates/mailing/message.twig:9
-msgid "Shoptet Partneři"
-msgstr ""
-
-#: templates/header.twig:20
-msgid "Zpět na domovskou stránku"
-msgstr ""
-
-#: templates/header.twig:49
-msgid "Zadejte hledaný výraz..."
-msgstr ""
-
-#: templates/header.twig:73
-msgid "Můj profil"
-msgstr ""
-
-#: templates/header.twig:74 templates/user/sidebar.twig:24
-msgid "Odhlásit"
-msgstr ""
-
-#: templates/header.twig:83 templates/request/archive-list.twig:20
-msgid "Přidat poptávku"
-msgstr ""
-
-#: templates/home.twig:61
-msgid "Nové poptávky"
-msgstr ""
-
-#: templates/home.twig:64
-msgid ""
-"Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet Partnera? "
-"Zadejte si poptávku zdarma a jen čekejte na první nabídky."
-msgstr ""
-
-#: templates/home.twig:76
-msgid "Prohlédnout poptávky"
-msgstr ""
-
-#: templates/home.twig:81
-msgid "Vložit vlastní poptávku"
-msgstr ""
-
-#: templates/home.twig:133
-msgid "Nejnovější Shoptet Partneři"
-msgstr ""
-
-#: templates/mailing/message.twig:166
-msgid "Copyright © 2023 Shoptet a.s. Všechna práva vyhrazena."
-msgstr ""
-
-#: templates/mailing/review-authorized.twig:1
-#, php-format
-msgid ""
-"Hej hola!\n"
-"<br><br>\n"
-"Nové hodnocení Partnera <a href=\"%s\" target=\"_blank\">%s</a> čeká na "
-"schválení.\n"
-"<br><br>\n"
-"Mrkni na to :)"
-msgstr ""
-
-#: templates/message/message.twig:30 templates/message/request-expire.twig:79
-msgid "Přejít zpět na partneri.shoptet.cz"
-msgstr ""
-
-#: templates/message/request-expire.twig:19
-msgid "Není vybrán žádný Shoptet partner"
-msgstr ""
-
-#: templates/message/request-expire.twig:46
-msgid ""
-"Vybrali jste si partnera z naší sítě? Dejte nám vědět koho jste si vybrali."
-msgstr ""
-
-#: templates/message/request-expire.twig:53
-msgid "Název poptávky:"
-msgstr ""
-
-#: templates/message/request-expire.twig:58
-msgid "Vyhledejte Shoptet partnera:"
-msgstr ""
-
-#: templates/message/request-expire.twig:71
-msgid ""
-"Vaše zpětná vazba nám pomáhá udržovat vysokou kvalitu služeb partnerů. "
-"Nezapomeňte dát partnerovi hodnocení pod medailonek a pomoci tak s výběrem i "
-"jiným klientům 🙂"
-msgstr ""
-
-#: templates/new-request-page.twig:29
-msgid ""
-"<strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její "
-"schválení."
-msgstr ""
-
-#: templates/new-request-page.twig:44
-msgid ""
-"Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.\n"
-"                  My vaši poptávku zkontrolujeme, pokud bude třeba, tak s "
-"vámi doladíme\n"
-"                  a po jejím schválení ji rozešleme všem partnerům z dané "
-"kategorie.\n"
-"                  Po 24 hodinách po tomto schválení se zobrazí i na tomto "
-"webu."
-msgstr ""
-
-#: templates/new-request-page.twig:62
-msgid ""
-"Odesláním poptávky souhlasím se <a href=\"https://www.shoptet.cz/podminky-"
-"ochrany-osobnich-udaju/\" target=\"_blank\">zpracováním osobních údajů</a>"
-msgstr ""
-
-#: templates/new-request-page.twig:76
-msgid "Odeslat poptávku"
-msgstr ""
-
-#: templates/onboarding.twig:24
-msgid "Vyplňte svůj medailonek"
-msgstr ""
-
-#: templates/onboarding.twig:33
-msgid "Vaše jméno:"
-msgstr ""
-
-#: templates/onboarding.twig:37
-msgid "Váš e-mail:"
-msgstr ""
-
-#: templates/onboarding.twig:67
-msgid "Shoptet"
-msgstr ""
-
-#: templates/onboarding.twig:121
-msgid "Nahrajte prosím soubor menší než"
-msgstr ""
-
-#: templates/onboarding.twig:129
-msgid "Nahrajte prosím obrázek ve formátu jpg, png nebo gif."
-msgstr ""
-
-#: templates/onboarding.twig:138
-msgid "Nahrajte prosím obrázek s minimálními rozměry"
-msgstr ""
-
-#: templates/pagination.twig:13
-msgid "Předchozí"
-msgstr ""
-
-#: templates/pagination.twig:43
-msgid "Další"
-msgstr ""
-
-#: templates/profile/about.twig:40
-msgid "Doporučit na Facebooku"
-msgstr ""
-
-#: templates/profile/contact-form.twig:20
-#: templates/profile/contact-form.twig:22
-msgid "Zpráva partnerovi"
-msgstr ""
-
-#: templates/profile/contact.twig:3
-msgid "Kontaktovat partnera"
-msgstr ""
-
-#: templates/profile/filter.twig:11 templates/request/categories.twig:11
-#: templates/webinar/categories.twig:11
-msgid "Zobrazit filtry"
-msgstr ""
-
-#: templates/profile/filter.twig:36
-msgid "Lokalita"
-msgstr ""
-
-#: templates/profile/main.twig:27 templates/reviews.twig:23
-#: templates/user/sidebar.twig:12
-#, php-format
-msgid "%s hodnocení"
-msgstr ""
-
-#: templates/profile/main.twig:29
-msgid "žádné hodnocení"
-msgstr ""
-
-#: templates/profile/main.twig:84
-msgid "Zobrazit profil na Facebooku"
-msgstr ""
-
-#: templates/profile/main.twig:92
-msgid "Zobrazit profil na Twitteru"
-msgstr ""
-
-#: templates/profile/main.twig:100
-msgid "Zobrazit profil na LinkedIn"
-msgstr ""
-
-#: templates/profile/price.twig:3 templates/profile/price.twig:19
-msgid "Ceny"
-msgstr ""
-
-#: templates/profile/thumbnail.twig:4
-msgid "Zobrazit profil"
-msgstr ""
-
-#: templates/request/archive-list.twig:56
-#: templates/webinar/archive-list.twig:52
-msgid "Nemůžeme najít žádné poptávky s těmito požadavky"
-msgstr ""
-
-#: templates/request/contact-form.twig:1
-msgid "Reakce na poptávku"
-msgstr ""
-
-#: templates/request/contact-form.twig:31
-msgid "Text reakce"
-msgstr ""
-
-#: templates/request/contact-form.twig:53
-msgid ""
-"Poptávka byla zadávajícím označena jako vyřízena, nelze na ni již reagovat.\n"
-"      Rychlejší přístup k&nbsp;novým objednávkám si můžete zajistit "
-"členstvím v&nbsp;Shoptet\n"
-"      Partneři, které je zdarma. Shoptet Partnerům zasíláme poptávky 24 "
-"hodin před\n"
-"      zveřejněním na webu."
-msgstr ""
-
-#: templates/request/content.twig:13 templates/request/thumbnail.twig:35
-msgid "Zadavatel"
-msgstr ""
-
-#: templates/request/content.twig:32
-msgid "Provozováno na Shoptet"
-msgstr ""
-
-#: templates/request/content.twig:41 templates/request/thumbnail.twig:44
-msgid "Zveřejnění"
-msgstr ""
-
-#: templates/request/content.twig:52
-msgid "Stav poptávky"
-msgstr ""
-
-#: templates/request/filter.twig:4
-msgid "Seřadit podle:"
-msgstr ""
-
-#: templates/request/filter.twig:22
-msgid "Jen aktivní"
-msgstr ""
-
-#: templates/review-form.twig:20
-msgid ""
-"Váš e-mail nebude zobrazen. Slouží pro zaslání odkazu pro potvrzení "
-"příspěvku."
-msgstr ""
-
-#: templates/review-form.twig:25 templates/review-form.twig:31
-msgid "URL vašeho e-shopu"
-msgstr ""
-
-#: templates/review-form.twig:47
-msgid "Jak jste byli se Shoptet partnerem spokojeni?"
-msgstr ""
-
-#: templates/review-form.twig:47
-msgid "Napište vaši reakci na hodnocení"
-msgstr ""
-
-#: templates/review-form.twig:57 templates/review-form.twig:61
-#: templates/review-form.twig:62 templates/review-form.twig:66
-#: templates/review-form.twig:67 templates/review-form.twig:68
-#: templates/review-form.twig:72 templates/review-form.twig:73
-#: templates/review-form.twig:74 templates/review-form.twig:75
-#: templates/review-form.twig:79 templates/review-form.twig:80
-#: templates/review-form.twig:81 templates/review-form.twig:82
-#: templates/review-form.twig:83 templates/review-rating-stars.twig:5
-msgid "Hvězdička"
-msgstr ""
-
-#: templates/review-form.twig:89
-msgid "Odeslat hodnocení"
-msgstr ""
-
-#: templates/review-rating-stars.twig:2
-msgid "Hodnocení partnera"
-msgstr ""
-
-#: templates/review-single.twig:42
-msgid "Shoptet partner"
-msgstr ""
-
-#: templates/review-single.twig:56 templates/reviews.twig:73
-msgid "Reagovat"
-msgstr ""
-
-#: templates/reviews.twig:25
-msgid "Tento partner zatím nemá žádné hodnocení"
-msgstr ""
-
-#: templates/reviews.twig:44
-msgid "Ohodnoťte svou zkušenost<br>s tímto partnerem"
-msgstr ""
-
-#: templates/reviews.twig:53
-msgid "Hodnocení jsou uzavřena"
-msgstr ""
-
-#: templates/reviews.twig:55
-msgid "Přidat hodnocení"
-msgstr ""
-
-#: templates/row-webinars.twig:3
-msgid "Nejnovější webináře"
-msgstr ""
-
-#: templates/row-webinars.twig:14 templates/webinar/categories.twig:24
-msgid "Všechny webináře"
-msgstr ""
-
-#: templates/search.twig:26
-msgid "Výsledky vyhledávání pro:"
-msgstr ""
-
-#: templates/search.twig:58
-msgid "Profily"
-msgstr ""
-
-#: templates/search.twig:69
-msgid "Nebylo nic nalezeno"
-msgstr ""
-
-#: templates/search.twig:70
-msgid "Zkuste prosím vyhledat jinou frázi."
-msgstr ""
-
-#: templates/single-course.twig:33
-#, php-format
-msgid "Webinář pro partnery v kategorii <a href=\"%s\">%s</a>"
-msgstr ""
-
-#: templates/single-course.twig:40 templates/single-webinar.twig:48
-msgid "Popis webináře"
-msgstr ""
-
-#: templates/single-course.twig:53
-msgid "Podobné webináře pro partnery"
-msgstr ""
-
-#: templates/single-webinar.twig:41
-#, php-format
-msgid "Webinář v kategorii <a href=\"%s\">%s</a>"
-msgstr ""
-
-#: templates/single-webinar.twig:60
-msgid "Související partner"
-msgstr ""
-
-#: templates/single-webinar.twig:66
-msgid "Související doplňky"
-msgstr ""
-
-#: templates/single-webinar.twig:72
-msgid "Související články na blogu"
-msgstr ""
-
-#: templates/single-webinar.twig:88
-msgid "Podobné webináře"
-msgstr ""
-
-#: templates/single.twig:98
-msgid "Nevybrali jste? Co zkusit jiné?"
-msgstr ""
-
-#: templates/user/sidebar.twig:14
-msgid "Žádné hodnocení"
-msgstr ""
-
-#: templates/user/sidebar.twig:23
-msgid "Zobrazit můj profil"
-msgstr ""
-
-#: templates/webinar/categories.twig:18
-msgid "Kategorie webinářů"
-msgstr ""
-
-#. Theme Name of the plugin/theme
-msgid "Shoptet Partners"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "New request page"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Narrow"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Affiliate"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Contact Form"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Narrow with header"
-msgstr ""
-
-#. Template Name of the plugin/theme
-msgid "Partners"
 msgstr ""

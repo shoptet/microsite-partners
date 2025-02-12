@@ -28,6 +28,8 @@ class RequestService
     add_filter( 'use_block_editor_for_post_type', [ get_called_class(), 'disableGutenberg' ], 10, 2 );
     add_filter( 'robots_txt', [ get_called_class(), 'filterRobotsTxt' ] );
     add_filter( 'acf/validate_value/key=field_5d9f2f4a8e648', [ get_called_class(), 'handleCategoryValidation' ], 10, 2 );
+    add_filter( 'gettext', [ get_called_class(), 'changePublishButtonText' ], 10, 3 );
+    add_action( 'admin_notices', [ get_called_class(), 'displaySentToPartnersNotice' ] );
 
     if ( ! wp_next_scheduled( 'shp/request_service/expiration_check' ) ) {
       wp_schedule_event( time(), self::EXPIRATION_CHECK_RECURRENCE, 'shp/request_service/expiration_check' );
@@ -375,4 +377,33 @@ Disallow: /future-request/*
     );
   }
 
+  static function changePublishButtonText ($translation, $text, $domain) {
+    if ( 'Publish' === $text && 'default' === $domain ) {
+      global $post, $pagenow;
+      if (
+        is_admin() &&
+        'post.php' === $pagenow &&
+        $post &&
+        RequestPost::POST_TYPE === $post->post_type &&
+        'pending' === $post->post_status
+      ) {
+        return __( 'Odeslat partnerům', 'shp-partneri' );
+      }
+    }
+    return $translation;
+  }
+
+  static function displaySentToPartnersNotice () {
+    global $pagenow, $post;
+
+    if ( 'post.php' === $pagenow && ! empty( $post ) && RequestPost::POST_TYPE === $post->post_type ) {
+      $notification_sent = get_post_meta( $post->ID, '_notification_sent', true );
+
+      if ( ! empty( $notification_sent ) ) {
+        echo '<div class="notice notice-info is-dismissible">';
+        echo '<p>' . __( 'Poptávka již byla odeslána partnerům v souvisejících kategoriích', 'shp-partneri' ) . '</p>';
+        echo '</div>';
+      }
+    }
+  }
 }
