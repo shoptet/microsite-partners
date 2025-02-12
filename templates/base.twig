@@ -27,7 +27,7 @@
 			window.addEventListener('CookiebotOnConsentReady', load_gtm, false);
 			window.addEventListener('DOMContentLoaded', () => setTimeout(() => load_gtm(), 5000), false);
 		</script>
-		<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-consentmode="disabled" data-cbid="42873d91-11c4-4363-9be3-143273a984b2" type="text/javascript" async></script>
+		<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-consentmode="disabled" data-cbid="{{ options.cookiebot_id }}" type="text/javascript" async></script>
 		<script data-cookieconsent="ignore">
 			dataLayer.push({
 				'event': 'loaded_cookiebot',
