@@ -83,6 +83,7 @@ class Post
       'no_found_rows' => true,
       'update_comment_meta_cache' => false,
       'update_comment_post_cache' => false,
+      'parent' => 0,
     ] );
     return $comment_query->comments;
   }

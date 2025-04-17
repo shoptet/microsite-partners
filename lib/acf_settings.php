@@ -2492,7 +2492,7 @@ acf_add_local_field_group(array(
 				'Eva Šlezáková' => 'Eva Šlezáková',
 				'Annamária Skládalová' => 'Annamária Skládalová',
 				'Kristýna Pecková' => 'Kristýna Pecková',
-				'Lucie Hurňanská' => 'Lucie Hurňanská',
+				'Lucia Hurňanská' => 'Lucia Hurňanská',
 				'Jan Krupica' => 'Jan Krupica',
 			),
 			'allow_null' => 0,

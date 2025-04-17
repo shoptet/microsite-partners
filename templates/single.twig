@@ -80,7 +80,8 @@
 			</div>
 		</div>
 
-		<div class="{{ similar_posts|length > 0 ? 'border-bottom' }}">
+		{# <div class="{{ similar_posts|length > 0 ? 'border-bottom' }}"> #}
+		<div>
 			<div class="container pt-5">
 				<div class="row">
 					<div class="col-xl-9">
@@ -91,7 +92,7 @@
 		</div>
 
 	</div>
-
+{# 
 	{% if similar_posts|length > 0 %}
 		<div class="row-profile-list">
 			<div class="container">
@@ -99,6 +100,6 @@
 					{% include 'profile/list.twig' with {'posts': similar_posts, 'hide_cta': true} %}
 			</div>
 		</div>
-	{% endif %}
+	{% endif %} #}
 
 {% endblock %}

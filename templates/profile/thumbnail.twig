@@ -42,10 +42,15 @@
         {{ post.title }}
       </div>
 
-      {% if show_rating and post.comments|length > 0 %}
+      {% if show_rating %}
         {% with { average_rating: post|average_rating } %}
-          <div>
-            {% include 'review-rating-stars.twig' with { rating: average_rating, size: 'small' } %}
+          <div class="d-flex" style="align-items: center; gap: 0.25rem;">
+            <span>
+              {% include 'review-rating-stars.twig' with { rating: average_rating, size: 'small' } %}
+            </span>
+            <span class="small text-muted">
+              ({{ __('%s hodnocení', 'shp-partneri')|format(post.comments|length) }})
+            </span>
           </div>
         {% endwith %}
       {% endif %}

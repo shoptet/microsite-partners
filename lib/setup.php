@@ -150,6 +150,21 @@ add_action( 'init', function() {
 } );
 
 /**
+ * Add new post status to bulk action
+ */
+add_action( 'admin_footer-edit.php', function() {
+	global $post_type;
+	if ( 'profesionalove' === $post_type ) : ?>
+		<script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('select[name="_status"]').append('<option value="expired"><?php echo esc_js( __("Expirováno", "shp-partneri") ); ?></option>');
+		});
+		</script>
+	<?php
+	endif;
+} );
+
+/**
  * Add post states to admin list
  */
 add_filter( 'display_post_states', function ( $states, $post ) {
@@ -704,7 +719,7 @@ add_action('pre_get_posts', function( $wp_query ) {
   $fs = new FacetedSearch( $wp_query );
   $fs->filterBySearchQuery();
   $fs->filterByMetaQuery( 'region', 'OR' );
-	$fs->filterByTaxQuery( ProfessionalPost::TAXONOMY );
+  $fs->filterByTaxQuery( ProfessionalPost::TAXONOMY );
   $fs->order();
 } );
 

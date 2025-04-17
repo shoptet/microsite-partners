@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Shoptet Partners\n"
-"POT-Creation-Date: 2025-02-12 14:40+0100\n"
+"POT-Creation-Date: 2025-02-26 14:02+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.7.7\n"
+"X-Generator: Poedit 3.5\n"
 
 #: 404.php:14
 msgid "Stránka nenalezena"
@@ -18,6 +18,7 @@ msgstr "Stránka nenájdena"
 
 #: archive-course.php:23 archive-webinar.php:26 archive-webinar.php:38
 #: lib/cpt_posts.php:183 lib/cpt_posts.php:212 single-webinar.php:14
+#: templates/header.twig:70
 msgid "Webináře"
 msgstr "Webináre"
 
@@ -32,7 +33,7 @@ msgstr "%s webináre"
 msgid "strana"
 msgstr "strana"
 
-#: archive-course.php:35 single-course.php:22
+#: archive-course.php:35 single-course.php:22 templates/user/sidebar.twig:19
 msgid "Webináře pro partnery"
 msgstr "Webináre pre partnerov"
 
@@ -163,7 +164,8 @@ msgstr "Text dopytu"
 msgid "Sepište co nejvíce informací o problému, s nímž potřebujete pomoct."
 msgstr "Spíšte čo najviac informácií o probléme, s ktorým potrebujete pomôcť."
 
-#: lib/RequestForm.php:51
+#: lib/RequestForm.php:51 templates/contact-form.twig:7
+#: templates/profile/contact-form.twig:6 templates/request/contact-form.twig:12
 msgid "Jméno a příjmení"
 msgstr "Meno a priezvisko"
 
@@ -180,8 +182,8 @@ msgstr ""
 "Zvoľte <a href=\"%s\" target=\"_blank\">odbor</a>, do ktorého by ste chceli "
 "zaradiť"
 
-#: lib/RequestService.php:47 lib/RequestService.php:277
-#: lib/RequestService.php:291 lib/setup.php:139 lib/setup.php:161
+#: lib/RequestService.php:47 lib/RequestService.php:273
+#: lib/RequestService.php:287 lib/setup.php:139 lib/setup.php:161
 msgid "Expirováno"
 msgstr "Expirované"
 
@@ -193,8 +195,8 @@ msgstr[0] "Expirované <span class=\"count\">(%s)</span>"
 msgstr[1] "Expirované <span class=\"count\">(%s)</span>"
 msgstr[2] "Expirované <span class=\"count\">(%s)</span>"
 
-#: lib/RequestService.php:55 lib/RequestService.php:280
-#: lib/RequestService.php:293
+#: lib/RequestService.php:55 lib/RequestService.php:276
+#: lib/RequestService.php:289
 msgid "Premium"
 msgstr ""
 
@@ -214,41 +216,41 @@ msgstr "Dopyt už bol expirovaný"
 msgid "Gratulujeme k nalezení ideálního partnera pro spolupráci!"
 msgstr "Gratulujeme k nájdeniu ideálneho partnera na spoluprácu!"
 
-#: lib/RequestService.php:283
+#: lib/RequestService.php:279
 msgid "Publikováno"
 msgstr "Publikované"
 
-#: lib/RequestService.php:287 lib/RequestService.php:298
+#: lib/RequestService.php:283 lib/RequestService.php:294
 msgid "Uložit"
 msgstr ""
 
-#: lib/RequestService.php:288 lib/RequestService.php:299
+#: lib/RequestService.php:284 lib/RequestService.php:295
 msgid "Aktualizovat"
 msgstr ""
 
-#: lib/RequestService.php:327
+#: lib/RequestService.php:323
 msgid ""
 "Omlouváme se, ale na tuto poptávku již není možné reagovat. V mezičase ji "
 "autor označil jako vyřešenou. Zkuste se ale mrknout na další poptávky. Díky!"
 msgstr ""
 
-#: lib/RequestService.php:362 lib/acf_settings.php:2099
+#: lib/RequestService.php:358 lib/acf_settings.php:2099
 msgid "Zvolte maximálně 3 kategorie"
 msgstr "Vyberte maximálne 3 kategórie"
 
-#: lib/RequestService.php:379
+#: lib/RequestService.php:375
 msgid "Děkujeme za zpětnou vazbu!"
 msgstr "Ďakujeme za vašu spätnú väzbu!"
 
-#: lib/RequestService.php:380
+#: lib/RequestService.php:376
 msgid "Děkujeme"
 msgstr "Ďakujeme"
 
-#: lib/RequestService.php:394
+#: lib/RequestService.php:390
 msgid "Odeslat partnerům"
 msgstr "Odoslať partnerom"
 
-#: lib/RequestService.php:408
+#: lib/RequestService.php:404
 msgid "Poptávka již byla odeslána partnerům v souvisejících kategoriích"
 msgstr "Dopyt už bol zaslaný partnerom v súvisiacich kategóriách"
 
@@ -289,7 +291,7 @@ msgstr "Načítavam ďalšie..."
 msgid "Aktivní"
 msgstr "Aktívne"
 
-#: lib/StarterSite.php:205
+#: lib/StarterSite.php:205 templates/request/thumbnail.twig:46
 msgid "Poptávka již byla vyřízena"
 msgstr "Dopyt už bol vyriešený"
 
@@ -315,14 +317,20 @@ msgid "(Neplátce DPH)"
 msgstr "(Neplatca DPH)"
 
 #: lib/StarterSite.php:302 lib/acf_settings.php:1800
+#: templates/profile/thumbnail.twig:20 templates/profile/verified.twig:3
+#: templates/row-badges.twig:10
 msgid "Zlatý partner"
 msgstr "Zlatý partner"
 
 #: lib/StarterSite.php:305 lib/acf_settings.php:1819
+#: templates/profile/thumbnail.twig:22 templates/profile/verified.twig:5
+#: templates/row-badges.twig:21
 msgid "Stříbrný partner"
 msgstr "Strieborný partner"
 
 #: lib/StarterSite.php:308 lib/acf_settings.php:1838
+#: templates/profile/thumbnail.twig:24 templates/profile/verified.twig:7
+#: templates/row-badges.twig:32
 msgid "Bronzový partner"
 msgstr "Bronzový partner"
 
@@ -444,7 +452,7 @@ msgstr "Predmet"
 #: lib/acf_request_mailing.php:295 lib/acf_request_mailing.php:350
 #: lib/acf_request_mailing.php:405 lib/acf_request_mailing.php:460
 #: lib/acf_request_mailing.php:570 lib/acf_request_mailing.php:625
-#: lib/acf_settings.php:664
+#: lib/acf_settings.php:664 templates/review-form.twig:41
 msgid "Zpráva"
 msgstr "Správa"
 
@@ -496,16 +504,16 @@ msgstr "E-mail partnerovi po odhlásení z mailingu"
 msgid "Patička e-mailu zadavateli s expiračním odkazem"
 msgstr "Pätička e-mailu zadávateľovi s expiračným odkazom"
 
-#: lib/acf_settings.php:297 lib/acf_settings.php:2590
-#: lib/cpt_taxonomies.php:12 lib/cpt_taxonomies.php:41
-#: lib/cpt_taxonomies.php:70 lib/cpt_taxonomies.php:99
-#: lib/cpt_taxonomies.php:129 lib/cpt_taxonomies.php:149
+#: lib/acf_settings.php:297 lib/acf_settings.php:2590 lib/cpt_taxonomies.php:12
+#: lib/cpt_taxonomies.php:41 lib/cpt_taxonomies.php:70
+#: lib/cpt_taxonomies.php:99 lib/cpt_taxonomies.php:129
+#: lib/cpt_taxonomies.php:149 templates/profile/filter.twig:18
+#: templates/request/categories.twig:18
 msgid "Kategorie"
 msgstr "Kategórie"
 
-#: lib/acf_settings.php:301 lib/acf_settings.php:1294
-#: lib/acf_settings.php:1499 lib/acf_settings.php:1563
-#: lib/acf_settings.php:1762
+#: lib/acf_settings.php:301 lib/acf_settings.php:1294 lib/acf_settings.php:1499
+#: lib/acf_settings.php:1563 lib/acf_settings.php:1762
 msgid "Titulek"
 msgstr "Titulok"
 
@@ -585,7 +593,7 @@ msgstr "Open graph"
 msgid "Open graph obrázek"
 msgstr "Open graph obrázok"
 
-#: lib/acf_settings.php:1129
+#: lib/acf_settings.php:1129 templates/profile/references.twig:3
 msgid "Reference"
 msgstr "Referencie"
 
@@ -597,7 +605,8 @@ msgstr "Zobraziť na domovskej stránke"
 msgid "Zobrazit"
 msgstr "Zobraziť"
 
-#: lib/acf_settings.php:1171
+#: lib/acf_settings.php:1171 templates/review-form.twig:12
+#: templates/review-form.twig:13
 msgid "Jméno"
 msgstr "Meno"
 
@@ -605,7 +614,7 @@ msgstr "Meno"
 msgid "Pozice"
 msgstr "Pozícia"
 
-#: lib/acf_settings.php:1209
+#: lib/acf_settings.php:1209 templates/profile/main.twig:40
 msgid "Web"
 msgstr "Web"
 
@@ -631,6 +640,9 @@ msgid "Email pro žádost o zařazení mezi Shoptet partnery"
 msgstr "Email pre žiadosť o zaradenie medzi Shoptet partnerov"
 
 #: lib/acf_settings.php:1400 lib/acf_settings.php:2377
+#: templates/contact-form.twig:14 templates/profile/contact-form.twig:13
+#: templates/request/contact-form.twig:21 templates/review-form.twig:17
+#: templates/review-form.twig:18
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -686,7 +698,8 @@ msgstr "Shoptet partneri - odznaky"
 msgid "Text (nyní zakomentováno, nebude vidět)"
 msgstr "Text (teraz zakomentovanie, nebude vidieť)"
 
-#: lib/acf_settings.php:1950
+#: lib/acf_settings.php:1950 templates/page-contact-form.twig:16
+#: templates/row-contact.twig:5
 msgid "Kontakt"
 msgstr "Kontakt"
 
@@ -706,15 +719,17 @@ msgstr "V tvare \"Jméno &lt;email&gt;\""
 msgid "Poptávka"
 msgstr "Dopyt"
 
-#: lib/acf_settings.php:2040
+#: lib/acf_settings.php:2040 templates/contact-form.twig:9
+#: templates/profile/contact-form.twig:8
 msgid "Vaše jméno"
 msgstr "Vaše meno"
 
-#: lib/acf_settings.php:2059
+#: lib/acf_settings.php:2059 templates/contact-form.twig:16
+#: templates/profile/contact-form.twig:15
 msgid "Váš e-mail"
 msgstr "Váš e-mail"
 
-#: lib/acf_settings.php:2077
+#: lib/acf_settings.php:2077 templates/request/content.twig:25
 msgid "URL projektu"
 msgstr "URL projektu"
 
@@ -738,7 +753,7 @@ msgstr "Nie"
 msgid "ID e-shopu"
 msgstr "ID e-shopu"
 
-#: lib/acf_settings.php:2332 lib/setup.php:328
+#: lib/acf_settings.php:2332 lib/setup.php:328 templates/reviews.twig:4
 msgid "Hodnocení"
 msgstr "Hodnotenie"
 
@@ -750,7 +765,8 @@ msgstr "Autor overil svoje hodnotenie"
 msgid "Základní"
 msgstr "Základné"
 
-#: lib/acf_settings.php:2431
+#: lib/acf_settings.php:2431 templates/profile/badge-premium.twig:4
+#: templates/profile/badge-premium.twig:5 templates/profile/thumbnail.twig:13
 msgid "Shoptet Premium partner"
 msgstr "Shoptet Premium partner"
 
@@ -802,19 +818,20 @@ msgstr "Správa z kontaktného formulára"
 msgid "Partner"
 msgstr "Partner"
 
-#: lib/acf_settings.php:2612
+#: lib/acf_settings.php:2612 templates/review-form.twig:25
+#: templates/review-form.twig:31
 msgid "URL vašeho webu"
 msgstr "URL vášho webu"
 
-#: lib/acf_settings.php:2631
+#: lib/acf_settings.php:2631 templates/profile/main.twig:58
 msgid "Telefon"
 msgstr "Telefón"
 
-#: lib/acf_settings.php:2650
+#: lib/acf_settings.php:2650 templates/profile/main.twig:65
 msgid "IČO"
 msgstr "IČO"
 
-#: lib/acf_settings.php:2669
+#: lib/acf_settings.php:2669 templates/profile/main.twig:72
 msgid "DIČ"
 msgstr "DIČ"
 
@@ -996,7 +1013,7 @@ msgstr ""
 "Popíšte v dvoch odsekoch, čo klientom môžete ponúknuť a v čom ste dobrý. "
 "Nebojte sa pochváliť."
 
-#: lib/acf_settings.php:3074
+#: lib/acf_settings.php:3074 templates/profile/recommendation.twig:5
 msgid "Doporučení"
 msgstr "Odporúčania"
 
@@ -1115,6 +1132,7 @@ msgid "Onboarding"
 msgstr ""
 
 #: lib/cpt_posts.php:10 lib/cpt_posts.php:12 lib/cpt_posts.php:25
+#: templates/header.twig:97 templates/page-profesionalove.twig:18
 msgid "Profesionálové"
 msgstr "Profesionáli"
 
@@ -1158,12 +1176,12 @@ msgstr "Vyhľadať profesionála"
 msgid "Nebyl nalezen žádný profesionál"
 msgstr "Nebol nájdený žiadny profesionál"
 
-#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26
+#: lib/cpt_posts.php:39 lib/cpt_taxonomies.php:26 templates/header.twig:97
 msgid "profesionalove"
 msgstr "profesionali"
 
 #: lib/cpt_posts.php:53 lib/cpt_posts.php:54 lib/cpt_posts.php:55
-#: lib/cpt_posts.php:68
+#: lib/cpt_posts.php:68 templates/page-napojeni.twig:18
 msgid "Napojení"
 msgstr "Napojenia"
 
@@ -1192,6 +1210,7 @@ msgid "Nebylo nazelezno žádné napojení"
 msgstr "Neboli nájdené žiadne napojenia"
 
 #: lib/cpt_posts.php:95 lib/cpt_posts.php:97 lib/cpt_posts.php:110
+#: templates/page-nastroje.twig:18
 msgid "Nástroje"
 msgstr "Nástroje"
 
@@ -1227,7 +1246,7 @@ msgstr "Vyhľadať nástroj"
 msgid "Nebyl nalezen žádný nástroj"
 msgstr "Nebol nájdený žiadny nástroj"
 
-#: lib/cpt_posts.php:141
+#: lib/cpt_posts.php:141 templates/request/categories.twig:24
 msgid "Všechny poptávky"
 msgstr "Všetky dopyty"
 
@@ -1243,7 +1262,7 @@ msgstr "Pridať nový dopyt"
 msgid "Upravit poptávku"
 msgstr "Upraviť dopyt"
 
-#: lib/cpt_posts.php:145
+#: lib/cpt_posts.php:145 templates/new-request-page.twig:34
 msgid "Nová poptávka"
 msgstr "Nový dopyt"
 
@@ -1276,7 +1295,7 @@ msgid "webinar"
 msgstr "webinar"
 
 #: lib/cpt_taxonomies.php:10 lib/cpt_taxonomies.php:11
-#: lib/cpt_taxonomies.php:17
+#: lib/cpt_taxonomies.php:17 templates/search.twig:41
 msgid "Kategorie profesionálů"
 msgstr "Kategórie profesionálov"
 
@@ -1286,12 +1305,12 @@ msgid "Přidat novou kategorii"
 msgstr "Pridať novú kategóriu"
 
 #: lib/cpt_taxonomies.php:39 lib/cpt_taxonomies.php:40
-#: lib/cpt_taxonomies.php:46
+#: lib/cpt_taxonomies.php:46 templates/search.twig:46
 msgid "Kategorie napojení"
 msgstr "Kategórie napojení"
 
 #: lib/cpt_taxonomies.php:68 lib/cpt_taxonomies.php:69
-#: lib/cpt_taxonomies.php:75
+#: lib/cpt_taxonomies.php:75 templates/search.twig:51
 msgid "Kategorie nástrojů"
 msgstr "Kategórie nástrojov"
 
@@ -1590,362 +1609,511 @@ msgstr "%s - Výsledky vyhľadávania"
 msgid "Výsledky vyhledávání"
 msgstr "Výsledky vyhľadávania"
 
-#~ msgid "Nemůžeme najít žádné partnery s těmito požadavky"
-#~ msgstr "Nemôžeme nájsť žiadnych partnerov s týmito požiadavkami"
-
-#~ msgid "Zkuste prosím snížit vaše požadavky pomocí filtrů."
-#~ msgstr "Skúste prosím znížiť svoje požiadavky pomocou filtrov."
-
-#~ msgid "Zobrazit profily v této kategorii"
-#~ msgstr "Zobraziť profily v tejto kategórii"
-
-#~ msgid "Počet profilů v této kategorii"
-#~ msgstr "Počet profilov v tejto kategórii"
-
-#~ msgid "Vaše zpráva"
-#~ msgstr "Vaša správa"
-
-#~ msgid ""
-#~ "Vložením e-mailu souhlasíte s <a href=\"https://www.shoptet.cz/podminky-"
-#~ "ochrany-osobnich-udaju/\" target=\"_blank\">podmínkami ochrany osobních "
-#~ "údajů</a>"
-#~ msgstr ""
-#~ "Vložením e-mailu súhlasíte s <a href=\"https://www.shoptet.sk/podmienky-"
-#~ "ochrany-osobnych-udajov/\" target=\"_blank\">podmienkami ochrany osobných "
-#~ "údajov</a>"
-
-#~ msgid "Odeslat"
-#~ msgstr "Odoslať"
-
-#~ msgid "Celkem %d z %d"
-#~ msgstr "Celkom %d z %d"
-
-#~ msgid "Nemůžeme najít žádné webináře s těmito požadavky"
-#~ msgstr "Nemôžeme nájsť žiadne webináre s týmito požiadavkami"
-
-#~ msgid "Zrušit filtr"
-#~ msgstr "Zrušiť filter"
-
-#~ msgid "Přejít na <strong>Shoptet.cz</strong>"
-#~ msgstr "Prejsť na <strong>Shoptet.sk</strong>"
-
-#~ msgid "Shoptet Partneři"
-#~ msgstr "Shoptet Partneri"
-
-#~ msgid "Zpět na domovskou stránku"
-#~ msgstr "Späť na domovskú stránku"
-
-#~ msgid "Zadejte hledaný výraz..."
-#~ msgstr "Zadajte hľadaný výraz..."
-
-#~ msgid "Můj profil"
-#~ msgstr "Môj profil"
-
-#~ msgid "Odhlásit"
-#~ msgstr "Odhlásiť"
-
-#~ msgid "Přidat poptávku"
-#~ msgstr "Pridať dopyt"
-
-#~ msgid "Nové poptávky"
-#~ msgstr "Nové dopyty"
-
-#~ msgid ""
-#~ "Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet "
-#~ "Partnera? Zadejte si poptávku zdarma a jen čekejte na první nabídky."
-#~ msgstr ""
-#~ "Viete, čo potrebujete, ale nechce sa vám hľadať konkrétneho Shoptet "
-#~ "Partnera? Zadajte si dopyt zadarmo a len čakajte na prvé ponuky."
-
-#~ msgid "Prohlédnout poptávky"
-#~ msgstr "Prehliadnuť dopyty"
-
-#~ msgid "Vložit vlastní poptávku"
-#~ msgstr "Vložiť vlastný dopyt"
-
-#~ msgid "Nejnovější Shoptet Partneři"
-#~ msgstr "Najnovší Shoptet Partneri"
-
-#~ msgid ""
-#~ "Hej hola!\n"
-#~ "<br><br>\n"
-#~ "Nové hodnocení Partnera <a href=\"%s\" target=\"_blank\">%s</a> čeká na "
-#~ "schválení.\n"
-#~ "<br><br>\n"
-#~ "Mrkni na to :)"
-#~ msgstr ""
-#~ "Hej hola!\n"
-#~ "<br><br>\n"
-#~ "Nové hodnotenie Partnera <a href=\"%s\" target=\"_blank\">%s</a> čaká na "
-#~ "schválenie.\n"
-#~ "<br><br>\n"
-#~ "Mrkni na to :)"
-
-#~ msgid "Přejít zpět na partneri.shoptet.cz"
-#~ msgstr "Prejsť späť na partneri.shoptet.sk"
-
-#~ msgid "Není vybrán žádný Shoptet partner"
-#~ msgstr "Nebol vybraný žiadny Shoptet partner"
-
-#~ msgid ""
-#~ "Vybrali jste si partnera z naší sítě? Dejte nám vědět koho jste si "
-#~ "vybrali."
-#~ msgstr ""
-#~ "Vybrali ste si partnera z našej siete? Dajte nám vedieť koho ste si "
-#~ "vybrali."
-
-#~ msgid "Název poptávky:"
-#~ msgstr "Názov dopytu:"
-
-#~ msgid "Vyhledejte Shoptet partnera:"
-#~ msgstr "Vyhľadajte Shoptet partnera:"
-
-#~ msgid ""
-#~ "Vaše zpětná vazba nám pomáhá udržovat vysokou kvalitu služeb partnerů. "
-#~ "Nezapomeňte dát partnerovi hodnocení pod medailonek a pomoci tak s "
-#~ "výběrem i jiným klientům 🙂"
-#~ msgstr ""
-#~ "Vaša spätná väzba nám pomáha udržiavať vysokú kvalitu služieb partnerov. "
-#~ "Nezabudnite dať partnerovi hodnotenie pod medailónik a pomôcť tak s "
-#~ "výberom aj iným klientom 🙂"
-
-#~ msgid ""
-#~ "<strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její "
-#~ "schválení."
-#~ msgstr ""
-#~ "<strong>Dopyt úspešne odoslaný.</strong> Počkajte prosím na jeho "
-#~ "schválenie."
-
-#~ msgid ""
-#~ "Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.\n"
-#~ "                  My vaši poptávku zkontrolujeme, pokud bude třeba, tak s "
-#~ "vámi doladíme\n"
-#~ "                  a po jejím schválení ji rozešleme všem partnerům z dané "
-#~ "kategorie.\n"
-#~ "                  Po 24 hodinách po tomto schválení se zobrazí i na tomto "
-#~ "webu."
-#~ msgstr ""
-#~ "Popíšte zrozumiteľne o aké služby Shoptet Partnerov by ste mali záujem.\n"
-#~ "                   My váš dopyt skontrolujeme, ak bude treba, tak ho s "
-#~ "vami doladíme\n"
-#~ "                   a po jeho schválení ho rozošleme všetkým partnerom z "
-#~ "danej kategórie.\n"
-#~ "                   Po 24 hodinách po tomto schválení sa zobrazí aj na "
-#~ "tomto webe."
-
-#~ msgid ""
-#~ "Odesláním poptávky souhlasím se <a href=\"https://www.shoptet.cz/podminky-"
-#~ "ochrany-osobnich-udaju/\" target=\"_blank\">zpracováním osobních údajů</a>"
-#~ msgstr ""
-#~ "Odoslaním dopytu súhlasím so <a href=\"https://www.shoptet.sk/podmienky-"
-#~ "ochrany-osobnych-udajov/\" target=\"_blank\">spracovaním osobných údajov</"
-#~ "a>"
-
-#~ msgid "Odeslat poptávku"
-#~ msgstr "Odoslať dopyt"
-
-#~ msgid "Vyplňte svůj medailonek"
-#~ msgstr "Vyplňte svoj medailónik"
-
-#~ msgid "Vaše jméno:"
-#~ msgstr "Vaše meno:"
-
-#~ msgid "Váš e-mail:"
-#~ msgstr "Váš e-mail:"
-
-#~ msgid "Shoptet"
-#~ msgstr "Shoptet"
-
-#~ msgid "Nahrajte prosím soubor menší než"
-#~ msgstr "Nahrajte prosím súbor menší než"
-
-#~ msgid "Nahrajte prosím obrázek ve formátu jpg, png nebo gif."
-#~ msgstr "Nahrajte prosím obrázok vo formáte jpg, png alebo gif."
-
-#~ msgid "Nahrajte prosím obrázek s minimálními rozměry"
-#~ msgstr "Nahrajte prosím obrázok s minimálnymi rozmermi"
-
-#~ msgid "Předchozí"
-#~ msgstr "Predchádzajúci"
-
-#~ msgid "Další"
-#~ msgstr "Ďalší"
-
-#~ msgid "Doporučit na Facebooku"
-#~ msgstr "Odporučiť na Facebooku"
-
-#~ msgid "Zpráva partnerovi"
-#~ msgstr "Správa partnerovi"
-
-#~ msgid "Kontaktovat partnera"
-#~ msgstr "Kontaktovať partnera"
-
-#~ msgid "Zobrazit filtry"
-#~ msgstr "Zobraziť filtre"
-
-#~ msgid "Lokalita"
-#~ msgstr "Lokalita"
-
-#~ msgid "%s hodnocení"
-#~ msgstr "%s hodnotení"
-
-#~ msgid "žádné hodnocení"
-#~ msgstr "žiadne hodnotenia"
-
-#~ msgid "Zobrazit profil na Facebooku"
-#~ msgstr "Zobraziť profil na Facebooku"
-
-#~ msgid "Zobrazit profil na Twitteru"
-#~ msgstr "Zobraziť profil na Twitteri"
-
-#~ msgid "Zobrazit profil na LinkedIn"
-#~ msgstr "Zobraziť profil na Linkedine"
-
-#~ msgid "Ceny"
-#~ msgstr "Ceny"
-
-#~ msgid "Zobrazit profil"
-#~ msgstr "Zobraziť profil"
-
-#~ msgid "Nemůžeme najít žádné poptávky s těmito požadavky"
-#~ msgstr "Nemôžeme nájsť žiadne dopyty s týmito parametrami"
-
-#~ msgid "Reakce na poptávku"
-#~ msgstr "Reakcie na dopyt"
-
-#~ msgid "Text reakce"
-#~ msgstr "Text reakcie"
-
-#~ msgid ""
-#~ "Poptávka byla zadávajícím označena jako vyřízena, nelze na ni již "
-#~ "reagovat.\n"
-#~ "      Rychlejší přístup k&nbsp;novým objednávkám si můžete zajistit "
-#~ "členstvím v&nbsp;Shoptet\n"
-#~ "      Partneři, které je zdarma. Shoptet Partnerům zasíláme poptávky 24 "
-#~ "hodin před\n"
-#~ "      zveřejněním na webu."
-#~ msgstr ""
-#~ "Dopyt bol obstarávateľom označený ako vybavený, nemožno naň už reagovať.\n"
-#~ "       Rýchlejší prístup k&nbsp; novým objednávkam si môžete zaistiť "
-#~ "členstvom v&nbsp; Shoptet\n"
-#~ "       Partneri, ktoré je zadarmo. Shoptet Partnerom zasielame dopyty 24 "
-#~ "hodín pred\n"
-#~ "       zverejnením na webe."
-
-#~ msgid "Zadavatel"
-#~ msgstr "Zadávateľ"
-
-#~ msgid "Provozováno na Shoptet"
-#~ msgstr "Prevádzkované na Shoptete"
-
-#~ msgid "Zveřejnění"
-#~ msgstr "Zverejnenie"
-
-#~ msgid "Stav poptávky"
-#~ msgstr "Stav dopytu"
-
-#~ msgid "Seřadit podle:"
-#~ msgstr "Zoradiť podľa:"
-
-#~ msgid "Jen aktivní"
-#~ msgstr "Iba aktívne"
-
-#~ msgid ""
-#~ "Váš e-mail nebude zobrazen. Slouží pro zaslání odkazu pro potvrzení "
-#~ "příspěvku."
-#~ msgstr ""
-#~ "Váš e-mail nebude zobrazený. Slúži pre zaslanie odkazu na potvrdenie "
-#~ "príspevku."
-
-#~ msgid "URL vašeho e-shopu"
-#~ msgstr "URL vášho e-shopu"
-
-#~ msgid "Jak jste byli se Shoptet partnerem spokojeni?"
-#~ msgstr "Ako ste boli so Shoptet partnerom spokojní?"
-
-#~ msgid "Napište vaši reakci na hodnocení"
-#~ msgstr "Napíšte vašu reakciu na hodnotenie"
-
-#~ msgid "Hvězdička"
-#~ msgstr "Hviezdička"
-
-#~ msgid "Odeslat hodnocení"
-#~ msgstr "Odoslať hodnotenie"
-
-#~ msgid "Hodnocení partnera"
-#~ msgstr "Hodnotenie partnera"
-
-#~ msgid "Shoptet partner"
-#~ msgstr "Shoptet partner"
-
-#~ msgid "Reagovat"
-#~ msgstr "Reagovať"
-
-#~ msgid "Tento partner zatím nemá žádné hodnocení"
-#~ msgstr "Tento partner zatiaľ nemá žiadne hodnotenia"
-
-#~ msgid "Ohodnoťte svou zkušenost<br>s tímto partnerem"
-#~ msgstr "Ohodnoťte svoju skúsenosť<br>s týmto partnerom"
-
-#~ msgid "Hodnocení jsou uzavřena"
-#~ msgstr "Hodnotenie je uzatvorené"
-
-#~ msgid "Přidat hodnocení"
-#~ msgstr "Pridať hodnotenie"
-
-#~ msgid "Nejnovější webináře"
-#~ msgstr "Najnovšie webináre"
-
-#~ msgid "Všechny webináře"
-#~ msgstr "Všetky webináre"
-
-#~ msgid "Výsledky vyhledávání pro:"
-#~ msgstr "Výsledky vyhľadávania pre:"
-
-#~ msgid "Profily"
-#~ msgstr "Profily"
-
-#~ msgid "Nebylo nic nalezeno"
-#~ msgstr "Nebolo nič nájdené"
-
-#~ msgid "Zkuste prosím vyhledat jinou frázi."
-#~ msgstr "Skúste prosím vyhľadať inú frázu."
-
-#~ msgid "Popis webináře"
-#~ msgstr "Popis webinára"
-
-#~ msgid "Webinář v kategorii <a href=\"%s\">%s</a>"
-#~ msgstr "Webinár v kategórii <a href=\"%s\">%s</a>"
-
-#~ msgid "Související partner"
-#~ msgstr "Súvisiaci partner"
-
-#~ msgid "Související doplňky"
-#~ msgstr "Súvisiace doplnky"
-
-#~ msgid "Související články na blogu"
-#~ msgstr "Súvisiace články na blogu"
-
-#~ msgid "Podobné webináře"
-#~ msgstr "Podobné webináre"
-
-#~ msgid "Nevybrali jste? Co zkusit jiné?"
-#~ msgstr "Nevybrali ste? Čo skúsiť iné?"
-
-#~ msgid "Žádné hodnocení"
-#~ msgstr "Žiadne hodnotenia"
-
-#~ msgid "Zobrazit můj profil"
-#~ msgstr "Zobraziť môj profil"
-
-#~ msgid "Kategorie webinářů"
-#~ msgstr "Kategórie webinárov"
-
-#~ msgid "Shoptet Partners"
-#~ msgstr "Shoptet Partners"
-
-#~ msgid "New request page"
-#~ msgstr "New request page"
+#: templates/archive.twig:79
+msgid "Nemůžeme najít žádné partnery s těmito požadavky"
+msgstr "Nemôžeme nájsť žiadnych partnerov s týmito požiadavkami"
+
+#: templates/archive.twig:82 templates/course/archive-list.twig:56
+#: templates/request/archive-list.twig:59
+#: templates/webinar/archive-list.twig:55
+msgid "Zkuste prosím snížit vaše požadavky pomocí filtrů."
+msgstr "Skúste prosím znížiť svoje požiadavky pomocou filtrov."
+
+#: templates/category/thumbnail.twig:10
+msgid "Zobrazit profily v této kategorii"
+msgstr "Zobraziť profily v tejto kategórii"
+
+#: templates/category/thumbnail.twig:25
+msgid "Počet profilů v této kategorii"
+msgstr "Počet profilov v tejto kategórii"
+
+#: templates/contact-form.twig:21 templates/contact-form.twig:23
+msgid "Vaše zpráva"
+msgstr "Vaša správa"
+
+#: templates/contact-form.twig:26 templates/profile/contact-form.twig:25
+msgid ""
+"Vložením e-mailu souhlasíte s <a href=\"https://www.shoptet.cz/podminky-"
+"ochrany-osobnich-udaju/\" target=\"_blank\">podmínkami ochrany osobních "
+"údajů</a>"
+msgstr ""
+"Vložením e-mailu súhlasíte s <a href=\"https://www.shoptet.sk/podmienky-"
+"ochrany-osobnych-udajov/\" target=\"_blank\">podmienkami ochrany osobných "
+"údajov</a>"
+
+#: templates/contact-form.twig:35 templates/message/request-expire.twig:66
+#: templates/profile/contact-form.twig:36
+#: templates/request/contact-form.twig:45
+msgid "Odeslat"
+msgstr "Odoslať"
+
+#: templates/course/archive-list.twig:43 templates/request/archive-list.twig:46
+#: templates/webinar/archive-list.twig:42
+#, php-format
+msgid "Celkem %d z %d"
+msgstr "Celkom %d z %d"
+
+#: templates/course/archive-list.twig:53
+msgid "Nemůžeme najít žádné webináře s těmito požadavky"
+msgstr "Nemôžeme nájsť žiadne webináre s týmito požiadavkami"
+
+#: templates/course/categories.twig:12
+msgid "Zrušit filtr"
+msgstr "Zrušiť filter"
+
+#: templates/go-to-shoptet.twig:3
+msgid "Přejít na <strong>Shoptet.cz</strong>"
+msgstr "Prejsť na <strong>Shoptet.sk</strong>"
+
+#: templates/header-blank.twig:5 templates/header.twig:25
+#: templates/mailing/message.twig:9
+msgid "Shoptet Partneři"
+msgstr "Shoptet Partneri"
+
+#: templates/header.twig:20
+msgid "Zpět na domovskou stránku"
+msgstr "Späť na domovskú stránku"
+
+#: templates/header.twig:49
+msgid "Zadejte hledaný výraz..."
+msgstr "Zadajte hľadaný výraz..."
+
+#: templates/header.twig:73
+msgid "Můj profil"
+msgstr "Môj profil"
+
+#: templates/header.twig:74 templates/user/sidebar.twig:24
+msgid "Odhlásit"
+msgstr "Odhlásiť"
+
+#: templates/header.twig:83 templates/request/archive-list.twig:20
+msgid "Přidat poptávku"
+msgstr "Pridať dopyt"
+
+#: templates/home.twig:61
+msgid "Nové poptávky"
+msgstr "Nové dopyty"
+
+#: templates/home.twig:64
+msgid ""
+"Víte, co potřebujete, ale nechce se vám hledat konkrétního Shoptet Partnera? "
+"Zadejte si poptávku zdarma a jen čekejte na první nabídky."
+msgstr ""
+"Viete, čo potrebujete, ale nechce sa vám hľadať konkrétneho Shoptet "
+"Partnera? Zadajte si dopyt zadarmo a len čakajte na prvé ponuky."
+
+#: templates/home.twig:76
+msgid "Prohlédnout poptávky"
+msgstr "Prehliadnuť dopyty"
+
+#: templates/home.twig:81
+msgid "Vložit vlastní poptávku"
+msgstr "Vložiť vlastný dopyt"
+
+#: templates/home.twig:133
+msgid "Nejnovější Shoptet Partneři"
+msgstr "Najnovší Shoptet Partneri"
+
+#: templates/mailing/message.twig:166
+msgid "Copyright © 2023 Shoptet a.s. Všechna práva vyhrazena."
+msgstr ""
+
+#: templates/mailing/review-authorized.twig:1
+#, php-format
+msgid ""
+"Hej hola!\n"
+"<br><br>\n"
+"Nové hodnocení Partnera <a href=\"%s\" target=\"_blank\">%s</a> čeká na "
+"schválení.\n"
+"<br><br>\n"
+"Mrkni na to :)"
+msgstr ""
+"Hej hola!\n"
+"<br><br>\n"
+"Nové hodnotenie Partnera <a href=\"%s\" target=\"_blank\">%s</a> čaká na "
+"schválenie.\n"
+"<br><br>\n"
+"Mrkni na to :)"
+
+#: templates/message/message.twig:30 templates/message/request-expire.twig:79
+msgid "Přejít zpět na partneri.shoptet.cz"
+msgstr "Prejsť späť na partneri.shoptet.sk"
+
+#: templates/message/request-expire.twig:19
+msgid "Není vybrán žádný Shoptet partner"
+msgstr "Nebol vybraný žiadny Shoptet partner"
+
+#: templates/message/request-expire.twig:46
+msgid ""
+"Vybrali jste si partnera z naší sítě? Dejte nám vědět koho jste si vybrali."
+msgstr ""
+"Vybrali ste si partnera z našej siete? Dajte nám vedieť koho ste si vybrali."
+
+#: templates/message/request-expire.twig:53
+msgid "Název poptávky:"
+msgstr "Názov dopytu:"
+
+#: templates/message/request-expire.twig:58
+msgid "Vyhledejte Shoptet partnera:"
+msgstr "Vyhľadajte Shoptet partnera:"
+
+#: templates/message/request-expire.twig:71
+msgid ""
+"Vaše zpětná vazba nám pomáhá udržovat vysokou kvalitu služeb partnerů. "
+"Nezapomeňte dát partnerovi hodnocení pod medailonek a pomoci tak s výběrem i "
+"jiným klientům 🙂"
+msgstr ""
+"Vaša spätná väzba nám pomáha udržiavať vysokú kvalitu služieb partnerov. "
+"Nezabudnite dať partnerovi hodnotenie pod medailónik a pomôcť tak s výberom "
+"aj iným klientom 🙂"
+
+#: templates/new-request-page.twig:29
+msgid ""
+"<strong>Poptávka úspěšně odeslána.</strong> Vyčkejte prosím na její "
+"schválení."
+msgstr ""
+"<strong>Dopyt úspešne odoslaný.</strong> Počkajte prosím na jeho schválenie."
+
+#: templates/new-request-page.twig:44
+msgid ""
+"Popište srozumitelně o jaké služby Shoptet Partnerů byste měli zájem.\n"
+"                  My vaši poptávku zkontrolujeme, pokud bude třeba, tak s "
+"vámi doladíme\n"
+"                  a po jejím schválení ji rozešleme všem partnerům z dané "
+"kategorie.\n"
+"                  Po 24 hodinách po tomto schválení se zobrazí i na tomto "
+"webu."
+msgstr ""
+"Popíšte zrozumiteľne o aké služby Shoptet Partnerov by ste mali záujem.\n"
+"                   My váš dopyt skontrolujeme, ak bude treba, tak ho s vami "
+"doladíme\n"
+"                   a po jeho schválení ho rozošleme všetkým partnerom z "
+"danej kategórie.\n"
+"                   Po 24 hodinách po tomto schválení sa zobrazí aj na tomto "
+"webe."
+
+#: templates/new-request-page.twig:62
+msgid ""
+"Odesláním poptávky souhlasím se <a href=\"https://www.shoptet.cz/podminky-"
+"ochrany-osobnich-udaju/\" target=\"_blank\">zpracováním osobních údajů</a>"
+msgstr ""
+"Odoslaním dopytu súhlasím so <a href=\"https://www.shoptet.sk/podmienky-"
+"ochrany-osobnych-udajov/\" target=\"_blank\">spracovaním osobných údajov</a>"
+
+#: templates/new-request-page.twig:76
+msgid "Odeslat poptávku"
+msgstr "Odoslať dopyt"
+
+#: templates/onboarding.twig:24
+msgid "Vyplňte svůj medailonek"
+msgstr "Vyplňte svoj medailónik"
+
+#: templates/onboarding.twig:33
+msgid "Vaše jméno:"
+msgstr "Vaše meno:"
+
+#: templates/onboarding.twig:37
+msgid "Váš e-mail:"
+msgstr "Váš e-mail:"
+
+#: templates/onboarding.twig:67
+msgid "Shoptet"
+msgstr "Shoptet"
+
+#: templates/onboarding.twig:121
+msgid "Nahrajte prosím soubor menší než"
+msgstr "Nahrajte prosím súbor menší než"
+
+#: templates/onboarding.twig:129
+msgid "Nahrajte prosím obrázek ve formátu jpg, png nebo gif."
+msgstr "Nahrajte prosím obrázok vo formáte jpg, png alebo gif."
+
+#: templates/onboarding.twig:138
+msgid "Nahrajte prosím obrázek s minimálními rozměry"
+msgstr "Nahrajte prosím obrázok s minimálnymi rozmermi"
+
+#: templates/pagination.twig:13
+msgid "Předchozí"
+msgstr "Predchádzajúci"
+
+#: templates/pagination.twig:43
+msgid "Další"
+msgstr "Ďalší"
+
+#: templates/profile/about.twig:40
+msgid "Doporučit na Facebooku"
+msgstr "Odporučiť na Facebooku"
+
+#: templates/profile/contact-form.twig:20
+#: templates/profile/contact-form.twig:22
+msgid "Zpráva partnerovi"
+msgstr "Správa partnerovi"
+
+#: templates/profile/contact.twig:3
+msgid "Kontaktovat partnera"
+msgstr "Kontaktovať partnera"
+
+#: templates/profile/filter.twig:11 templates/request/categories.twig:11
+#: templates/webinar/categories.twig:11
+msgid "Zobrazit filtry"
+msgstr "Zobraziť filtre"
+
+#: templates/profile/filter.twig:36
+msgid "Lokalita"
+msgstr "Lokalita"
+
+#: templates/profile/main.twig:27 templates/reviews.twig:23
+#: templates/user/sidebar.twig:12
+#, php-format
+msgid "%s hodnocení"
+msgstr "%s hodnotení"
+
+#: templates/profile/main.twig:29
+msgid "žádné hodnocení"
+msgstr "žiadne hodnotenia"
+
+#: templates/profile/main.twig:84
+msgid "Zobrazit profil na Facebooku"
+msgstr "Zobraziť profil na Facebooku"
+
+#: templates/profile/main.twig:92
+msgid "Zobrazit profil na Twitteru"
+msgstr "Zobraziť profil na Twitteri"
+
+#: templates/profile/main.twig:100
+msgid "Zobrazit profil na LinkedIn"
+msgstr "Zobraziť profil na Linkedine"
+
+#: templates/profile/price.twig:3 templates/profile/price.twig:19
+msgid "Ceny"
+msgstr "Ceny"
+
+#: templates/profile/thumbnail.twig:4
+msgid "Zobrazit profil"
+msgstr "Zobraziť profil"
+
+#: templates/request/archive-list.twig:56
+#: templates/webinar/archive-list.twig:52
+msgid "Nemůžeme najít žádné poptávky s těmito požadavky"
+msgstr "Nemôžeme nájsť žiadne dopyty s týmito parametrami"
+
+#: templates/request/contact-form.twig:1
+msgid "Reakce na poptávku"
+msgstr "Reakcie na dopyt"
+
+#: templates/request/contact-form.twig:31
+msgid "Text reakce"
+msgstr "Text reakcie"
+
+#: templates/request/contact-form.twig:53
+msgid ""
+"Poptávka byla zadávajícím označena jako vyřízena, nelze na ni již reagovat.\n"
+"      Rychlejší přístup k&nbsp;novým objednávkám si můžete zajistit "
+"členstvím v&nbsp;Shoptet\n"
+"      Partneři, které je zdarma. Shoptet Partnerům zasíláme poptávky 24 "
+"hodin před\n"
+"      zveřejněním na webu."
+msgstr ""
+"Dopyt bol obstarávateľom označený ako vybavený, nemožno naň už reagovať.\n"
+"       Rýchlejší prístup k&nbsp; novým objednávkam si môžete zaistiť "
+"členstvom v&nbsp; Shoptet\n"
+"       Partneri, ktoré je zadarmo. Shoptet Partnerom zasielame dopyty 24 "
+"hodín pred\n"
+"       zverejnením na webe."
+
+#: templates/request/content.twig:13 templates/request/thumbnail.twig:35
+msgid "Zadavatel"
+msgstr "Zadávateľ"
+
+#: templates/request/content.twig:32
+msgid "Provozováno na Shoptet"
+msgstr "Prevádzkované na Shoptete"
+
+#: templates/request/content.twig:41 templates/request/thumbnail.twig:44
+msgid "Zveřejnění"
+msgstr "Zverejnenie"
+
+#: templates/request/content.twig:52
+msgid "Stav poptávky"
+msgstr "Stav dopytu"
+
+#: templates/request/filter.twig:4
+msgid "Seřadit podle:"
+msgstr "Zoradiť podľa:"
+
+#: templates/request/filter.twig:22
+msgid "Jen aktivní"
+msgstr "Iba aktívne"
+
+#: templates/review-form.twig:20
+msgid ""
+"Váš e-mail nebude zobrazen. Slouží pro zaslání odkazu pro potvrzení "
+"příspěvku."
+msgstr ""
+"Váš e-mail nebude zobrazený. Slúži pre zaslanie odkazu na potvrdenie "
+"príspevku."
+
+#: templates/review-form.twig:25 templates/review-form.twig:31
+msgid "URL vašeho e-shopu"
+msgstr "URL vášho e-shopu"
+
+#: templates/review-form.twig:47
+msgid "Jak jste byli se Shoptet partnerem spokojeni?"
+msgstr "Ako ste boli so Shoptet partnerom spokojní?"
+
+#: templates/review-form.twig:47
+msgid "Napište vaši reakci na hodnocení"
+msgstr "Napíšte vašu reakciu na hodnotenie"
+
+#: templates/review-form.twig:57 templates/review-form.twig:61
+#: templates/review-form.twig:62 templates/review-form.twig:66
+#: templates/review-form.twig:67 templates/review-form.twig:68
+#: templates/review-form.twig:72 templates/review-form.twig:73
+#: templates/review-form.twig:74 templates/review-form.twig:75
+#: templates/review-form.twig:79 templates/review-form.twig:80
+#: templates/review-form.twig:81 templates/review-form.twig:82
+#: templates/review-form.twig:83 templates/review-rating-stars.twig:5
+msgid "Hvězdička"
+msgstr "Hviezdička"
+
+#: templates/review-form.twig:89
+msgid "Odeslat hodnocení"
+msgstr "Odoslať hodnotenie"
+
+#: templates/review-rating-stars.twig:2
+msgid "Hodnocení partnera"
+msgstr "Hodnotenie partnera"
+
+#: templates/review-single.twig:42
+msgid "Shoptet partner"
+msgstr "Shoptet partner"
+
+#: templates/review-single.twig:56 templates/reviews.twig:73
+msgid "Reagovat"
+msgstr "Reagovať"
+
+#: templates/reviews.twig:25
+msgid "Tento partner zatím nemá žádné hodnocení"
+msgstr "Tento partner zatiaľ nemá žiadne hodnotenia"
+
+#: templates/reviews.twig:44
+msgid "Ohodnoťte svou zkušenost<br>s tímto partnerem"
+msgstr "Ohodnoťte svoju skúsenosť<br>s týmto partnerom"
+
+#: templates/reviews.twig:53
+msgid "Hodnocení jsou uzavřena"
+msgstr "Hodnotenie je uzatvorené"
+
+#: templates/reviews.twig:55
+msgid "Přidat hodnocení"
+msgstr "Pridať hodnotenie"
+
+#: templates/row-webinars.twig:3
+msgid "Nejnovější webináře"
+msgstr "Najnovšie webináre"
+
+#: templates/row-webinars.twig:14 templates/webinar/categories.twig:24
+msgid "Všechny webináře"
+msgstr "Všetky webináre"
+
+#: templates/search.twig:26
+msgid "Výsledky vyhledávání pro:"
+msgstr "Výsledky vyhľadávania pre:"
+
+#: templates/search.twig:58
+msgid "Profily"
+msgstr "Profily"
+
+#: templates/search.twig:69
+msgid "Nebylo nic nalezeno"
+msgstr "Nebolo nič nájdené"
+
+#: templates/search.twig:70
+msgid "Zkuste prosím vyhledat jinou frázi."
+msgstr "Skúste prosím vyhľadať inú frázu."
+
+#: templates/single-course.twig:33
+#, fuzzy, php-format
+#| msgid "Webinář v kategorii <a href=\"%s\">%s</a>"
+msgid "Webinář pro partnery v kategorii <a href=\"%s\">%s</a>"
+msgstr "Webinár v kategórii <a href=\"%s\">%s</a>"
+
+#: templates/single-course.twig:40 templates/single-webinar.twig:48
+msgid "Popis webináře"
+msgstr "Popis webinára"
+
+#: templates/single-course.twig:53
+#, fuzzy
+#| msgid "Webináře pro partnery"
+msgid "Podobné webináře pro partnery"
+msgstr "Webináre pre partnerov"
+
+#: templates/single-webinar.twig:41
+#, php-format
+msgid "Webinář v kategorii <a href=\"%s\">%s</a>"
+msgstr "Webinár v kategórii <a href=\"%s\">%s</a>"
+
+#: templates/single-webinar.twig:60
+msgid "Související partner"
+msgstr "Súvisiaci partner"
+
+#: templates/single-webinar.twig:66
+msgid "Související doplňky"
+msgstr "Súvisiace doplnky"
+
+#: templates/single-webinar.twig:72
+msgid "Související články na blogu"
+msgstr "Súvisiace články na blogu"
+
+#: templates/single-webinar.twig:88
+msgid "Podobné webináře"
+msgstr "Podobné webináre"
+
+#: templates/single.twig:98
+msgid "Nevybrali jste? Co zkusit jiné?"
+msgstr "Nevybrali ste? Čo skúsiť iné?"
+
+#: templates/user/sidebar.twig:14
+msgid "Žádné hodnocení"
+msgstr "Žiadne hodnotenia"
+
+#: templates/user/sidebar.twig:23
+msgid "Zobrazit můj profil"
+msgstr "Zobraziť môj profil"
+
+#: templates/webinar/categories.twig:18
+msgid "Kategorie webinářů"
+msgstr "Kategórie webinárov"
+
+#. Theme Name of the plugin/theme
+msgid "Shoptet Partners"
+msgstr "Shoptet Partners"
+
+#. Template Name of the plugin/theme
+msgid "New request page"
+msgstr "New request page"
+
+#. Template Name of the plugin/theme
+msgid "Narrow"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Affiliate"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Contact Form"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Narrow with header"
+msgstr ""
+
+#. Template Name of the plugin/theme
+#, fuzzy
+#| msgid "Partner"
+msgid "Partners"
+msgstr "Partner"
 
 #~ msgid "Poptávka již expirována"
 #~ msgstr "Dopyt už expiroval"
@@ -1981,11 +2149,11 @@ msgstr "Výsledky vyhľadávania"
 #~ msgstr "Správa z partneri.shoptet.sk"
 
 #~ msgid ""
-#~ "E-mail odeslán z <a href=\"%s\" style=\"%s\" rel=\"noreferrer\" target="
-#~ "\"_blank\">Shoptet.cz</a> "
+#~ "E-mail odeslán z <a href=\"%s\" style=\"%s\" rel=\"noreferrer\" "
+#~ "target=\"_blank\">Shoptet.cz</a> "
 #~ msgstr ""
-#~ "E-mail odoslaný z <a href=\"%s\" style=\"%s\" rel=\"noreferrer\" target="
-#~ "\"_blank\">Shoptet.sk</a>"
+#~ "E-mail odoslaný z <a href=\"%s\" style=\"%s\" rel=\"noreferrer\" "
+#~ "target=\"_blank\">Shoptet.sk</a>"
 
 #~ msgid "Gratulujeme!"
 #~ msgstr "Gratulujeme!"
@@ -1996,8 +2164,8 @@ msgstr "Výsledky vyhľadávania"
 #~ "style=\"%s\">svého medailonku</a>."
 #~ msgstr ""
 #~ "Váš klient si urobil čas a dostali ste od neho nové hodnotenie."
-#~ "<br>Prečítať a reagovať naň môžete priamo v detaile <a href=\"%s\" target="
-#~ "\"_blank\" style=\"%s\">svojho medailónika</a>."
+#~ "<br>Prečítať a reagovať naň môžete priamo v detaile <a href=\"%s\" "
+#~ "target=\"_blank\" style=\"%s\">svojho medailónika</a>."
 
 #~ msgid "Kdo hodnocení přidal:"
 #~ msgstr "Kto pridal hodnotenie:"
