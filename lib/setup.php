@@ -823,3 +823,38 @@ add_filter('acf/fields/taxonomy/result', function ($text, $term, $field) {
 	}
 	return $text;
 }, 10, 3);
+
+add_filter('wpcf7_validate_text*', function( $result, $tag ) {
+    if ( 'your-id' !== $tag->name ) {
+        return $result;
+    }
+
+    $raw   = $_POST['your-id'] ?? '';
+    $nospace = preg_replace( '/\s+/', '', $raw );
+    $value = sanitize_text_field( $nospace );
+
+    $args = [
+        'post_type'      => 'profesionalove',
+        'post_status'    => 'publish',
+        'meta_query'     => [
+            [
+                'key'     => 'cin',
+                'value'   => $value,
+                'compare' => '=',
+            ],
+        ],
+        'posts_per_page' => 1,
+        'fields'         => 'ids',
+    ];
+
+    $query = new WP_Query( $args );
+
+    if ( empty( $query->posts ) ) {
+        $result->invalidate(
+            $tag,
+            __( 'Litujeme, ale partner s tímto IČO není registrován jako Shoptet partner.', 'shp-partneri' )
+        );
+    }
+
+    return $result;
+}, 10, 2 );

@@ -2494,6 +2494,7 @@ acf_add_local_field_group(array(
 				'Kristýna Pecková' => 'Kristýna Pecková',
 				'Lucia Hurňanská' => 'Lucia Hurňanská',
 				'Jan Krupica' => 'Jan Krupica',
+				'Eliška Gunišová' => 'Eliška Gunišová',
 			),
 			'allow_null' => 0,
 			'other_choice' => 0,
