@@ -198,7 +198,9 @@ add_action( 'comment_post', function ( $comment_id ) {
 } );
 
 // Send auth e-mail
-add_action( 'comment_post', function ( $comment_id ) {
+add_action( 'comment_post', function ( $comment_id, $comment_approved ) {
+	if ( $comment_approved === 'spam' ) return;
+	
 	$comment = new Timber\Comment($comment_id);
 	$post = new Timber\Post( $comment->comment_post_ID );
 	$options = get_fields('options');
@@ -237,7 +239,7 @@ add_action( 'comment_post', function ( $comment_id ) {
 	Timber::render( 'templates/message/message.twig', $context );
 	
 	die();
-} );
+}, 10, 2 );
 
 // Check for auth tokean and authenticate
 add_action( 'init' , function () {
@@ -858,3 +860,31 @@ add_filter('wpcf7_validate_text*', function( $result, $tag ) {
 
     return $result;
 }, 10, 2 );
+
+add_action( 'add_meta_boxes', function () {
+    add_meta_box(
+        'onboarding_url_meta_box',
+        'Onboarding URL',
+        'render_onboarding_url_meta_box',
+        'profesionalove',
+        'side',
+        'default'
+    );
+} );
+
+
+function render_onboarding_url_meta_box( $post ) {
+    if ( $post->post_status !== 'onboarding' ) {
+        return;
+    }
+
+    $token = get_post_meta( $post->ID, 'onboarding_token', true );
+
+    if ( ! $token ) {
+        return;
+    }
+
+    $url = get_site_url( null, '?onboarding_token=' . $token );
+
+    echo '<input type="text" readonly style="width:100%;" value="' . esc_attr( $url ) . '" />';
+}

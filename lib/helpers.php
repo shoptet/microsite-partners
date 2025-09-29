@@ -194,13 +194,14 @@ function expired_professionals_check () {
   ] );
 
   // Set status to expired
-  foreach ( $query->posts as $post ) {
-    wp_update_post([
-			'ID' => $post->ID,
-			'post_status' => 'expired',
-    ]);
-		update_post_meta( $post->ID, 'expired', time() );    
-  }
+  // Stop expiring
+  // foreach ( $query->posts as $post ) {
+  //   wp_update_post([
+	// 		'ID' => $post->ID,
+	// 		'post_status' => 'expired',
+  //   ]);
+	// 	update_post_meta( $post->ID, 'expired', time() );    
+  // }
 }
 
 function remind_onboarding () {
