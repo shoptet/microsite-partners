@@ -10,6 +10,15 @@ add_filter( 'wp_mail', function ( $args ) {
 	return $args;
 } );
 
+add_action('wp_head', function() {
+  echo '<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>';
+  echo '<link rel="dns-prefetch" href="https://res.cloudinary.com">';
+  echo '<link rel="preconnect" href="https://use.typekit.net" crossorigin>';
+  echo '<link rel="dns-prefetch" href="https://use.typekit.net">';
+  echo '<link rel="stylesheet" href="https://res.cloudinary.com/shoptet/raw/upload/v1732634718/fonts/neue-haas-grotesk.css">';
+  echo '<link rel="stylesheet" href="https://use.typekit.net/zti8imj.css">';
+});
+
 /**
  * Setup DKIM
  */

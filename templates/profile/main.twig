@@ -22,7 +22,7 @@
           <span class="mr-1">
             {% include 'review-rating-stars.twig' with {rating: average_rating} %}
           </span>
-          <a class="text-muted" href="#comments">
+          <a class="text-muted text-decoration-none" href="#comments">
             {% if post.comments|length > 0 %}
               ({{ __('%s hodnocení', 'shp-partneri')|format(post.comments|length) }})
             {% else %}

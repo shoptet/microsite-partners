@@ -92,10 +92,7 @@ var config = {
         use: [
           {
             loader: fileLoaderPath,
-          },
-          {
-            loader: 'image-webpack-loader',
-          },
+          }
         ],
         include: [
           resolve('node_modules'),

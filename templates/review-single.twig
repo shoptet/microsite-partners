@@ -46,7 +46,7 @@
               </li>
             {% endif %}
             <li class="list-inline-item">
-              <a class="text-dark" href="#comment-{{comment.ID}}"><time datetime="{{ comment.time|date('c') }}" itemprop="datePublished" content="{{ comment.time|date('Y-m-d') }}">{{ comment.date }}, {{ comment.time }}</time></a>
+              <a class="text-dark text-decoration-none" href="#comment-{{comment.ID}}"><time datetime="{{ comment.time|date('c') }}" itemprop="datePublished" content="{{ comment.time|date('Y-m-d') }}">{{ comment.date }}, {{ comment.time }}</time></a>
             </li>
           </ul>
         {% endspaceless %}
