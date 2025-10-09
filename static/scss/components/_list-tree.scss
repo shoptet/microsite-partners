@@ -10,7 +10,7 @@
   li {
     position: relative;
     margin: 0;
-    border-left:1px solid lighten($blue, 35%);
+    border-left:1px solid #DBDAD7;
     padding-left: .8rem;
     line-height: 1.2;
     padding-bottom: .4rem;
@@ -36,11 +36,11 @@
     left: 0;
     height: 1em;
     width: 9px;
-    border-bottom: 1px solid lighten($blue, 35%);
+    border-bottom: 1px solid #DBDAD7;
     display: inline-block;
   }
 
   li:last-child::before {
-    border-left: 1px solid lighten($blue, 35%);
+    border-left: 1px solid #DBDAD7;
   }
 }

@@ -1,6 +1,6 @@
 #navigation {
-    border-bottom: 1px solid #d9d9d9;
-    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #DBDAD7;
+    border-top: 1px solid #DBDAD7;
     background-color: #fff;;
 }
 
@@ -22,13 +22,15 @@
 
     .shp_menu-item-link {
         text-transform: uppercase;
-        color: #000;
+        color: $body-color;
     }
 }
 
 .shp_menu-item>a {
-    padding: .5294rem .875rem;
+    font-size: 0.95rem;
+    padding: .5294rem .7rem;
     display: inline-block;
+    text-decoration: none;
 }
 
 .shp_menu-item:first-child>a {
@@ -40,7 +42,7 @@
 }
 
 .shp_menu-item .caret {
-    padding: .5294rem .875rem .5294rem .4375rem;
+    padding: .5294rem .5rem .5294rem 0.2rem;
     display: inline-block;
     cursor: pointer;
 }
@@ -139,7 +141,7 @@
         outline: none;
         color: #fff;
         cursor: pointer;
-        background: #21afe5;
+        background: theme-color("primary");
         padding: .5294rem .875rem;
 
         svg {

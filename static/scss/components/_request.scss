@@ -54,6 +54,7 @@
   color: $body-color;
   border-bottom: 1px solid $profile-thumbnail-border-color;
   padding: 1.5rem 0;
+  text-decoration: none;
 
   @include hover-focus {
     color: $body-color;
@@ -95,8 +96,9 @@
 }
 
 .request-thumbnail-title {
-  color: $link-color;
+  font-weight: 600;
   line-height: 1;
+  font-family: $headings-font-family;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.25rem;

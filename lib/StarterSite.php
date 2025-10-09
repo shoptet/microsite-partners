@@ -93,9 +93,6 @@ class StarterSite extends TimberSite {
     /* Load styles and add a cache-breaking URL parameter */
 
     $fileName = '/assets/main.css';
-    if ( is_user_logged_in() ) {
-      $fileName = '/assets/main-new.css';
-    }
     $fileUrl = get_template_directory_uri() . $fileName;
     $filePath = get_template_directory() . $fileName;
     wp_enqueue_style( 'main', $fileUrl, array(), filemtime($filePath), 'all' );

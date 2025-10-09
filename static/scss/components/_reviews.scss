@@ -37,12 +37,12 @@
 .review-rating-bar {
     width: 6rem;
     height: .6rem;
-    background-color: #F0F0F0;
+    background-color: $blue-light;
 }
 
 .review-rating-bar div {
     height: 100%;
-    background-color: #BCBCBC;
+    background-color: theme-color('primary');
 }
 
 

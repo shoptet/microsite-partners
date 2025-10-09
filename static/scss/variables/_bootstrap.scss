@@ -55,7 +55,7 @@ $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
+$gray-600: #959288 !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
@@ -73,7 +73,7 @@ $grays: (
   900: $gray-900
 ) !default;
 
-$blue:    #14b1ef;
+$blue:    #0A6CFF;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
@@ -157,15 +157,15 @@ $sizes: (
 // Settings for the `<body>` element.
 
 $body-bg:       $white !default;
-$body-color:    $gray-900 !default;
+$body-color:    #31302C;
 
 // Links
 //
 // Style anchor elements.
 
 $link-color:            darken(theme-color("primary"), 2.5%);
-$link-decoration:       none !default;
-$link-hover-color:      darken($link-color, 15%) !default;
+$link-decoration:       underline;
+$link-hover-color:      $body-color;
 $link-hover-decoration: underline !default;
 
 // Paragraphs
@@ -239,7 +239,7 @@ $transition-collapse:    height .35s ease !default;
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif: "Source Sans Pro", sans-serif;
+$font-family-sans-serif: "neue-haas-grotesk-text", sans-serif;;
 $font-family-monospace:  "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif !default;
 
@@ -263,7 +263,7 @@ $h6-font-size: 1rem !default;
 
 $headings-margin-bottom: ($spacer / 2) !default;
 $headings-font-family:   "Neue Haas Grotesk", sans-serif;
-$headings-font-weight:   500;
+$headings-font-weight:   600;
 $headings-line-height:   1.1 !default;
 $headings-color:         inherit !default;
 
@@ -354,9 +354,9 @@ $btn-link-disabled-color:        $gray-600 !default;
 $btn-block-spacing-y:            .5rem !default;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius:              $border-radius !default;
-$btn-border-radius-lg:           $border-radius-lg !default;
-$btn-border-radius-sm:           $border-radius-sm !default;
+$btn-border-radius:              0;
+$btn-border-radius-lg:           0;
+$btn-border-radius-sm:           0;
 
 $btn-transition:                 background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 

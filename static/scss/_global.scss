@@ -10,9 +10,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .display {
-  font-weight: 300;
-  font-family: "Neue Haas Grotesk", sans-serif;
-  letter-spacing: $headings-letter-spacing;
+  font-weight: 400;
   line-height: 1.3;
 }
 
@@ -77,4 +75,90 @@ textarea {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+
+.page-link {
+  text-decoration: none;
+}
+
+.shp_footer {
+    * {
+        font-family: $font-family-sans-serif !important;
+    }
+    border-top: 0 !important;
+    a {
+        color: theme-color('primary') !important;
+        text-decoration: underline !important;
+
+        &:hover, &:focus {
+            color: $body-color !important;
+        }
+    }
+}
+
+.shp_footer .shp_footer-copyright {
+    font-size: 14px !important;
+}
+
+.shp_footer-main {
+    font-family: $font-family-sans-serif !important;
+
+    p {
+        color: #6c757d !important;
+    }
+    ul li a,
+    a {
+        color: #6c757d !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+
+        &:hover, &:focus {
+            color: theme-color('primary') !important;
+        }
+    }
+    ul {
+        padding-left: 0 !important;
+        list-style-image: none !important;
+    }
+    .footer-privacy-policy {
+        color: #6c757d !important;
+
+        a {
+            color: theme-color('primary') !important;
+            text-decoration: underline !important;
+
+            &:hover, &:focus {
+                color: $body-color !important;
+            }
+            font-weight: 400 !important;
+        }
+    }
+}
+
+
+body .shp_footer form.shp_footer-try-us-form button[type="submit"],
+body .shp_footer form.newsletter-form button[type="submit"],
+body .comment-respond #submit {
+  @extend .btn;
+  @extend .btn-primary;
+  font-weight: $btn-font-weight !important;
+  border-radius: $btn-border-radius !important;
+}
+
+.shp_footer {
+  input, textarea {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+
+      &:focus {
+          border-color: theme-color('primary') !important;
+      }
+  }
+}
+
+.shp_footer form.shp_footer-try-us-form .fieldset,
+.shp_footer form.newsletter-form .fieldset
+.shp_footer form input, .shp_footer form button,
+.shp_footer form.newsletter-form input[type="email"] {
+    border-radius: 0 !important;
 }

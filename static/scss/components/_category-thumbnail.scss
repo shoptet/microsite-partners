@@ -4,20 +4,25 @@
   padding: 1.25rem 2.6rem;
   margin-bottom: $category-thumbnail-spacing;
   color: #212529;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: $font-weight-light;
   border: 1px solid $gray-300;
   border-radius: $border-radius-lg;
+  text-decoration: none;
   @include transition(border-color .2s ease-in-out);
 
   @include hover-focus {
-    color: #129fd6;
+    color: theme-color('primary');
     font-weight: $font-weight-light;
     text-decoration: none;
     border-color: $blue;
 
+    .category-thumbnail-icon {
+      opacity: 1;
+    }
+
     .category-thumbnail-icon * {
-      fill: $blue !important;
+      fill: theme-color('primary') !important;
     }
   }
 }
@@ -33,6 +38,7 @@
   width: 3.5rem;
   height: 4rem;
   margin-top: -2rem;
+  opacity: 0.7;
 
   svg {
     width: 100%;

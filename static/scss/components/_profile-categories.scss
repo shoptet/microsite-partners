@@ -1,7 +1,8 @@
 .profile-categories {
   font-size: 1.25rem;
-
+  
   &, a {
+    text-decoration: none;
     color: $gray-600;
     font-weight: $font-weight-normal;
   }

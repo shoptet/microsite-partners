@@ -16,12 +16,12 @@
 }
 
 .header-logo-group-desc {
-  max-width: 22rem;
+  max-width: 23rem;
   margin-top: 0.75em;
   margin-bottom: 0;
   font-size: 80%;
   line-height: 1.2;
-  color: $gray-700;
+  color: #7E7A71;
 
   @include media-breakpoint-down(sm) {
     margin-left: auto;

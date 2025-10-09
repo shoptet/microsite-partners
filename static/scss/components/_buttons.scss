@@ -1,7 +1,12 @@
 .btn {
-  font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 400;
   letter-spacing: $headings-letter-spacing;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.btn-lg {
+  @include button-size($input-btn-padding-y-lg, $input-btn-padding-x-lg, $font-size-base, $line-height-base, $btn-border-radius);
 }
 
 .btn-xl {
