@@ -863,7 +863,11 @@ add_filter('wpcf7_validate_text*', function( $result, $tag ) {
     if ( empty( $query->posts ) ) {
         $result->invalidate(
             $tag,
-            __( 'Litujeme, ale partner s tímto IČO není registrován jako Shoptet partner.', 'shp-partneri' )
+			(
+				(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'partnerek.shoptet.hu')
+				? 'Kérjük, regisztrált Shoptet-partner adószámot adj meg.'
+            	: __( 'Litujeme, ale partner s tímto IČO není registrován jako Shoptet partner.', 'shp-partneri' )
+			)
         );
     }
 
