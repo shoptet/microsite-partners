@@ -129,7 +129,7 @@ class StarterSite extends TimberSite {
 
     wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js' );
 
-    wp_localize_script('main', 'dl', [
+    $datalayer = [
       'page' => [
         'currency' => get_currency(),
         'category' => 'not_available_DL',
@@ -152,7 +152,24 @@ class StarterSite extends TimberSite {
         'surname' => 'not_available_DL',
       ],
       'partner' => get_datalayer_partners(),
-    ]);
+    ];
+
+    if (is_search()) {
+      global $wp_query;
+      $datalayer['search'] = [
+        'type' => 'page',
+        'term' => get_search_query(),
+        'location' => 'header',
+        'results' => [
+          'articles' => $wp_query->found_posts,
+          'categories' => -1,
+          'products' => -1,
+          'other' => -1,
+          ],
+      ];
+    }
+
+    wp_localize_script('main', 'dl', $datalayer);
     
   }
 

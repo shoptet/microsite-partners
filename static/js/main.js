@@ -69,6 +69,7 @@ import * as dl from './datalayer';
 import Splide from '@splidejs/splide';
 
 dl.pushPageView();
+dl.maybePushSearch();
 
 window.showOnboardingModal = () => {
   $('#onboardingModal').modal('show');
@@ -78,7 +79,6 @@ $(function () {
 
   dl.initButtonClick();
   dl.initFormSubmit();
-  dl.initSearch();
 
   initContactMessage();
   initRecaptchaRequired();

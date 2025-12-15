@@ -11,6 +11,18 @@ export const pushPageView = () => {
   dataLayer.push(pageView);
 };
 
+export const maybePushSearch = () => {
+  if (!window.dl.search) return;
+  var search = {
+    event: 'search',
+    search: window.dl.search,
+    page: preparePage(window.dl.page),
+    user: window.dl.user,
+  };
+  dataLayer.push(search);
+  console.log(search); // remove
+};
+
 export const initButtonClick = () => {
   document.querySelectorAll('a[href],button[type=button]').forEach((el) => {
     el.addEventListener('click', function (e) {
@@ -39,12 +51,6 @@ export const initFormSubmit = () => {
   });
   document.querySelectorAll('.wpcf7').forEach((el) => {
     el.addEventListener('wpcf7mailsent', () => handleFormSubmit(el));
-  });
-};
-
-export const initSearch = () => {
-  document.querySelectorAll('form[data-search]').forEach((el) => {
-    el.addEventListener('submit', () => handleSearch(el));
   });
 };
 
@@ -96,30 +102,6 @@ const pushFormSubmit = (form, user) => {
   };
   dataLayer.push(formSubmit);
   console.log(formSubmit); // remove
-};
-
-export const handleSearch = (el) => {
-  const user = window.dl.user;
-  const searchInput = el.querySelector('input[type=search]');
-  const term = searchInput && searchInput.value;
-
-  const search = {
-    event: 'search',
-    search: {
-      type: 'page',
-      term,
-      results: {
-        articles: -1,
-        categories: -1,
-        products: -1,
-        other: -1,
-      },
-    },
-    page: preparePage(window.dl.page),
-    user,
-  };
-  dataLayer.push(search);
-  console.log(search); // remove
 };
 
 const preparePage = (page) => {
