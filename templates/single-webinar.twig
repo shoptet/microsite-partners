@@ -30,7 +30,11 @@
 
 					<div class="list-group-profile-item p-0" style="overflow:hidden">
 						<div class="embed-responsive embed-responsive-16by9 bg-light">
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ post.meta('external_id') }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							{% if post.meta('external_id_source') == 'vimeo' %}
+								<iframe width="560" height="315" src="https://player.vimeo.com/video/{{ post.meta('external_id') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							{% else %}
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ post.meta('external_id') }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							{% endif %}
 						</div>
 					</div>
 

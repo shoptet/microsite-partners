@@ -1,5 +1,7 @@
 <?php
 
+use Vimeo\Vimeo;
+
 class WebinarService
 {
 
@@ -15,9 +17,14 @@ class WebinarService
     if (get_post_type($post_id) != self::POST_TYPE) {
       return;
     }
+    $external_id_source = get_field('external_id_source', $post_id);
     $external_id = get_field('external_id', $post_id);
     if ($external_id) {
-      self::syncYoutubeData($post_id, $external_id);
+      if ($external_id_source == 'vimeo') {
+        self::syncVimeoData($post_id, $external_id);
+      } else {
+        self::syncYoutubeData($post_id, $external_id);
+      }
     }
   }
 
@@ -58,14 +65,46 @@ class WebinarService
     return $body['items'][0];
   }
 
+  static function syncVimeoData ($post_id, $external_id) {
+    $video = self::fetchVimeoVideo($external_id);
+    if ($video) {
+      $timestamp = strtotime($video['release_time']);
+      wp_update_post([
+        'ID' => $post_id,
+        'post_title' => $video['name'],
+        'post_content' => $video['description'],
+        'post_date' => wp_date('Y-m-d H:i:s', $timestamp),
+        'meta_input' => [
+          'duration' => $video['duration'],
+          'image_url' => $video['pictures']['base_link'],
+        ],
+      ]);
+    }
+  }
+
+  static function fetchVimeoVideo ($external_id) {
+    $client = new Vimeo(VIMEO_CLIENT_ID, VIMEO_CLIENT_SECRET, VIMEO_ACCESS_TOKEN);
+    $response = $client->request("/videos/$external_id", [], 'GET');
+    if (200 != $response['status'] || !isset($response['body'])) {
+      error_log(json_encode($response));
+      return false;
+    }
+    return $response['body'];
+  }
+
   static function displayVideo ($post) {
     if ($post->post_type != self::POST_TYPE) {
       return;
     }
-    $external_id = get_post_meta($post->ID, 'external_id', true);
+    $external_id_source = get_field('external_id_source', $post->ID);
+    $external_id = get_field('external_id', $post->ID);
     if ($external_id) {
       $allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      echo "<iframe style='margin-top: 20px' width='560' height='315' src='https://www.youtube.com/embed/$external_id?rel=0' frameborder='0' allow='$allow' allowfullscreen></iframe>";
+      if ($external_id_source == 'vimeo') {
+        echo "<iframe style='margin-top: 20px' width='560' height='315' src='https://player.vimeo.com/video/$external_id' frameborder='0' allow='$allow' allowfullscreen></iframe>";
+      } else {
+        echo "<iframe style='margin-top: 20px' width='560' height='315' src='https://www.youtube.com/embed/$external_id?rel=0' frameborder='0' allow='$allow' allowfullscreen></iframe>";
+      }
     }
   }
 

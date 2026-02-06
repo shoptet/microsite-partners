@@ -8,7 +8,18 @@ $context['post'] = $post;
 $external_id = $post->get_field('external_id');
 if ($external_id) {
   $context['external_id'] = $external_id;
-  $context['og_image'] = get_youtube_thumbnail_url($external_id);
+}
+
+$external_id_source = $post->get_field('external_id_source');
+if ($external_id_source == 'vimeo') {
+  $image_url = $post->get_field('image_url');
+  if ($image_url) {
+    $context['og_image'] = $image_url . '_960x540?r=pad';
+  }
+} else {
+  if ($external_id) {
+    $context['og_image'] = get_youtube_thumbnail_url($external_id);
+  }
 }
 
 $context['breadcrumbs'][ __( 'Webináře', 'shp-partneri' ) ] = get_post_type_archive_link( 'webinar' );

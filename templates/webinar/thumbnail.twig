@@ -6,7 +6,11 @@
   data-text="{{ post.title }}"
 >
   <div class="embed-responsive embed-responsive-16by9 bg-light webinar-thumbnail-image">
-    <img class="embed-responsive-item" src="{{ post.meta('external_id')|youtube_thumbnail }}" alt="{{ post.title }}" loading="lazy" />
+    {% if post.meta('external_id_source') == 'vimeo' %}
+      <img class="embed-responsive-item" src="{{ post.meta('image_url') }}_960x540?r=pad" alt="{{ post.title }}" loading="lazy" />
+    {% else %}
+      <img class="embed-responsive-item" src="{{ post.meta('external_id')|youtube_thumbnail }}" alt="{{ post.title }}" loading="lazy" />
+    {% endif %}
   </div>
   <div class="webinar-thumbnail-body">
     <div class="webinar-thumbnail-title">{{ post.title }}</div>

@@ -18,12 +18,12 @@ msgstr "Az oldal nem található"
 
 #: archive-course.php:23 archive-webinar.php:26 archive-webinar.php:38
 msgid "Webináře"
-msgstr ""
+msgstr "Webináriumok"
 
 #: archive-course.php:29 archive-webinar.php:32
 #, php-format
 msgid "%s webináře"
-msgstr ""
+msgstr "%s webinárium"
 
 #: archive-course.php:31 archive-course.php:36 archive-request.php:34
 #: archive-request.php:39 archive-webinar.php:34 archive-webinar.php:39
@@ -1267,11 +1267,11 @@ msgstr "vizsgálat"
 
 #: lib/cpt_posts.php:191 lib/cpt_taxonomies.php:138
 msgid "webinare"
-msgstr ""
+msgstr "webinariumok"
 
 #: lib/cpt_posts.php:197
 msgid "webinar"
-msgstr ""
+msgstr "webinarium"
 
 #: lib/cpt_taxonomies.php:10 lib/cpt_taxonomies.php:11
 #: lib/cpt_taxonomies.php:17
@@ -2033,7 +2033,7 @@ msgstr ""
 
 #: templates/single-course.twig:40 templates/single-webinar.twig:48
 msgid "Popis webináře"
-msgstr ""
+msgstr "Webinárium leírása"
 
 #: templates/single-course.twig:53
 msgid "Podobné webináře pro partnery"
