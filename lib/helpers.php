@@ -545,3 +545,134 @@ function get_datalayer_partners() {
   }
   return $partners;
 }
+
+function getIubendaConfigScript () {
+	$iubenda_lang = function_exists('get_language') ? get_language() : substr(get_locale(), 0, 2);
+	$iubenda_policies = [
+		'cs' => [
+			'cookiePolicyId' => 37143358,
+			'cookiePolicyUrl' => 'https://www.shoptet.cz/osobni-udaje-a-cookies/',
+		],
+		'sk' => [
+			'cookiePolicyId' => 39290960,
+			'cookiePolicyUrl' => 'https://www.shoptet.sk/osobne-udaje-a-cookies/',
+		],
+		'hu' => [
+      'cookiePolicyId' => 78256305,
+      'cookiePolicyUrl' => 'https://www.shoptet.hu/adatketelesi-es-sutihasznalati-szabalyzat/',
+    ],
+	];
+
+	if (!isset($iubenda_policies[$iubenda_lang])) {
+		$iubenda_lang = 'cs';
+	}
+	?>
+	<script type="text/javascript">
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push();
+		var load_gtm = (function(e) {
+			var loaded = false;
+			return function() {
+				if (!loaded) {
+					loaded = true;
+
+					(function(w, d, s, l, i) {
+						w[l] = w[l] || [];
+						w[l].push({
+							'gtm.start': new Date().getTime(),
+							event: 'gtm.js'
+						});
+						var f = d.getElementsByTagName(s)[0],
+							j = d.createElement(s),
+							dl = l != 'dataLayer' ? '&l=' + l : '';
+						j.async = true;
+						j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+						f.parentNode.insertBefore(j, f);
+					})(window, document, 'script', 'dataLayer', "<?= get_fields('options')['gtm_id'] ?>");
+
+					dataLayer.push({
+						'event': 'loaded_gtm',
+						'timestampGtm': new Date().getTime()
+					});
+				}
+			};
+		})();
+
+		var _iub = _iub || [];
+		_iub.csConfiguration = {
+			"cookiePolicyInOtherWindow": true,
+			"floatingPreferencesButtonCaptionColor": "#FFFFFF",
+			"floatingPreferencesButtonColor": "#FFFFFF",
+			"floatingPreferencesButtonDisplay": "anchored-bottom-left",
+			"googleConsentMode": false,
+			"perPurposeConsent": true,
+			"purposes": "5,1,4,3",
+			"siteId": 4323983,
+			"storage": {
+				"useSiteId": true
+			},
+			"whitelabel": true,
+			"banner": {
+				"acceptButtonCaptionColor": "#000000",
+				"acceptButtonColor": "#00E25A",
+				"acceptButtonDisplay": true,
+				"backgroundColor": "#FFFFFF",
+				"backgroundOverlay": true,
+				"brandBackgroundColor": "#FFFFFF",
+				"brandTextColor": "#000000",
+				"closeButtonDisplay": false,
+				"customizeButtonCaptionColor": "#FFFFFF",
+				"customizeButtonColor": "#FCAF00",
+				"customizeButtonDisplay": true,
+				"explicitWithdrawal": true,
+				"howToWithdraw": false,
+				"linksColor": "#3B88FF",
+				"logo": "<?= get_custom_logo_url() ?>",
+				"position": "float-center",
+				"rejectButtonCaptionColor": "#FFFFFF",
+				"rejectButtonColor": "#FCAF00",
+				"rejectButtonDisplay": true,
+				"showTitle": false,
+				"textColor": "#000000"
+			},
+			"callback": {
+				"onReady": function() {
+					window.dataLayer = window.dataLayer || [];
+					window.dataLayer.push({
+						"event": "iubenda_ready"
+					});
+					load_gtm();
+					window.dataLayer.push({
+						"event": "gtm_loaded_via_iubenda"
+					});
+				},
+				"onBannerShown": function() {
+					window.dataLayer = window.dataLayer || [];
+					window.dataLayer.push({
+						"event": "iubenda_visible"
+					});
+				},
+				"on2ndLayerShown": function() {
+					window.dataLayer = window.dataLayer || [];
+					window.dataLayer.push({
+						"event": "iubenda_details"
+					});
+				}
+			}
+		};
+		_iub.csLangConfiguration = <?= wp_json_encode([$iubenda_lang => $iubenda_policies[$iubenda_lang]], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
+
+		window.addEventListener('DOMContentLoaded', function() { setTimeout(function() { load_gtm(); }, 5000); }, false);
+	</script>
+	<script type="text/javascript" src="//cs.iubenda.com/sync/4323983.js"></script>
+	<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+	<style>
+		@media (max-width: 500px) {
+			#iubenda-iframe .iub-consent-buttons.purposes-buttons {
+				display: grid !important;
+				gap: 12px;
+			}
+		}
+	</style>
+	<?php
+}
