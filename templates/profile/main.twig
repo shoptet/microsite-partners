@@ -75,41 +75,57 @@
   			{% endif %}
   		</ul>
 
-      {% if post.get_field('facebook') or post.get_field('twitter') or post.get_field('linkedin') or post.get_field('instagram') %}
+      {% if post.get_field('facebook') or post.get_field('twitter') or post.get_field('linkedin') or post.get_field('instagram') or post.get_field('youtube') or post.get_field('tiktok') %}
         {% spaceless %}
           <ul class="profile-socials">
 
-        		{% if post.get_field('facebook') %}
+            {% if post.get_field('facebook') %}
               <li class="profile-socials-facebook">
-          		  <a href="{{ post.get_field('facebook')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Facebooku', 'shp-partneri') }}">
+                <a href="{{ post.get_field('facebook')|ensure_protocol }}" target="_blank" rel="noopener noreferrer" itemprop="sameAs" title="{{ __('Zobrazit profil na Facebooku', 'shp-partneri') }}">
                   <svg data-src="{{ "facebook-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Facebook"></svg>
                 </a>
               </li>
-        		{% endif %}
+            {% endif %}
 
-        		{% if post.get_field('twitter') %}
-              <li class="profile-socials-twitter">
-          		  <a href="{{ post.get_field('twitter')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na Twitteru', 'shp-partneri') }}">
-                  <svg data-src="{{ "twitter-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Twitter"></svg>
+            {% if post.get_field('twitter') %}
+              <li class="profile-socials-x">
+                <a href="{{ post.get_field('twitter')|ensure_protocol }}" target="_blank" rel="noopener noreferrer" itemprop="sameAs" title="{{ __('Zobrazit profil na X', 'shp-partneri') }}">
+                  <svg data-src="{{ "square-x-twitter.svg"|static_assets }}" width="25" height="25" role="img" aria-label="X"></svg>
                 </a>
               </li>
-        		{% endif %}
+            {% endif %}
 
-        		{% if post.get_field('linkedin') %}
+            {% if post.get_field('linkedin') %}
               <li class="profile-socials-linkedin">
-          		  <a href="{{ post.get_field('linkedin')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="{{ __('Zobrazit profil na LinkedIn', 'shp-partneri') }}">
+                <a href="{{ post.get_field('linkedin')|ensure_protocol }}" target="_blank" rel="noopener noreferrer" itemprop="sameAs" title="{{ __('Zobrazit profil na LinkedIn', 'shp-partneri') }}">
                   <svg data-src="{{ "linkedin-square.svg"|static_assets }}" width="25" height="25" role="img" aria-label="LinkedIn"></svg>
                 </a>
               </li>
-        		{% endif %}
+            {% endif %}
 
-                {% if post.get_field('instagram') %}
+            {% if post.get_field('instagram') %}
               <li class="profile-socials-instagram">
-          		  <a href="{{ post.get_field('instagram')|ensure_protocol }}" target="_blank" itemprop="sameAs" title="Zobrazit profil na Instagramu">
+                <a href="{{ post.get_field('instagram')|ensure_protocol }}" target="_blank" rel="noopener noreferrer" itemprop="sameAs" title="{{ __('Zobrazit profil na Instagramu', 'shp-partneri') }}">
                   <svg data-src="{{ "instagram.svg"|static_assets }}" width="25" height="25" role="img" aria-label="Instagram"></svg>
                 </a>
               </li>
-        		{% endif %}
+            {% endif %}
+
+            {% if post.get_field('youtube') %}
+              <li class="profile-socials-youtube">
+                <a href="{{ post.get_field('youtube')|ensure_protocol }}" target="_blank" rel="noopener noreferrer" itemprop="sameAs" title="{{ __('Zobrazit profil na YouTube', 'shp-partneri') }}">
+                  <svg data-src="{{ "square-youtube.svg"|static_assets }}" width="25" height="25" role="img" aria-label="YouTube"></svg>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if post.get_field('tiktok') %}
+              <li class="profile-socials-tiktok">
+                <a href="{{ post.get_field('tiktok')|ensure_protocol }}" target="_blank" rel="noopener noreferrer" itemprop="sameAs" title="{{ __('Zobrazit profil na TikToku', 'shp-partneri') }}">
+                  <svg data-src="{{ "tiktok.svg"|static_assets }}" width="25" height="25" role="img" aria-label="TikTok"></svg>
+                </a>
+              </li>
+            {% endif %}
 
           </ul>
         {% endspaceless %}

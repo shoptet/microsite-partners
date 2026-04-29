@@ -925,19 +925,27 @@ msgstr "Košický kraj"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: lib/acf_settings.php:2873
-msgid "Twitter"
-msgstr "Twitter"
-
 #: lib/acf_settings.php:2892
+msgid "X"
+msgstr "X"
+
+#: lib/acf_settings.php:2911
 msgid "Instagram"
 msgstr "Instagram"
 
-#: lib/acf_settings.php:2911
+#: lib/acf_settings.php:2930
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: lib/acf_settings.php:2933
+#: lib/acf_settings.php:2949
+msgid "YouTube"
+msgstr "YouTube"
+
+#: lib/acf_settings.php:2968
+msgid "TikTok"
+msgstr "TikTok"
+
+#: lib/acf_settings.php:2989
 msgid ""
 "Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve "
 "formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB."
@@ -1859,12 +1867,24 @@ msgid "Zobrazit profil na Facebooku"
 msgstr "Zobraziť profil na Facebooku"
 
 #: templates/profile/main.twig:92
-msgid "Zobrazit profil na Twitteru"
-msgstr "Zobraziť profil na Twitteri"
+msgid "Zobrazit profil na X"
+msgstr "Zobraziť profil na X"
 
 #: templates/profile/main.twig:100
 msgid "Zobrazit profil na LinkedIn"
 msgstr "Zobraziť profil na Linkedine"
+
+#: templates/profile/main.twig:108
+msgid "Zobrazit profil na Instagramu"
+msgstr "Zobraziť profil na Instagrame"
+
+#: templates/profile/main.twig:116
+msgid "Zobrazit profil na YouTube"
+msgstr "Zobraziť profil na YouTube"
+
+#: templates/profile/main.twig:124
+msgid "Zobrazit profil na TikToku"
+msgstr "Zobraziť profil na TikToku"
 
 #: templates/profile/price.twig:3 templates/profile/price.twig:19
 msgid "Ceny"

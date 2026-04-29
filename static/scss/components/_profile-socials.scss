@@ -22,9 +22,9 @@
   }
 }
 
-.profile-socials-twitter {
+.profile-socials-x {
   path {
-    fill: $brand-twitter;
+    fill: $brand-x;
   }
 }
 
@@ -37,5 +37,17 @@
 .profile-socials-instagram {
   path {
     fill: $brand-instagram;
+  }
+}
+
+.profile-socials-youtube {
+  path {
+    fill: $brand-youtube;
+  }
+}
+
+.profile-socials-tiktok {
+  path {
+    fill: $brand-tiktok;
   }
 }

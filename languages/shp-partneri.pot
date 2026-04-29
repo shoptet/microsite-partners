@@ -923,19 +923,27 @@ msgstr ""
 msgid "Facebook"
 msgstr ""
 
-#: lib/acf_settings.php:2873
-msgid "Twitter"
-msgstr ""
-
 #: lib/acf_settings.php:2892
-msgid "Instagram"
+msgid "X"
 msgstr ""
 
 #: lib/acf_settings.php:2911
+msgid "Instagram"
+msgstr ""
+
+#: lib/acf_settings.php:2930
 msgid "LinkedIn"
 msgstr ""
 
-#: lib/acf_settings.php:2933
+#: lib/acf_settings.php:2949
+msgid "YouTube"
+msgstr ""
+
+#: lib/acf_settings.php:2968
+msgid "TikTok"
+msgstr ""
+
+#: lib/acf_settings.php:2989
 msgid ""
 "Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve "
 "formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB."
@@ -1794,11 +1802,23 @@ msgid "Zobrazit profil na Facebooku"
 msgstr ""
 
 #: templates/profile/main.twig:92
-msgid "Zobrazit profil na Twitteru"
+msgid "Zobrazit profil na X"
 msgstr ""
 
 #: templates/profile/main.twig:100
 msgid "Zobrazit profil na LinkedIn"
+msgstr ""
+
+#: templates/profile/main.twig:108
+msgid "Zobrazit profil na Instagramu"
+msgstr ""
+
+#: templates/profile/main.twig:116
+msgid "Zobrazit profil na YouTube"
+msgstr ""
+
+#: templates/profile/main.twig:124
+msgid "Zobrazit profil na TikToku"
 msgstr ""
 
 #: templates/profile/price.twig:3 templates/profile/price.twig:19

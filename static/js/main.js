@@ -49,13 +49,15 @@ import '../images/icon-ic.svg';
 import '../images/icon-dic.svg';
 import '../images/bars-solid.svg';
 import '../images/star-solid.svg';
+import '../images/square-x-twitter.svg';
+import '../images/square-youtube.svg';
+import '../images/tiktok.svg';
 
 // Font Awesome icons
 import 'font-awesome-svg-png/black/svg/external-link.svg';
 import 'font-awesome-svg-png/black/svg/envelope-o.svg';
 import 'font-awesome-svg-png/black/svg/phone.svg';
 import 'font-awesome-svg-png/black/svg/facebook-square.svg';
-import 'font-awesome-svg-png/black/svg/twitter-square.svg';
 import 'font-awesome-svg-png/black/svg/linkedin-square.svg';
 import 'font-awesome-svg-png/black/svg/instagram.svg';
 import 'font-awesome-svg-png/black/svg/plus-circle.svg';

@@ -927,19 +927,27 @@ msgstr "Kassai kerület"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: lib/acf_settings.php:2873
-msgid "Twitter"
-msgstr "Twitter"
-
 #: lib/acf_settings.php:2892
+msgid "X"
+msgstr "X"
+
+#: lib/acf_settings.php:2911
 msgid "Instagram"
 msgstr "Instagram"
 
-#: lib/acf_settings.php:2911
+#: lib/acf_settings.php:2930
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: lib/acf_settings.php:2933
+#: lib/acf_settings.php:2949
+msgid "YouTube"
+msgstr "YouTube"
+
+#: lib/acf_settings.php:2968
+msgid "TikTok"
+msgstr "TikTok"
+
+#: lib/acf_settings.php:2989
 msgid ""
 "Prosím vložte fotku v minimálním rozlišení 400 x 400 px. Soubor nahrajte ve "
 "formátu jpg, png nebo gif. Maximální velikost souboru je 5 MB."
@@ -1868,12 +1876,24 @@ msgid "Zobrazit profil na Facebooku"
 msgstr "Profil megtekintése a Facebookon"
 
 #: templates/profile/main.twig:92
-msgid "Zobrazit profil na Twitteru"
-msgstr "Profil megtekintése a Twitteren"
+msgid "Zobrazit profil na X"
+msgstr "Profil megtekintése az X-en"
 
 #: templates/profile/main.twig:100
 msgid "Zobrazit profil na LinkedIn"
 msgstr "LinkedIn profil megtekintése"
+
+#: templates/profile/main.twig:108
+msgid "Zobrazit profil na Instagramu"
+msgstr "Profil megtekintése az Instagramon"
+
+#: templates/profile/main.twig:116
+msgid "Zobrazit profil na YouTube"
+msgstr "Profil megtekintése a YouTube-on"
+
+#: templates/profile/main.twig:124
+msgid "Zobrazit profil na TikToku"
+msgstr "Profil megtekintése a TikTokon"
 
 #: templates/profile/price.twig:3 templates/profile/price.twig:19
 msgid "Ceny"

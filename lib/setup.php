@@ -618,6 +618,8 @@ add_filter( 'acf/validate_value/name=facebook', 'handle_url_validation', 10, 2 )
 add_filter( 'acf/validate_value/name=instagram', 'handle_url_validation', 10, 2 );
 add_filter( 'acf/validate_value/name=twitter', 'handle_url_validation', 10, 2 );
 add_filter( 'acf/validate_value/name=linkedin', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=youtube', 'handle_url_validation', 10, 2 );
+add_filter( 'acf/validate_value/name=tiktok', 'handle_url_validation', 10, 2 );
 
 function handle_url_validation( $valid, $value ) {
 	// bail early if value is already invalid

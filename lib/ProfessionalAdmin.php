@@ -84,6 +84,8 @@ class ProfessionalAdmin
     $twitter = get_post_meta($post_id, 'twitter', true);
     $instagram = get_post_meta($post_id, 'instagram', true);
     $linkedin = get_post_meta($post_id, 'linkedin', true);
+    $youtube = get_post_meta($post_id, 'youtube', true);
+    $tiktok = get_post_meta($post_id, 'tiktok', true);
     $description = get_post_meta($post_id, 'description', true);
     $benefit = get_post_meta($post_id, 'benefit', true);
     $categories = wp_get_post_terms($post_id, 'category_professionals', ['fields' => 'names']);
@@ -122,6 +124,8 @@ class ProfessionalAdmin
       $price_text,
       $post_status,
       $publish_date,
+      $youtube,
+      $tiktok,
     ];
   }
 
@@ -155,6 +159,8 @@ class ProfessionalAdmin
       'price_text',
       'post_status',
       'publish date',
+      'youtube',
+      'tiktok',
     ];
     fputcsv( $fp, $header );
 
