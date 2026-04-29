@@ -190,9 +190,22 @@ add_filter( 'display_post_states', function ( $states, $post ) {
 
 // Make the review rating required.
 add_filter( 'preprocess_comment', function ( $commentdata ) {
-	if ( is_admin() ||  ( isset( $_POST['comment_parent'] ) && 0 !== intval( $_POST['comment_parent'] ) ) ) {
+	if ( is_admin() ) {
 		return $commentdata;
 	}
+
+	$comment_post_id = isset( $commentdata['comment_post_ID'] ) ? intval( $commentdata['comment_post_ID'] ) : 0;
+	$is_professional_review = $comment_post_id && 'profesionalove' === get_post_type( $comment_post_id );
+	$is_comment_reply = isset( $_POST['comment_parent'] ) && 0 !== intval( $_POST['comment_parent'] );
+
+	if ( $is_professional_review && ! verify_recaptcha() ) {
+		wp_die( __( 'Chyba: Nepotvrdili jste prosím, že nejste robot. Běžte prosím zpět a zkuste to znovu.', 'shp-partneri' ) );
+	}
+
+	if ( $is_comment_reply ) {
+		return $commentdata;
+	}
+
 	if ( ! isset( $_POST['rating'] ) || 0 === intval( $_POST['rating'] ) ) {
 		wp_die( __( 'Chyba: Nepřidali jste hodnocení. Běžte prosím zpět a přidejte hodnocení.', 'shp-partneri' ) );
 	}

@@ -77,12 +77,12 @@ window.showOnboardingModal = () => {
 
 $(function () {
 
-  dl.initButtonClick();
-  dl.initFormSubmit();
-
   initContactMessage();
   initRecaptchaRequired();
   initArchiveFilter();
+
+  dl.initButtonClick();
+  dl.initFormSubmit();
 
   if (document.querySelector('.splide')) {
     var splideFull = new Splide('.splide', {

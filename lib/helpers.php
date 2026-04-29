@@ -254,7 +254,7 @@ function remind_onboarding () {
 }
 
 function verify_recaptcha () {
-  if ( ! $_POST[ 'g-recaptcha-response' ] ) {
+  if ( empty( $_POST[ 'g-recaptcha-response' ] ) ) {
     return false;
   }
   $recaptcha_response = sanitize_text_field( $_POST[ 'g-recaptcha-response' ] );

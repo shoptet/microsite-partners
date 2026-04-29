@@ -3,8 +3,48 @@
   transform-origin:0 0;
 }
 
+.review-recaptcha-placeholder {
+  position: relative;
+  width: 304px;
+  max-width: 100%;
+  min-height: 78px;
+}
+
+.review-recaptcha-placeholder::before {
+  content: '';
+  display: block;
+  height: 78px;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f7f7f7 25%, #fff 37%, #f7f7f7 63%);
+  background-size: 400% 100%;
+  animation: recaptcha-placeholder-pulse 1.4s ease infinite;
+}
+
+.review-recaptcha-placeholder.is-rendering::before,
+.review-recaptcha-placeholder[data-recaptcha-widget-id]::before {
+  display: none;
+}
+
+@keyframes recaptcha-placeholder-pulse {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-recaptcha-placeholder::before {
+    animation: none;
+  }
+}
+
 .g-recaptcha-required-error {
   margin-top: .5rem;
+  margin-bottom: 1rem;
   color: theme-color("danger");
   font-weight: bold;
 }

@@ -250,7 +250,7 @@ msgstr "The request has already been sent to partners in related categories"
 
 #: lib/StarterSite.php:117
 msgid "Zaškrtněte prosím, že nejste robot"
-msgstr "Nem vagyok robot"
+msgstr "Kérjük, jelölje be, hogy nem robot"
 
 #: lib/StarterSite.php:118
 msgid "Vyplňte prosím všechna pole"

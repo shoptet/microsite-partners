@@ -84,7 +84,10 @@
         </label>
       </div>
     </div>
+
   {% endif %}
+
+  <div class="g-recaptcha-required review-recaptcha-placeholder mb-3" data-sitekey="{{ config.G_RECAPTCHA_SITE_KEY }}"></div>
 
   <button class="btn btn-primary" type="submit">{{ __('Odeslat hodnocení', 'shp-partneri') }}</button>
 
