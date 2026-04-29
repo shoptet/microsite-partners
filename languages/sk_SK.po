@@ -1998,17 +1998,33 @@ msgstr "Reagovať"
 msgid "Tento partner zatím nemá žádné hodnocení"
 msgstr "Tento partner zatiaľ nemá žiadne hodnotenia"
 
-#: templates/reviews.twig:44
+#: templates/reviews.twig:38
+msgid "Filtrovat: %s★ hodnocení"
+msgstr "Filtrovať: %s★ hodnotení"
+
+#: templates/reviews.twig:50
+msgid "Zobrazuji pouze hodnocení %s★"
+msgstr "Zobrazujú sa iba hodnotenia %s★"
+
+#: templates/reviews.twig:51
+msgid "Zobrazit všechna hodnocení"
+msgstr "Zobraziť všetky hodnotenia"
+
+#: templates/reviews.twig:57
 msgid "Ohodnoťte svou zkušenost<br>s tímto partnerem"
 msgstr "Ohodnoťte svoju skúsenosť<br>s týmto partnerom"
 
-#: templates/reviews.twig:53
+#: templates/reviews.twig:66
 msgid "Hodnocení jsou uzavřena"
 msgstr "Hodnotenie je uzatvorené"
 
-#: templates/reviews.twig:55
+#: templates/reviews.twig:68
 msgid "Přidat hodnocení"
 msgstr "Pridať hodnotenie"
+
+#: templates/reviews.twig:107
+msgid "Pro vybraný počet hvězdiček nejsou žádná hodnocení."
+msgstr "Pre vybraný počet hviezdičiek nie sú žiadne hodnotenia."
 
 #: templates/row-webinars.twig:3
 msgid "Nejnovější webináře"

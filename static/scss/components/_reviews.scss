@@ -45,6 +45,28 @@
     background-color: theme-color('primary');
 }
 
+.review-rating-filter {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    border-radius: .25rem;
+    padding: .15rem .5rem;
+    margin-left: -.5rem;
+    text-decoration: none;
+}
+
+a.review-rating-filter:hover,
+a.review-rating-filter:focus {
+    color: inherit;
+    background-color: $blue-light;
+    text-decoration: none;
+}
+
+.review-rating-filter.active {
+    background-color: $blue-light;
+    font-weight: 600;
+}
+
 
 .review-rating-stars-form {
     display: inline-block;

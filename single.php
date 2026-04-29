@@ -29,12 +29,46 @@ if ($post->meta_description) {
 	$context['meta_description'] = $post->meta_description;
 }
 
-$comments_count = count($post->comments);
-$comments_per_page = intval(get_option('comments_per_page'));
-$comments_total_pages = ceil( $comments_count / $comments_per_page );
-$query_cpage = intval(get_query_var('cpage'));
+$comments = $post->comments( 0, 'wp' );
+$comments_count = count( $comments );
+$comments_per_page = max( 1, intval( get_option( 'comments_per_page' ) ) );
+$rating_filter = filter_input(
+	INPUT_GET,
+	'rating',
+	FILTER_VALIDATE_INT,
+	[
+		'options' => [
+			'min_range' => 1,
+			'max_range' => 5,
+		],
+	]
+);
+$rating_filter = ( $rating_filter ? intval( $rating_filter ) : null );
+$filtered_comments = [];
+
+foreach ( $comments as $comment ) {
+	$rating = ( isset( $comment->rating ) ? intval( $comment->rating ) : 0 );
+	if ( ! $rating_filter || $rating === $rating_filter ) {
+		$filtered_comments[] = $comment;
+	}
+}
+
+$filtered_comments_count = count( $filtered_comments );
+$comments_total_pages = (int) ceil( $filtered_comments_count / $comments_per_page );
+$query_cpage = max( 1, intval( get_query_var( 'cpage' ) ) );
 $comments_current_page = ( $query_cpage ? $query_cpage : 1 );
+if ( $comments_total_pages > 0 && $comments_current_page > $comments_total_pages ) {
+	$comments_current_page = $comments_total_pages;
+}
 $comments_offset = ( $comments_per_page * ( $comments_current_page - 1 ) );
+
+$get_comments_page_link = function( $page ) use ( $post, $rating_filter ) {
+	$link = ( $page > 1 ? trailingslashit( $post->link ) . 'comment-page-' . $page . '/' : $post->link );
+	if ( $rating_filter ) {
+		$link = add_query_arg( 'rating', $rating_filter, $link );
+	}
+	return $link . '#comments';
+};
 
 $pagination = [
 	'total' => $comments_total_pages,
@@ -50,7 +84,7 @@ for ( $i = 1; $i <= $comments_total_pages; $i++ ) {
 	$is_pre_current = ( $i == $comments_current_page - 1 );
 	$is_post_current = ( $i == $comments_current_page + 1 );
 	$show = ( $comments_total_pages <= 6 || $is_first || $is_last || $is_current || $is_pre_current || $is_post_current );
-	$link = ( $i > 1 ? $post->link . 'comment-page-' . $i . '#comments' : $post->link );
+	$link = $get_comments_page_link( $i );
 
 	$pagination['pages'][] = [
 		'link' => $link,
@@ -63,16 +97,30 @@ for ( $i = 1; $i <= $comments_total_pages; $i++ ) {
 // Set previous comment page link
 if ( $comments_current_page > 1 ) {
 	$prev_page_number = ( $comments_current_page - 1 );
-	$pagination['prev'] = [ 'link' => ( $prev_page_number > 1 ? $post->link . 'comment-page-' . $prev_page_number . '#comments' : $post->link ) ];
+	$pagination['prev'] = [ 'link' => $get_comments_page_link( $prev_page_number ) ];
 }
 
 // Set next comment page link
 if ( $comments_current_page < $comments_total_pages ) {
-	$pagination['next'] = [ 'link' => $post->link . 'comment-page-' . ( $comments_current_page + 1  ) . '#comments' ];
+	$pagination['next'] = [ 'link' => $get_comments_page_link( $comments_current_page + 1 ) ];
+}
+
+$rating_filter_links = [];
+for ( $i = 1; $i <= 5; $i++ ) {
+	$rating_filter_links[$i] = [
+		'link' => add_query_arg( 'rating', $i, $post->link ) . '#comments',
+		'active' => ( $rating_filter === $i ),
+	];
 }
 
 $context['comments_offset'] = $comments_offset;
 $context['comments_length'] = $comments_per_page;
+$context['comments_count'] = $comments_count;
+$context['filtered_comments'] = $filtered_comments;
+$context['filtered_comments_count'] = $filtered_comments_count;
+$context['rating_filter'] = $rating_filter;
+$context['rating_filter_links'] = $rating_filter_links;
+$context['rating_filter_reset_link'] = $post->link . '#comments';
 $context['pagination'] = $pagination;
 
 $professional_post = new ProfessionalPost( $post->ID );

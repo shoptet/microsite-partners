@@ -2006,17 +2006,33 @@ msgstr "Reagál"
 msgid "Tento partner zatím nemá žádné hodnocení"
 msgstr "Ennek a partnernek még nincs értékelése"
 
-#: templates/reviews.twig:44
+#: templates/reviews.twig:38
+msgid "Filtrovat: %s★ hodnocení"
+msgstr "Szűrés: %s★ értékelés"
+
+#: templates/reviews.twig:50
+msgid "Zobrazuji pouze hodnocení %s★"
+msgstr "Csak a(z) %s★ értékelések jelennek meg"
+
+#: templates/reviews.twig:51
+msgid "Zobrazit všechna hodnocení"
+msgstr "Összes értékelés megjelenítése"
+
+#: templates/reviews.twig:57
 msgid "Ohodnoťte svou zkušenost<br>s tímto partnerem"
 msgstr "Értékelje a partnert<br>tapasztalatai alapján"
 
-#: templates/reviews.twig:53
+#: templates/reviews.twig:66
 msgid "Hodnocení jsou uzavřena"
 msgstr "Az értékelések már lezártak"
 
-#: templates/reviews.twig:55
+#: templates/reviews.twig:68
 msgid "Přidat hodnocení"
 msgstr "Értékelés hozzáadása"
+
+#: templates/reviews.twig:107
+msgid "Pro vybraný počet hvězdiček nejsou žádná hodnocení."
+msgstr "A kiválasztott csillagszámhoz nincs értékelés."
 
 #: templates/row-webinars.twig:3
 #, fuzzy

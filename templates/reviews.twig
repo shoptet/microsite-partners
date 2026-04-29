@@ -4,23 +4,23 @@
     <h2 class="h3 mb-4">{{ __('Hodnocení', 'shp-partneri') }}</h2>
 
     <div class="d-flex mb-4"
-        {% if post.comments|length > 0 %}
+        {% if comments_count > 0 %}
         itemprop="aggregateRating"
         itemscope
         itemtype="http://schema.org/AggregateRating"
         {% endif %}
     >
-      {% if post.comments|length > 0 %}
+      {% if comments_count > 0 %}
         <meta itemprop="bestRating" content="5">
         <meta itemprop="worstRating" content="0">
         <meta itemprop="ratingValue" content="{{ average_rating }}">
-        <meta itemprop="reviewCount" content="{{ post.comments|length }}">
+        <meta itemprop="reviewCount" content="{{ comments_count }}">
       {% endif %}
 
       <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: average_rating, size:'large'} %}</div>
       <div class="fs-130 lh-1">
-        {% if post.comments|length > 0 %}
-          {{ __('%s hodnocení', 'shp-partneri')|format(post.comments|length) }}
+        {% if comments_count > 0 %}
+          {{ __('%s hodnocení', 'shp-partneri')|format(comments_count) }}
         {% else %}
           {{ __('Tento partner zatím nemá žádné hodnocení', 'shp-partneri') }}
         {% endif %}
@@ -32,12 +32,25 @@
         <ol class="list-unstyled mb-0">
           {% for i in 5..1 %}
             <li class="d-flex align-items-center mb-1">
-              <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: i} %}</div>
-              <div class="mr-3">{% include 'review-rating-bar.twig' with {count: rating_stars[i], total: post.comments|length} %}</div>
-              <div class="mr-3">({{ rating_stars[i] }})</div>
+              <a
+                class="review-rating-filter {{ rating_filter_links[i].active ? 'active' }}"
+                href="{{ rating_filter_links[i].link }}"
+                aria-label="{{ __('Filtrovat: %s★ hodnocení', 'shp-partneri')|format(i) }}"
+                {% if rating_filter_links[i].active %}aria-current="true"{% endif %}
+              >
+                <div class="mr-3">{% include 'review-rating-stars.twig' with {rating: i} %}</div>
+                <div class="mr-3">{% include 'review-rating-bar.twig' with {count: rating_stars[i], total: comments_count} %}</div>
+                <div class="mr-3">({{ rating_stars[i] }})</div>
+              </a>
             </li>
           {% endfor %}
         </ol>
+        {% if rating_filter %}
+          <div class="mt-2">
+            <span class="text-muted">{{ __('Zobrazuji pouze hodnocení %s★', 'shp-partneri')|format(rating_filter) }}</span>
+            <a class="ml-2" href="{{ rating_filter_reset_link }}">{{ __('Zobrazit všechna hodnocení', 'shp-partneri') }}</a>
+          </div>
+        {% endif %}
       </div>
       <div class="align-self-end">
         <a class="btn btn-primary" href="#commentForm" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="commentForm">
@@ -60,9 +73,9 @@
     </div>
   </div>
 
-  {% if post.comments|length > 0 %}
+  {% if filtered_comments_count > 0 %}
     <ol class="list-unstyled mb-0">
-      {% for comment in post.comments.order('wp')|slice(comments_offset, comments_length) %}
+      {% for comment in filtered_comments|slice(comments_offset, comments_length) %}
         <li>
           {% include 'review-single.twig' with {is_root_review: true} %}
 
@@ -90,6 +103,8 @@
         </li>
       {% endfor %}
     </ol>
+  {% elseif rating_filter %}
+    <p class="mb-0">{{ __('Pro vybraný počet hvězdiček nejsou žádná hodnocení.', 'shp-partneri') }}</p>
   {% endif %}
 
   {% include 'pagination.twig' %}
