@@ -188,13 +188,14 @@ add_filter( 'display_post_states', function ( $states, $post ) {
   return $states;
 }, 10, 2 );
 
-// Make the review rating required.
+// Protect partner reviews and make the review rating required.
 add_filter( 'preprocess_comment', function ( $commentdata ) {
 	if ( is_admin() ) {
 		return $commentdata;
 	}
 
 	$comment_post_id = isset( $commentdata['comment_post_ID'] ) ? intval( $commentdata['comment_post_ID'] ) : 0;
+	$comment_content = isset( $commentdata['comment_content'] ) ? $commentdata['comment_content'] : '';
 	$is_professional_review = $comment_post_id && 'profesionalove' === get_post_type( $comment_post_id );
 	$is_comment_reply = isset( $_POST['comment_parent'] ) && 0 !== intval( $_POST['comment_parent'] );
 
@@ -202,8 +203,36 @@ add_filter( 'preprocess_comment', function ( $commentdata ) {
 		wp_die( __( 'Chyba: Nepotvrdili jste prosím, že nejste robot. Běžte prosím zpět a zkuste to znovu.', 'shp-partneri' ) );
 	}
 
+	if ( $is_professional_review && shp_contains_cyrillic_word( $comment_content ) ) {
+		wp_die( __( 'Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte vyplněné údaje.', 'shp-partneri' ) );
+	}
+
+	if ( $is_professional_review && shp_contains_hebrew_word( $comment_content ) ) {
+		wp_die( __( 'Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte vyplněné údaje.', 'shp-partneri' ) );
+	}
+
+	if ( $is_professional_review && shp_contains_html_anchor_link( $comment_content ) ) {
+		wp_die( __( 'Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte vyplněné údaje.', 'shp-partneri' ) );
+	}
+
+	if ( $is_professional_review && shp_comment_fields_contain_ru_domain( $commentdata ) ) {
+		wp_die( __( 'Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte vyplněné údaje.', 'shp-partneri' ) );
+	}
+
+	if ( $is_professional_review && ! shp_comment_has_minimum_words( $comment_content ) ) {
+		wp_die( __( 'Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte vyplněné údaje.', 'shp-partneri' ) );
+	}
+
 	if ( $is_comment_reply ) {
+		// Replies can be legitimate partner/admin follow-ups, so they use separate looser buckets than root reviews.
+		if ( $is_professional_review && ! shp_check_review_rate_limit( $commentdata, true ) ) {
+			wp_die( __( 'Chyba: Odesíláte příliš mnoho příspěvků. Zkuste to prosím později.', 'shp-partneri' ) );
+		}
 		return $commentdata;
+	}
+
+	if ( $is_professional_review && ! shp_check_review_rate_limit( $commentdata ) ) {
+		wp_die( __( 'Chyba: Odesíláte příliš mnoho příspěvků. Zkuste to prosím později.', 'shp-partneri' ) );
 	}
 
 	if ( ! isset( $_POST['rating'] ) || 0 === intval( $_POST['rating'] ) ) {

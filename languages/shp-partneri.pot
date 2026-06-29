@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Shoptet Partners\n"
-"POT-Creation-Date: 2025-04-17 15:08+0200\n"
+"POT-Creation-Date: 2026-05-07 15:22+0200\n"
 "PO-Revision-Date: 2025-02-12 14:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1375,6 +1375,16 @@ msgstr[1] ""
 #: lib/setup.php:188
 msgid ""
 "Chyba: Nepřidali jste hodnocení. Běžte prosím zpět a přidejte hodnocení."
+msgstr ""
+
+#: lib/setup.php:207 lib/setup.php:211 lib/setup.php:215 lib/setup.php:219
+msgid ""
+"Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte "
+"vyplněné údaje."
+msgstr ""
+
+#: lib/setup.php:225 lib/setup.php:231
+msgid "Chyba: Odesíláte příliš mnoho příspěvků. Zkuste to prosím později."
 msgstr ""
 
 #: lib/setup.php:217

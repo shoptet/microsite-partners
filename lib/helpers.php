@@ -272,6 +272,138 @@ function is_blacklisted ( $name, $email, $message ) {
   return wp_check_comment_disallowed_list( $name, $email, $user_url, $message, $user_ip, $user_agent );
 }
 
+function shp_contains_cyrillic_word( $text ) {
+  if ( ! is_string( $text ) || '' === $text ) {
+    return false;
+  }
+
+  return 1 === preg_match( '/\p{Cyrillic}+/u', $text );
+}
+
+function shp_contains_hebrew_word( $text ) {
+  if ( ! is_string( $text ) || '' === $text ) {
+    return false;
+  }
+
+  return 1 === preg_match( '/\p{Hebrew}+/u', $text );
+}
+
+function shp_contains_html_anchor_link( $text ) {
+  if ( ! is_string( $text ) || '' === $text ) {
+    return false;
+  }
+
+  return 1 === preg_match( '/<a\s+[^>]*href\s*=/i', $text );
+}
+
+function shp_contains_ru_domain( $text ) {
+  if ( ! is_string( $text ) || '' === $text ) {
+    return false;
+  }
+
+  return 1 === preg_match( '/(?<![a-z0-9-])(?:https?:\/\/)?(?:www\.)?(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+ru(?=$|[^a-z0-9-])/i', $text );
+}
+
+function shp_comment_fields_contain_ru_domain( $commentdata ) {
+  $fields = [
+    'comment_author',
+    'comment_author_email',
+    'comment_author_url',
+    'comment_content',
+  ];
+
+  foreach ( $fields as $field ) {
+    if ( isset( $commentdata[ $field ] ) && shp_contains_ru_domain( $commentdata[ $field ] ) ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function shp_comment_has_minimum_words( $text, $minimum_words = 2 ) {
+  if ( ! is_string( $text ) ) {
+    return false;
+  }
+
+  $text = function_exists( 'wp_strip_all_tags' ) ? wp_strip_all_tags( $text ) : strip_tags( $text );
+  $text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+  $text = preg_replace( '/\x{00a0}/u', ' ', $text );
+  $words = preg_split( '/\s+/u', trim( $text ), -1, PREG_SPLIT_NO_EMPTY );
+
+  return count( $words ) >= $minimum_words;
+}
+
+function shp_increment_rate_limit( $key, $limit, $ttl ) {
+  $count = get_transient( $key );
+
+  if ( false === $count ) {
+    set_transient( $key, 1, $ttl );
+    return true;
+  }
+
+  $count = intval( $count );
+
+  if ( $count >= $limit ) {
+    return false;
+  }
+
+  set_transient( $key, $count + 1, $ttl );
+  return true;
+}
+
+function shp_check_review_rate_limit( $commentdata, $is_comment_reply = false ) {
+  $ip = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '';
+  $email = isset( $commentdata['comment_author_email'] ) ? strtolower( trim( $commentdata['comment_author_email'] ) ) : '';
+  $post_id = isset( $commentdata['comment_post_ID'] ) ? intval( $commentdata['comment_post_ID'] ) : 0;
+  $limits = $is_comment_reply
+    ? [
+      'ip' => 10,
+      'ip_post' => 10,
+      'email' => 10,
+    ]
+    : [
+      'ip' => 5,
+      'ip_post' => 3,
+      'email' => 3,
+    ];
+  $key_prefix = ( $is_comment_reply ? 'shp_review_reply_rate_' : 'shp_review_rate_' );
+
+  $buckets = [];
+
+  if ( $ip ) {
+    $buckets[] = [
+      'key' => $key_prefix . 'ip_' . hash( 'sha256', $ip ),
+      'limit' => $limits['ip'],
+      'ttl' => 15 * MINUTE_IN_SECONDS,
+    ];
+
+    if ( $post_id ) {
+      $buckets[] = [
+        'key' => $key_prefix . 'ip_post_' . hash( 'sha256', $ip . '|' . $post_id ),
+        'limit' => $limits['ip_post'],
+        'ttl' => 30 * MINUTE_IN_SECONDS,
+      ];
+    }
+  }
+
+  if ( $email ) {
+    $buckets[] = [
+      'key' => $key_prefix . 'email_' . hash( 'sha256', $email ),
+      'limit' => $limits['email'],
+      'ttl' => 30 * MINUTE_IN_SECONDS,
+    ];
+  }
+
+  foreach ( $buckets as $bucket ) {
+    if ( ! shp_increment_rate_limit( $bucket['key'], $bucket['limit'], $bucket['ttl'] ) ) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 /**
  * Get post count by meta key and value
  */

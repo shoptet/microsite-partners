@@ -1408,6 +1408,18 @@ msgstr ""
 "Hiba: Nem adott hozzá értékelést. Kérjük, térjen vissza, és adjon hozzá "
 "véleményt."
 
+#: lib/setup.php:207 lib/setup.php:211 lib/setup.php:215 lib/setup.php:219
+msgid ""
+"Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte "
+"vyplněné údaje."
+msgstr ""
+"Hiba: Az értékelést nem sikerült elküldeni. Kérjük, térjen vissza, és "
+"ellenőrizze a kitöltött adatokat."
+
+#: lib/setup.php:225 lib/setup.php:231
+msgid "Chyba: Odesíláte příliš mnoho příspěvků. Zkuste to prosím později."
+msgstr "Hiba: Túl sok hozzászólást küld. Kérjük, próbálja újra később."
+
 #: lib/setup.php:217
 msgid "Děkujeme za vaše hodnocení"
 msgstr "Köszönjük értékelését"

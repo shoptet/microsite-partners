@@ -1403,6 +1403,18 @@ msgid ""
 msgstr ""
 "Chyba: Nepridali ste hodnotenie. Vráťte sa prosím späť a pridajte hodnotenie."
 
+#: lib/setup.php:207 lib/setup.php:211 lib/setup.php:215 lib/setup.php:219
+msgid ""
+"Chyba: Hodnocení se nepodařilo odeslat. Běžte prosím zpět a zkontrolujte "
+"vyplněné údaje."
+msgstr ""
+"Chyba: Hodnotenie sa nepodarilo odoslať. Vráťte sa prosím späť a "
+"skontrolujte vyplnené údaje."
+
+#: lib/setup.php:225 lib/setup.php:231
+msgid "Chyba: Odesíláte příliš mnoho příspěvků. Zkuste to prosím později."
+msgstr "Chyba: Odosielate príliš veľa príspevkov. Skúste to prosím neskôr."
+
 #: lib/setup.php:217
 msgid "Děkujeme za vaše hodnocení"
 msgstr "Ďakujeme za vaše hodnotenie"
