@@ -19,6 +19,45 @@ add_action('wp_head', function() {
   echo '<link rel="stylesheet" href="https://use.typekit.net/zti8imj.css">';
 });
 
+add_action('wp_body_open', function () {
+    $locale = function_exists('determine_locale') ? determine_locale() : get_locale();
+
+    if (strpos($locale, 'cs') === 0) {
+        $lang = 'cs';
+    } elseif (strpos($locale, 'sk') === 0) {
+        $lang = 'sk';
+    } else {
+        return;
+    }
+
+    $transient_key = 'shp_reshoper_2026_fragment_' . $lang;
+    $cached_fragment = get_transient($transient_key);
+
+    if (false !== $cached_fragment) {
+        echo $cached_fragment;
+        return;
+    }
+
+    $url = 'https://www.shoptet.cz/campaigns/reshoper-2026/fragments-external/' . $lang . '.html';
+
+    $response = wp_remote_get($url, [
+        'timeout' => 1.5,
+    ]);
+
+    if (is_wp_error($response)) {
+        return;
+    }
+
+    if (wp_remote_retrieve_response_code($response) !== 200) {
+        return;
+    }
+
+    $fragment = wp_remote_retrieve_body($response);
+    set_transient($transient_key, $fragment, 15 * MINUTE_IN_SECONDS);
+
+    echo $fragment;
+}, 5);
+
 /**
  * Setup DKIM
  */
