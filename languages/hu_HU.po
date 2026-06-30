@@ -1698,7 +1698,7 @@ msgstr ""
 
 #: templates/header.twig:83 templates/request/archive-list.twig:20
 msgid "Přidat poptávku"
-msgstr "Projekt hozzáadása"
+msgstr "Szakértőt keresek"
 
 #: templates/home.twig:61
 msgid "Nové poptávky"
