@@ -304,21 +304,32 @@ function shp_contains_ru_domain( $text ) {
   return 1 === preg_match( '/(?<![a-z0-9-])(?:https?:\/\/)?(?:www\.)?(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+ru(?=$|[^a-z0-9-])/i', $text );
 }
 
-function shp_comment_fields_contain_ru_domain( $commentdata ) {
-  $fields = [
-    'comment_author',
-    'comment_author_email',
-    'comment_author_url',
-    'comment_content',
-  ];
-
+function shp_fields_contain_ru_domain( $fields ) {
   foreach ( $fields as $field ) {
-    if ( isset( $commentdata[ $field ] ) && shp_contains_ru_domain( $commentdata[ $field ] ) ) {
+    if ( shp_contains_ru_domain( $field ) ) {
       return true;
     }
   }
 
   return false;
+}
+
+function shp_comment_fields_contain_ru_domain( $commentdata ) {
+  $field_names = [
+    'comment_author',
+    'comment_author_email',
+    'comment_author_url',
+    'comment_content',
+  ];
+  $fields = [];
+
+  foreach ( $field_names as $field_name ) {
+    if ( isset( $commentdata[ $field_name ] ) ) {
+      $fields[] = $commentdata[ $field_name ];
+    }
+  }
+
+  return shp_fields_contain_ru_domain( $fields );
 }
 
 function shp_comment_has_minimum_words( $text, $minimum_words = 2 ) {
@@ -391,6 +402,36 @@ function shp_check_review_rate_limit( $commentdata, $is_comment_reply = false ) 
     $buckets[] = [
       'key' => $key_prefix . 'email_' . hash( 'sha256', $email ),
       'limit' => $limits['email'],
+      'ttl' => 30 * MINUTE_IN_SECONDS,
+    ];
+  }
+
+  foreach ( $buckets as $bucket ) {
+    if ( ! shp_increment_rate_limit( $bucket['key'], $bucket['limit'], $bucket['ttl'] ) ) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function shp_check_onboarding_rate_limit( $email ) {
+  $ip = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '';
+  $email = is_string( $email ) ? strtolower( trim( $email ) ) : '';
+  $buckets = [];
+
+  if ( $ip ) {
+    $buckets[] = [
+      'key' => 'shp_onboarding_rate_ip_' . hash( 'sha256', $ip ),
+      'limit' => 5,
+      'ttl' => 15 * MINUTE_IN_SECONDS,
+    ];
+  }
+
+  if ( $email ) {
+    $buckets[] = [
+      'key' => 'shp_onboarding_rate_email_' . hash( 'sha256', $email ),
+      'limit' => 3,
       'ttl' => 30 * MINUTE_IN_SECONDS,
     ];
   }

@@ -17,15 +17,19 @@ class ContactForm
 
   public function handle()
   {
-    $action = empty( $_POST['action'] ) ? '' : $_POST['action'];
+    $action = isset( $_POST['action'] ) && is_string( $_POST['action'] ) ? wp_unslash( $_POST['action'] ) : '';
 
     if ( self::ACTION != $action ) {
       return;
     }
 
-    $this->name = empty( $_POST['name'] ) ? '' : sanitize_text_field( $_POST['name'] );
-    $this->email = empty( $_POST['email'] ) ? '' : sanitize_email( $_POST['email'] );
-    $this->message = empty( $_POST['message'] ) ? '' : sanitize_textarea_field( $_POST['message'] );
+    $raw_name = isset( $_POST['name'] ) && is_string( $_POST['name'] ) ? wp_unslash( $_POST['name'] ) : '';
+    $raw_email = isset( $_POST['email'] ) && is_string( $_POST['email'] ) ? wp_unslash( $_POST['email'] ) : '';
+    $raw_message = isset( $_POST['message'] ) && is_string( $_POST['message'] ) ? wp_unslash( $_POST['message'] ) : '';
+
+    $this->name = sanitize_text_field( $raw_name );
+    $this->email = sanitize_email( $raw_email );
+    $this->message = sanitize_textarea_field( $raw_message );
 
     if ( ! $this->is_valid() ) {
       wp_die(
@@ -47,6 +51,22 @@ class ContactForm
       wp_die();
     }
 
+    if ( $this->is_spam( $raw_name, $raw_email, $raw_message ) ) {
+      wp_die(
+        'Contact form is not valid',
+        'Contact form is not valid',
+        [ 'response' => 400 ]
+      );
+    }
+
+    if ( ! shp_check_onboarding_rate_limit( $this->email ) ) {
+      wp_die(
+        'Too many contact form submissions',
+        'Too many contact form submissions',
+        [ 'response' => 429 ]
+      );
+    }
+
     if ( ! $this->is_email_unique() ) {
       render_onboarding_form_error_message();
       return;
@@ -64,6 +84,17 @@ class ContactForm
       ! empty($this->name) &&
       filter_var($this->email, FILTER_VALIDATE_EMAIL) &&
       ! empty($this->message)
+    ;
+  }
+
+  protected function is_spam( $raw_name, $raw_email, $raw_message )
+  {
+    return
+      shp_contains_cyrillic_word( $raw_message ) ||
+      shp_contains_hebrew_word( $raw_message ) ||
+      shp_contains_html_anchor_link( $raw_message ) ||
+      shp_fields_contain_ru_domain( [ $raw_name, $raw_email, $raw_message ] ) ||
+      ! shp_comment_has_minimum_words( $this->message )
     ;
   }
 
